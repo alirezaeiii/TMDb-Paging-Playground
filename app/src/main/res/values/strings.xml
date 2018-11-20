@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TMDb</string>
+    <string name="retry">Retry</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">Search for movies</string>
+    <string name="text_popular">Popular</string>
+    <string name="text_highest_rate">Highest rate</string>
+    <string name="text_upcoming">Upcoming</string>
+    <string name="summary">Summary</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="rating">%s/10</string>
+</resources>
