@@ -9,9 +9,9 @@ import com.sample.android.tmdb.vo.Movie
 class MovieDataSourceFactory(
         private val dataSource: MoviesRemoteDataSource,
         private val sortType: SortType?,
-        private val query : String) : DataSource.Factory<String, Movie>() {
+        private val query : String) : DataSource.Factory<Int, Movie>() {
     val sourceLiveData = MutableLiveData<PageKeyedMovieDataSource>()
-    override fun create(): DataSource<String, Movie> {
+    override fun create(): DataSource<Int, Movie> {
         val source = PageKeyedMovieDataSource(dataSource = dataSource,
                 sortType = sortType,
                 query = query)

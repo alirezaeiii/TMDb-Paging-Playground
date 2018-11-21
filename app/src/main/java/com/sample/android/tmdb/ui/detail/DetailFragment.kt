@@ -87,7 +87,7 @@ constructor() // Required empty public constructor
                 override fun onTransitionEnd(transition: Transition) {
                     // As the transition has ended, we can now load the full-size image
                     Glide.with(movie_poster.context)
-                            .load(movie.backdropPath?.let { BASE_BACKDROP_PATH + it })
+                            .load("$BASE_BACKDROP_PATH${movie.backdropPath}")
                             .into(movie_poster)
 
                     // Make sure we remove ourselves as a listener

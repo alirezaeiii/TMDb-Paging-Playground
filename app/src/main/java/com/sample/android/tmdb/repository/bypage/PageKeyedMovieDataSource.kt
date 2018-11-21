@@ -14,9 +14,7 @@ import java.io.IOException
 class PageKeyedMovieDataSource(
         private val dataSource: MoviesRemoteDataSource,
         private val sortType: SortType?,
-        private val query: String) : PageKeyedDataSource<String, Movie>() {
-
-    private var page = 1
+        private val query: String) : PageKeyedDataSource<Int, Movie>() {
 
     /**
      * There is no sync on the state because paging will always call loadInitial first then wait
@@ -27,15 +25,15 @@ class PageKeyedMovieDataSource(
     val initialLoad = MutableLiveData<NetworkState>()
 
     override fun loadBefore(
-            params: LoadParams<String>,
-            callback: LoadCallback<String, Movie>) {
+            params: LoadParams<Int>,
+            callback: LoadCallback<Int, Movie>) {
         // ignored, since we only ever append to our initial load
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, Movie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
 
         networkState.postValue(NetworkState.LOADING)
-        fetchMovies().enqueue(
+        fetchMovies(params.key).enqueue(
                 object : retrofit2.Callback<MovieApi.MovieWrapper> {
                     override fun onFailure(call: Call<MovieApi.MovieWrapper>, t: Throwable) {
                         networkState.postValue(NetworkState.error(t.message ?: "unknown err"))
@@ -47,7 +45,7 @@ class PageKeyedMovieDataSource(
                         if (response.isSuccessful) {
                             val data = response.body()?.movies
                             val items = data?.map { it } ?: emptyList()
-                            callback.onResult(items, "")
+                            callback.onResult(items, params.key + 1)
                             networkState.postValue(NetworkState.LOADED)
                         } else {
                             networkState.postValue(
@@ -59,20 +57,20 @@ class PageKeyedMovieDataSource(
     }
 
     override fun loadInitial(
-            params: LoadInitialParams<String>,
-            callback: LoadInitialCallback<String, Movie>) {
+            params: LoadInitialParams<Int>,
+            callback: LoadInitialCallback<Int, Movie>) {
         networkState.postValue(NetworkState.LOADING)
         initialLoad.postValue(NetworkState.LOADING)
 
         // triggered by a refresh, we better execute sync
         try {
-            val response = fetchMovies().execute()
+            val response = fetchMovies(1).execute()
             if (response.isSuccessful) {
                 val data = response.body()?.movies
                 val items = data?.map { it } ?: emptyList()
                 networkState.postValue(NetworkState.LOADED)
                 initialLoad.postValue(NetworkState.LOADED)
-                callback.onResult(items, null, "")
+                callback.onResult(items, null, 2)
             } else {
                 initNetworkError("error code: ${response.code()}")
             }
@@ -87,11 +85,11 @@ class PageKeyedMovieDataSource(
         initialLoad.postValue(error)
     }
 
-    private fun fetchMovies(): Call<MovieApi.MovieWrapper> {
+    private fun fetchMovies(page : Int): Call<MovieApi.MovieWrapper> {
         if (sortType != null) {
-            return dataSource.fetchMovies(sortType = sortType, page = page++)
+            return dataSource.fetchMovies(sortType = sortType, page = page)
         } else if (query.isNotEmpty()) {
-            return dataSource.fetchMovies(page = page++, query = query)
+            return dataSource.fetchMovies(page = page, query = query)
         }
         throw RuntimeException("Unknown state to fetch movies")
     }
