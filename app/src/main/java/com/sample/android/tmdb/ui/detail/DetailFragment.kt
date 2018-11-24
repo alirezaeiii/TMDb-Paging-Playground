@@ -9,9 +9,9 @@ import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.setupActionBar
 import com.sample.android.tmdb.ui.MovieViewHolder.Companion.BASE_BACKDROP_PATH
@@ -28,9 +28,14 @@ constructor() // Required empty public constructor
     @Inject
     lateinit var movie: Movie
 
+    private lateinit var binding: FragmentDetailBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.bind(root).apply {
+            movie = this@DetailFragment.movie
+        }
 
         with(root) {
 
@@ -44,14 +49,10 @@ constructor() // Required empty public constructor
             ViewCompat.setTransitionName(movie_poster, VIEW_NAME_HEADER_IMAGE)
             ViewCompat.setTransitionName(movie_name, VIEW_NAME_HEADER_TITLE)
 
-            collapsing_toolbar.title = movie.title
-            movie_name.text = movie.title
             movie_year.text = String.format(getString(R.string.release_date), movie.releaseDate)
             movie_rating.text = String.format(getString(R.string.rating), movie.voteAverage)
-            movie_description.text = movie.overview
 
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && addTransitionListener(movie_poster)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && addTransitionListener()) {
                 // If we're running on Lollipop and we have added a listener to the shared element
                 // transition, load the thumbnail. The listener will load the full-size image when
                 // the transition is complete.
@@ -78,7 +79,7 @@ constructor() // Required empty public constructor
      * @return true if we were successful in adding a listener to the enter transition
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private fun addTransitionListener(movie_poster : ImageView): Boolean {
+    private fun addTransitionListener(): Boolean {
         val transition = requireActivity().window.sharedElementEnterTransition
 
         if (transition != null) {
@@ -86,9 +87,11 @@ constructor() // Required empty public constructor
             transition.addListener(object : Transition.TransitionListener {
                 override fun onTransitionEnd(transition: Transition) {
                     // As the transition has ended, we can now load the full-size image
-                    Glide.with(movie_poster.context)
-                            .load("$BASE_BACKDROP_PATH${movie.backdropPath}")
-                            .into(movie_poster)
+                    with(binding) {
+                        Glide.with(moviePoster.context)
+                                .load("$BASE_BACKDROP_PATH${movie?.backdropPath}")
+                                .into(moviePoster)
+                    }
 
                     // Make sure we remove ourselves as a listener
                     transition.removeListener(this)

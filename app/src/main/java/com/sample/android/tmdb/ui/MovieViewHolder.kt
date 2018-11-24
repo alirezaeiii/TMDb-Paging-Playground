@@ -45,8 +45,8 @@ class MovieViewHolder(internal val binding: MovieItemBinding,
                             R.layout.movie_item,
                             parent, false)
             with(binding) {
-                poster = binding.moviePoster
-                name = binding.movieName
+                poster = moviePoster
+                name = movieName
                 callback = movieClickCallback
             }
             return MovieViewHolder(binding, glide)
