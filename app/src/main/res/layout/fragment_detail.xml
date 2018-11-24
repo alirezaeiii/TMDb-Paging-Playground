@@ -80,20 +80,20 @@
                     android:textSize="32sp" />
 
                 <TextView
-                    android:id="@+id/movie_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:text= "@{@string/release_date(movie.releaseDate)}"
                     android:fontFamily="sans-serif-light"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <TextView
-                    android:id="@+id/movie_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
+                    android:text= "@{@string/rating(movie.voteAverage)}"
                     android:fontFamily="sans-serif-light"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 

@@ -49,9 +49,6 @@ constructor() // Required empty public constructor
             ViewCompat.setTransitionName(movie_poster, VIEW_NAME_HEADER_IMAGE)
             ViewCompat.setTransitionName(movie_name, VIEW_NAME_HEADER_TITLE)
 
-            movie_year.text = String.format(getString(R.string.release_date), movie.releaseDate)
-            movie_rating.text = String.format(getString(R.string.rating), movie.voteAverage)
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && addTransitionListener()) {
                 // If we're running on Lollipop and we have added a listener to the shared element
                 // transition, load the thumbnail. The listener will load the full-size image when
