@@ -1,5 +1,5 @@
 # TMDb-Paging
-A sample to showcase Kotlin, Paging library from Architectural components, Dagger 2, Retrofit 2.0, DataBinding, RxBinding and ButterKnife.
+A sample to showcase Kotlin, Paging library from Architectural components, Dagger 2, Retrofit 2.0, DataBinding and RxBinding.
 
 ### Prerequisites
 
