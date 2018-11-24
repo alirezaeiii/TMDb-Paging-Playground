@@ -45,12 +45,12 @@ dependencies {
     implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
 
     // Architecture components
-    implementation "android.arch.paging:runtime:$rootProject.paging"
-    implementation "android.arch.lifecycle:runtime:$rootProject.lifecycle"
-    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle"
+    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
+    implementation "android.arch.lifecycle:runtime:$rootProject.lifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
 
     //Gson
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.1.1'
 
     // Network
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 

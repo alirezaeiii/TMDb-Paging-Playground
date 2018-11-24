@@ -18,9 +18,11 @@ class MovieAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
-            (holder as MovieViewHolder).binding.movie = it
-            holder.bind(it)
-            holder.binding.executePendingBindings()
+            with((holder as MovieViewHolder).binding) {
+                movie = it
+                executePendingBindings()
+            }
+            holder.bind()
         }
     }
 

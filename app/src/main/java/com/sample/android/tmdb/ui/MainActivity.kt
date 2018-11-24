@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.addFragmentToActivity
+import com.sample.android.tmdb.replaceFragmentInActivity
 import com.sample.android.tmdb.ui.base.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.base.PopularMoviesFragment
 import com.sample.android.tmdb.ui.base.UpcomingMoviesFragment
@@ -32,8 +34,7 @@ class MainActivity : DaggerAppCompatActivity() {
         // Add movie detailFragment if this is first creation
         if (savedInstanceState == null) {
 
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container, popularMoviesFragment).commit()
+            addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
         }
 
         var fragment: Fragment
@@ -48,8 +49,7 @@ class MainActivity : DaggerAppCompatActivity() {
                     R.id.action_upcoming -> upcomingMoviesFragment
                     else -> throw RuntimeException("Unknown sortType to replace detailFragment")
                 }
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment).commit()
+                replaceFragmentInActivity(fragment, R.id.fragment_container)
                 true
             }
         }
@@ -63,8 +63,9 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                intent.action = Intent.ACTION_SEARCH
+                val intent = Intent(this, SearchActivity::class.java).apply {
+                    action = Intent.ACTION_SEARCH
+                }
                 startActivity(intent)
             }
         }

@@ -126,11 +126,12 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
         })[MovieViewModel::class.java]
     }
 
-    override fun onClick(movie: Movie, poster : ImageView, name : TextView) {
-        val intent = Intent(activity, DetailActivity::class.java)
-        val extras = Bundle()
-        extras.putParcelable(EXTRA_MOVIE, movie)
-        intent.putExtras(extras)
+    override fun onClick(movie: Movie, poster: ImageView, name: TextView) {
+        val intent = Intent(activity, DetailActivity::class.java).apply {
+            putExtras(Bundle().apply {
+                putParcelable(EXTRA_MOVIE, movie)
+            })
+        }
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 requireActivity(),
 

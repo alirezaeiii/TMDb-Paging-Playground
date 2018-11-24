@@ -5,6 +5,7 @@ import android.view.MenuItem
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.addFragmentToActivity
 
 class DetailActivity : DaggerAppCompatActivity() {
 
@@ -19,9 +20,7 @@ class DetailActivity : DaggerAppCompatActivity() {
 
             supportFragmentManager.findFragmentById(R.id.fragment_container)
                     as DetailFragment? ?: detailFragment.also {
-                supportFragmentManager.beginTransaction()
-                        .add(R.id.fragment_container, it)
-                        .commit()
+                addFragmentToActivity(it, R.id.fragment_container)
             }
         }
     }

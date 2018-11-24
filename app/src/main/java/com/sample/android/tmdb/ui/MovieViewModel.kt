@@ -9,13 +9,9 @@ import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.bypage.PageKeyRepository
 import java.util.concurrent.Executors
 
-class MovieViewModel(
+class MovieViewModel @JvmOverloads constructor(
         dataSource: MoviesRemoteDataSource,
-        sortType: SortType?) : ViewModel() {
-
-    constructor(dataSource: MoviesRemoteDataSource) : this(
-            dataSource = dataSource,
-            sortType = null)
+        sortType: SortType? = null) : ViewModel() {
 
     // thread pool used for network requests
     @Suppress("PrivatePropertyName")

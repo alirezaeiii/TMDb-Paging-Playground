@@ -8,6 +8,7 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.addFragmentToActivity
 import com.sample.android.tmdb.util.RxUtils
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.disposables.Disposable
@@ -36,9 +37,7 @@ class SearchActivity : DaggerAppCompatActivity() {
 
         fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
                 as SearchFragment? ?: searchFragment.also {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container, it)
-                    .commit()
+            addFragmentToActivity(it, R.id.fragment_container)
         }
     }
 

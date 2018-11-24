@@ -22,6 +22,5 @@ abstract class BaseFragment : MainFragment() {
     override fun setupToolbar(ab : ActionBar?) {
         ab?.setTitle(R.string.app_name)
         ab?.setDisplayShowTitleEnabled(true)
-
     }
 }
