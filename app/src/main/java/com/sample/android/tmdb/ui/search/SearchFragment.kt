@@ -13,22 +13,18 @@ class SearchFragment @Inject
 constructor() // Required empty public constructor
     : MainFragment() {
 
-    override fun initViewModel() {
-        model = getViewModel()
-    }
-
     override fun getMoviesViewModel() =
             MovieViewModel(dataSource = dataSource)
+
+    override fun setupToolbar(ab: ActionBar?) {
+        ab?.setDisplayHomeAsUpEnabled(true)
+        ab?.setDisplayShowHomeEnabled(true)
+    }
 
     fun searchViewClicked(query: String?) {
         if (model.showQuery(query)) {
             list.scrollToPosition(0)
             (list.adapter as? MovieAdapter)?.submitList(null)
         }
-    }
-
-    override fun setupToolbar(ab: ActionBar?) {
-        ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.setDisplayShowHomeEnabled(true)
     }
 }

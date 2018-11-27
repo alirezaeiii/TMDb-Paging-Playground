@@ -11,7 +11,7 @@ abstract class BaseFragment : MainFragment() {
     protected abstract fun getSortType(): SortType
 
     override fun initViewModel() {
-        model = getViewModel()
+        super.initViewModel()
         model.showQuery("")
     }
 

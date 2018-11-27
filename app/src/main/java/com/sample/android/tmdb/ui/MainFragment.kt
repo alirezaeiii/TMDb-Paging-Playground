@@ -40,13 +40,20 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
 
-    lateinit var model: MovieViewModel
+    protected lateinit var model: MovieViewModel
 
     protected abstract fun getMoviesViewModel(): MovieViewModel
 
-    protected abstract fun initViewModel()
-
     protected abstract fun setupToolbar(ab: ActionBar?)
+
+    protected open fun initViewModel() {
+        model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return getMoviesViewModel() as T
+            }
+        })[MovieViewModel::class.java]
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -115,15 +122,6 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
             })
         }
         return binding.root
-    }
-
-    protected fun getViewModel(): MovieViewModel {
-        return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return getMoviesViewModel() as T
-            }
-        })[MovieViewModel::class.java]
     }
 
     override fun onClick(movie: Movie, poster: ImageView, name: TextView) {
