@@ -1,10 +1,11 @@
 package com.sample.android.tmdb.ui
 
-import android.content.Intent
+import android.app.ActivityOptions
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.addFragmentToActivity
 import com.sample.android.tmdb.replaceFragmentInActivity
@@ -30,6 +31,8 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(toolbar)
 
         // Add movie detailFragment if this is first creation
         if (savedInstanceState == null) {
@@ -63,10 +66,15 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> {
-                val intent = Intent(this, SearchActivity::class.java).apply {
-                    action = Intent.ACTION_SEARCH
+                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
+                val options = ActivityOptions.makeSceneTransitionAnimation(this,
+                        searchMenuView, getString(R.string.transition_search_back)).toBundle()
+
+                val intent = android.content.Intent(this,
+                        SearchActivity::class.java).apply {
+                    action = android.content.Intent.ACTION_SEARCH
                 }
-                startActivity(intent)
+                startActivity(intent, options)
             }
         }
         return super.onOptionsItemSelected(item)

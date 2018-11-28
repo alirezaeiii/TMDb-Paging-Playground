@@ -14,7 +14,7 @@ class DetailActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
+        setContentView(R.layout.activity_detail)
 
         if (savedInstanceState == null) {
 

@@ -2,17 +2,13 @@ package com.sample.android.tmdb.ui.search
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.SearchView
-import android.view.Menu
-import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.addFragmentToActivity
-import com.sample.android.tmdb.util.RxUtils
 import dagger.android.support.DaggerAppCompatActivity
-import io.reactivex.disposables.Disposable
-import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
 
 
@@ -21,75 +17,41 @@ class SearchActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var searchFragment: SearchFragment
 
-    private var mQuery: String? = null
-
-    private lateinit var fragment: SearchFragment
-
-    private lateinit var searchViewTextSubscription: Disposable
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
+        setContentView(R.layout.activity_search)
 
-        if (savedInstanceState != null) {
-            mQuery = savedInstanceState.getString(QUERY)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        search_view.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        // hint, inputType & ime options seem to be ignored from XML! Set in code
+        search_view.queryHint = getString(R.string.search_hint)
+        search_view.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        search_view.imeOptions = search_view.imeOptions or EditorInfo.IME_ACTION_SEARCH or
+                EditorInfo.IME_FLAG_NO_EXTRACT_UI or EditorInfo.IME_FLAG_NO_FULLSCREEN
+
+
+        search_back.setOnClickListener {
+            search_back.background = null
+            finishAfterTransition()
         }
 
-        fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
                 as SearchFragment? ?: searchFragment.also {
             addFragmentToActivity(it, R.id.fragment_container)
         }
-    }
 
-    override fun onNewIntent(intent: Intent) {
-        val action = intent.action
-        if (action == Intent.ACTION_SEARCH) {
-            mQuery = intent.getStringExtra(SearchManager.QUERY)
+        search_view.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                fragment.searchViewClicked(query)
+                return true
+            }
 
-            fragment.searchViewClicked(query = mQuery)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        super.onCreateOptionsMenu(menu)
-
-        // Inflate the options menu from XML
-        menuInflater.inflate(R.menu.search_in_menu, menu)
-
-        // Get the SearchView and set the searchable configuration
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
-        // Assumes current activity is the searchable activity
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.isIconified = false // Do not iconify the widget; expand it by default
-
-        if (mQuery != null) {
-            searchView.setQuery(mQuery, false)
-        }
-
-        searchViewTextSubscription = RxSearchView.queryTextChanges(searchView)
-                .debounce(500, TimeUnit.MILLISECONDS)
-                .subscribe { charSequence ->
-                    mQuery = charSequence.toString()
-                    if (charSequence.isNotEmpty()) {
-                        runOnUiThread { fragment.searchViewClicked(mQuery) }
-                    }
+            override fun onQueryTextChange(query: String): Boolean {
+                if (query.isNotEmpty()) {
+                    fragment.searchViewClicked(query)
                 }
-
-        return true
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(QUERY, mQuery)
-    }
-
-    override fun onDestroy() {
-        RxUtils.unsubscribe(searchViewTextSubscription)
-        super.onDestroy()
-    }
-
-    companion object {
-        private const val QUERY = "query"
+                return true
+            }
+        })
     }
 }

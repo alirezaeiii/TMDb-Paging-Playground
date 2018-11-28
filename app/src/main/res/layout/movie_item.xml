@@ -25,9 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="285dp"
         android:layout_margin="6dp"
-        android:elevation="4dp"
+        android:elevation="@dimen/z_app_bar"
         android:onClick="@{() -> callback.onClick(movie, poster, name)}"
-        app:cardElevation="4dp"
+        app:cardElevation="@dimen/z_app_bar"
         tools:targetApi="lollipop">
 
         <ImageView

@@ -12,8 +12,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -44,8 +42,6 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
 
     protected abstract fun getMoviesViewModel(): MovieViewModel
 
-    protected abstract fun setupToolbar(ab: ActionBar?)
-
     protected open fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -63,11 +59,6 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
         initViewModel()
 
         with(binding.root) {
-
-            with(activity as AppCompatActivity) {
-                setSupportActionBar(toolbar)
-                setupToolbar(supportActionBar)
-            }
 
             swipe_refresh.apply {
                 setColorSchemeColors(

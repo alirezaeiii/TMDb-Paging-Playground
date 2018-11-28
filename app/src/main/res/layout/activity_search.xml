@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:elevation="@dimen/z_app_bar"
+            android:outlineProvider="bounds"
+            android:theme="@style/SearchViewTheme"
+            android:transitionGroup="false"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimary" />
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/padding_normal"
+                android:iconifiedByDefault="false"
+                android:transitionGroup="true" />
+
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:paddingStart="@dimen/padding_micro"
+                tools:ignore="RtlSymmetry">
+
+                <ImageButton
+                    android:id="@+id/search_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_arrow_back_padded"
+                    android:transitionName="@string/transition_search_back"
+                    tools:ignore="contentDescription" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>

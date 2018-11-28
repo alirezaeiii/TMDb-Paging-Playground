@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.search
 
-import android.support.v7.app.ActionBar
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.MovieAdapter
@@ -15,11 +14,6 @@ constructor() // Required empty public constructor
 
     override fun getMoviesViewModel() =
             MovieViewModel(dataSource = dataSource)
-
-    override fun setupToolbar(ab: ActionBar?) {
-        ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.setDisplayShowHomeEnabled(true)
-    }
 
     fun searchViewClicked(query: String?) {
         if (model.showQuery(query)) {

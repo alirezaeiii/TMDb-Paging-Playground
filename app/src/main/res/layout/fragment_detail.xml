@@ -72,18 +72,18 @@
                     android:id="@+id/movie_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:layout_marginBottom="@dimen/padding_micro"
                     android:text="@{movie.title}"
                     android:textSize="32sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
                     android:text= "@{@string/release_date(movie.releaseDate)}"
                     android:fontFamily="sans-serif-light"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
@@ -91,8 +91,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
                     android:text= "@{@string/rating(movie.voteAverage)}"
                     android:fontFamily="sans-serif-light"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
@@ -100,16 +100,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginRight="@dimen/padding_normal"
                     android:text="@string/summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_margin="@dimen/padding_normal"
                     android:fontFamily="sans-serif-light"
                     android:lineSpacingMultiplier="1.2"
                     android:text="@{movie.overview}"
