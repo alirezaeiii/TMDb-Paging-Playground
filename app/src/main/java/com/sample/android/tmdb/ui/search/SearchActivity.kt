@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
+import android.widget.SearchView.OnQueryTextListener
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -40,7 +41,7 @@ class SearchActivity : DaggerAppCompatActivity() {
             addFragmentToActivity(it, R.id.fragment_container)
         }
 
-        search_view.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+        search_view.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 fragment.searchViewClicked(query)
                 return true

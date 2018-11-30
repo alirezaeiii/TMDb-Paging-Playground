@@ -1,6 +1,8 @@
 package com.sample.android.tmdb.ui
 
 import android.app.ActivityOptions
+import android.content.Intent
+import android.content.Intent.ACTION_SEARCH
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
@@ -70,9 +72,9 @@ class MainActivity : DaggerAppCompatActivity() {
                 val options = ActivityOptions.makeSceneTransitionAnimation(this,
                         searchMenuView, getString(R.string.transition_search_back)).toBundle()
 
-                val intent = android.content.Intent(this,
+                val intent = Intent(this,
                         SearchActivity::class.java).apply {
-                    action = android.content.Intent.ACTION_SEARCH
+                    action = ACTION_SEARCH
                 }
                 startActivity(intent, options)
             }

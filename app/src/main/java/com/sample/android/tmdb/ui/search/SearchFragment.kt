@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.ui.search
 
+import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.MovieAdapter
-import com.sample.android.tmdb.ui.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
@@ -12,8 +12,7 @@ class SearchFragment @Inject
 constructor() // Required empty public constructor
     : MainFragment() {
 
-    override fun getMoviesViewModel() =
-            MovieViewModel(dataSource = dataSource)
+    override fun getSortType(): SortType? = null
 
     fun searchViewClicked(query: String?) {
         if (model.showQuery(query)) {

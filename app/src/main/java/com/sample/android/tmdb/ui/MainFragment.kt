@@ -20,6 +20,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sample.android.tmdb.GlideApp
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.databinding.FragmentMainBinding
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.NetworkState
@@ -40,13 +41,14 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
 
     protected lateinit var model: MovieViewModel
 
-    protected abstract fun getMoviesViewModel(): MovieViewModel
+    protected abstract fun getSortType(): SortType?
 
     protected open fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return getMoviesViewModel() as T
+                return MovieViewModel(dataSource = dataSource,
+                        sortType = getSortType()) as T
             }
         })[MovieViewModel::class.java]
     }
