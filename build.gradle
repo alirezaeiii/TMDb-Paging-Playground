@@ -46,7 +46,7 @@ ext {
     runnerVersion = '1.0.2'
     rulesVersion = '1.0.2'
     espressoVersion = '3.0.2'
-    daggerVersion = '2.11'
+    daggerVersion = '2.18'
     butterknifeVersion = '8.8.1'
     archcoreVersion = '1.1.1'
     pagingVersion = '1.0.1'
