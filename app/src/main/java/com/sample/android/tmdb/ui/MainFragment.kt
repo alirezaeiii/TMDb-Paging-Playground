@@ -18,7 +18,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.sample.android.tmdb.GlideApp
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.databinding.FragmentMainBinding
@@ -82,8 +81,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                 }
             }
 
-            val glide = GlideApp.with(context)
-            val adapter = MovieAdapter(glide, this@MainFragment)
+            val adapter = MovieAdapter(this@MainFragment)
 
             list.apply {
 

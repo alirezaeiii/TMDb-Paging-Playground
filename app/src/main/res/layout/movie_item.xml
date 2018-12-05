@@ -28,6 +28,7 @@
         android:elevation="@dimen/z_app_bar"
         android:onClick="@{() -> callback.onClick(movie, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
+        app:imageUrl="@{movie.backdropPath}"
         tools:targetApi="lollipop">
 
         <ImageView

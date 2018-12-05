@@ -4,14 +4,11 @@ import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.sample.android.tmdb.GlideRequests
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.vo.Movie
 import java.util.*
 
-class MovieAdapter(
-        private val glide: GlideRequests,
-        private val movieClickCallback: MovieClickCallback)
+class MovieAdapter(private val movieClickCallback: MovieClickCallback)
     : PagedListAdapter<Movie, RecyclerView.ViewHolder>(POST_COMPARATOR) {
 
     private var networkState: NetworkState? = null
@@ -22,12 +19,11 @@ class MovieAdapter(
                 movie = it
                 executePendingBindings()
             }
-            holder.bind()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MovieViewHolder.create(parent, glide, movieClickCallback)
+        return MovieViewHolder.create(parent, movieClickCallback)
     }
 
     private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
