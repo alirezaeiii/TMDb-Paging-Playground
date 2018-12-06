@@ -38,38 +38,38 @@ dependencies {
 
     // Support libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation "com.android.support:palette-v7:$supportLibraryVersion"
 
     // Architecture components
-    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
-    implementation "android.arch.lifecycle:runtime:$rootProject.lifecycleVersion"
-    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
+    implementation "android.arch.paging:runtime:$pagingVersion"
+    implementation "android.arch.lifecycle:runtime:$lifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
-    //Gson
+    // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-    //Dagger
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // Network
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
-    //Timber
+    // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     testImplementation 'junit:junit:4.12'

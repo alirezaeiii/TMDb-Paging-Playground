@@ -19,11 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+            <com.sample.android.tmdb.widget.AutofitRecyclerView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:visibleGone="@{!isLoading}" />
+                android:clipToPadding="false"
+                android:columnWidth="@dimen/column_width"
+                android:padding="@dimen/padding_small"
+                app:visibleGone="@{!isLoading}"
+                tools:listitem="@layout/movie_item" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

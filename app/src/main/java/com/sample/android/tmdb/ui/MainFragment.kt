@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +27,7 @@ import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.detail.DetailFragment.Companion.VIEW_NAME_HEADER_IMAGE
 import com.sample.android.tmdb.ui.detail.DetailFragment.Companion.VIEW_NAME_HEADER_TITLE
+import com.sample.android.tmdb.widget.MarginDecoration
 import com.sample.android.tmdb.vo.Movie
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
@@ -85,10 +85,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
 
             list.apply {
 
-                layoutManager = GridLayoutManager(activity,
-                        resources.getInteger(R.integer.no_of_columns),
-                        GridLayoutManager.VERTICAL,
-                        false)
+                addItemDecoration(MarginDecoration(context))
 
                 setHasFixedSize(true)
 

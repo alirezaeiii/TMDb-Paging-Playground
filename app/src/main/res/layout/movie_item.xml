@@ -23,8 +23,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="285dp"
-        android:layout_margin="6dp"
+        android:layout_height="280dp"
         android:elevation="@dimen/z_app_bar"
         android:onClick="@{() -> callback.onClick(movie, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
