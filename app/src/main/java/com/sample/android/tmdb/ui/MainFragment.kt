@@ -25,10 +25,8 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.repository.Status.FAILED
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
-import com.sample.android.tmdb.ui.detail.DetailFragment.Companion.VIEW_NAME_HEADER_IMAGE
-import com.sample.android.tmdb.ui.detail.DetailFragment.Companion.VIEW_NAME_HEADER_TITLE
-import com.sample.android.tmdb.widget.MarginDecoration
 import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import javax.inject.Inject
@@ -123,8 +121,8 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
 
                 // Now we provide a list of Pair items which contain the view we can transitioning
                 // from, and the name of the view it is transitioning to, in the launched activity
-                Pair<View, String>(poster, VIEW_NAME_HEADER_IMAGE),
-                Pair<View, String>(name, VIEW_NAME_HEADER_TITLE))
+                Pair<View, String>(poster, getString(R.string.view_name_header_image)),
+                Pair<View, String>(name, getString(R.string.view_name_header_title)))
 
         // Now we can start the Activity, providing the activity options as a bundle
         ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())

@@ -42,6 +42,7 @@
             android:scaleType="centerCrop"
             android:transformPivotX="0px"
             android:transformPivotY="0px"
+            android:transitionName="@string/view_name_header_image"
             app:imageUrl="@{movie.posterPath}" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
@@ -66,7 +67,8 @@
             android:layout_height="0dp"
             android:ellipsize="end"
             android:text="@{movie.title}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:transitionName="@string/view_name_header_title" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/details_toolbar"

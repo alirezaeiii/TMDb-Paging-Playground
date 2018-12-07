@@ -3,7 +3,6 @@ package com.sample.android.tmdb.ui.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.constraint.motion.MotionLayout
-import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -47,9 +46,6 @@ constructor() // Required empty public constructor
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-
-            ViewCompat.setTransitionName(details_poster, VIEW_NAME_HEADER_IMAGE)
-            ViewCompat.setTransitionName(details_title, VIEW_NAME_HEADER_TITLE)
         }
 
         return root
@@ -80,14 +76,5 @@ constructor() // Required empty public constructor
                 }
             }
         })
-    }
-
-    companion object {
-
-        // View name of the header image. Used for activity scene transitions
-        const val VIEW_NAME_HEADER_IMAGE = "detail:header:image"
-
-        // View name of the header title. Used for activity scene transitions
-        const val VIEW_NAME_HEADER_TITLE = "detail:header:title"
     }
 }

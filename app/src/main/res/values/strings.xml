@@ -10,4 +10,10 @@
     <string name="release_date">Release Date: %s</string>
     <string name="rating">%s/10</string>
     <string name="transition_search_back" translatable="false">transition_search_back</string>
+
+    // View name of the header image. Used for activity scene transitions
+    <string name="view_name_header_image">detail:header:image</string>
+
+    // View name of the header title. Used for activity scene transitions
+    <string name="view_name_header_title">detail:header:title</string>
 </resources>
