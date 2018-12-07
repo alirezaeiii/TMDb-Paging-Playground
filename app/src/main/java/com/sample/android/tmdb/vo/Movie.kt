@@ -10,6 +10,8 @@ data class Movie(
         val overview: String,
         @SerializedName("release_date")
         var releaseDate: String,
+        @SerializedName("poster_path")
+        var posterPath: String?,
         @SerializedName("backdrop_path")
         var backdropPath: String?,
         var title: String,

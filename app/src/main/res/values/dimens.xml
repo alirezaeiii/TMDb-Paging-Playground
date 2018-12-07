@@ -8,8 +8,10 @@
     <dimen name="padding_large">32dp</dimen>
 
     <dimen name="column_width">180dp</dimen>
+    <dimen name="details_corner_cutout">64dp</dimen>
 
     <!-- Z-axis elevations -->
     <dimen name="z_app_bar">4dp</dimen>
+    <dimen name="details_poster_not_elevation">0dp</dimen>
 
 </resources>

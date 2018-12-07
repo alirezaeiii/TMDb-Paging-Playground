@@ -11,7 +11,6 @@ class MovieViewHolder(internal val binding: MovieItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
-        const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
         fun create(parent: ViewGroup, movieClickCallback: MovieClickCallback): MovieViewHolder {
             val binding: MovieItemBinding = DataBindingUtil
                     .inflate(LayoutInflater.from(parent.context),

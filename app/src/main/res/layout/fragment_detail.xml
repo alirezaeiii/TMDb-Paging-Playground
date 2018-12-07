@@ -11,57 +11,79 @@
             type="com.sample.android.tmdb.vo.Movie" />
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.constraint.motion.MotionLayout
+        android:id="@+id/details_motion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:elevation="4dp"
-            tools:targetApi="lollipop">
-
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:collapsedTitleTextAppearance="@style/CollapsedToolbar"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleTextAppearance="@style/ExpandedToolbar"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{movie.title}">
-
-                <ImageView
-                    android:id="@+id/movie_poster"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    tools:ignore="contentDescription" />
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:theme="@style/Toolbar" />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-        </android.support.design.widget.AppBarLayout>
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/scene_show_details">
 
         <ImageView
+            android:id="@+id/details_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{movie.backdropPath}"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/details_backdrop_scrim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/details_backdrop"
+            app:layout_constraintEnd_toEndOf="@id/details_backdrop"
+            app:layout_constraintStart_toStartOf="@id/details_backdrop"
+            app:layout_constraintTop_toTopOf="@id/details_backdrop" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/details_poster"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/placeholder"
+            android:scaleType="centerCrop"
+            android:transformPivotX="0px"
+            android:transformPivotY="0px"
+            app:imageUrl="@{movie.posterPath}" />
+
+        <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
+        <View
+            android:id="@+id/details_gap_filler"
             android:layout_width="match_parent"
-            android:layout_height="30px"
-            android:layout_marginTop="270dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/tileable_edge"
-            android:tint="@color/window_background"
-            tools:ignore="PxUsage,contentDescription" />
+            android:layout_height="2px"
+            android:background="@color/window_background"
+            app:layout_constraintBottom_toTopOf="@id/details_rv"
+            tools:ignore="PxUsage" />
+
+        <com.sample.android.tmdb.widget.TopLeftCutoutBackgroundView
+            android:id="@+id/details_appbar_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:backgroundColor="@color/window_background"
+            app:topLeftCutSize="@dimen/details_corner_cutout" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/details_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:ellipsize="end"
+            android:text="@{movie.title}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/details_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/Toolbar" />
 
         <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:id="@+id/details_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/window_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_appbar_background">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,23 +91,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/movie_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_normal"
                     android:layout_marginTop="@dimen/padding_normal"
                     android:layout_marginRight="@dimen/padding_normal"
                     android:layout_marginBottom="@dimen/padding_micro"
-                    android:text="@{movie.title}"
-                    android:textSize="32sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:text= "@{@string/release_date(movie.releaseDate)}"
                     android:fontFamily="sans-serif-light"
+                    android:text="@{@string/release_date(movie.releaseDate)}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <TextView
@@ -93,8 +106,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_normal"
                     android:layout_marginRight="@dimen/padding_normal"
-                    android:text= "@{@string/rating(movie.voteAverage)}"
                     android:fontFamily="sans-serif-light"
+                    android:text="@{@string/rating(movie.voteAverage)}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <TextView
@@ -119,6 +132,13 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-    </android.support.design.widget.CoordinatorLayout>
+        <!-- This needs to be updated to use WindowInsets. See https://issuetracker.google.com/issues/112605433 -->
+        <View
+            android:id="@+id/details_status_bar_anchor"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@color/status_bar_scrim_translucent_dark" />
+
+    </android.support.constraint.motion.MotionLayout>
 
 </layout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2018 Google, Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="200">
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:moveWhenScrollAtTop="true"
+            app:touchAnchorId="@id/details_rv"
+            app:touchAnchorSide="top" />
+
+        <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="20"
+                app:keyPositionType="deltaRelative"
+                app:percentY="0.51"
+                app:target="@id/details_poster" />
+
+            <!-- This looks weird. We need a quick change from elevated to not-so-elevated at 20% so we set 2 key
+                 attributes, one at 20% and other at 25%. -->
+            <KeyAttribute
+                android:elevation="@dimen/z_app_bar"
+                android:rotation="45"
+                android:rotationY="15"
+                app:framePosition="20"
+                app:target="@id/details_poster" />
+
+            <KeyAttribute
+                android:elevation="@dimen/details_poster_not_elevation"
+                app:framePosition="25"
+                app:target="@id/details_poster" />
+
+            <!-- Only elevate the appbar background over the last 25% -->
+            <KeyAttribute
+                android:elevation="0dp"
+                app:framePosition="75"
+                app:target="@id/details_appbar_background" />
+
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/details_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/details_appbar_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/details_backdrop_scrim"
+            app:layout_constraintBottom_toBottomOf="@id/details_backdrop"
+            app:layout_constraintEnd_toEndOf="@id/details_backdrop"
+            app:layout_constraintStart_toStartOf="@id/details_backdrop"
+            app:layout_constraintTop_toTopOf="@id/details_backdrop">
+
+            <CustomAttribute
+                app:attributeName="background"
+                app:customColorDrawableValue="@android:color/transparent" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@id/details_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor">
+
+            <CustomAttribute
+                app:attributeName="iconTint"
+                app:customColorValue="?android:attr/textColorPrimaryInverse" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@id/details_appbar_background"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            app:layout_constraintBottom_toBottomOf="@id/details_poster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint
+            android:id="@id/details_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toTopOf="@id/details_appbar_background"
+            app:layout_constraintEnd_toEndOf="@id/details_appbar_background"
+            app:layout_constraintStart_toEndOf="@id/details_poster"
+            app:layout_constraintTop_toBottomOf="@id/details_appbar_background" />
+
+        <Constraint
+            android:id="@id/details_poster"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/padding_normal"
+            android:layout_marginTop="200dp"
+            android:elevation="@dimen/z_app_bar"
+            app:layout_constraintDimensionRatio="h,1:1.5"
+            app:layout_constraintStart_toStartOf="@id/details_rv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/details_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/details_appbar_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/details_backdrop_scrim"
+            app:layout_constraintBottom_toBottomOf="@id/details_backdrop"
+            app:layout_constraintEnd_toEndOf="@id/details_backdrop"
+            app:layout_constraintStart_toStartOf="@id/details_backdrop"
+            app:layout_constraintTop_toTopOf="@id/details_backdrop">
+
+            <CustomAttribute
+                app:attributeName="background"
+                app:customColorDrawableValue="@color/status_bar_scrim_translucent_dark" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@id/details_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/z_app_bar"
+            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor">
+
+            <CustomAttribute
+                app:attributeName="iconTint"
+                app:customColorValue="?android:attr/textColorPrimary" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@id/details_appbar_background"
+            android:layout_width="0dp"
+            android:layout_height="?android:attr/actionBarSize"
+            android:elevation="@dimen/z_app_bar"
+            app:layout_constraintEnd_toEndOf="@id/details_rv"
+            app:layout_constraintStart_toStartOf="@id/details_rv"
+            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor" />
+
+        <Constraint
+            android:id="@id/details_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:layout_marginStart="64dp"
+            android:elevation="@dimen/z_app_bar"
+            app:layout_constraintBottom_toBottomOf="@id/details_appbar_background"
+            app:layout_constraintEnd_toEndOf="@id/details_appbar_background"
+            app:layout_constraintStart_toStartOf="@id/details_appbar_background"
+            app:layout_constraintTop_toTopOf="@id/details_appbar_background" />
+
+        <Constraint
+            android:id="@id/details_poster"
+            android:layout_width="72dp"
+            android:layout_height="0dp"
+            android:elevation="@dimen/details_poster_not_elevation"
+            app:layout_constraintDimensionRatio="h,1:1.5"
+            app:layout_constraintStart_toStartOf="@id/details_title"
+            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor" />
+
+    </ConstraintSet>
+
+
+</MotionScene>
