@@ -49,7 +49,8 @@ class PageKeyedMovieDataSource(
                             networkState.postValue(NetworkState.LOADED)
                         } else {
                             networkState.postValue(
-                                    NetworkState.error("error code: ${response.code()}"))
+                                    NetworkState.error("error code: ${response.code()} " +
+                                    response.message()))
                         }
                     }
                 }
@@ -72,7 +73,7 @@ class PageKeyedMovieDataSource(
                 initialLoad.postValue(NetworkState.LOADED)
                 callback.onResult(items, null, 2)
             } else {
-                initNetworkError("error code: ${response.code()}")
+                initNetworkError("error code: ${response.code()} " + response.message())
             }
         } catch (ioException: IOException) {
             initNetworkError(ioException.message ?: "unknown error")
