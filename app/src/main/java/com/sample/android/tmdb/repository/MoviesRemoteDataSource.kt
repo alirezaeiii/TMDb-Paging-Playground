@@ -3,6 +3,7 @@ package com.sample.android.tmdb.repository
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.api.MovieApi
 import com.sample.android.tmdb.api.MovieApi.MovieWrapper
+import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
 import retrofit2.Call
 import javax.inject.Inject
@@ -22,5 +23,9 @@ constructor(private val movieApi: MovieApi) {
 
     fun fetchMovies(page : Int, query: String): Call<MovieWrapper> {
         return movieApi.searchMovies(page, query)
+    }
+
+    fun getTrailers(id: String): Observable<List<Video>> {
+        return movieApi.trailers(id).map { it.videos }
     }
 }

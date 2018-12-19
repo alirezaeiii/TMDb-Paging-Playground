@@ -9,6 +9,10 @@
         <variable
             name="movie"
             type="com.sample.android.tmdb.vo.Movie" />
+
+        <variable
+            name="vm"
+            type="com.sample.android.tmdb.ui.detail.MovieDetailViewModel" />
     </data>
 
     <android.support.constraint.motion.MotionLayout
@@ -130,6 +134,15 @@
                     android:text="@{movie.overview}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
+                <include
+                    layout="@layout/trailers_and_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:vm="@{vm}"
+                    tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

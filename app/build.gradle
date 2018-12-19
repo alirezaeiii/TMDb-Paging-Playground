@@ -65,6 +65,10 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
+    //Android RX
+    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+
     // Network
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
     implementation "com.github.bumptech.glide:glide:$glideVersion"

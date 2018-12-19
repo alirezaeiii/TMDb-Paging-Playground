@@ -7,6 +7,7 @@
     <string name="text_highest_rate">Highest rate</string>
     <string name="text_upcoming">Upcoming</string>
     <string name="summary">Summary</string>
+    <string name="trailers">Trailers</string>
     <string name="release_date">Release Date: %s</string>
     <string name="rating">%s/10</string>
     <string name="transition_search_back" translatable="false">transition_search_back</string>

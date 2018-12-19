@@ -1,17 +1,21 @@
 package com.sample.android.tmdb
 
+import android.content.Intent
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.sample.android.tmdb.vo.Video
 
 object BindingsAdapter {
 
@@ -56,5 +60,37 @@ object BindingsAdapter {
         Glide.with(imageView.context)
                 .load("$BASE_BACKDROP_PATH$url")
                 .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("items")
+    fun addItems(linearLayout: LinearLayout, trailers: List<Video>) {
+
+        linearLayout.removeAllViews()
+        val context = linearLayout.context
+
+        val options = RequestOptions()
+                .placeholder(R.color.colorPrimary)
+                .centerCrop()
+                .override(150, 150)
+
+        for (trailer in trailers) {
+            val thumbContainer = context.layoutInflater.inflate(R.layout.video, linearLayout, false)
+            val thumbView = thumbContainer.findViewById<ImageView>(R.id.video_thumb)
+
+            thumbView.apply {
+                setOnClickListener {
+                    val playVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(Video.getUrl(trailer)))
+                    context.startActivity(playVideoIntent)
+                }
+            }
+
+            Glide.with(context)
+                    .load(Video.getThumbnailUrl(trailer))
+                    .apply(options)
+                    .into(thumbView)
+
+            linearLayout.addView(thumbContainer)
+        }
     }
 }
