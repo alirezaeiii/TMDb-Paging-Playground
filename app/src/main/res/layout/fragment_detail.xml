@@ -130,22 +130,39 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_normal"
                     android:fontFamily="sans-serif-light"
-                    android:lineSpacingMultiplier="1.2"
                     android:text="@{movie.overview}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <include
-                    layout="@layout/trailers_and_reviews"
+                    layout="@layout/trailers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    android:layout_marginBottom="@dimen/padding_normal"
                     app:vm="@{vm}"
                     tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/actors"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:visibleGone="@{vm.isActorsVisible}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/actors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:items="@{vm.casts}" />
+
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
+
 
         <!-- This needs to be updated to use WindowInsets. See https://issuetracker.google.com/issues/112605433 -->
         <View

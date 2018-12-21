@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="actor"
+            type="com.sample.android.tmdb.vo.Cast" />
+    </data>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/actor_item_card_root"
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:elevation="@dimen/z_app_bar"
+        app:cardElevation="@dimen/z_app_bar"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/actor_item_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:scaleType="centerCrop"
+                app:profileUrl="@{actor.profilePath}" />
+
+            <TextView
+                android:id="@+id/actor_item_real_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/actor_item_profile_image"
+                android:layout_marginStart="@dimen/padding_micro"
+                android:layout_marginEnd="@dimen/padding_micro"
+                android:gravity="center"
+                android:text="@{actor.name}"
+                android:textColor="@color/md_black_1000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/actor_item_character_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/actor_item_real_name_text"
+                android:layout_marginStart="@dimen/padding_micro"
+                android:layout_marginEnd="@dimen/padding_micro"
+                android:gravity="center"
+                android:text="@{actor.character}"
+                android:textColor="@color/md_grey_600"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

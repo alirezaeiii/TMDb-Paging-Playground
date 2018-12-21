@@ -8,4 +8,7 @@
     <color name="black_translucent_60">#99000000</color>
     <color name="status_bar_scrim_light">#E0E0E0</color>
     <color name="status_bar_scrim_translucent_dark">#8F222222</color>
+
+    <color name="md_black_1000">#000000</color>
+    <color name="md_grey_600">#757575</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.sample.android.tmdb.api
 
 import com.google.gson.annotations.SerializedName
+import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
@@ -15,7 +16,7 @@ interface MovieApi {
     fun popularMovies(@Query("page") page: Int): Call<MovieWrapper>
 
     @GET("3/discover/movie?vote_count.gte=500&language=en&sort_by=vote_average.desc")
-    fun highestRatedMovies(@Query("page") page : Int): Call<MovieWrapper>
+    fun highestRatedMovies(@Query("page") page: Int): Call<MovieWrapper>
 
     @GET("3/movie/upcoming?language=en")
     fun upcomingMovies(@Query("page") page: Int): Call<MovieWrapper>
@@ -26,6 +27,9 @@ interface MovieApi {
     @GET("3/movie/{movieId}/videos")
     fun trailers(@Path("movieId") movieId: String): Observable<VideoWrapper>
 
+    @GET("3/movie/{movieId}/credits")
+    fun actors(@Path("movieId") movieId: String): Observable<ActorWrapper>
+
     class MovieWrapper(
             @SerializedName("results")
             val movies: List<Movie>
@@ -33,6 +37,11 @@ interface MovieApi {
 
     class VideoWrapper(
             @SerializedName("results")
-            val videos : List<Video>
+            val videos: List<Video>
+    )
+
+    class ActorWrapper(
+            @SerializedName("cast")
+            val actors: List<Cast>
     )
 }

@@ -2,10 +2,10 @@ package com.sample.android.tmdb.ui
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.MovieItemBinding
+import com.sample.android.tmdb.layoutInflater
 
 class MovieViewHolder(internal val binding: MovieItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
@@ -13,7 +13,7 @@ class MovieViewHolder(internal val binding: MovieItemBinding)
     companion object {
         fun create(parent: ViewGroup, movieClickCallback: MovieClickCallback): MovieViewHolder {
             val binding: MovieItemBinding = DataBindingUtil
-                    .inflate(LayoutInflater.from(parent.context),
+                    .inflate(parent.context.layoutInflater,
                             R.layout.movie_item,
                             parent, false)
             with(binding) {

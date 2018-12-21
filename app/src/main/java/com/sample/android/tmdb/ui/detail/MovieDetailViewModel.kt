@@ -6,11 +6,13 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class MovieDetailViewModel(
         context: Application,
@@ -18,21 +20,44 @@ class MovieDetailViewModel(
     : AndroidViewModel(context) {
 
     internal val compositeDisposable = CompositeDisposable()
-    val items: ObservableList<Video> = ObservableArrayList()
-    var isVisible = ObservableBoolean(false)
+    val trailers: ObservableList<Video> = ObservableArrayList()
+    var isTrailersVisible = ObservableBoolean(false)
+    val casts: ObservableList<Cast> = ObservableArrayList()
+    var isActorsVisible = ObservableBoolean(false)
 
     fun showTrailers(movie: Movie) {
         val trailersSubscription = dataSource.getTrailers(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { videos ->
+                .subscribe({ videos ->
                     if (!videos.isEmpty()) {
-                        isVisible.set(true)
+                        isTrailersVisible.set(true)
                     }
-                    with(items) {
+                    with(trailers) {
+                        clear()
                         addAll(videos)
                     }
                 }
+                ) { throwable -> Timber.e(throwable) }
+
         compositeDisposable.add(trailersSubscription)
+    }
+
+    fun showActors(movie: Movie) {
+        val actorsSubscription = dataSource.getActors(movie.id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ actors ->
+                    if (!actors.isEmpty()) {
+                        isActorsVisible.set(true)
+                    }
+                    with(casts) {
+                        clear()
+                        addAll(actors)
+                    }
+                }
+                ) { throwable -> Timber.e(throwable) }
+
+        compositeDisposable.add(actorsSubscription)
     }
 }

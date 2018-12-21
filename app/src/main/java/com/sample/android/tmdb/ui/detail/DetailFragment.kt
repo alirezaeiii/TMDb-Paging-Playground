@@ -98,6 +98,7 @@ constructor() // Required empty public constructor
         })
 
         binding.vm?.showTrailers(movie)
+        binding.vm?.showActors(movie)
     }
 
     override fun onDestroyView() {

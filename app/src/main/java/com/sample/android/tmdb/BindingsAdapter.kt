@@ -8,6 +8,8 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.CardView
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -15,12 +17,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.sample.android.tmdb.ui.detail.ActorAdapter
+import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Video
 
 object BindingsAdapter {
 
     private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
     private const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
+    private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     @JvmStatic
     @BindingAdapter("imageUrl")
@@ -93,4 +98,33 @@ object BindingsAdapter {
             linearLayout.addView(thumbContainer)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("profileUrl")
+    fun bindProfileImage(imageView: ImageView, url: String?) {
+
+        Glide.with(imageView.context)
+                .load("$IMAGE_LOW_RES_BASE_URL$url")
+                .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("items")
+    fun addItems(recyclerView: RecyclerView, actors: List<Cast>) {
+
+        val adapter = ActorAdapter(actors)
+
+        recyclerView.apply {
+
+            layoutManager = GridLayoutManager(recyclerView.context,
+                    resources.getInteger(R.integer.no_of_columns),
+                    GridLayoutManager.VERTICAL,
+                    false)
+
+            setHasFixedSize(true)
+
+            recyclerView.adapter = adapter
+        }
+    }
+
 }

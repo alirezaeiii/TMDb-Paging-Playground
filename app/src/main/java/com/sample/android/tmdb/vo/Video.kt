@@ -1,10 +1,7 @@
 package com.sample.android.tmdb.vo
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 class Video(
         val id: String,
         val name: String,
@@ -12,7 +9,7 @@ class Video(
         @SerializedName("key")
         val videoId: String,
         val size: Int,
-        var type: String) : Parcelable {
+        var type: String) {
 
     companion object {
         private const val SITE_YOUTUBE = "YouTube"
