@@ -149,15 +149,14 @@
                     android:layout_marginLeft="@dimen/padding_normal"
                     android:layout_marginRight="@dimen/padding_normal"
                     android:layout_marginBottom="12dp"
-                    android:text="@string/actors"
+                    android:text="@string/cast"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    app:visibleGone="@{vm.isActorsVisible}" />
+                    app:visibleGone="@{vm.isCastVisible}" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/actors"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:items="@{vm.casts}" />
+                    app:items="@{vm.cast}" />
 
             </LinearLayout>
 

@@ -28,7 +28,7 @@ interface MovieApi {
     fun trailers(@Path("movieId") movieId: String): Observable<VideoWrapper>
 
     @GET("3/movie/{movieId}/credits")
-    fun actors(@Path("movieId") movieId: String): Observable<ActorWrapper>
+    fun cast(@Path("movieId") movieId: String): Observable<CastWrapper>
 
     class MovieWrapper(
             @SerializedName("results")
@@ -40,8 +40,8 @@ interface MovieApi {
             val videos: List<Video>
     )
 
-    class ActorWrapper(
+    class CastWrapper(
             @SerializedName("cast")
-            val actors: List<Cast>
+            val cast: List<Cast>
     )
 }

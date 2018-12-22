@@ -14,10 +14,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.sample.android.tmdb.ui.detail.ActorAdapter
+import com.sample.android.tmdb.ui.detail.CastAdapter
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Video
 
@@ -103,16 +107,21 @@ object BindingsAdapter {
     @BindingAdapter("profileUrl")
     fun bindProfileImage(imageView: ImageView, url: String?) {
 
+        val options = RequestOptions()
+                .centerCrop()
+                .error(R.drawable.ic_error_outline_black_36dp)
+
         Glide.with(imageView.context)
                 .load("$IMAGE_LOW_RES_BASE_URL$url")
+                .apply(options)
                 .into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter("items")
-    fun addItems(recyclerView: RecyclerView, actors: List<Cast>) {
+    fun addItems(recyclerView: RecyclerView, cast: List<Cast>) {
 
-        val adapter = ActorAdapter(actors)
+        val adapter = CastAdapter(cast)
 
         recyclerView.apply {
 

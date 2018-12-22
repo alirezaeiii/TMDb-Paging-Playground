@@ -30,7 +30,7 @@ constructor(private val movieApi: MovieApi) {
         return movieApi.trailers(id).map { it.videos }
     }
 
-    fun getActors(id: String): Observable<List<Cast>> {
-        return movieApi.actors(id).map { it.actors }
+    fun getCast(id: String): Observable<List<Cast>> {
+        return movieApi.cast(id).map { it.cast }
     }
 }

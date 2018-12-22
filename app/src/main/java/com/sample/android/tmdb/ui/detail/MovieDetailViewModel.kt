@@ -22,8 +22,8 @@ class MovieDetailViewModel(
     internal val compositeDisposable = CompositeDisposable()
     val trailers: ObservableList<Video> = ObservableArrayList()
     var isTrailersVisible = ObservableBoolean(false)
-    val casts: ObservableList<Cast> = ObservableArrayList()
-    var isActorsVisible = ObservableBoolean(false)
+    val cast: ObservableList<Cast> = ObservableArrayList()
+    var isCastVisible = ObservableBoolean(false)
 
     fun showTrailers(movie: Movie) {
         val trailersSubscription = dataSource.getTrailers(movie.id)
@@ -43,21 +43,21 @@ class MovieDetailViewModel(
         compositeDisposable.add(trailersSubscription)
     }
 
-    fun showActors(movie: Movie) {
-        val actorsSubscription = dataSource.getActors(movie.id)
+    fun showCast(movie: Movie) {
+        val castSubscription = dataSource.getCast(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ actors ->
-                    if (!actors.isEmpty()) {
-                        isActorsVisible.set(true)
+                .subscribe({ cast ->
+                    if (!cast.isEmpty()) {
+                        isCastVisible.set(true)
                     }
-                    with(casts) {
+                    with(this.cast) {
                         clear()
-                        addAll(actors)
+                        addAll(cast)
                     }
                 }
                 ) { throwable -> Timber.e(throwable) }
 
-        compositeDisposable.add(actorsSubscription)
+        compositeDisposable.add(castSubscription)
     }
 }

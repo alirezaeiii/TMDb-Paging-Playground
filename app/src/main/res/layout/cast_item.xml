@@ -6,13 +6,11 @@
     <data>
 
         <variable
-            name="actor"
+            name="cast"
             type="com.sample.android.tmdb.vo.Cast" />
     </data>
 
-
     <android.support.v7.widget.CardView
-        android:id="@+id/actor_item_card_root"
         android:layout_width="match_parent"
         android:layout_height="215dp"
         android:elevation="@dimen/z_app_bar"
@@ -24,33 +22,32 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/actor_item_profile_image"
+                android:id="@+id/cast_item_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
-                android:scaleType="centerCrop"
-                app:profileUrl="@{actor.profilePath}" />
+                app:profileUrl="@{cast.profilePath}"
+                tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/actor_item_real_name_text"
+                android:id="@+id/cast_item_real_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/actor_item_profile_image"
+                android:layout_below="@id/cast_item_profile_image"
                 android:layout_marginStart="@dimen/padding_micro"
                 android:layout_marginEnd="@dimen/padding_micro"
                 android:gravity="center"
-                android:text="@{actor.name}"
+                android:text="@{cast.name}"
                 android:textColor="@color/md_black_1000"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/actor_item_character_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/actor_item_real_name_text"
+                android:layout_below="@id/cast_item_real_name_text"
                 android:layout_marginStart="@dimen/padding_micro"
                 android:layout_marginEnd="@dimen/padding_micro"
                 android:gravity="center"
-                android:text="@{actor.character}"
+                android:text="@{cast.character}"
                 android:textColor="@color/md_grey_600"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
