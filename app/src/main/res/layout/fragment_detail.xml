@@ -135,7 +135,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <include
-                    layout="@layout/trailers_and_reviews"
+                    layout="@layout/trailers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"

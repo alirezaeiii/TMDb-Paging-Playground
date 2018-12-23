@@ -11,6 +11,7 @@ import com.sample.android.tmdb.vo.Video
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class MovieDetailViewModel(
         context: Application,
@@ -18,21 +19,23 @@ class MovieDetailViewModel(
     : AndroidViewModel(context) {
 
     internal val compositeDisposable = CompositeDisposable()
-    val items: ObservableList<Video> = ObservableArrayList()
-    var isVisible = ObservableBoolean(false)
+    val trailers: ObservableList<Video> = ObservableArrayList()
+    var isTrailersVisible = ObservableBoolean(false)
 
     fun showTrailers(movie: Movie) {
         val trailersSubscription = dataSource.getTrailers(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { videos ->
+                .subscribe({ videos ->
                     if (!videos.isEmpty()) {
-                        isVisible.set(true)
+                        isTrailersVisible.set(true)
                     }
-                    with(items) {
+                    with(trailers) {
+                        clear()
                         addAll(videos)
                     }
                 }
+                ) { throwable -> Timber.e(throwable) }
         compositeDisposable.add(trailersSubscription)
     }
 }
