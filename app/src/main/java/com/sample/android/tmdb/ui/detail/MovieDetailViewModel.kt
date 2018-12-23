@@ -39,7 +39,6 @@ class MovieDetailViewModel(
                     }
                 }
                 ) { throwable -> Timber.e(throwable) }
-
         compositeDisposable.add(trailersSubscription)
     }
 

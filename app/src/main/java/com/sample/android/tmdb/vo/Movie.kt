@@ -9,11 +9,11 @@ class Movie(
         val id: String,
         val overview: String,
         @SerializedName("release_date")
-        var releaseDate: String,
+        val releaseDate: String,
         @SerializedName("poster_path")
-        var posterPath: String?,
+        val posterPath: String?,
         @SerializedName("backdrop_path")
-        var backdropPath: String?,
-        var title: String,
+        val backdropPath: String?,
+        val title: String,
         @SerializedName("vote_average")
-        var voteAverage: Double) : Parcelable
+        val voteAverage: Double) : Parcelable

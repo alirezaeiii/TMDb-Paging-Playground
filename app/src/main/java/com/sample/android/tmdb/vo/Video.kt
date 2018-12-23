@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 class Video(
         val id: String,
         val name: String,
-        var site: String,
+        val site: String,
         @SerializedName("key")
         val videoId: String,
         val size: Int,
-        var type: String) {
+        val type: String) {
 
     companion object {
         private const val SITE_YOUTUBE = "YouTube"
