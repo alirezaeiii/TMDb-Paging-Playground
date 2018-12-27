@@ -82,6 +82,11 @@ constructor() // Required empty public constructor
 
                 biography_label.visibleGone(it?.biography != "")
             })
+
+            biography.setOnClickListener {
+                val maxLine = resources.getInteger(R.integer.max_lines)
+                biography.maxLines = if (biography.maxLines > maxLine) maxLine else Int.MAX_VALUE
+            }
         }
 
         return root
