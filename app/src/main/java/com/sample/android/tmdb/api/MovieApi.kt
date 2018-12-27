@@ -3,6 +3,7 @@ package com.sample.android.tmdb.api
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.vo.Person
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
 import retrofit2.Call
@@ -29,6 +30,9 @@ interface MovieApi {
 
     @GET("3/movie/{movieId}/credits")
     fun cast(@Path("movieId") movieId: String): Observable<CastWrapper>
+
+    @GET("3/person/{personId}")
+    fun person(@Path("personId") personId: Int): Observable<Person>
 
     class MovieWrapper(
             @SerializedName("results")

@@ -2,6 +2,7 @@ package com.sample.android.tmdb.ui.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
@@ -21,9 +22,9 @@ class MovieDetailViewModel(
 
     internal val compositeDisposable = CompositeDisposable()
     val trailers: ObservableList<Video> = ObservableArrayList()
-    var isTrailersVisible = ObservableBoolean(false)
-    val cast: ObservableList<Cast> = ObservableArrayList()
-    var isCastVisible = ObservableBoolean(false)
+    val isTrailersVisible = ObservableBoolean(false)
+    val cast = MutableLiveData<List<Cast>>()
+    val isCastVisible = ObservableBoolean(false)
 
     fun showTrailers(movie: Movie) {
         val trailersSubscription = dataSource.getTrailers(movie.id)
@@ -39,6 +40,7 @@ class MovieDetailViewModel(
                     }
                 }
                 ) { throwable -> Timber.e(throwable) }
+
         compositeDisposable.add(trailersSubscription)
     }
 
@@ -50,10 +52,7 @@ class MovieDetailViewModel(
                     if (!cast.isEmpty()) {
                         isCastVisible.set(true)
                     }
-                    with(this.cast) {
-                        clear()
-                        addAll(cast)
-                    }
+                    this.cast.value = cast
                 }
                 ) { throwable -> Timber.e(throwable) }
 

@@ -8,14 +8,30 @@
         <variable
             name="cast"
             type="com.sample.android.tmdb.vo.Cast" />
+
+        <variable
+            name="callback"
+            type="com.sample.android.tmdb.ui.detail.CastClickCallback" />
+
+        <variable
+            name="poster"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="name"
+            type="android.widget.TextView" />
     </data>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="215dp"
+        android:clickable="true"
         android:elevation="@dimen/z_app_bar"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> callback.onClick(cast.id, cast.name, cast.profilePath, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        tools:ignore="KeyboardInaccessibleWidget">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -24,8 +24,8 @@ import com.sample.android.tmdb.vo.Video
 object BindingsAdapter {
 
     private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
-    private const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
-    private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
+    internal const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
+    internal const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
     @JvmStatic
     @BindingAdapter("imageUrl")
@@ -112,24 +112,4 @@ object BindingsAdapter {
                 .apply(options)
                 .into(imageView)
     }
-
-    @JvmStatic
-    @BindingAdapter("items")
-    fun addItems(recyclerView: RecyclerView, cast: List<Cast>) {
-
-        val adapter = CastAdapter(cast)
-
-        recyclerView.apply {
-
-            layoutManager = GridLayoutManager(recyclerView.context,
-                    resources.getInteger(R.integer.no_of_columns),
-                    GridLayoutManager.VERTICAL,
-                    false)
-
-            setHasFixedSize(true)
-
-            recyclerView.adapter = adapter
-        }
-    }
-
 }

@@ -21,12 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.search.SearchActivity"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Tmdb.Search"
-            android:parentActivityName=".ui.MainActivity">
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/Theme.Tmdb.Search">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -40,6 +39,7 @@
             android:name=".ui.detail.DetailActivity"
             android:theme="@style/Theme.Tmdb.Immerse" />
 
+        <activity android:name=".ui.person.PersonActivity" />
     </application>
 
 </manifest>

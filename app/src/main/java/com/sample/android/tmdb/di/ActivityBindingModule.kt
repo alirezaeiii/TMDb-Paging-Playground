@@ -4,6 +4,8 @@ import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.base.MoviesModule
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailModule
+import com.sample.android.tmdb.ui.person.PersonActivity
+import com.sample.android.tmdb.ui.person.PersonModule
 import com.sample.android.tmdb.ui.search.SearchActivity
 import com.sample.android.tmdb.ui.search.SearchModule
 import dagger.Module
@@ -22,4 +24,8 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = [DetailModule::class])
     internal abstract fun detailActivity(): DetailActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = [PersonModule::class])
+    internal abstract fun personActivity(): PersonActivity
 }

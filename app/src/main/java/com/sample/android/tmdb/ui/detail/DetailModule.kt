@@ -22,5 +22,4 @@ abstract class DetailModule {
         @JvmStatic internal fun provideMovie(activity: DetailActivity): Movie =
                 activity.intent.extras.getParcelable(EXTRA_MOVIE)
     }
-
 }

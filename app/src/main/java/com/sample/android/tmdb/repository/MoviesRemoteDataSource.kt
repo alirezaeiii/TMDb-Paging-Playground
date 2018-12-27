@@ -4,6 +4,7 @@ import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.api.MovieApi
 import com.sample.android.tmdb.api.MovieApi.MovieWrapper
 import com.sample.android.tmdb.vo.Cast
+import com.sample.android.tmdb.vo.Person
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
 import retrofit2.Call
@@ -32,5 +33,9 @@ constructor(private val movieApi: MovieApi) {
 
     fun getCast(id: String): Observable<List<Cast>> {
         return movieApi.cast(id).map { it.cast }
+    }
+
+    fun getPerson(id: Int): Observable<Person> {
+        return movieApi.person(id)
     }
 }

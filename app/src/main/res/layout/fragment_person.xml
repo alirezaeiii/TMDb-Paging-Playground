@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.person.PersonFragment">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.sample.android.tmdb.ui.person.PersonViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:theme="@style/Toolbar">
+
+            <include
+                android:id="@+id/person_header"
+                layout="@layout/person_header" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:visibleGone="@{vm.isVisible}"
+                tools:ignore="ExtraText">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:layout_marginBottom="@dimen/padding_micro"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@{@string/born(vm.person.birthDay)}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:visibleGone="@{vm.person.birthDay!=null}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:layout_marginBottom="@dimen/padding_micro"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@{@string/from(vm.person.placeOfBirth)}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:visibleGone="@{vm.person.placeOfBirth!=null}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@{@string/death(vm.person.deathDay)}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:visibleGone="@{vm.person.deathDay!=null}" />
+
+                <TextView
+                    android:id="@+id/biography_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:text="@string/biography"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_normal"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@{vm.person.biography}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

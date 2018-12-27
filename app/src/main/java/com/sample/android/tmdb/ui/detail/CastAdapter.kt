@@ -9,7 +9,8 @@ import com.sample.android.tmdb.layoutInflater
 import com.sample.android.tmdb.vo.Cast
 
 class CastAdapter(
-        private val cast: List<Cast>)
+        private val cast: List<Cast>,
+        private val castClickCallback: CastClickCallback)
     : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
@@ -17,6 +18,7 @@ class CastAdapter(
                 .inflate(parent.context.layoutInflater,
                         R.layout.cast_item,
                         parent, false)
+        binding.callback = castClickCallback
         return CastViewHolder(binding)
     }
 
@@ -25,6 +27,8 @@ class CastAdapter(
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
         with(holder.binding) {
             cast = this@CastAdapter.cast[position]
+            poster = castItemProfileImage
+            name = castItemRealNameText
             executePendingBindings()
         }
     }
