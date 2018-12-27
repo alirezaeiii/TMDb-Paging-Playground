@@ -82,7 +82,6 @@ constructor() // Required empty public constructor
 
                 biography_label.visibleGone(it?.biography != "")
             })
-
         }
 
         return root

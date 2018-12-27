@@ -46,8 +46,6 @@
                 android:id="@id/name"
                 android:layout_width="162dp"
                 android:layout_height="41dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 motion:autoSizeTextType="uniform"
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +69,7 @@
 
             <Constraint
                 android:id="@id/search_back_frame"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="?attr/actionBarSize"
                 motion:layout_constraintTop_toTopOf="parent" />
 
@@ -102,9 +100,7 @@
                 android:id="@id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="14dp"
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintStart_toEndOf="@+id/search_back_frame" />
 
@@ -120,7 +116,7 @@
 
             <Constraint
                 android:id="@id/search_back_frame"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="?attr/actionBarSize"
                 motion:layout_constraintBottom_toBottomOf="parent" />
 

@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 class Person(
         @SerializedName("birthday")
-        var birthDay: String?,
+        val birthDay: String?,
         @SerializedName("deathday")
-        var deathDay: String?,
-        var id: Int,
+        val deathDay: String?,
+        val id: Int,
         @SerializedName("also_known_as")
-        var alsoKnowAs: List<String>,
-        var biography: String,
+        val alsoKnowAs: Array<String>,
+        val biography: String,
         @SerializedName("place_of_birth")
-        var placeOfBirth: String?)
+        val placeOfBirth: String?)
