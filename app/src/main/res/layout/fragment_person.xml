@@ -72,6 +72,17 @@
                     app:visibleGone="@{vm.person.deathDay!=null}" />
 
                 <TextView
+                    android:id="@+id/known_as"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_micro"
+                    android:layout_marginRight="@dimen/padding_normal"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/known_as"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
                     android:id="@+id/biography_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -87,6 +87,17 @@ constructor() // Required empty public constructor
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 biography.maxLines = if (biography.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
+
+            viewModel.knownAs.observe(this@PersonFragment, Observer {
+
+                known_as.visibleGone(it?.size != 0)
+                for (i in 0..it!!.size) {
+                    known_as.append(" " + it[i])
+                    if (i != it.size - 1) {
+                        known_as.append(",")
+                    }
+                }
+            })
         }
 
         return root

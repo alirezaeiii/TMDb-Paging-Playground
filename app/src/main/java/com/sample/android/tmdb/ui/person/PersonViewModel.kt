@@ -19,6 +19,7 @@ class PersonViewModel(
     internal val compositeDisposable = CompositeDisposable()
     val person = MutableLiveData<Person>()
     val isVisible = ObservableBoolean(false)
+    val knownAs = MutableLiveData<Array<String>>()
 
     fun showPerson(personId: Int) {
         val personSubscription = dataSource.getPerson(personId)
@@ -27,6 +28,7 @@ class PersonViewModel(
                 .subscribe({ person ->
                     isVisible.set(true)
                     this.person.value = person
+                    knownAs.value = person.alsoKnowAs
                 }
                 ) { throwable -> Timber.e(throwable) }
 

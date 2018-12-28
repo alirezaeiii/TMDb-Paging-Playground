@@ -77,6 +77,11 @@ constructor() // Required empty public constructor
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+            summary.setOnClickListener {
+                val maxLine = resources.getInteger(R.integer.max_lines)
+                summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
+            }
         }
 
         return root
