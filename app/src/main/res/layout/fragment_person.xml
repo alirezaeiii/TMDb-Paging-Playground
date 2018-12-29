@@ -35,76 +35,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:visibleGone="@{vm.isVisible}"
-                tools:ignore="ExtraText">
+                app:visibleGone="@{vm.isVisible}">
 
                 <TextView
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:layout_marginBottom="@dimen/padding_micro"
-                    android:fontFamily="sans-serif-light"
                     android:text="@{@string/born(vm.person.birthDay)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:visibleGone="@{vm.person.birthDay!=null}" />
 
                 <TextView
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:layout_marginBottom="@dimen/padding_micro"
-                    android:fontFamily="sans-serif-light"
                     android:text="@{@string/from(vm.person.placeOfBirth)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:visibleGone="@{vm.person.placeOfBirth!=null}" />
 
                 <TextView
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:fontFamily="sans-serif-light"
                     android:text="@{@string/death(vm.person.deathDay)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:visibleGone="@{vm.person.deathDay!=null}" />
 
                 <TextView
                     android:id="@+id/known_as"
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginTop="@dimen/padding_micro"
-                    android:layout_marginRight="@dimen/padding_normal"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/known_as"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    android:text="@string/known_as" />
 
                 <TextView
                     android:id="@+id/biography_label"
+                    style="@style/TmdbMargin.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginTop="@dimen/padding_large"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:text="@string/biography"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    android:text="@string/biography" />
 
                 <TextView
                     android:id="@+id/biography"
+                    style="@style/TmdbMargin.Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/padding_normal"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="@integer/max_lines"
-                    android:text="@{vm.person.biography}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    tools:ignore="KeyboardInaccessibleWidget" />
+                    android:paddingBottom="@dimen/padding_normal"
+                    android:text="@{vm.person.biography}" />
 
             </LinearLayout>
 

@@ -99,70 +99,50 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:layout_marginBottom="@dimen/padding_micro"
-                    android:fontFamily="sans-serif-light"
                     android:text="@{@string/release_date(movie.releaseDate)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    style="@style/TmdbMargin.Small" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:fontFamily="sans-serif-light"
                     android:text="@{@string/rating(movie.voteAverage)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    style="@style/TmdbMargin.Small" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginTop="@dimen/padding_large"
-                    android:layout_marginRight="@dimen/padding_normal"
                     android:text="@string/summary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    style="@style/TmdbMargin.Title" />
 
                 <TextView
                     android:id="@+id/summary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/padding_normal"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="@integer/max_lines"
                     android:text="@{movie.overview}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    tools:ignore="KeyboardInaccessibleWidget" />
+                    style="@style/TmdbMargin.Body" />
 
                 <include
                     layout="@layout/trailers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginTop="@dimen/padding_normal"
+                    android:layout_marginTop="@dimen/padding_large"
                     app:vm="@{vm}"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_normal"
-                    android:layout_marginTop="@dimen/padding_large"
-                    android:layout_marginRight="@dimen/padding_normal"
-                    android:layout_marginBottom="12dp"
                     android:text="@string/cast"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    style="@style/TmdbMargin.Title"
                     app:visibleGone="@{vm.isCastVisible}" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/cast_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="12dp" />
 
             </LinearLayout>
 

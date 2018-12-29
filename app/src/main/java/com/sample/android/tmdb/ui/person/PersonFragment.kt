@@ -90,8 +90,8 @@ constructor() // Required empty public constructor
 
             viewModel.knownAs.observe(this@PersonFragment, Observer {
 
-                known_as.visibleGone(it?.size != 0)
-                for (i in 0..it!!.size) {
+                known_as.visibleGone(!it!!.isEmpty())
+                for (i in 0..it.size) {
                     known_as.append(" " + it[i])
                     if (i != it.size - 1) {
                         known_as.append(",")
@@ -107,5 +107,4 @@ constructor() // Required empty public constructor
         super.onDestroyView()
         viewModel.compositeDisposable.clear()
     }
-
 }
