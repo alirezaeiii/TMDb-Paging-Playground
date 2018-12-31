@@ -4,6 +4,7 @@ import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.MovieAdapter
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
@@ -20,4 +21,7 @@ constructor() // Required empty public constructor
             (list.adapter as? MovieAdapter)?.submitList(null)
         }
     }
+
+    override fun shouldIncrementEspressoIdlingResource() =
+            (activity as SearchActivity).search_view.query.isNotEmpty()
 }

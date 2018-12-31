@@ -25,6 +25,7 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.repository.Status.FAILED
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
+import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
@@ -39,6 +40,8 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
     protected lateinit var model: MovieViewModel
 
     protected abstract fun getSortType(): SortType?
+
+    protected open fun shouldIncrementEspressoIdlingResource() = true
 
     protected open fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -90,7 +93,21 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                 list.adapter = adapter
             }
 
+            if (shouldIncrementEspressoIdlingResource()) {
+                // The network request might be handled in a different thread so make sure Espresso knows
+                // that the app is busy until the response is handled.
+                EspressoIdlingResource.increment() // App is busy until further notice
+            }
+
             model.movies.observe(this@MainFragment, Observer<PagedList<Movie>> {
+
+                // This callback may be called twice, once for the cache and once for loading
+                // the data from the server API, so we check before decrementing, otherwise
+                // it throws "Counter has been corrupted!" exception.
+                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                    EspressoIdlingResource.decrement() // Set app as idle.
+                }
+
                 adapter.submitList(it)
             })
 

@@ -8,8 +8,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.CardView
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -17,8 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
-import com.sample.android.tmdb.ui.detail.CastAdapter
-import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Video
 
 object BindingsAdapter {

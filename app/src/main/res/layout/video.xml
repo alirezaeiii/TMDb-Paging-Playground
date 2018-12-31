@@ -11,9 +11,9 @@
         android:id="@+id/video_thumb"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_normal"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
 </FrameLayout>

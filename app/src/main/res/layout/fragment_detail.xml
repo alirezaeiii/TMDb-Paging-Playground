@@ -97,30 +97,30 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@{@string/release_date(movie.releaseDate)}"
-                    style="@style/TmdbMargin.Small" />
+                    android:text="@{@string/release_date(movie.releaseDate)}" />
 
                 <TextView
+                    style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/rating(movie.voteAverage)}"
-                    style="@style/TmdbMargin.Small" />
+                    android:text="@{@string/rating(movie.voteAverage)}" />
 
                 <TextView
+                    style="@style/TmdbMargin.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/summary"
-                    style="@style/TmdbMargin.Title" />
+                    android:text="@string/summary" />
 
                 <TextView
                     android:id="@+id/summary"
+                    style="@style/TmdbMargin.Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{movie.overview}"
-                    style="@style/TmdbMargin.Body" />
+                    android:text="@{movie.overview}" />
 
                 <include
                     layout="@layout/trailers"
@@ -132,10 +132,11 @@
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
+                    style="@style/TmdbMargin.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_normal"
                     android:text="@string/cast"
-                    style="@style/TmdbMargin.Title"
                     app:visibleGone="@{vm.isCastVisible}" />
 
                 <android.support.v7.widget.RecyclerView

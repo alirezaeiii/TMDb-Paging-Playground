@@ -7,6 +7,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.Video
@@ -27,9 +28,15 @@ class MovieDetailViewModel(
     val isCastVisible = ObservableBoolean(false)
 
     fun showTrailers(movie: Movie) {
+        EspressoIdlingResource.increment() // App is busy until further notice
         val trailersSubscription = dataSource.getTrailers(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doFinally {
+                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                        EspressoIdlingResource.decrement() // Set app as idle.
+                    }
+                }
                 .subscribe({ videos ->
                     if (!videos.isEmpty()) {
                         isTrailersVisible.set(true)
@@ -45,9 +52,15 @@ class MovieDetailViewModel(
     }
 
     fun showCast(movie: Movie) {
+        EspressoIdlingResource.increment() // App is busy until further notice
         val castSubscription = dataSource.getCast(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doFinally {
+                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                        EspressoIdlingResource.decrement() // Set app as idle.
+                    }
+                }
                 .subscribe({ cast ->
                     if (!cast.isEmpty()) {
                         isCastVisible.set(true)

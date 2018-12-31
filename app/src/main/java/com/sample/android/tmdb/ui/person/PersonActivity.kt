@@ -2,7 +2,6 @@ package com.sample.android.tmdb.ui.person
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.MenuItem
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.addFragmentToActivity
 import com.sample.android.tmdb.ui.detail.DetailFragment
