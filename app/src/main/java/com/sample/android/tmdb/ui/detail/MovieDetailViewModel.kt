@@ -65,7 +65,7 @@ class MovieDetailViewModel(
                     if (!cast.isEmpty()) {
                         isCastVisible.set(true)
                     }
-                    this.cast.value = cast
+                    this.cast.postValue(cast)
                 }
                 ) { throwable -> Timber.e(throwable) }
 

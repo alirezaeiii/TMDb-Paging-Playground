@@ -48,8 +48,8 @@ dependencies {
 
     // Architecture components
     implementation "android.arch.paging:runtime:$pagingVersion"
-    implementation "android.arch.lifecycle:runtime:$lifecycleVersion"
-    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+    implementation "android.arch.lifecycle:runtime:$archLifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -81,7 +81,9 @@ dependencies {
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.mockito:mockito-all:$mockitoVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+
+    testImplementation "android.arch.core:core-testing:$archLifecycleVersion"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"

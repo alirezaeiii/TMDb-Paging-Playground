@@ -34,7 +34,7 @@ class PersonViewModel(
                 }
                 .subscribe({ person ->
                     isVisible.set(true)
-                    this.person.value = person
+                    this.person.postValue(person)
                     knownAs.value = person.alsoKnowAs
                 }
                 ) { throwable -> Timber.e(throwable) }
