@@ -82,6 +82,10 @@ constructor() // Required empty public constructor
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
+
+            with(details_rv) {
+                postDelayed({ scrollTo(0, 0) }, 100)
+            }
         }
 
         return root

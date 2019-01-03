@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:minHeight="?attr/actionBarSize"
     app:layoutDescription="@xml/scene_person_header"
-    app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
+    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
     tools:background="?attr/colorPrimary"
     tools:maxHeight="320dp">
 
