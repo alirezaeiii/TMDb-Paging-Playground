@@ -11,6 +11,7 @@ import android.support.constraint.motion.MotionLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
@@ -156,8 +157,8 @@ constructor() // Required empty public constructor
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 requireActivity(),
 
-                Pair<View, String>(poster, getString(R.string.view_name_header_image)),
-                Pair<View, String>(name, getString(R.string.view_name_header_title)))
+                Pair<View, String>(poster, ViewCompat.getTransitionName(poster)),
+                Pair<View, String>(name, ViewCompat.getTransitionName(name)))
 
         ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())
     }

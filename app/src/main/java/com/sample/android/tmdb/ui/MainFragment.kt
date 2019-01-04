@@ -12,9 +12,11 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
+import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import com.sample.android.tmdb.R
@@ -99,6 +101,10 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                 EspressoIdlingResource.increment() // App is busy until further notice
             }
 
+            val controller = AnimationUtils
+                    .loadLayoutAnimation(context,
+                            R.anim.grid_layout_animation_from_bottom)
+
             model.movies.observe(this@MainFragment, Observer<PagedList<Movie>> {
 
                 // This callback may be called twice, once for the cache and once for loading
@@ -108,7 +114,9 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                     EspressoIdlingResource.decrement() // Set app as idle.
                 }
 
+                list.layoutAnimation = controller
                 adapter.submitList(it)
+                list.scheduleLayoutAnimation()
             })
 
             model.networkState.observe(this@MainFragment, Observer { it ->
@@ -138,8 +146,8 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
 
                 // Now we provide a list of Pair items which contain the view we can transitioning
                 // from, and the name of the view it is transitioning to, in the launched activity
-                Pair<View, String>(poster, getString(R.string.view_name_header_image)),
-                Pair<View, String>(name, getString(R.string.view_name_header_title)))
+                Pair<View, String>(poster, ViewCompat.getTransitionName(poster)),
+                Pair<View, String>(name, ViewCompat.getTransitionName(name)))
 
         // Now we can start the Activity, providing the activity options as a bundle
         ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())

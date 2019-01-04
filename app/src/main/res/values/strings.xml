@@ -23,4 +23,7 @@
 
     // View name of the header title. Used for activity scene transitions
     <string name="view_name_header_title">detail:header:title</string>
+
+    <string name="view_person_header_image">person_image</string>
+    <string name="view_person_header_name">person_name</string>
 </resources>

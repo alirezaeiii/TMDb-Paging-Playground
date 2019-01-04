@@ -41,6 +41,7 @@
                 android:id="@+id/cast_item_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
+                android:transitionName="@string/view_person_header_image"
                 app:profileUrl="@{cast.profilePath}"
                 tools:ignore="ContentDescription" />
 
@@ -54,7 +55,8 @@
                 android:gravity="center"
                 android:text="@{cast.name}"
                 android:textColor="@color/md_black_1000"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:transitionName="@string/view_person_header_name" />
 
             <TextView
                 android:layout_width="match_parent"

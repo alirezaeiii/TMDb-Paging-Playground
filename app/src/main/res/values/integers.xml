@@ -2,4 +2,5 @@
 <resources>
     <integer name="no_of_columns">4</integer>
     <integer name="max_lines">7</integer>
+    <integer name="anim_duration_long">400</integer>
 </resources>
