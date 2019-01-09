@@ -19,6 +19,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.anyInt
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Response
@@ -50,7 +51,7 @@ class MovieViewModelTest {
 
         val mockCall = Calls.response(Response.success(
                 MovieApi.MovieWrapper(Lists.newArrayList(movie))))
-        `when`(movieApi.popularMovies(1)).thenReturn(mockCall)
+        `when`(movieApi.popularMovies(anyInt())).thenReturn(mockCall)
 
         val listing = repository.getMovies("", 20)
         val observer = LoggingObserver<PagedList<Movie>>()
