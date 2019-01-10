@@ -11,7 +11,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
-import com.sample.android.tmdb.TestUtils.*
+import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.MovieViewHolder
 import com.sample.android.tmdb.ui.detail.CastAdapter

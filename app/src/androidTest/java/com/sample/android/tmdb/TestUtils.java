@@ -3,12 +3,15 @@ package com.sample.android.tmdb;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.action.ScrollToAction;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.espresso.util.HumanReadables;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -16,10 +19,12 @@ import org.hamcrest.Matchers;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.core.AllOf.allOf;
 
 public class TestUtils {
 
-    public static ViewAction nestedScrollTo() {
+    static ViewAction nestedScrollTo() {
         return new ViewAction() {
 
             @Override
@@ -80,4 +85,26 @@ public class TestUtils {
     private static ViewParent findParent(ViewParent view) {
         return view.getParent();
     }
+
+    static ViewAction customScrollTo = new ViewAction() {
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE), isDescendantOfA(anyOf(
+                    isAssignableFrom(ScrollView.class),
+                    isAssignableFrom(HorizontalScrollView.class),
+                    isAssignableFrom(NestedScrollView.class)))
+            );
+        }
+
+        @Override
+        public String getDescription() {
+            return null;
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            new ScrollToAction().perform(uiController, view);
+        }
+    };
 }
