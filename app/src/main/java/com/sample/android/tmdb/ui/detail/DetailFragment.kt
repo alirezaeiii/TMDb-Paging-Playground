@@ -13,7 +13,6 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,11 +125,6 @@ constructor() // Required empty public constructor
             val adapter = CastAdapter(it!!, this@DetailFragment)
 
             binding.root.cast_list.apply {
-
-                layoutManager = GridLayoutManager(context,
-                        resources.getInteger(R.integer.no_of_columns),
-                        GridLayoutManager.VERTICAL,
-                        false)
 
                 setHasFixedSize(true)
 

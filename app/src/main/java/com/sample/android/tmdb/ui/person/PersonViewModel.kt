@@ -20,7 +20,7 @@ class PersonViewModel(
     internal val compositeDisposable = CompositeDisposable()
     val person = MutableLiveData<Person>()
     val isVisible = ObservableBoolean(false)
-    val knownAs = MutableLiveData<Array<String>>()
+    val knownAs = MutableLiveData<String>()
 
     fun showPerson(personId: Int) {
         EspressoIdlingResource.increment() // App is busy until further notice
@@ -35,7 +35,14 @@ class PersonViewModel(
                 .subscribe({ person ->
                     isVisible.set(true)
                     this.person.postValue(person)
-                    knownAs.postValue(person.alsoKnowAs)
+                    var alsoKnownAs = ""
+                    for (i in 0 until person.alsoKnowAs.size) {
+                        alsoKnownAs += person.alsoKnowAs[i]
+                        if (i != person.alsoKnowAs.size - 1) {
+                            alsoKnownAs += ", "
+                        }
+                    }
+                    knownAs.postValue(alsoKnownAs)
                 }
                 ) { throwable -> Timber.e(throwable) }
 

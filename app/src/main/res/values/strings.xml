@@ -15,7 +15,7 @@
     <string name="born">Born on %s</string>
     <string name="from">From %s</string>
     <string name="death">Death in %s</string>
-    <string name="known_as">Also known as</string>
+    <string name="known_as">Also known as %1$s</string>
     <string name="transition_search_back" translatable="false">transition_search_back</string>
 
     // View name of the header image. Used for activity scene transitions
