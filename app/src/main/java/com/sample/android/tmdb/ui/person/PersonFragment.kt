@@ -91,7 +91,7 @@ constructor() // Required empty public constructor
             viewModel.knownAs.observe(this@PersonFragment, Observer {
 
                 known_as.visibleGone(!it!!.isEmpty())
-                for (i in 0..it.size) {
+                for (i in 0 until it.size) {
                     known_as.append(" " + it[i])
                     if (i != it.size - 1) {
                         known_as.append(",")
