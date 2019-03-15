@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.di
 
+import com.sample.android.tmdb.BuildConfig
 import com.sample.android.tmdb.api.MovieApi
 import com.sample.android.tmdb.api.RequestInterceptor
 import dagger.Module
@@ -34,7 +35,7 @@ class NetworkModule {
     @Provides
     fun retrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BuildConfig.TMDB_BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -46,9 +47,4 @@ class NetworkModule {
     fun movieApi(retrofit: Retrofit): MovieApi {
         return retrofit.create(MovieApi::class.java)
     }
-
-    companion object {
-        private const val BASE_URL = "http://api.themoviedb.org/"
-    }
-
 }
