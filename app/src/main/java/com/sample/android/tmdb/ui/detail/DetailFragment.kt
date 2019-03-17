@@ -29,6 +29,7 @@ import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import com.sample.android.tmdb.ui.person.PersonExtra
 import com.sample.android.tmdb.vo.Movie
 import dagger.android.support.DaggerFragment
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import javax.inject.Inject
 
@@ -47,6 +48,8 @@ constructor() // Required empty public constructor
 
     private lateinit var viewModel: MovieDetailViewModel
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -61,7 +64,7 @@ constructor() // Required empty public constructor
         binding = FragmentDetailBinding.bind(root).apply {
             movie = this@DetailFragment.movie
             setVariable(BR.vm, viewModel)
-            setLifecycleOwner(this@DetailFragment)
+            lifecycleOwner = this@DetailFragment
         }
 
         with(root) {
@@ -117,8 +120,8 @@ constructor() // Required empty public constructor
             }
         })
 
-        binding.vm?.showTrailers(movie)
-        binding.vm?.showCast(movie)
+        binding.vm?.showTrailers(movie)?.let { compositeDisposable.add(it) }
+        binding.vm?.showCast(movie)?.let { compositeDisposable.add(it) }
 
         viewModel.cast.observe(this@DetailFragment, Observer {
 
@@ -135,7 +138,7 @@ constructor() // Required empty public constructor
 
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel.compositeDisposable.clear()
+        compositeDisposable.clear()
     }
 
     override fun onClick(personId: Int, personName: String, profilePath: String?,

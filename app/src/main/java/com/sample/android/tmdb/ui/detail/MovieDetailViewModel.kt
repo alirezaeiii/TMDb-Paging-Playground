@@ -12,7 +12,7 @@ import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
@@ -21,15 +21,14 @@ class MovieDetailViewModel(
         private val dataSource: MoviesRemoteDataSource)
     : AndroidViewModel(context) {
 
-    internal val compositeDisposable = CompositeDisposable()
     val trailers: ObservableList<Video> = ObservableArrayList()
     val isTrailersVisible = ObservableBoolean(false)
     val cast = MutableLiveData<List<Cast>>()
     val isCastVisible = ObservableBoolean(false)
 
-    fun showTrailers(movie: Movie) {
+    fun showTrailers(movie: Movie): Disposable {
         EspressoIdlingResource.increment() // App is busy until further notice
-        val trailersSubscription = dataSource.getTrailers(movie.id)
+        return dataSource.getTrailers(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {
@@ -47,13 +46,11 @@ class MovieDetailViewModel(
                     }
                 }
                 ) { throwable -> Timber.e(throwable) }
-
-        compositeDisposable.add(trailersSubscription)
     }
 
-    fun showCast(movie: Movie) {
+    fun showCast(movie: Movie): Disposable {
         EspressoIdlingResource.increment() // App is busy until further notice
-        val castSubscription = dataSource.getCast(movie.id)
+        return dataSource.getCast(movie.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {
@@ -68,7 +65,5 @@ class MovieDetailViewModel(
                     this.cast.postValue(cast)
                 }
                 ) { throwable -> Timber.e(throwable) }
-
-        compositeDisposable.add(castSubscription)
     }
 }

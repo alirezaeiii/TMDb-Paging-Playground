@@ -19,6 +19,7 @@ import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.visibleGone
 import dagger.android.support.DaggerFragment
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_person.view.*
 import kotlinx.android.synthetic.main.person_header.view.*
 import javax.inject.Inject
@@ -36,6 +37,8 @@ constructor() // Required empty public constructor
 
     private lateinit var viewModel: PersonViewModel
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -49,7 +52,7 @@ constructor() // Required empty public constructor
         val root = inflater.inflate(R.layout.fragment_person, container, false)
         val binding = FragmentPersonBinding.bind(root).apply {
             setVariable(BR.vm, viewModel)
-            setLifecycleOwner(this@PersonFragment)
+            lifecycleOwner = this@PersonFragment
         }
 
         with(binding.personHeader) {
@@ -69,7 +72,7 @@ constructor() // Required empty public constructor
                     .into(image_background)
         }
 
-        binding.vm?.showPerson(person.personId)
+        binding.vm?.showPerson(person.personId)?.let { compositeDisposable.add(it) }
 
         with(root) {
 
@@ -100,6 +103,6 @@ constructor() // Required empty public constructor
 
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel.compositeDisposable.clear()
+        compositeDisposable.clear()
     }
 }
