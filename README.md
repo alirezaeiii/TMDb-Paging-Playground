@@ -3,7 +3,7 @@
 
 ### Prerequisites
 
-Add your [TMDB](themoviedb.org) API key in the `local.properties` file:
+Add your [TMDB](https://www.themoviedb.org/) API key in the `local.properties` file:
 ```
 tmdb_api_key=YOUR_API_KEY
 ```
