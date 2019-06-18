@@ -4,22 +4,23 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.content.Intent.ACTION_SEARCH
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
+import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.sample.android.tmdb.R
-import com.sample.android.tmdb.addFragmentToActivity
-import com.sample.android.tmdb.replaceFragmentInActivity
-import com.sample.android.tmdb.ui.base.HighRateMoviesFragment
-import com.sample.android.tmdb.ui.base.PopularMoviesFragment
-import com.sample.android.tmdb.ui.base.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.search.SearchActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_nav.*
 import javax.inject.Inject
+import android.support.v4.view.GravityCompat
+import com.sample.android.tmdb.*
+import com.sample.android.tmdb.ui.base.*
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity(),
+        NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     lateinit var popularMoviesFragment: PopularMoviesFragment
@@ -30,17 +31,39 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var upcomingMoviesFragment: UpcomingMoviesFragment
 
+    @Inject
+    lateinit var popularTVshowFragment: PopularTVShowFragment
+
+    @Inject
+    lateinit var highRateTVShowFragment: HighRateTVShowFragment
+
+    @Inject
+    lateinit var latestTVShowFragment: LatestTVShowFragment
+
+    private var currentType = NavType.MOVIES
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_nav)
 
-        setSupportActionBar(toolbar)
+        setupActionBar(toolbar) {
+            setTitle(R.string.menu_movies)
+        }
 
         // Add movie detailFragment if this is first creation
         if (savedInstanceState == null) {
-
             addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
+            nav_view.setCheckedItem(R.id.action_movies)
         }
+
+        nav_view.setNavigationItemSelectedListener(this)
+
+        val toggle = ActionBarDrawerToggle(
+                this, drawer_layout, toolbar,
+                R.string.open_nav_drawer, R.string.close_nav_drawer
+        )
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
 
         var fragment: Fragment
 
@@ -49,9 +72,24 @@ class MainActivity : DaggerAppCompatActivity() {
             setOnNavigationItemSelectedListener {
 
                 fragment = when (it.itemId) {
-                    R.id.action_popular -> popularMoviesFragment
-                    R.id.action_highest_rate -> highRateMoviesFragment
-                    R.id.action_upcoming -> upcomingMoviesFragment
+                    R.id.action_popular -> {
+                        when (currentType) {
+                            NavType.MOVIES -> popularMoviesFragment
+                            NavType.TV_SERIES -> popularTVshowFragment
+                        }
+                    }
+                    R.id.action_highest_rate -> {
+                        when (currentType) {
+                            NavType.MOVIES -> highRateMoviesFragment
+                            NavType.TV_SERIES -> highRateTVShowFragment
+                        }
+                    }
+                    R.id.action_upcoming -> {
+                        when (currentType) {
+                            NavType.MOVIES -> upcomingMoviesFragment
+                            NavType.TV_SERIES -> latestTVShowFragment
+                        }
+                    }
                     else -> throw RuntimeException("Unknown sortType to replace detailFragment")
                 }
                 replaceFragmentInActivity(fragment, R.id.fragment_container)
@@ -80,5 +118,30 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        drawer_layout.closeDrawer(GravityCompat.START)
+        when (item.itemId) {
+            R.id.action_movies -> {
+                currentType = NavType.MOVIES
+                toolbar.setTitle(R.string.menu_movies)
+                replaceFragmentInActivity(popularMoviesFragment, R.id.fragment_container)
+            }
+            R.id.action_tv_series -> {
+                currentType = NavType.TV_SERIES
+                toolbar.setTitle(R.string.menu_tv_series)
+                replaceFragmentInActivity(popularTVshowFragment, R.id.fragment_container)
+            }
+        }
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

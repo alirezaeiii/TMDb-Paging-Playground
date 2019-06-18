@@ -1,0 +1,61 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="tvShow"
+            type="com.sample.android.tmdb.vo.TVShow" />
+
+        <variable
+            name="poster"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="name"
+            type="android.widget.TextView" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:clickable="true"
+        android:elevation="@dimen/z_app_bar"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="@dimen/z_app_bar"
+        app:imageUrl="@{tvShow.posterPath}"
+        tools:ignore="KeyboardInaccessibleWidget">
+
+        <ImageView
+            android:id="@+id/tv_show_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/view_name_header_image"
+            tools:ignore="contentDescription" />
+
+        <View
+            android:id="@+id/title_background"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:alpha="0.8"
+            android:gravity="center"
+            tools:background="@color/black_translucent_60" />
+
+        <TextView
+            android:id="@+id/tv_show_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@{tvShow.name}"
+            android:textSize="12sp"
+            android:transitionName="@string/view_name_header_title" />
+
+    </android.support.v7.widget.CardView>
+
+</layout>

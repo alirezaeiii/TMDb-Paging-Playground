@@ -1,59 +1,41 @@
 package com.sample.android.tmdb.ui
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.arch.paging.PagedList
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
-import android.support.v4.util.Pair
-import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.databinding.FragmentMainBinding
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.repository.Status.FAILED
-import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.util.EspressoIdlingResource
-import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.vo.TmdbItem
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import javax.inject.Inject
 
-abstract class MainFragment : DaggerFragment(), MovieClickCallback {
+abstract class BaseFragment<T : TmdbItem> : DaggerFragment() {
 
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
 
-    protected lateinit var model: MovieViewModel
+    protected lateinit var model: ItemViewModel<T>
 
     protected abstract fun getSortType(): SortType?
 
     protected open fun shouldIncrementEspressoIdlingResource() = true
 
-    protected open fun initViewModel() {
-        model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return MovieViewModel(dataSource = dataSource,
-                        sortType = getSortType()) as T
-            }
-        })[MovieViewModel::class.java]
-    }
+    protected abstract fun initViewModel()
+
+    protected abstract fun getAdapter() : ItemAdapter<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -71,7 +53,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                         ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 )
 
-                model.refreshState.observe(this@MainFragment, Observer {
+                model.refreshState.observe(this@BaseFragment, Observer {
                     isRefreshing = it == NetworkState.LOADING
                 })
 
@@ -84,7 +66,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                 }
             }
 
-            val adapter = MovieAdapter(this@MainFragment)
+            val adapter = getAdapter()
 
             list.apply {
 
@@ -105,7 +87,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                     .loadLayoutAnimation(context,
                             R.anim.grid_layout_animation_from_bottom)
 
-            model.movies.observe(this@MainFragment, Observer<PagedList<Movie>> {
+            model.items.observe(this@BaseFragment, Observer<PagedList<T>> {
 
                 // This callback may be called twice, once for the cache and once for loading
                 // the data from the server API, so we check before decrementing, otherwise
@@ -119,7 +101,7 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
                 list.scheduleLayoutAnimation()
             })
 
-            model.networkState.observe(this@MainFragment, Observer { it ->
+            model.networkState.observe(this@BaseFragment, Observer { it ->
                 adapter.setNetworkState(it)
 
                 binding.isLoading = it?.status == FAILED
@@ -133,23 +115,5 @@ abstract class MainFragment : DaggerFragment(), MovieClickCallback {
             })
         }
         return binding.root
-    }
-
-    override fun onClick(movie: Movie, poster: ImageView, name: TextView) {
-        val intent = Intent(activity, DetailActivity::class.java).apply {
-            putExtras(Bundle().apply {
-                putParcelable(EXTRA_MOVIE, movie)
-            })
-        }
-        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                requireActivity(),
-
-                // Now we provide a list of Pair items which contain the view we can transitioning
-                // from, and the name of the view it is transitioning to, in the launched activity
-                Pair<View, String>(poster, ViewCompat.getTransitionName(poster)),
-                Pair<View, String>(name, ViewCompat.getTransitionName(name)))
-
-        // Now we can start the Activity, providing the activity options as a bundle
-        ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())
     }
 }

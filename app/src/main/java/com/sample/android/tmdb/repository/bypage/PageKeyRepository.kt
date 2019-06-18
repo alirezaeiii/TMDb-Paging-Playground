@@ -3,23 +3,19 @@ package com.sample.android.tmdb.repository.bypage
 import android.arch.lifecycle.Transformations
 import android.arch.paging.LivePagedListBuilder
 import android.support.annotation.MainThread
-import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.repository.Listing
 import com.sample.android.tmdb.repository.MovieRepository
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.vo.Movie
 import java.util.concurrent.Executor
 
-class PageKeyRepository(private val dataSource: MoviesRemoteDataSource,
-                        private val sortType: SortType?,
-                        private val networkExecutor: Executor) : MovieRepository {
+abstract class PageKeyRepository<T, E>(
+        private val networkExecutor: Executor) : MovieRepository<T> {
+
+    protected abstract fun getSourceFactory(query: String): ItemDataSourceFactory<T, E>
 
     @MainThread
-    override fun getMovies(query: String, pageSize: Int): Listing<Movie> {
+    override fun getItems(query: String, pageSize: Int): Listing<T> {
 
-        val sourceFactory = MovieDataSourceFactory(dataSource = dataSource,
-                sortType = sortType,
-                query = query)
+        val sourceFactory = getSourceFactory(query)
 
         val livePagedList = LivePagedListBuilder(sourceFactory, pageSize)
                 // provide custom executor for network requests, otherwise it will default to

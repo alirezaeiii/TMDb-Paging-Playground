@@ -7,7 +7,7 @@ import com.google.common.collect.Lists
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.api.MovieApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.repository.bypage.PageKeyRepository
+import com.sample.android.tmdb.repository.bypage.MoviePageKeyRepository
 import com.sample.android.tmdb.vo.Movie
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
@@ -45,15 +45,15 @@ class MovieViewModelTest {
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = PageKeyRepository(dataSource, SortType.MOST_POPULAR, networkExecutor)
-        val movie = Movie("id", "overview", "date",
+        val repository = MoviePageKeyRepository(dataSource, SortType.MOST_POPULAR, networkExecutor)
+        val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 
         val mockCall = Calls.response(Response.success(
                 MovieApi.MovieWrapper(Lists.newArrayList(movie))))
         `when`(movieApi.popularMovies(anyInt())).thenReturn(mockCall)
 
-        val listing = repository.getMovies("", 20)
+        val listing = repository.getItems("", 20)
         val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
 

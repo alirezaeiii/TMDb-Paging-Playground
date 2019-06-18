@@ -11,8 +11,10 @@
     </style>
 
     <style name="Theme.Tmdb.Search">
-        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter</item>
-        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return
+        </item>
     </style>
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

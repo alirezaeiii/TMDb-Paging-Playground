@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimary"
-        app:itemIconTint="@drawable/bottom_navigation_colors"
-        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:itemIconTint="@drawable/navigation_colors"
+        app:itemTextColor="@drawable/navigation_colors"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:menu="@menu/bottom_navigation_menu" />
 
