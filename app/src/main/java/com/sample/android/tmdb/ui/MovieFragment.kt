@@ -21,7 +21,7 @@ abstract class MovieFragment : BaseFragment<Movie>(), MovieClickCallback {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return TVShowsViewModel(dataSource = dataSource,
+                return MovieViewModel(dataSource = dataSource,
                         sortType = getSortType()) as T
             }
         })[MovieViewModel::class.java]

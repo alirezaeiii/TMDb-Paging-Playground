@@ -2,9 +2,6 @@ package com.sample.android.tmdb.repository.bypage
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.DataSource
-import com.sample.android.tmdb.SortType
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.vo.Movie
 
 abstract class ItemDataSourceFactory<T, E> : DataSource.Factory<Int, T>() {
 

@@ -35,7 +35,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment() {
 
     protected abstract fun initViewModel()
 
-    protected abstract fun getAdapter() : ItemAdapter<T>
+    protected abstract fun getAdapter(): ItemAdapter<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -101,7 +101,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment() {
                 list.scheduleLayoutAnimation()
             })
 
-            model.networkState.observe(this@BaseFragment, Observer { it ->
+            model.networkState.observe(this@BaseFragment, Observer {
                 adapter.setNetworkState(it)
 
                 binding.isLoading = it?.status == FAILED
