@@ -1,4 +1,4 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.util
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

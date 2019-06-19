@@ -13,7 +13,7 @@ import android.support.test.filters.LargeTest
 import android.support.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.customScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.MovieViewHolder
+import com.sample.android.tmdb.ui.movie.MovieViewHolder
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test

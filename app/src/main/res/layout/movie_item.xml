@@ -10,7 +10,7 @@
 
         <variable
             name="callback"
-            type="com.sample.android.tmdb.ui.MovieClickCallback" />
+            type="com.sample.android.tmdb.ui.movie.MovieClickCallback" />
 
         <variable
             name="poster"
@@ -29,7 +29,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{() -> callback.onClick(movie, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:imageUrl="@{movie.posterPath}"
+        app:movieImageUrl="@{movie.posterPath}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

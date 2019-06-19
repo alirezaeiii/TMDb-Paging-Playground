@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.movie
 
 import android.widget.ImageView
 import android.widget.TextView

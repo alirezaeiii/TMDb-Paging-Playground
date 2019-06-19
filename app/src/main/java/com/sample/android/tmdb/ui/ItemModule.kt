@@ -1,11 +1,15 @@
-package com.sample.android.tmdb.ui.base
+package com.sample.android.tmdb.ui
 
 import com.sample.android.tmdb.di.FragmentScoped
+import com.sample.android.tmdb.ui.tvshow.*
+import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
+import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class MoviesModule {
+abstract class ItemModule {
 
     @FragmentScoped
     @ContributesAndroidInjector

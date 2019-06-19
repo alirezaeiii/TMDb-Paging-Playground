@@ -1,14 +1,13 @@
-package com.sample.android.tmdb.ui.base
+package com.sample.android.tmdb.ui.tvshow
 
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.SortType.HIGHEST_RATED
 import com.sample.android.tmdb.di.ActivityScoped
-import com.sample.android.tmdb.ui.MovieFragment
 import javax.inject.Inject
 
 @ActivityScoped
-class HighRateMoviesFragment @Inject
-constructor() : MovieFragment() {
+class HighRateTVShowFragment @Inject
+constructor() : TVShowFragment() {
 
     override fun getSortType(): SortType = HIGHEST_RATED
 }

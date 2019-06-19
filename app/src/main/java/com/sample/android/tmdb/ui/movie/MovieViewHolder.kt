@@ -1,11 +1,11 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.movie
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.MovieItemBinding
-import com.sample.android.tmdb.layoutInflater
+import com.sample.android.tmdb.util.layoutInflater
 
 class MovieViewHolder(internal val binding: MovieItemBinding)
     : RecyclerView.ViewHolder(binding.root) {

@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.base.MoviesModule
+import com.sample.android.tmdb.ui.ItemModule
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailModule
 import com.sample.android.tmdb.ui.person.PersonActivity
@@ -14,7 +14,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBindingModule {
     @ActivityScoped
-    @ContributesAndroidInjector(modules = [MoviesModule::class])
+    @ContributesAndroidInjector(modules = [ItemModule::class])
     internal abstract fun mainActivity(): MainActivity
 
     @ActivityScoped

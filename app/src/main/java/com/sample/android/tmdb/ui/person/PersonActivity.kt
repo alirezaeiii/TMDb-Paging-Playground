@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.person
 import android.os.Bundle
 import android.os.Parcelable
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.addFragmentToActivity
+import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.parcel.Parcelize

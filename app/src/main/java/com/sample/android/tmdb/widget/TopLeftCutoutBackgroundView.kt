@@ -11,7 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.lerp
+import com.sample.android.tmdb.util.lerp
 
 class TopLeftCutoutBackgroundView : View {
     private val shapeDrawable = MaterialShapeDrawable()

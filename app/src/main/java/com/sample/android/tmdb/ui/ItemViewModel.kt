@@ -14,11 +14,11 @@ abstract class ItemViewModel<T> : ViewModel() {
     protected val NETWORK_IO = Executors.newFixedThreadPool(5)
 
     protected val query = MutableLiveData<String>()
-    protected abstract val repoResult : LiveData<Listing<T>>
+    protected abstract val repoResult: LiveData<Listing<T>>
 
-    val items = switchMap(repoResult) { it.pagedList }!!
-    val networkState = switchMap(repoResult) { it.networkState }!!
-    val refreshState = switchMap(repoResult) { it.refreshState }!!
+    val items by lazy { switchMap(repoResult) { it.pagedList } }
+    val networkState by lazy { switchMap(repoResult) { it.networkState } }
+    val refreshState by lazy { switchMap(repoResult) { it.refreshState } }
 
     fun refresh() {
         repoResult.value?.refresh?.invoke()

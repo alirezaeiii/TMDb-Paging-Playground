@@ -17,7 +17,13 @@ import kotlinx.android.synthetic.main.activity_main_nav.*
 import javax.inject.Inject
 import android.support.v4.view.GravityCompat
 import com.sample.android.tmdb.*
-import com.sample.android.tmdb.ui.base.*
+import com.sample.android.tmdb.ui.tvshow.*
+import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
+import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
+import com.sample.android.tmdb.util.addFragmentToActivity
+import com.sample.android.tmdb.util.replaceFragmentInActivity
+import com.sample.android.tmdb.util.setupActionBar
 
 class MainActivity : DaggerAppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener {
@@ -122,6 +128,7 @@ class MainActivity : DaggerAppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
+        bottom_navigation.selectedItemId = R.id.action_popular
         when (item.itemId) {
             R.id.action_movies -> {
                 currentType = NavType.MOVIES

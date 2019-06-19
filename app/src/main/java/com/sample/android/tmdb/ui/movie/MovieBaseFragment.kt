@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.movie
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -12,10 +12,12 @@ import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.sample.android.tmdb.ui.BaseFragment
+import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.vo.Movie
 
-abstract class MovieFragment : BaseFragment<Movie>(), MovieClickCallback {
+abstract class MovieBaseFragment : BaseFragment<Movie>(), MovieClickCallback {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -25,8 +27,6 @@ abstract class MovieFragment : BaseFragment<Movie>(), MovieClickCallback {
                         sortType = getSortType()) as T
             }
         })[MovieViewModel::class.java]
-
-        model.showQuery("")
     }
 
     override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)

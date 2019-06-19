@@ -24,7 +24,7 @@
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardElevation="@dimen/z_app_bar"
-        app:imageUrl="@{tvShow.posterPath}"
+        app:tvShowImageUrl="@{tvShow.posterPath}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

@@ -7,7 +7,7 @@ import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.addFragmentToActivity
+import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class SearchActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var searchFragment: SearchFragment
+    lateinit var searchFragment: SearchMovieFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class SearchActivity : DaggerAppCompatActivity() {
         }
 
         val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-                as SearchFragment? ?: searchFragment.also {
+                as SearchMovieFragment? ?: searchFragment.also {
             addFragmentToActivity(it, R.id.fragment_container)
         }
 

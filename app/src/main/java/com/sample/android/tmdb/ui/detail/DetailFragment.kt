@@ -23,7 +23,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.setupActionBar
+import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import com.sample.android.tmdb.ui.person.PersonExtra

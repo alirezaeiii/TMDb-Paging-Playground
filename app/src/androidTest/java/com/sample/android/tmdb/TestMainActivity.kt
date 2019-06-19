@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.EditText
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.MovieViewHolder
+import com.sample.android.tmdb.ui.movie.MovieViewHolder
 import com.sample.android.tmdb.ui.detail.CastAdapter
 import org.hamcrest.Matchers.not
 import org.junit.Rule

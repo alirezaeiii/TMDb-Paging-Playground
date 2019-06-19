@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.CastItemBinding
-import com.sample.android.tmdb.layoutInflater
+import com.sample.android.tmdb.util.layoutInflater
 import com.sample.android.tmdb.vo.Cast
 
 class CastAdapter(

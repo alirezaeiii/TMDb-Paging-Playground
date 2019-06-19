@@ -5,7 +5,7 @@ import android.view.MenuItem
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.addFragmentToActivity
+import com.sample.android.tmdb.util.addFragmentToActivity
 
 class DetailActivity : DaggerAppCompatActivity() {
 

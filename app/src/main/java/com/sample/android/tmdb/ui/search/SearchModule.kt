@@ -9,5 +9,5 @@ abstract class SearchModule {
 
     @FragmentScoped
     @ContributesAndroidInjector
-    internal abstract fun searchFragment(): SearchFragment
+    internal abstract fun searchFragment(): SearchMovieFragment
 }

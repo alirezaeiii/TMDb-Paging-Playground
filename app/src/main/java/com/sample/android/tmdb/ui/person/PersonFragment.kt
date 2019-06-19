@@ -17,7 +17,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.visibleGone
+import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_person.view.*

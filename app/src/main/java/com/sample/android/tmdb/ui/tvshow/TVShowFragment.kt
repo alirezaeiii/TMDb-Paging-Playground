@@ -1,8 +1,10 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.tvshow
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import com.sample.android.tmdb.ui.BaseFragment
+import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.vo.TVShow
 
 abstract class TVShowFragment : BaseFragment<TVShow>() {

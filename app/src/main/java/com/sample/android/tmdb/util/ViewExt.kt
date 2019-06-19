@@ -1,4 +1,4 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.util
 
 import android.databinding.BindingAdapter
 import android.view.View
