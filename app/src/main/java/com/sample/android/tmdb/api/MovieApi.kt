@@ -25,7 +25,7 @@ interface MovieApi {
     @GET("3/tv/top_rated?language=en")
     fun topRatedTVShows(@Query("page") page: Int): Call<TVShowWrapper>
 
-    @GET("3/discover/tv?language=en&sort_by=first_air_date.desc")
+    @GET("3/tv/on_the_air?language=en")
     fun latestTvShows(@Query("page") page: Int): Call<TVShowWrapper>
 
     @GET("3/search/movie?language=en")

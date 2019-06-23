@@ -6,24 +6,26 @@ import android.content.Intent.ACTION_SEARCH
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.sample.android.tmdb.NavType
+import com.sample.android.tmdb.R
+import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
+import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.search.SearchActivity
+import com.sample.android.tmdb.ui.tvshow.HighRateTVShowFragment
+import com.sample.android.tmdb.ui.tvshow.LatestTVShowFragment
+import com.sample.android.tmdb.ui.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.util.addFragmentToActivity
+import com.sample.android.tmdb.util.replaceFragmentInActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_nav.*
 import javax.inject.Inject
-import android.support.v4.view.GravityCompat
-import com.sample.android.tmdb.*
-import com.sample.android.tmdb.ui.tvshow.*
-import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
-import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
-import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
-import com.sample.android.tmdb.util.addFragmentToActivity
-import com.sample.android.tmdb.util.replaceFragmentInActivity
-import com.sample.android.tmdb.util.setupActionBar
 
 class MainActivity : DaggerAppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener {
@@ -52,14 +54,13 @@ class MainActivity : DaggerAppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_nav)
 
-        setupActionBar(toolbar) {
-            setTitle(R.string.menu_movies)
-        }
+        setSupportActionBar(toolbar)
 
         // Add movie detailFragment if this is first creation
         if (savedInstanceState == null) {
             addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
+            toolbar.setTitle(R.string.menu_movies)
         }
 
         nav_view.setNavigationItemSelectedListener(this)
