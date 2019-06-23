@@ -60,7 +60,7 @@ class MainActivity : DaggerAppCompatActivity(),
         if (savedInstanceState == null) {
             addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
-            toolbar.setTitle(R.string.menu_movies)
+            setTitle(R.string.menu_movies)
         }
 
         nav_view.setNavigationItemSelectedListener(this)
@@ -133,12 +133,12 @@ class MainActivity : DaggerAppCompatActivity(),
         when (item.itemId) {
             R.id.action_movies -> {
                 currentType = NavType.MOVIES
-                toolbar.setTitle(R.string.menu_movies)
+                setTitle(R.string.menu_movies)
                 replaceFragmentInActivity(popularMoviesFragment, R.id.fragment_container)
             }
             R.id.action_tv_series -> {
                 currentType = NavType.TV_SERIES
-                toolbar.setTitle(R.string.menu_tv_series)
+                setTitle(R.string.menu_tv_series)
                 replaceFragmentInActivity(popularTVshowFragment, R.id.fragment_container)
             }
         }
