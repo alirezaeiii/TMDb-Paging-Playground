@@ -2,7 +2,7 @@ package com.sample.android.tmdb.person
 
 import android.app.Application
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sample.android.tmdb.api.MovieApi
+import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.ui.person.PersonViewModel
 import com.sample.android.tmdb.vo.Person
@@ -29,7 +29,7 @@ class PersonViewModelTest {
     @Mock
     private lateinit var context: Application
     @Mock
-    private lateinit var movieApi: MovieApi
+    private lateinit var itemApi: ItemApi
     private lateinit var dataSource: MoviesRemoteDataSource
     private lateinit var viewModel: PersonViewModel
 
@@ -39,7 +39,7 @@ class PersonViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        dataSource = MoviesRemoteDataSource(movieApi)
+        dataSource = MoviesRemoteDataSource(itemApi)
         viewModel = PersonViewModel(context, dataSource)
     }
 
@@ -58,7 +58,7 @@ class PersonViewModelTest {
                 "biography", "place")
 
         val observableResponse = Observable.just(person)
-        `when`(movieApi.person(anyInt())).thenReturn(observableResponse)
+        `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
 
         with(viewModel) {
             Assert.assertFalse(isVisible.get())

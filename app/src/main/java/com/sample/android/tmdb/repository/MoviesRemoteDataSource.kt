@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.repository
 
 import com.sample.android.tmdb.SortType
-import com.sample.android.tmdb.api.MovieApi
-import com.sample.android.tmdb.api.MovieApi.MovieWrapper
-import com.sample.android.tmdb.api.MovieApi.TVShowWrapper
+import com.sample.android.tmdb.api.ItemApi
+import com.sample.android.tmdb.api.ItemApi.MovieWrapper
+import com.sample.android.tmdb.api.ItemApi.TVShowWrapper
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Person
 import com.sample.android.tmdb.vo.Video
@@ -14,37 +14,41 @@ import javax.inject.Singleton
 
 @Singleton
 class MoviesRemoteDataSource @Inject
-constructor(private val movieApi: MovieApi) {
+constructor(private val itemApi: ItemApi) {
 
     fun fetchMovies(sortType: SortType, page: Int): Call<MovieWrapper> {
         return when (sortType) {
-            SortType.MOST_POPULAR -> movieApi.popularMovies(page)
-            SortType.HIGHEST_RATED -> movieApi.highestRatedMovies(page)
-            SortType.UPCOMING -> movieApi.upcomingMovies(page)
+            SortType.MOST_POPULAR -> itemApi.popularMovies(page)
+            SortType.HIGHEST_RATED -> itemApi.highestRatedMovies(page)
+            SortType.UPCOMING -> itemApi.upcomingMovies(page)
         }
     }
 
     fun fetchTVShows(sortType: SortType, page: Int): Call<TVShowWrapper> {
         return when (sortType) {
-            SortType.MOST_POPULAR -> movieApi.popularTVShows(page)
-            SortType.HIGHEST_RATED -> movieApi.topRatedTVShows(page)
-            SortType.UPCOMING -> movieApi.latestTvShows(page)
+            SortType.MOST_POPULAR -> itemApi.popularTVShows(page)
+            SortType.HIGHEST_RATED -> itemApi.topRatedTVShows(page)
+            SortType.UPCOMING -> itemApi.latestTvShows(page)
         }
     }
 
     fun fetchMovies(page : Int, query: String): Call<MovieWrapper> {
-        return movieApi.searchMovies(page, query)
+        return itemApi.searchMovies(page, query)
+    }
+
+    fun fetchTVShows(page : Int, query: String): Call<TVShowWrapper> {
+        return itemApi.searchTVShows(page, query)
     }
 
     fun getTrailers(id: Int): Observable<List<Video>> {
-        return movieApi.trailers(id).map { it.videos }
+        return itemApi.trailers(id).map { it.videos }
     }
 
     fun getCast(id: Int): Observable<List<Cast>> {
-        return movieApi.cast(id).map { it.cast }
+        return itemApi.cast(id).map { it.cast }
     }
 
     fun getPerson(id: Int): Observable<Person> {
-        return movieApi.person(id)
+        return itemApi.person(id)
     }
 }

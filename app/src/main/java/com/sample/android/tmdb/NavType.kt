@@ -1,6 +1,10 @@
 package com.sample.android.tmdb
 
-enum class NavType {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+enum class NavType : Parcelable {
     MOVIES,
     TV_SERIES
 }

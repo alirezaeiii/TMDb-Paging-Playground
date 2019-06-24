@@ -2,7 +2,8 @@
     <string name="app_name">TMDb</string>
     <string name="retry">Retry</string>
     <string name="action_search">Search</string>
-    <string name="search_hint">Search for movies</string>
+    <string name="search_hint_movies">Search for movies</string>
+    <string name="search_hint_tv_shows">Search for TV shows</string>
     <string name="text_popular">Popular</string>
     <string name="text_highest_rate">Highest rate</string>
     <string name="text_upcoming">Upcoming</string>

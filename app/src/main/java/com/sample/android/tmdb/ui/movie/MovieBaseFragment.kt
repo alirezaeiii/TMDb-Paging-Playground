@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.vo.Movie
 
 abstract class MovieBaseFragment : BaseFragment<Movie>(), MovieClickCallback {
@@ -34,7 +35,7 @@ abstract class MovieBaseFragment : BaseFragment<Movie>(), MovieClickCallback {
     override fun onClick(movie: Movie, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(DetailActivity.EXTRA_MOVIE, movie)
+                putParcelable(EXTRA_MOVIE, movie)
             })
         }
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

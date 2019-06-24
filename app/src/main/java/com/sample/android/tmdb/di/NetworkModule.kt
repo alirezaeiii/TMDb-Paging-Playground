@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.BuildConfig
-import com.sample.android.tmdb.api.MovieApi
+import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.api.RequestInterceptor
 import dagger.Module
 import dagger.Provides
@@ -44,7 +44,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun movieApi(retrofit: Retrofit): MovieApi {
-        return retrofit.create(MovieApi::class.java)
+    fun movieApi(retrofit: Retrofit): ItemApi {
+        return retrofit.create(ItemApi::class.java)
     }
 }

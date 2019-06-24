@@ -5,7 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.SortType
-import com.sample.android.tmdb.api.MovieApi
+import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.bypage.MoviePageKeyRepository
 import com.sample.android.tmdb.vo.Movie
@@ -33,14 +33,14 @@ class MovieViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var movieApi: MovieApi
+    private lateinit var itemApi: ItemApi
     private lateinit var dataSource: MoviesRemoteDataSource
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        dataSource = MoviesRemoteDataSource(movieApi)
+        dataSource = MoviesRemoteDataSource(itemApi)
     }
 
     @Test
@@ -50,8 +50,8 @@ class MovieViewModelTest {
                 null, null, "title", 6.5)
 
         val mockCall = Calls.response(Response.success(
-                MovieApi.MovieWrapper(Lists.newArrayList(movie))))
-        `when`(movieApi.popularMovies(anyInt())).thenReturn(mockCall)
+                ItemApi.MovieWrapper(Lists.newArrayList(movie))))
+        `when`(itemApi.popularMovies(anyInt())).thenReturn(mockCall)
 
         val listing = repository.getItems("", 20)
         val observer = LoggingObserver<PagedList<Movie>>()
