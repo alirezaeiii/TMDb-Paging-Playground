@@ -50,9 +50,7 @@ class MainActivity : DaggerAppCompatActivity(),
     @Inject
     lateinit var latestTVShowFragment: LatestTVShowFragment
 
-    private var currentType = NavType.MOVIES
-
-    private lateinit var viewModel : MainViewModule
+    private lateinit var viewModel: MainViewModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,23 +79,28 @@ class MainActivity : DaggerAppCompatActivity(),
 
             setOnNavigationItemSelectedListener {
 
+                val navType = viewModel.currentType.value
+
                 fragment = when (it.itemId) {
                     R.id.action_popular -> {
-                        when (currentType) {
+                        when (navType) {
                             NavType.MOVIES -> popularMoviesFragment
                             NavType.TV_SERIES -> popularTVshowFragment
+                            else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_highest_rate -> {
-                        when (currentType) {
+                        when (navType) {
                             NavType.MOVIES -> highRateMoviesFragment
                             NavType.TV_SERIES -> highRateTVShowFragment
+                            else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_upcoming -> {
-                        when (currentType) {
+                        when (navType) {
                             NavType.MOVIES -> upcomingMoviesFragment
                             NavType.TV_SERIES -> latestTVShowFragment
+                            else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     else -> throw RuntimeException("Unknown sortType to replace detailFragment")
@@ -141,12 +144,12 @@ class MainActivity : DaggerAppCompatActivity(),
         bottom_navigation.selectedItemId = R.id.action_popular
         when (item.itemId) {
             R.id.action_movies -> {
-                currentType = NavType.MOVIES
+                viewModel.setNavType(NavType.MOVIES)
                 viewModel.setHeadline(R.string.menu_movies)
                 replaceFragmentInActivity(popularMoviesFragment, R.id.fragment_container)
             }
             R.id.action_tv_series -> {
-                currentType = NavType.TV_SERIES
+                viewModel.setNavType(NavType.TV_SERIES)
                 viewModel.setHeadline(R.string.menu_tv_series)
                 replaceFragmentInActivity(popularTVshowFragment, R.id.fragment_container)
             }
