@@ -20,9 +20,9 @@ import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
 import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.search.SearchActivity
 import com.sample.android.tmdb.ui.search.SearchActivity.Companion.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.ui.tvshow.HighRateTVShowBaseFragment
-import com.sample.android.tmdb.ui.tvshow.LatestTVShowBaseFragment
-import com.sample.android.tmdb.ui.tvshow.PopularTVShowBaseFragment
+import com.sample.android.tmdb.ui.tvshow.HighRateTVShowFragment
+import com.sample.android.tmdb.ui.tvshow.LatestTVShowFragment
+import com.sample.android.tmdb.ui.tvshow.PopularTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -43,13 +43,13 @@ class MainActivity : DaggerAppCompatActivity(),
     lateinit var upcomingMoviesFragment: UpcomingMoviesFragment
 
     @Inject
-    lateinit var popularTVshowFragment: PopularTVShowBaseFragment
+    lateinit var popularTVshowFragment: PopularTVShowFragment
 
     @Inject
-    lateinit var highRateTVShowFragment: HighRateTVShowBaseFragment
+    lateinit var highRateTVShowFragment: HighRateTVShowFragment
 
     @Inject
-    lateinit var latestTVShowFragment: LatestTVShowBaseFragment
+    lateinit var latestTVShowFragment: LatestTVShowFragment
 
     lateinit var viewModel: MainViewModule
 

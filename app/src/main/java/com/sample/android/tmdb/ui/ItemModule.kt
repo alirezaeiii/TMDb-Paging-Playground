@@ -25,13 +25,13 @@ abstract class ItemModule {
 
     @FragmentScoped
     @ContributesAndroidInjector
-    internal abstract fun popularTVShowFragment(): PopularTVShowBaseFragment
+    internal abstract fun popularTVShowFragment(): PopularTVShowFragment
 
     @FragmentScoped
     @ContributesAndroidInjector
-    internal abstract fun highRateTVShowFragment(): HighRateTVShowBaseFragment
+    internal abstract fun highRateTVShowFragment(): HighRateTVShowFragment
 
     @FragmentScoped
     @ContributesAndroidInjector
-    internal abstract fun latestTVShowFragment(): LatestTVShowBaseFragment
+    internal abstract fun latestTVShowFragment(): LatestTVShowFragment
 }

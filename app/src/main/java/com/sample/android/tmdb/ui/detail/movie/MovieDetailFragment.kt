@@ -11,6 +11,7 @@ import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.TmdbItem
+import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
 @ActivityScoped
@@ -18,7 +19,7 @@ class MovieDetailFragment @Inject
 constructor() // Required empty public constructor
     : DetailFragment<Movie>() {
 
-    @Inject
+    @Inject @Nullable
     lateinit var movie: Movie
 
     override fun initViewModel() {

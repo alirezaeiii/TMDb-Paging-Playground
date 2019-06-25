@@ -11,6 +11,7 @@ import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import com.sample.android.tmdb.vo.TVShow
 import com.sample.android.tmdb.vo.TmdbItem
+import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
 @ActivityScoped
@@ -18,7 +19,7 @@ class TVShowDetailFragment @Inject
 constructor() // Required empty public constructor
     : DetailFragment<TVShow>() {
 
-    @Inject
+    @Inject @Nullable
     lateinit var tvShow : TVShow
 
     override fun initViewModel() {
