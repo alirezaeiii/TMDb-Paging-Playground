@@ -32,20 +32,28 @@ constructor(private val itemApi: ItemApi) {
         }
     }
 
-    fun fetchMovies(page : Int, query: String): Call<MovieWrapper> {
+    fun fetchMovies(page: Int, query: String): Call<MovieWrapper> {
         return itemApi.searchMovies(page, query)
     }
 
-    fun fetchTVShows(page : Int, query: String): Call<TVShowWrapper> {
+    fun fetchTVShows(page: Int, query: String): Call<TVShowWrapper> {
         return itemApi.searchTVShows(page, query)
     }
 
-    fun getTrailers(id: Int): Observable<List<Video>> {
-        return itemApi.trailers(id).map { it.videos }
+    fun getMovieTrailers(id: Int): Observable<List<Video>> {
+        return itemApi.movieTrailers(id).map { it.videos }
     }
 
-    fun getCast(id: Int): Observable<List<Cast>> {
-        return itemApi.cast(id).map { it.cast }
+    fun getMovieCast(id: Int): Observable<List<Cast>> {
+        return itemApi.movieCast(id).map { it.cast }
+    }
+
+    fun getTvTrailers(id: Int): Observable<List<Video>> {
+        return itemApi.tvTrailers(id).map { it.videos }
+    }
+
+    fun getTvCast(id: Int): Observable<List<Cast>> {
+        return itemApi.tvCast(id).map { it.cast }
     }
 
     fun getPerson(id: Int): Observable<Person> {

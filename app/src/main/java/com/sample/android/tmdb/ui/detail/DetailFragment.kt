@@ -23,6 +23,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
@@ -56,7 +57,7 @@ constructor() // Required empty public constructor
         viewModel = ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return MovieDetailViewModel(requireActivity().application, dataSource) as T
+                return MovieDetailViewModel(dataSource) as T
             }
         })[MovieDetailViewModel::class.java]
 

@@ -5,7 +5,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.ui.detail.MovieDetailViewModel
+import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.Movie
 import com.sample.android.tmdb.vo.Video
@@ -29,7 +29,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
-class MovieDetailViewModelTest {
+class DetailViewModelTest {
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -49,7 +49,7 @@ class MovieDetailViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         dataSource = MoviesRemoteDataSource(itemApi)
-        viewModel = MovieDetailViewModel(context, dataSource)
+        viewModel = MovieDetailViewModel(dataSource)
 
         movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
@@ -68,7 +68,7 @@ class MovieDetailViewModelTest {
 
         val observableResponse =
                 Observable.just(ItemApi.VideoWrapper(Lists.newArrayList(video)))
-        `when`(itemApi.trailers(anyInt())).thenReturn(observableResponse)
+        `when`(itemApi.movieTrailers(anyInt())).thenReturn(observableResponse)
 
 
         with(viewModel) {
@@ -88,7 +88,7 @@ class MovieDetailViewModelTest {
 
         val observableResponse =
                 Observable.just(ItemApi.CastWrapper(Lists.newArrayList(cast)))
-        `when`(itemApi.cast(anyInt())).thenReturn(observableResponse)
+        `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
 
         with(viewModel) {
             assertFalse(isCastVisible.get())

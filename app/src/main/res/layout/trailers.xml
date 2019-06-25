@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.sample.android.tmdb.ui.detail.MovieDetailViewModel" />
+            type="com.sample.android.tmdb.ui.detail.DetailViewModel" />
     </data>
 
     <LinearLayout

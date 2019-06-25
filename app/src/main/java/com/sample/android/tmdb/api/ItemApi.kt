@@ -35,10 +35,16 @@ interface ItemApi {
     fun searchTVShows(@Query("page") page: Int, @Query("query") query: String): Call<TVShowWrapper>
 
     @GET("3/movie/{movieId}/videos")
-    fun trailers(@Path("movieId") movieId: Int): Observable<VideoWrapper>
+    fun movieTrailers(@Path("movieId") movieId: Int): Observable<VideoWrapper>
 
     @GET("3/movie/{movieId}/credits")
-    fun cast(@Path("movieId") movieId: Int): Observable<CastWrapper>
+    fun movieCast(@Path("movieId") movieId: Int): Observable<CastWrapper>
+
+    @GET("3/tv/{tvId}/videos")
+    fun tvTrailers(@Path("tvId") tvId: Int): Observable<VideoWrapper>
+
+    @GET("3/tv/{tvId}/credits")
+    fun tvCast(@Path("tvId") tvId: Int): Observable<CastWrapper>
 
     @GET("3/person/{personId}")
     fun person(@Path("personId") personId: Int): Observable<Person>
