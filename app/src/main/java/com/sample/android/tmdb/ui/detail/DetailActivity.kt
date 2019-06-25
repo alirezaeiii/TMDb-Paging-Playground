@@ -2,15 +2,24 @@ package com.sample.android.tmdb.ui.detail
 
 import android.os.Bundle
 import android.view.MenuItem
+import com.sample.android.tmdb.NavType
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
+import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 
 class DetailActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var detailFragment: DetailFragment
+    lateinit var movieDetailFragment: MovieDetailFragment
+
+    @Inject
+    lateinit var tvShowDetailFragment: TVShowDetailFragment
+
+    @Inject
+    lateinit var navType: NavType
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +27,17 @@ class DetailActivity : DaggerAppCompatActivity() {
 
         if (savedInstanceState == null) {
 
-            supportFragmentManager.findFragmentById(R.id.fragment_container)
-                    as DetailFragment? ?: detailFragment.also {
-                addFragmentToActivity(it, R.id.fragment_container)
+            when (navType) {
+
+                NavType.MOVIES -> supportFragmentManager.findFragmentById(R.id.fragment_container)
+                        as MovieDetailFragment? ?: movieDetailFragment.also {
+                    addFragmentToActivity(it, R.id.fragment_container)
+                }
+
+                NavType.TV_SERIES -> supportFragmentManager.findFragmentById(R.id.fragment_container)
+                        as TVShowDetailFragment? ?: tvShowDetailFragment.also {
+                    addFragmentToActivity(it, R.id.fragment_container)
+                }
             }
         }
     }
@@ -38,5 +55,7 @@ class DetailActivity : DaggerAppCompatActivity() {
     companion object {
 
         const val EXTRA_MOVIE = "movie"
+        const val EXTRA_TV_SHOW = "tv_show"
+        const val EXTRA_NAV_TYPE = "nav_type"
     }
 }

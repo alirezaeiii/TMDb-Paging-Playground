@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.movie
+package com.sample.android.tmdb.ui.tvshow
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -16,28 +16,30 @@ import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
+import com.sample.android.tmdb.vo.TVShow
 
-abstract class MovieBaseFragment : BaseFragment<Movie>(), MovieClickCallback {
+abstract class TVShowBaseFragment : BaseFragment<TVShow>(), TVShowClickCallback {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return MovieViewModel(dataSource = dataSource,
+                return TVShowsViewModel(dataSource = dataSource,
                         sortType = getSortType()) as T
             }
-        })[MovieViewModel::class.java]
+        })[TVShowsViewModel::class.java]
+
+        model.showQuery("")
     }
 
-    override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)
+    override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
 
-    override fun onClick(movie: Movie, poster: ImageView, name: TextView) {
+    override fun onClick(tvShow: TVShow, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(EXTRA_MOVIE, movie)
+                putParcelable(EXTRA_TV_SHOW, tvShow)
                 putParcelable(EXTRA_NAV_TYPE, (activity as MainActivity).viewModel.currentType.value)
             })
         }

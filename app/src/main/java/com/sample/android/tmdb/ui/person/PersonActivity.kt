@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.util.addFragmentToActivity
-import com.sample.android.tmdb.ui.detail.DetailFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.parcel.Parcelize
 import javax.inject.Inject
@@ -21,7 +20,7 @@ class PersonActivity : DaggerAppCompatActivity() {
         if (savedInstanceState == null) {
 
             supportFragmentManager.findFragmentById(R.id.fragment_container)
-                    as DetailFragment? ?: personFragment.also {
+                    as PersonFragment? ?: personFragment.also {
                 addFragmentToActivity(it, R.id.fragment_container)
             }
         }

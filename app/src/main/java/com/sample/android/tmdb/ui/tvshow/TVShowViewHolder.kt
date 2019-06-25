@@ -11,7 +11,7 @@ class TVShowViewHolder(internal val binding: TvShowItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
-        fun create(parent: ViewGroup): TVShowViewHolder {
+        fun create(parent: ViewGroup, tvShowClickCallback: TVShowClickCallback): TVShowViewHolder {
             val binding: TvShowItemBinding = DataBindingUtil
                     .inflate(parent.context.layoutInflater,
                             R.layout.tv_show_item,
@@ -19,6 +19,7 @@ class TVShowViewHolder(internal val binding: TvShowItemBinding)
             with(binding) {
                 poster = tvShowPoster
                 name = tvShowName
+                callback = tvShowClickCallback
             }
             return TVShowViewHolder(binding)
         }

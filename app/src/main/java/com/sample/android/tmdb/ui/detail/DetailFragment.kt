@@ -2,71 +2,51 @@ package com.sample.android.tmdb.ui.detail
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.motion.MotionLayout
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
-import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.databinding.FragmentDetailBinding
-import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
-import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import com.sample.android.tmdb.ui.person.PersonExtra
-import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.util.setupActionBar
+import com.sample.android.tmdb.vo.TmdbItem
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 import javax.inject.Inject
 
-@ActivityScoped
-class DetailFragment @Inject
-constructor() // Required empty public constructor
+abstract class DetailFragment<T : TmdbItem>
     : DaggerFragment(), CastClickCallback {
 
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
 
-    @Inject
-    lateinit var movie: Movie
+    protected lateinit var viewModel: DetailViewModel<T>
 
-    private lateinit var binding: FragmentDetailBinding
+    protected val compositeDisposable = CompositeDisposable()
 
-    private lateinit var viewModel: MovieDetailViewModel
+    protected abstract fun initViewModel()
 
-    private val compositeDisposable = CompositeDisposable()
+    protected abstract fun getLayoutId() : Int
+
+    protected abstract fun initViewBinding(root : View)
+
+    protected abstract fun getTmdbItem() : TmdbItem
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        viewModel = ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return MovieDetailViewModel(dataSource) as T
-            }
-        })[MovieDetailViewModel::class.java]
+        initViewModel()
 
-        val root = inflater.inflate(R.layout.fragment_detail, container, false)
-        binding = FragmentDetailBinding.bind(root).apply {
-            movie = this@DetailFragment.movie
-            setVariable(BR.vm, viewModel)
-            lifecycleOwner = this@DetailFragment
-        }
+        val root = inflater.inflate(getLayoutId(), container, false)
+
+        initViewBinding(root)
 
         with(root) {
 
@@ -98,37 +78,33 @@ constructor() // Required empty public constructor
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.detailsMotion.setTransitionListener(object : MotionLayout.TransitionListener {
+        view.details_motion.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
 
-                binding.detailsAppbarBackground.cutProgress = 1f - progress
-
-                binding.detailsPoster.visibility = View.VISIBLE
+                view.details_appbar_background.cutProgress = 1f - progress
+                view.details_poster.visibility = View.VISIBLE
             }
 
             @SuppressLint("RestrictedApi")
             override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
                 when (currentId) {
                     R.id.end -> {
-                        binding.detailsAppbarBackground.cutProgress = 0f
-                        binding.detailsPoster.visibility = View.GONE
+                        view.details_appbar_background.cutProgress = 0f
+                        view.details_poster.visibility = View.GONE
                     }
                     R.id.start -> {
-                        binding.detailsAppbarBackground.cutProgress = 1f
-                        binding.detailsPoster.visibility = View.VISIBLE
+                        view.details_appbar_background.cutProgress = 1f
+                        view.details_poster.visibility = View.VISIBLE
                     }
                 }
             }
         })
 
-        binding.vm?.showTrailers(movie)?.let { compositeDisposable.add(it) }
-        binding.vm?.showCast(movie)?.let { compositeDisposable.add(it) }
-
         viewModel.cast.observe(this@DetailFragment, Observer {
 
             val adapter = CastAdapter(it!!, this@DetailFragment)
 
-            binding.root.cast_list.apply {
+            view.cast_list.apply {
 
                 setHasFixedSize(true)
 
@@ -142,22 +118,15 @@ constructor() // Required empty public constructor
         compositeDisposable.clear()
     }
 
-    override fun onClick(personId: Int, personName: String, profilePath: String?,
-                         poster: ImageView, name: TextView) {
+    override fun onClick(personId: Int, personName: String, profilePath: String?) {
         val intent = Intent(activity, PersonActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(EXTRA_PERSON, PersonExtra(personId,
                         personName,
                         profilePath,
-                        movie.backdropPath))
+                        getTmdbItem().backdropPath))
             })
         }
-        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                requireActivity(),
-
-                Pair<View, String>(poster, ViewCompat.getTransitionName(poster)),
-                Pair<View, String>(name, ViewCompat.getTransitionName(name)))
-
-        ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())
+        startActivity(intent)
     }
 }

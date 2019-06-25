@@ -27,8 +27,6 @@ class CastAdapter(
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
         with(holder.binding) {
             cast = this@CastAdapter.cast[position]
-            poster = castItemProfileImage
-            name = castItemRealNameText
             executePendingBindings()
         }
     }

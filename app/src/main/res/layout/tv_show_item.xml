@@ -9,6 +9,10 @@
             type="com.sample.android.tmdb.vo.TVShow" />
 
         <variable
+            name="callback"
+            type="com.sample.android.tmdb.ui.tvshow.TVShowClickCallback" />
+
+        <variable
             name="poster"
             type="android.widget.ImageView" />
 
@@ -23,6 +27,7 @@
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> callback.onClick(tvShow, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
         app:tvShowImageUrl="@{tvShow.posterPath}"
         tools:ignore="KeyboardInaccessibleWidget">

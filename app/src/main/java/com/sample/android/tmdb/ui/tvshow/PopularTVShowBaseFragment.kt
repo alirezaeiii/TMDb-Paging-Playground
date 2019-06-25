@@ -6,8 +6,8 @@ import com.sample.android.tmdb.di.ActivityScoped
 import javax.inject.Inject
 
 @ActivityScoped
-class PopularTVShowFragment @Inject
-constructor() : TVShowFragment() {
+class PopularTVShowBaseFragment @Inject
+constructor() : TVShowBaseFragment() {
 
     override fun getSortType(): SortType = MOST_POPULAR
 }

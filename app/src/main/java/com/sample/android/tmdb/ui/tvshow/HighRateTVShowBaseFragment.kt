@@ -6,8 +6,8 @@ import com.sample.android.tmdb.di.ActivityScoped
 import javax.inject.Inject
 
 @ActivityScoped
-class HighRateTVShowFragment @Inject
-constructor() : TVShowFragment() {
+class HighRateTVShowBaseFragment @Inject
+constructor() : TVShowBaseFragment() {
 
     override fun getSortType(): SortType = HIGHEST_RATED
 }

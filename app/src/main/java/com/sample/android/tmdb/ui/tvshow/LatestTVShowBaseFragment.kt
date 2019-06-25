@@ -6,8 +6,8 @@ import com.sample.android.tmdb.di.ActivityScoped
 import javax.inject.Inject
 
 @ActivityScoped
-class LatestTVShowFragment @Inject
-constructor() : TVShowFragment() {
+class LatestTVShowBaseFragment @Inject
+constructor() : TVShowBaseFragment() {
 
     override fun getSortType(): SortType = UPCOMING
 }

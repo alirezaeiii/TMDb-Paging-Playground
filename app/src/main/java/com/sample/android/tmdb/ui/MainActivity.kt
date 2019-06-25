@@ -20,9 +20,9 @@ import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
 import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.search.SearchActivity
 import com.sample.android.tmdb.ui.search.SearchActivity.Companion.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.ui.tvshow.HighRateTVShowFragment
-import com.sample.android.tmdb.ui.tvshow.LatestTVShowFragment
-import com.sample.android.tmdb.ui.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.ui.tvshow.HighRateTVShowBaseFragment
+import com.sample.android.tmdb.ui.tvshow.LatestTVShowBaseFragment
+import com.sample.android.tmdb.ui.tvshow.PopularTVShowBaseFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -43,15 +43,15 @@ class MainActivity : DaggerAppCompatActivity(),
     lateinit var upcomingMoviesFragment: UpcomingMoviesFragment
 
     @Inject
-    lateinit var popularTVshowFragment: PopularTVShowFragment
+    lateinit var popularTVshowFragment: PopularTVShowBaseFragment
 
     @Inject
-    lateinit var highRateTVShowFragment: HighRateTVShowFragment
+    lateinit var highRateTVShowFragment: HighRateTVShowBaseFragment
 
     @Inject
-    lateinit var latestTVShowFragment: LatestTVShowFragment
+    lateinit var latestTVShowFragment: LatestTVShowBaseFragment
 
-    private lateinit var viewModel: MainViewModule
+    lateinit var viewModel: MainViewModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

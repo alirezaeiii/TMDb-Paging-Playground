@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.vo.TVShow
 
-class TVShowAdapter : ItemAdapter<TVShow>() {
+class TVShowAdapter(
+        private val tvShowClickCallback: TVShowClickCallback) : ItemAdapter<TVShow>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
@@ -17,6 +18,6 @@ class TVShowAdapter : ItemAdapter<TVShow>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return TVShowViewHolder.create(parent)
+        return TVShowViewHolder.create(parent, tvShowClickCallback)
     }
 }
