@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
@@ -45,7 +44,7 @@ constructor() // Required empty public constructor
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(EXTRA_MOVIE, movie)
-                putParcelable(EXTRA_NAV_TYPE, (activity as MainActivity).viewModel.currentType.value)
+                putParcelable(EXTRA_NAV_TYPE, (activity as SearchActivity).navType)
             })
         }
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

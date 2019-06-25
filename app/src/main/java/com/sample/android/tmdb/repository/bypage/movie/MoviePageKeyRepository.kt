@@ -1,8 +1,10 @@
-package com.sample.android.tmdb.repository.bypage
+package com.sample.android.tmdb.repository.bypage.movie
 
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
+import com.sample.android.tmdb.repository.bypage.PageKeyRepository
 import com.sample.android.tmdb.vo.Movie
 import java.util.concurrent.Executor
 

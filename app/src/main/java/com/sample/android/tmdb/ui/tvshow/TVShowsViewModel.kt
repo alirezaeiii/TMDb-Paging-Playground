@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.tvshow
 import android.arch.lifecycle.Transformations
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.repository.bypage.TVShowsPageKeyRepository
+import com.sample.android.tmdb.repository.bypage.tvshow.TVShowsPageKeyRepository
 import com.sample.android.tmdb.ui.ItemViewModel
 import com.sample.android.tmdb.vo.TVShow
 

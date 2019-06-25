@@ -7,7 +7,7 @@ import com.google.common.collect.Lists
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
-import com.sample.android.tmdb.repository.bypage.MoviePageKeyRepository
+import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.vo.Movie
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
