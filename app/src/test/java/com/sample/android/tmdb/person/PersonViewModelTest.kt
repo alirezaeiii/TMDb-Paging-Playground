@@ -67,7 +67,7 @@ class PersonViewModelTest {
 
             assertTrue(isVisible.get())
             assertTrue(this.person.value?.id == personId)
-            with(this.knownAs.value!!) {
+            with(this.person.value?.alsoKnowAs!!) {
                 assertTrue(size == 2)
                 assertTrue(this[0] == knownAs1)
                 assertTrue(this[1] == knownAs2)
