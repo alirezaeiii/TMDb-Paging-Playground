@@ -35,7 +35,7 @@ class SearchActivity : DaggerAppCompatActivity() {
         search_view.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
         search_view.imeOptions = search_view.imeOptions or EditorInfo.IME_ACTION_SEARCH or
                 EditorInfo.IME_FLAG_NO_EXTRACT_UI or EditorInfo.IME_FLAG_NO_FULLSCREEN
-
+        search_view.requestFocus()
 
         search_back.setOnClickListener {
             search_back.background = null
