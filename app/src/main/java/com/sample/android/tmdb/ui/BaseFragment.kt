@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.databinding.FragmentMainBinding
@@ -47,7 +48,9 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
     protected abstract fun getAdapter(): ItemAdapter<T>
 
-    protected abstract fun PutItemParcelable(bundle : Bundle, e : E)
+    protected abstract fun putItemParcelable(bundle : Bundle, e : E)
+
+    protected abstract fun getNavType() : NavType
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -132,8 +135,8 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
     override fun onClick(e: E, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                PutItemParcelable(this, e)
-                putParcelable(EXTRA_NAV_TYPE, (activity as MainActivity).viewModel.currentType.value)
+                putItemParcelable(this, e)
+                putParcelable(EXTRA_NAV_TYPE, getNavType())
             })
         }
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

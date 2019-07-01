@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
 
     override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
 
-    override fun PutItemParcelable(bundle: Bundle, e: TVShow) {
+    override fun putItemParcelable(bundle: Bundle, e: TVShow) {
         bundle.putParcelable(DetailActivity.EXTRA_TV_SHOW, e)
     }
 }

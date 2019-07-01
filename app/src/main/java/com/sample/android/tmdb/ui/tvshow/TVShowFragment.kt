@@ -4,8 +4,10 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
+import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.vo.TVShow
 
@@ -23,7 +25,9 @@ abstract class TVShowFragment : BaseFragment<TVShow, TVShow>() {
 
     override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
 
-    override fun PutItemParcelable(bundle: Bundle, e: TVShow) {
+    override fun putItemParcelable(bundle: Bundle, e: TVShow) {
         bundle.putParcelable(DetailActivity.EXTRA_TV_SHOW, e)
     }
+
+    override fun getNavType(): NavType = (activity as MainActivity).viewModel.currentType.value!!
 }

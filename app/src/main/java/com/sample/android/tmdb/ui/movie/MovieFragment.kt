@@ -4,8 +4,10 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
+import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.vo.Movie
 
@@ -23,7 +25,9 @@ abstract class MovieFragment : BaseFragment<Movie, Movie>() {
 
     override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)
 
-    override fun PutItemParcelable(bundle: Bundle, e: Movie) {
+    override fun putItemParcelable(bundle: Bundle, e: Movie) {
         bundle.putParcelable(DetailActivity.EXTRA_MOVIE, e)
     }
+
+    override fun getNavType(): NavType = (activity as MainActivity).viewModel.currentType.value!!
 }

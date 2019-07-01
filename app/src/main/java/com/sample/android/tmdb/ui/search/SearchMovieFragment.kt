@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
 
     override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)
 
-    override fun PutItemParcelable(bundle: Bundle, e: Movie) {
+    override fun putItemParcelable(bundle: Bundle, e: Movie) {
         bundle.putParcelable(DetailActivity.EXTRA_MOVIE, e)
     }
 }
