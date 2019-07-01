@@ -24,7 +24,6 @@ import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.repository.Status.FAILED
 import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_ITEM
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.vo.TmdbItem
@@ -47,6 +46,8 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
     protected abstract fun initViewModel()
 
     protected abstract fun getAdapter(): ItemAdapter<T>
+
+    protected abstract fun PutItemParcelable(bundle : Bundle, e : E)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -131,7 +132,7 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
     override fun onClick(e: E, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(EXTRA_ITEM, e)
+                PutItemParcelable(this, e)
                 putParcelable(EXTRA_NAV_TYPE, (activity as MainActivity).viewModel.currentType.value)
             })
         }

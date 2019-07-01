@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class HighRateMoviesFragment @Inject
-constructor() : MovieFragment() {
+constructor() : MovieBaseFragment() {
 
     override fun getSortType(): SortType = HIGHEST_RATED
 }

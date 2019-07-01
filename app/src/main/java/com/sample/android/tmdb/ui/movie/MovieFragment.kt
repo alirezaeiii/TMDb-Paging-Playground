@@ -1,9 +1,29 @@
 package com.sample.android.tmdb.ui.movie
 
-abstract class MovieFragment : MovieBaseFragment() {
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
+import com.sample.android.tmdb.ui.BaseFragment
+import com.sample.android.tmdb.ui.ItemAdapter
+import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.vo.Movie
+
+abstract class MovieFragment : BaseFragment<Movie, Movie>() {
 
     override fun initViewModel() {
-        super.initViewModel()
-        model.showQuery("")
+        model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return MovieViewModel(dataSource = dataSource,
+                        sortType = getSortType()) as T
+            }
+        })[MovieViewModel::class.java]
+    }
+
+    override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)
+
+    override fun PutItemParcelable(bundle: Bundle, e: Movie) {
+        bundle.putParcelable(DetailActivity.EXTRA_MOVIE, e)
     }
 }

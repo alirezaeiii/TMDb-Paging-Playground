@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class PopularMoviesFragment @Inject
-constructor() : MovieFragment() {
+constructor() : MovieBaseFragment() {
 
     override fun getSortType(): SortType = MOST_POPULAR
 }
