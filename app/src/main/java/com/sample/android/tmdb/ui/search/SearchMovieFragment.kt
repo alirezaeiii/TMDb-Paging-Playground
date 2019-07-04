@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.movie.MovieAdapter
 import com.sample.android.tmdb.ui.movie.MovieViewModel
 import com.sample.android.tmdb.vo.Movie
@@ -30,6 +30,6 @@ constructor() // Required empty public constructor
     override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this)
 
     override fun putItemParcelable(bundle: Bundle, e: Movie) {
-        bundle.putParcelable(DetailActivity.EXTRA_MOVIE, e)
+        bundle.putParcelable(EXTRA_MOVIE, e)
     }
 }

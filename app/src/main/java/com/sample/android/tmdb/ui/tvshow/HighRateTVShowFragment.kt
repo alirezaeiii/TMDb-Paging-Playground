@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class HighRateTVShowFragment @Inject
-constructor() : TVShowBaseFragment() {
+constructor() : TVShowFragment() {
 
     override fun getSortType(): SortType = HIGHEST_RATED
 }

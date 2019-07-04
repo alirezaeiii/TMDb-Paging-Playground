@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class PopularTVShowFragment @Inject
-constructor() : TVShowBaseFragment() {
+constructor() : TVShowFragment() {
 
     override fun getSortType(): SortType = MOST_POPULAR
 }

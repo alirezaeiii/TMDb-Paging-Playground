@@ -8,7 +8,7 @@ import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.sample.android.tmdb.vo.TVShow
 
 abstract class TVShowFragment : BaseFragment<TVShow, TVShow>() {
@@ -21,12 +21,13 @@ abstract class TVShowFragment : BaseFragment<TVShow, TVShow>() {
                         sortType = getSortType()) as T
             }
         })[TVShowsViewModel::class.java]
+        model.showQuery("")
     }
 
     override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
 
     override fun putItemParcelable(bundle: Bundle, e: TVShow) {
-        bundle.putParcelable(DetailActivity.EXTRA_TV_SHOW, e)
+        bundle.putParcelable(EXTRA_TV_SHOW, e)
     }
 
     override fun getNavType(): NavType = (activity as MainActivity).viewModel.currentType.value!!

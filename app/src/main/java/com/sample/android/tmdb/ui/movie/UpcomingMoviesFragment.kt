@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class UpcomingMoviesFragment @Inject
-constructor() : MovieBaseFragment() {
+constructor() : MovieFragment() {
 
     override fun getSortType(): SortType = UPCOMING
 }

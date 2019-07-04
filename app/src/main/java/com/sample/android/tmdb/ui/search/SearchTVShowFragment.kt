@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
 import com.sample.android.tmdb.ui.tvshow.TVShowsViewModel
 import com.sample.android.tmdb.vo.TVShow
@@ -30,6 +30,6 @@ constructor() // Required empty public constructor
     override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
 
     override fun putItemParcelable(bundle: Bundle, e: TVShow) {
-        bundle.putParcelable(DetailActivity.EXTRA_TV_SHOW, e)
+        bundle.putParcelable(EXTRA_TV_SHOW, e)
     }
 }

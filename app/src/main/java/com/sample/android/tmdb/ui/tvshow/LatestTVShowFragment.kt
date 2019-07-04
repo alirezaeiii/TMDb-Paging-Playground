@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class LatestTVShowFragment @Inject
-constructor() : TVShowBaseFragment() {
+constructor() : TVShowFragment() {
 
     override fun getSortType(): SortType = UPCOMING
 }
