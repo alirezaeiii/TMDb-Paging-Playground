@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,9 +49,9 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
     protected abstract fun getAdapter(): ItemAdapter<T>
 
-    protected abstract fun putItemParcelable(bundle : Bundle, e : E)
+    protected abstract fun putItemParcelable(bundle: Bundle, e: E)
 
-    protected abstract fun getNavType() : NavType
+    protected abstract fun getNavType(): NavType
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -90,6 +91,13 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 setHasFixedSize(true)
 
                 list.adapter = adapter
+
+                manager.spanSizeLookup = object : SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return if (adapter.getItemViewType(position) != R.layout.network_state_item)
+                            1 else manager.spanCount
+                    }
+                }
             }
 
             if (shouldIncrementEspressoIdlingResource()) {

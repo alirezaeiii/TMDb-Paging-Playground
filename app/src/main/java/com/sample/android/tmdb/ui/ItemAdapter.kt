@@ -3,6 +3,8 @@ package com.sample.android.tmdb.ui
 import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.vo.TmdbItem
 import java.util.*
@@ -16,6 +18,35 @@ abstract class ItemAdapter<T : TmdbItem> : PagedListAdapter<T, RecyclerView.View
 }) {
 
     private var networkState: NetworkState? = null
+
+    protected abstract fun getLayoutID(): Int
+
+    protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int)
+
+    protected abstract fun onCreateViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(getItemViewType(position)) {
+            getLayoutID() -> onBindItemViewHolder(holder, position)
+            R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            getLayoutID() -> onCreateViewHolder(parent)
+            R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent)
+            else -> throw IllegalArgumentException("unknown view type $viewType")
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (hasExtraRow() && position == itemCount - 1) {
+            R.layout.network_state_item
+        } else {
+            getLayoutID()
+        }
+    }
 
     private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
 

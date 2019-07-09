@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 
 class AutofitRecyclerView : RecyclerView {
 
-    private var manager:GridLayoutManager by Delegates.notNull()
+    var manager:GridLayoutManager by Delegates.notNull()
     private var columnWidth = -1
 
     constructor(context: Context) : super(context) {

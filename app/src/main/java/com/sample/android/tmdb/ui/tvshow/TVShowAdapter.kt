@@ -2,6 +2,7 @@ package com.sample.android.tmdb.ui.tvshow
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.ItemClickCallback
 import com.sample.android.tmdb.vo.TVShow
@@ -9,7 +10,9 @@ import com.sample.android.tmdb.vo.TVShow
 class TVShowAdapter(
         private val itemClickCallback: ItemClickCallback<TVShow>) : ItemAdapter<TVShow>() {
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun getLayoutID(): Int = R.layout.tv_show_item
+
+    override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
             with((holder as TVShowViewHolder).binding) {
                 tvShow = it
@@ -18,7 +21,7 @@ class TVShowAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return TVShowViewHolder.create(parent, itemClickCallback)
     }
 }
