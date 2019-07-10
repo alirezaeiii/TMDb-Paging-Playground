@@ -5,8 +5,9 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="start"
-    tools:context=".ui.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity"
+    tools:openDrawer="start">
 
     <include
         layout="@layout/activity_main"
@@ -19,9 +20,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/main_nav_header"
+        app:itemBackground="@drawable/drawer_list_selector"
         app:itemIconTint="@drawable/navigation_colors"
         app:itemTextColor="@drawable/navigation_colors"
-        app:itemBackground="@drawable/drawer_list_selector"
         app:menu="@menu/nav_main" />
 
 </android.support.v4.widget.DrawerLayout>

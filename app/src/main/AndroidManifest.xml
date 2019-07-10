@@ -11,12 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tmdb.Base"
+        android:theme="@style/Theme.Tmdb"
         android:usesCleartextTraffic="true">
 
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Tmdb.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
