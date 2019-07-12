@@ -82,23 +82,23 @@ class MainActivity : DaggerAppCompatActivity(),
 
                 val navType = viewModel.currentType.value
 
-                fragment = when (it.itemId) {
+                when (it.itemId) {
                     R.id.action_popular -> {
-                        when (navType) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> popularMoviesFragment
                             NavType.TV_SERIES -> popularTVshowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_highest_rate -> {
-                        when (navType) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> highRateMoviesFragment
                             NavType.TV_SERIES -> highRateTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_upcoming -> {
-                        when (navType) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> upcomingMoviesFragment
                             NavType.TV_SERIES -> latestTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
