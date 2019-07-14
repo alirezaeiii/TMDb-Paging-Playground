@@ -7,7 +7,7 @@ abstract class ItemDataSourceFactory<T, E> : DataSource.Factory<Int, T>() {
 
     val sourceLiveData = MutableLiveData<PageKeyedItemDataSource<T, E>>()
 
-    abstract fun getDataSource(): PageKeyedItemDataSource<T, E>
+    protected abstract fun getDataSource(): PageKeyedItemDataSource<T, E>
 
     override fun create(): DataSource<Int, T> {
         val source = getDataSource()

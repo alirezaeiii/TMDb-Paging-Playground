@@ -37,7 +37,7 @@ abstract class DetailViewModel<T : TmdbItem> : ViewModel() {
                     }
                 }
                 .subscribe({ videos ->
-                    if (!videos.isEmpty()) {
+                    if (videos.isNotEmpty()) {
                         isTrailersVisible.set(true)
                     }
                     with(trailers) {
@@ -59,7 +59,7 @@ abstract class DetailViewModel<T : TmdbItem> : ViewModel() {
                     }
                 }
                 .subscribe({ cast ->
-                    if (!cast.isEmpty()) {
+                    if (cast.isNotEmpty()) {
                         isCastVisible.set(true)
                     }
                     this.cast.postValue(cast)
