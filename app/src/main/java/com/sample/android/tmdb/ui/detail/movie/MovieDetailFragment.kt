@@ -39,9 +39,7 @@ constructor() // Required empty public constructor
             setVariable(BR.vm, viewModel)
             lifecycleOwner = this@MovieDetailFragment
         }
-        viewModel.showTrailers(movie).let { compositeDisposable.add(it) }
-        viewModel.showCast(movie).let { compositeDisposable.add(it) }
     }
 
-    override fun getTmdbItem(): TmdbItem = movie
+    override fun getTmdbItem(): Movie = movie
 }

@@ -27,17 +27,17 @@ abstract class DetailFragment<T : TmdbItem>
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
 
-    protected lateinit var viewModel: DetailViewModel<T>
+    private val compositeDisposable = CompositeDisposable()
 
-    protected val compositeDisposable = CompositeDisposable()
+    protected lateinit var viewModel: DetailViewModel<T>
 
     protected abstract fun initViewModel()
 
-    protected abstract fun getLayoutId() : Int
+    protected abstract fun getLayoutId(): Int
 
-    protected abstract fun initViewBinding(root : View)
+    protected abstract fun initViewBinding(root: View)
 
-    protected abstract fun getTmdbItem() : TmdbItem
+    protected abstract fun getTmdbItem(): T
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -47,6 +47,9 @@ abstract class DetailFragment<T : TmdbItem>
         val root = inflater.inflate(getLayoutId(), container, false)
 
         initViewBinding(root)
+
+        viewModel.showTrailers(getTmdbItem()).let { compositeDisposable.add(it) }
+        viewModel.showCast(getTmdbItem()).let { compositeDisposable.add(it) }
 
         with(root) {
 
