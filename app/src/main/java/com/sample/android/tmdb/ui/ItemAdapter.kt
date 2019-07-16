@@ -23,12 +23,12 @@ abstract class ItemAdapter<T : TmdbItem> : PagedListAdapter<T, RecyclerView.View
 
     protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int)
 
-    protected abstract fun onCreateViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
+    protected abstract fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(getItemViewType(position)) {
+        when (getItemViewType(position)) {
             getLayoutID() -> onBindItemViewHolder(holder, position)
-            R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState)
+            R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState, position)
         }
     }
 
@@ -47,6 +47,8 @@ abstract class ItemAdapter<T : TmdbItem> : PagedListAdapter<T, RecyclerView.View
             getLayoutID()
         }
     }
+
+    override fun getItemCount(): Int = super.getItemCount() + if (hasExtraRow()) 1 else 0
 
     private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
 

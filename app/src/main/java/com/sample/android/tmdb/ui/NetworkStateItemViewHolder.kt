@@ -14,8 +14,8 @@ class NetworkStateItemViewHolder(root: View)
 
     private val progressBar = root.findViewById<ProgressBar>(R.id.progress_bar)
 
-    fun bindTo(networkState: NetworkState?) {
-        progressBar.visibility = toVisbility(networkState?.status == RUNNING)
+    fun bindTo(networkState: NetworkState?, position: Int) {
+        progressBar.visibility = toVisbility(networkState?.status == RUNNING && position != 0)
     }
 
     companion object {
