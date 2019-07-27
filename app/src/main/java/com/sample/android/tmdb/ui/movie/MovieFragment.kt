@@ -22,9 +22,7 @@ abstract class MovieFragment : MainFragment<Movie, Movie>() {
         model.showQuery("")
     }
 
-    override fun getAdapter(): ItemAdapter<Movie> = MovieAdapter(this) {
-        model.retry()
-    }
+    override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<Movie> = MovieAdapter(this, retryCallback)
 
     override fun putItemParcelable(bundle: Bundle, e: Movie) {
         bundle.putParcelable(EXTRA_MOVIE, e)

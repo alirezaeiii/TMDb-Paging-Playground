@@ -22,9 +22,7 @@ abstract class TVShowFragment : MainFragment<TVShow, TVShow>() {
         model.showQuery("")
     }
 
-    override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this) {
-        model.retry()
-    }
+    override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
     override fun putItemParcelable(bundle: Bundle, e: TVShow) {
         bundle.putParcelable(EXTRA_TV_SHOW, e)

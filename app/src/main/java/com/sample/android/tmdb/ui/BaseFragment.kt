@@ -44,7 +44,7 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
     protected abstract fun initViewModel()
 
-    protected abstract fun getAdapter(): ItemAdapter<T>
+    protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
 
     protected abstract fun putItemParcelable(bundle: Bundle, e: E)
 
@@ -73,7 +73,9 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 setOnRefreshListener { model.refresh() }
             }
 
-            val adapter = getAdapter()
+            val adapter = getAdapter {
+                model.retry()
+            }
 
             list.apply {
 
