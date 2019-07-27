@@ -8,7 +8,9 @@ import com.sample.android.tmdb.ui.ItemClickCallback
 import com.sample.android.tmdb.vo.TVShow
 
 class TVShowAdapter(
-        private val itemClickCallback: ItemClickCallback<TVShow>) : ItemAdapter<TVShow>() {
+        private val itemClickCallback: ItemClickCallback<TVShow>,
+        retryCallback: () -> Unit)
+    : ItemAdapter<TVShow>(retryCallback) {
 
     override fun getLayoutID(): Int = R.layout.tv_show_item
 

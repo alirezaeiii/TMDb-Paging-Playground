@@ -6,8 +6,14 @@ import com.sample.android.tmdb.repository.NetworkState
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
+import java.util.concurrent.Executor
 
-abstract class PageKeyedItemDataSource<T, E> : PageKeyedDataSource<Int, T>() {
+abstract class PageKeyedItemDataSource<T, E>(
+        private val retryExecutor: Executor)
+    : PageKeyedDataSource<Int, T>() {
+
+    // keep a function reference for the retry event
+    private var retry: (() -> Any)? = null
 
     /**
      * There is no sync on the state because paging will always call loadInitial first then wait
@@ -17,9 +23,19 @@ abstract class PageKeyedItemDataSource<T, E> : PageKeyedDataSource<Int, T>() {
 
     val initialLoad = MutableLiveData<NetworkState>()
 
-    protected abstract fun getItems(response: Response<E>) : List<T>
+    fun retryAllFailed() {
+        val prevRetry = retry
+        retry = null
+        prevRetry?.let {
+            retryExecutor.execute {
+                it.invoke()
+            }
+        }
+    }
 
-    protected abstract fun fetchItems(page : Int) : Call<E>
+    protected abstract fun getItems(response: Response<E>): List<T>
+
+    protected abstract fun fetchItems(page: Int): Call<E>
 
     override fun loadBefore(
             params: LoadParams<Int>,
@@ -33,6 +49,10 @@ abstract class PageKeyedItemDataSource<T, E> : PageKeyedDataSource<Int, T>() {
         fetchItems(params.key).enqueue(
                 object : retrofit2.Callback<E> {
                     override fun onFailure(call: Call<E>, t: Throwable) {
+                        // keep a lambda for future retry
+                        retry = {
+                            loadAfter(params, callback)
+                        }
                         networkState.postValue(NetworkState.error(t.message ?: "unknown err"))
                     }
 
@@ -40,12 +60,17 @@ abstract class PageKeyedItemDataSource<T, E> : PageKeyedDataSource<Int, T>() {
                             call: Call<E>,
                             response: Response<E>) {
                         if (response.isSuccessful) {
+                            // clear retry since last request succeeded
+                            retry = null
                             callback.onResult(getItems(response), params.key + 1)
                             networkState.postValue(NetworkState.LOADED)
                         } else {
+                            retry = {
+                                loadAfter(params, callback)
+                            }
                             networkState.postValue(
                                     NetworkState.error("error code: ${response.code()} " +
-                                    response.message()))
+                                            response.message()))
                         }
                     }
                 }
@@ -62,13 +87,20 @@ abstract class PageKeyedItemDataSource<T, E> : PageKeyedDataSource<Int, T>() {
         try {
             val response = fetchItems(1).execute()
             if (response.isSuccessful) {
+                retry = null
                 networkState.postValue(NetworkState.LOADED)
                 initialLoad.postValue(NetworkState.LOADED)
                 callback.onResult(getItems(response), null, 2)
             } else {
+                retry = {
+                    loadInitial(params, callback)
+                }
                 initNetworkError("error code: ${response.code()} " + response.message())
             }
         } catch (ioException: IOException) {
+            retry = {
+                loadInitial(params, callback)
+            }
             initNetworkError(ioException.message ?: "unknown error")
         }
     }

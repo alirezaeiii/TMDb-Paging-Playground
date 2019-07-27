@@ -27,7 +27,9 @@ constructor() // Required empty public constructor
         })[TVShowsViewModel::class.java]
     }
 
-    override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this)
+    override fun getAdapter(): ItemAdapter<TVShow> = TVShowAdapter(this) {
+        model.retry()
+    }
 
     override fun putItemParcelable(bundle: Bundle, e: TVShow) {
         bundle.putParcelable(EXTRA_TV_SHOW, e)

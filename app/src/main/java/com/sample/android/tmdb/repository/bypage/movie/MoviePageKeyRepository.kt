@@ -8,12 +8,15 @@ import com.sample.android.tmdb.repository.bypage.PageKeyRepository
 import com.sample.android.tmdb.vo.Movie
 import java.util.concurrent.Executor
 
-class MoviePageKeyRepository(private val dataSource: MoviesRemoteDataSource,
-                             private val sortType: SortType?,
-                             networkExecutor: Executor) : PageKeyRepository<Movie, ItemApi.MovieWrapper>(networkExecutor) {
+class MoviePageKeyRepository(
+        private val dataSource: MoviesRemoteDataSource,
+        private val sortType: SortType?,
+        private val networkExecutor: Executor)
+    : PageKeyRepository<Movie, ItemApi.MovieWrapper>(networkExecutor) {
 
     override fun getSourceFactory(query: String): ItemDataSourceFactory<Movie, ItemApi.MovieWrapper> =
             MoviesDataSourceFactory(dataSource = dataSource,
                     sortType = sortType,
-                    query = query)
+                    query = query,
+                    retryExecutor = networkExecutor)
 }

@@ -9,7 +9,8 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.vo.TmdbItem
 import java.util.*
 
-abstract class ItemAdapter<T : TmdbItem> : PagedListAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
+abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
+    : PagedListAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
             Objects.equals(oldItem, newItem)
 
@@ -35,7 +36,7 @@ abstract class ItemAdapter<T : TmdbItem> : PagedListAdapter<T, RecyclerView.View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             getLayoutID() -> onCreateViewHolder(parent)
-            R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent)
+            R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
     }

@@ -3,7 +3,6 @@ package com.sample.android.tmdb.ui
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.app.ActivityCompat
@@ -21,10 +20,8 @@ import android.widget.TextView
 import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.SortType
-import com.sample.android.tmdb.databinding.FragmentMainBinding
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.repository.NetworkState
-import com.sample.android.tmdb.repository.Status.FAILED
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.EspressoIdlingResource
@@ -56,11 +53,11 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        val root = inflater.inflate(R.layout.fragment_main, container, false)
 
         initViewModel()
 
-        with(binding.root) {
+        with(root) {
 
             swipe_refresh.apply {
                 setColorSchemeColors(
@@ -74,12 +71,6 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 })
 
                 setOnRefreshListener { model.refresh() }
-            }
-
-            retry_button.apply {
-                setOnClickListener {
-                    model.refresh()
-                }
             }
 
             val adapter = getAdapter()
@@ -126,18 +117,9 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
             model.networkState.observe(this@BaseFragment, Observer {
                 adapter.setNetworkState(it)
-
-                binding.isLoading = it?.status == FAILED
-
-                if (it?.status == FAILED) {
-
-                    error_msg.apply {
-                        text = it.msg
-                    }
-                }
             })
         }
-        return binding.root
+        return root
     }
 
     override fun onClick(e: E, poster: ImageView, name: TextView) {

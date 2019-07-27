@@ -34,7 +34,10 @@ abstract class PageKeyRepository<T, E>(
                 refresh = {
                     sourceFactory.sourceLiveData.value?.invalidate()
                 },
-                refreshState = refreshState
+                refreshState = refreshState,
+                retry = {
+                    sourceFactory.sourceLiveData.value?.retryAllFailed()
+                }
         )
     }
 }

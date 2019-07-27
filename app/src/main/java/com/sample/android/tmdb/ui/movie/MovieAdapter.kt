@@ -8,7 +8,9 @@ import com.sample.android.tmdb.ui.ItemClickCallback
 import com.sample.android.tmdb.vo.Movie
 
 class MovieAdapter(
-        private val itemClickCallback: ItemClickCallback<Movie>) : ItemAdapter<Movie>() {
+        private val itemClickCallback: ItemClickCallback<Movie>,
+        retryCallback: () -> Unit)
+    : ItemAdapter<Movie>(retryCallback) {
 
     override fun getLayoutID(): Int = R.layout.movie_item
 

@@ -7,10 +7,14 @@ import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
 import com.sample.android.tmdb.vo.TVShow
 import retrofit2.Call
 import retrofit2.Response
+import java.util.concurrent.Executor
 
-class PageKeyedTVShowsDataSource(private val dataSource: MoviesRemoteDataSource,
-                                 private val sortType: SortType?,
-                                 private val query: String) : PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper>() {
+class PageKeyedTVShowsDataSource(
+        private val dataSource: MoviesRemoteDataSource,
+        private val sortType: SortType?,
+        private val query: String,
+        retryExecutor: Executor)
+    : PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper>(retryExecutor) {
 
     override fun getItems(response: Response<ItemApi.TVShowWrapper>): List<TVShow> {
         val data = response.body()?.tvShows

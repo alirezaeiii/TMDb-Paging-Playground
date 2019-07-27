@@ -31,4 +31,8 @@ abstract class ItemViewModel<T> : ViewModel() {
         this.query.value = query
         return true
     }
+
+    fun retry() {
+        repoResult.value?.retry?.invoke()
+    }
 }
