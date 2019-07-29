@@ -40,7 +40,7 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
     protected abstract fun getSortType(): SortType?
 
-    protected open fun shouldIncrementEspressoIdlingResource() = true
+    protected abstract fun incrementEspressoIdlingResource()
 
     protected abstract fun initViewModel()
 
@@ -93,11 +93,7 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 }
             }
 
-            if (shouldIncrementEspressoIdlingResource()) {
-                // The network request might be handled in a different thread so make sure Espresso knows
-                // that the app is busy until the response is handled.
-                EspressoIdlingResource.increment() // App is busy until further notice
-            }
+            incrementEspressoIdlingResource()
 
             val controller = AnimationUtils
                     .loadLayoutAnimation(context,
