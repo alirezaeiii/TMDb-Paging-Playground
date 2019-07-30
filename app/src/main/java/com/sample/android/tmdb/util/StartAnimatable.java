@@ -15,7 +15,7 @@
  *
  */
 
-package com.sample.android.tmdb.ui.search.transitions;
+package com.sample.android.tmdb.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -26,7 +26,7 @@
     </targets>
     <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in" />
     <transition
-        class="com.sample.android.tmdb.ui.search.transitions.StartAnimatable"
+        class="com.sample.android.tmdb.util.StartAnimatable"
         android:src="@drawable/avd_back_to_search" />
 
 </transitionSet>
