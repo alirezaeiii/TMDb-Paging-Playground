@@ -3,12 +3,14 @@ package com.sample.android.tmdb.ui.detail
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.content.Intent
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.constraint.motion.MotionLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.ui.person.PersonActivity
@@ -35,7 +37,7 @@ abstract class DetailFragment<T : TmdbItem>
 
     protected abstract fun getLayoutId(): Int
 
-    protected abstract fun initViewBinding(root: View)
+    protected abstract fun initViewBinding(root: View): ViewDataBinding
 
     protected abstract fun getTmdbItem(): T
 
@@ -46,7 +48,10 @@ abstract class DetailFragment<T : TmdbItem>
 
         val root = inflater.inflate(getLayoutId(), container, false)
 
-        initViewBinding(root)
+        initViewBinding(root).apply {
+            setVariable(BR.vm, viewModel)
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         viewModel.showTrailers(getTmdbItem()).let { compositeDisposable.add(it) }
         viewModel.showCast(getTmdbItem()).let { compositeDisposable.add(it) }
