@@ -57,6 +57,10 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
         initViewModel()
 
+        val adapter = getAdapter {
+            model.retry()
+        }
+
         with(root) {
 
             swipe_refresh.apply {
@@ -73,18 +77,10 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 setOnRefreshListener { model.refresh() }
             }
 
-            val adapter = getAdapter {
-                model.retry()
-            }
-
             list.apply {
-
                 addItemDecoration(MarginDecoration(context))
-
                 setHasFixedSize(true)
-
                 list.adapter = adapter
-
                 manager.spanSizeLookup = object : SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         return if (adapter.getItemViewType(position) != R.layout.network_state_item)
@@ -112,11 +108,12 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
                 adapter.submitList(it)
                 list.scheduleLayoutAnimation()
             })
-
-            model.networkState.observe(this@BaseFragment, Observer {
-                adapter.setNetworkState(it)
-            })
         }
+
+        model.networkState.observe(this, Observer {
+            adapter.setNetworkState(it)
+        })
+
         return root
     }
 

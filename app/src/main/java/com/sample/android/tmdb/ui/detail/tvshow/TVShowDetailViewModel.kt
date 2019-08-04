@@ -7,10 +7,10 @@ import com.sample.android.tmdb.vo.TVShow
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
 
-class TVShowDetailViewModel(private val datasource: MoviesRemoteDataSource)
+class TVShowDetailViewModel(private val dataSource: MoviesRemoteDataSource)
     : DetailViewModel<TVShow>() {
 
-    override fun getTrailers(id: Int): Observable<List<Video>> = datasource.getTvTrailers(id)
+    override fun getTrailers(id: Int): Observable<List<Video>> = dataSource.getTvTrailers(id)
 
-    override fun getCast(id: Int): Observable<List<Cast>> = datasource.getTvCast(id)
+    override fun getCast(id: Int): Observable<List<Cast>> = dataSource.getTvCast(id)
 }

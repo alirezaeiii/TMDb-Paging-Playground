@@ -108,14 +108,10 @@ abstract class DetailFragment<T : TmdbItem>
             }
         })
 
-        viewModel.cast.observe(this@DetailFragment, Observer {
-
-            val adapter = CastAdapter(it!!, this@DetailFragment)
-
+        viewModel.cast.observe(this, Observer {
+            val adapter = CastAdapter(it!!, this)
             view.cast_list.apply {
-
                 setHasFixedSize(true)
-
                 cast_list.adapter = adapter
             }
         })
