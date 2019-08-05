@@ -22,6 +22,7 @@ abstract class SearchBaseFragment<T : TmdbItem, E : Parcelable> : BaseFragment<T
     fun searchViewClicked(query: String?) {
         if (model.showQuery(query)) {
             list.scrollToPosition(0)
+            @Suppress("UNCHECKED_CAST")
             (list.adapter as ItemAdapter<T>).submitList(null)
         }
     }
