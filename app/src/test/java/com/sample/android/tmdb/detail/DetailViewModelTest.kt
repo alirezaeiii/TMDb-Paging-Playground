@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.detail
 
-import android.app.Application
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
@@ -34,8 +33,6 @@ class DetailViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
-    @Mock
-    private lateinit var context: Application
     @Mock
     private lateinit var itemApi: ItemApi
     private lateinit var dataSource: MoviesRemoteDataSource
