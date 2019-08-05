@@ -93,7 +93,7 @@ constructor() // Required empty public constructor
 
             viewModel.knownAs.observe(this@PersonFragment, Observer {
 
-                known_as.visibleGone(!it!!.isEmpty())
+                known_as.visibleGone(it!!.isNotEmpty())
                 known_as.text = getString(R.string.known_as, it)
             })
         }
