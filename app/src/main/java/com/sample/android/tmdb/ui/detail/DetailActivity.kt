@@ -1,6 +1,7 @@
 package com.sample.android.tmdb.ui.detail
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.sample.android.tmdb.NavType
 import dagger.android.support.DaggerAppCompatActivity
@@ -26,19 +27,12 @@ class DetailActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         if (savedInstanceState == null) {
-
+            val fragment: Fragment
             when (navType) {
-
-                NavType.MOVIES -> supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        as MovieDetailFragment? ?: movieDetailFragment.also {
-                    addFragmentToActivity(it, R.id.fragment_container)
-                }
-
-                NavType.TV_SERIES -> supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        as TVShowDetailFragment? ?: tvShowDetailFragment.also {
-                    addFragmentToActivity(it, R.id.fragment_container)
-                }
+                NavType.MOVIES -> fragment = movieDetailFragment
+                NavType.TV_SERIES -> fragment = tvShowDetailFragment
             }
+            addFragmentToActivity(fragment, R.id.fragment_container)
         }
     }
 
