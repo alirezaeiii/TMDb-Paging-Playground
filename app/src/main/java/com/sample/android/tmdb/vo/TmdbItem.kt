@@ -1,6 +1,8 @@
 package com.sample.android.tmdb.vo
 
-interface TmdbItem {
+import android.os.Parcelable
+
+interface TmdbItem : Parcelable {
 
     val id : Int
 

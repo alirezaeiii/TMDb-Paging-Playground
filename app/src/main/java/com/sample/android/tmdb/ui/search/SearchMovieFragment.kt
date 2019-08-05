@@ -15,7 +15,7 @@ import javax.inject.Inject
 @ActivityScoped
 class SearchMovieFragment @Inject
 constructor() // Required empty public constructor
-    : SearchBaseFragment<Movie, Movie>() {
+    : SearchBaseFragment<Movie>() {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<Movie> = MovieAdapter(this, retryCallback)
 
-    override fun putItemParcelable(bundle: Bundle, e: Movie) {
-        bundle.putParcelable(EXTRA_MOVIE, e)
+    override fun putItemParcelable(bundle: Bundle, t: Movie) {
+        bundle.putParcelable(EXTRA_MOVIE, t)
     }
 }

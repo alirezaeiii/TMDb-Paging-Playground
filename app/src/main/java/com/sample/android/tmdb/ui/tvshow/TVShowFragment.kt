@@ -9,7 +9,7 @@ import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.sample.android.tmdb.vo.TVShow
 
-abstract class TVShowFragment : MainFragment<TVShow, TVShow>() {
+abstract class TVShowFragment : MainFragment<TVShow>() {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -24,7 +24,7 @@ abstract class TVShowFragment : MainFragment<TVShow, TVShow>() {
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
-    override fun putItemParcelable(bundle: Bundle, e: TVShow) {
-        bundle.putParcelable(EXTRA_TV_SHOW, e)
+    override fun putItemParcelable(bundle: Bundle, t: TVShow) {
+        bundle.putParcelable(EXTRA_TV_SHOW, t)
     }
 }

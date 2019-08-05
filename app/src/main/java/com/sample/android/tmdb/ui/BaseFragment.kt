@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
@@ -31,7 +30,7 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import javax.inject.Inject
 
-abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), ItemClickCallback<E> {
+abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<T> {
 
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
@@ -46,7 +45,7 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
 
-    protected abstract fun putItemParcelable(bundle: Bundle, e: E)
+    protected abstract fun putItemParcelable(bundle: Bundle, t: T)
 
     protected abstract fun getNavType(): NavType
 
@@ -117,10 +116,10 @@ abstract class BaseFragment<T : TmdbItem, E : Parcelable> : DaggerFragment(), It
         return root
     }
 
-    override fun onClick(e: E, poster: ImageView, name: TextView) {
+    override fun onClick(t: T, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putItemParcelable(this, e)
+                putItemParcelable(this, t)
                 putParcelable(EXTRA_NAV_TYPE, getNavType())
             })
         }

@@ -15,7 +15,7 @@ import javax.inject.Inject
 @ActivityScoped
 class SearchTVShowFragment @Inject
 constructor() // Required empty public constructor
-    : SearchBaseFragment<TVShow, TVShow>() {
+    : SearchBaseFragment<TVShow>() {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
-    override fun putItemParcelable(bundle: Bundle, e: TVShow) {
-        bundle.putParcelable(EXTRA_TV_SHOW, e)
+    override fun putItemParcelable(bundle: Bundle, t: TVShow) {
+        bundle.putParcelable(EXTRA_TV_SHOW, t)
     }
 }

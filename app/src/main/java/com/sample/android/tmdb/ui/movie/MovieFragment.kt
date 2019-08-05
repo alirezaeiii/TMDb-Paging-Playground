@@ -9,7 +9,7 @@ import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.sample.android.tmdb.vo.Movie
 
-abstract class MovieFragment : MainFragment<Movie, Movie>() {
+abstract class MovieFragment : MainFragment<Movie>() {
 
     override fun initViewModel() {
         model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -24,7 +24,7 @@ abstract class MovieFragment : MainFragment<Movie, Movie>() {
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<Movie> = MovieAdapter(this, retryCallback)
 
-    override fun putItemParcelable(bundle: Bundle, e: Movie) {
-        bundle.putParcelable(EXTRA_MOVIE, e)
+    override fun putItemParcelable(bundle: Bundle, t: Movie) {
+        bundle.putParcelable(EXTRA_MOVIE, t)
     }
 }

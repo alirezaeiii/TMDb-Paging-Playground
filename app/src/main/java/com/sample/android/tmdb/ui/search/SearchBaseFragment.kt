@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.search
 
-import android.os.Parcelable
 import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.SortType
 import com.sample.android.tmdb.ui.BaseFragment
@@ -8,7 +7,7 @@ import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.vo.TmdbItem
 import kotlinx.android.synthetic.main.fragment_main.*
 
-abstract class SearchBaseFragment<T : TmdbItem, E : Parcelable> : BaseFragment<T, E>() {
+abstract class SearchBaseFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override fun getSortType(): SortType? = null
 

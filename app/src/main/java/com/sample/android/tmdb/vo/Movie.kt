@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.vo
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -16,4 +15,4 @@ class Movie(
         override val backdropPath: String?,
         val title: String,
         @SerializedName("vote_average")
-        override val voteAverage: Double) : Parcelable, TmdbItem
+        override val voteAverage: Double) : TmdbItem
