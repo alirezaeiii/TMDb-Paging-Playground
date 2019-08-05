@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class DetailViewModel<T : TmdbItem> : ViewModel() {
+abstract class DetailViewModel : ViewModel() {
 
     val trailers: ObservableList<Video> = ObservableArrayList()
     val isTrailersVisible = ObservableBoolean(false)
@@ -26,9 +26,9 @@ abstract class DetailViewModel<T : TmdbItem> : ViewModel() {
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
 
-    fun showTrailers(t: T): Disposable {
+    fun showTrailers(item: TmdbItem): Disposable {
         EspressoIdlingResource.increment() // App is busy until further notice
-        return getTrailers(t.id)
+        return getTrailers(item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {
@@ -48,9 +48,9 @@ abstract class DetailViewModel<T : TmdbItem> : ViewModel() {
                 ) { throwable -> Timber.e(throwable) }
     }
 
-    fun showCast(t: T): Disposable {
+    fun showCast(item: TmdbItem): Disposable {
         EspressoIdlingResource.increment() // App is busy until further notice
-        return getCast(t.id)
+        return getCast(item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {

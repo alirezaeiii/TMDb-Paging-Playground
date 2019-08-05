@@ -31,7 +31,7 @@ abstract class DetailFragment<T : TmdbItem>
 
     private val compositeDisposable = CompositeDisposable()
 
-    protected lateinit var viewModel: DetailViewModel<T>
+    protected lateinit var viewModel: DetailViewModel
 
     protected abstract fun initViewModel()
 
