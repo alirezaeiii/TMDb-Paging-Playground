@@ -45,19 +45,14 @@ class SearchActivity : DaggerAppCompatActivity() {
         val fragment = when (navType) {
             NavType.MOVIES -> {
                 search_view.queryHint = getString(R.string.search_hint_movies)
-                supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        as SearchMovieFragment? ?: searchMovieFragment.also {
-                    addFragmentToActivity(it, R.id.fragment_container)
-                }
+                searchMovieFragment
             }
             NavType.TV_SERIES -> {
                 search_view.queryHint = getString(R.string.search_hint_tv_shows)
-                supportFragmentManager.findFragmentById(R.id.fragment_container)
-                        as SearchTVShowFragment? ?: searchTVShowFragment.also {
-                    addFragmentToActivity(it, R.id.fragment_container)
-                }
+                searchTVShowFragment
             }
         }
+        addFragmentToActivity(fragment, R.id.fragment_container)
 
         search_view.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
