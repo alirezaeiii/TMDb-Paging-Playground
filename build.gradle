@@ -45,10 +45,12 @@ ext {
     runnerVersion = '1.0.2'
     rulesVersion = '1.0.2'
     espressoVersion = '3.0.2'
-    daggerVersion = '2.21'
+    daggerVersion = '2.24'
     pagingVersion = '1.0.1'
     archLifecycleVersion = '1.1.1'
     gsonVersion = '2.8.5'
     timberVersion = '4.7.1'
     constraintLayoutVersion = '2.0.0-alpha2'
+    okhttpVersion = '3.12.0'
+    circleimageviewVersion = '2.2.0'
 }
