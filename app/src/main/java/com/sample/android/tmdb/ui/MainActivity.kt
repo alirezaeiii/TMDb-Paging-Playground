@@ -43,7 +43,7 @@ class MainActivity : DaggerAppCompatActivity(),
     lateinit var upcomingMoviesFragment: UpcomingMoviesFragment
 
     @Inject
-    lateinit var popularTVshowFragment: PopularTVShowFragment
+    lateinit var popularTVShowFragment: PopularTVShowFragment
 
     @Inject
     lateinit var highRateTVShowFragment: HighRateTVShowFragment
@@ -86,7 +86,7 @@ class MainActivity : DaggerAppCompatActivity(),
                     R.id.action_popular -> {
                         fragment = when (navType) {
                             NavType.MOVIES -> popularMoviesFragment
-                            NavType.TV_SERIES -> popularTVshowFragment
+                            NavType.TV_SERIES -> popularTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
@@ -155,7 +155,7 @@ class MainActivity : DaggerAppCompatActivity(),
             R.id.action_tv_series -> {
                 viewModel.setNavType(NavType.TV_SERIES)
                 viewModel.setHeadline(R.string.menu_tv_series)
-                replaceFragmentInActivity(popularTVshowFragment, R.id.fragment_container)
+                replaceFragmentInActivity(popularTVShowFragment, R.id.fragment_container)
             }
         }
         return true
