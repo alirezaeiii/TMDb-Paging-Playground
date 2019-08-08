@@ -47,7 +47,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
 
     protected abstract fun putItemParcelable(bundle: Bundle, t: T)
 
-    protected abstract fun getNavType(): NavType
+    protected abstract fun getNavType(): NavType?
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

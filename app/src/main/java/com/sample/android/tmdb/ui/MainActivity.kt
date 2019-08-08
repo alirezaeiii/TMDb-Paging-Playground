@@ -51,7 +51,7 @@ class MainActivity : DaggerAppCompatActivity(),
     @Inject
     lateinit var latestTVShowFragment: LatestTVShowFragment
 
-    lateinit var viewModel: MainViewModule
+    private lateinit var viewModel: MainViewModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,4 +168,6 @@ class MainActivity : DaggerAppCompatActivity(),
             super.onBackPressed()
         }
     }
+
+    fun getNavType(): NavType? = viewModel.currentType.value
 }

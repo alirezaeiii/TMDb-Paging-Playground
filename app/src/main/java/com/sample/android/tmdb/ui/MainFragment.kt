@@ -6,7 +6,7 @@ import com.sample.android.tmdb.vo.TmdbItem
 
 abstract class MainFragment<T : TmdbItem> : BaseFragment<T>() {
 
-    override fun getNavType(): NavType = (activity as MainActivity).viewModel.currentType.value!!
+    override fun getNavType(): NavType? = (activity as MainActivity).getNavType()
 
     override fun incrementEspressoIdlingResource() {
         // The network request might be handled in a different thread so make sure Espresso knows
