@@ -45,7 +45,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
 
-    protected abstract fun putItemParcelable(bundle: Bundle, t: T)
+    protected abstract fun getKeyParcelable() : String
 
     protected abstract fun getNavType(): NavType?
 
@@ -119,7 +119,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
     override fun onClick(t: T, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putItemParcelable(this, t)
+                putParcelable(getKeyParcelable(), t)
                 putParcelable(EXTRA_NAV_TYPE, getNavType())
             })
         }

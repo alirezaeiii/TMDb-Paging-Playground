@@ -3,7 +3,6 @@ package com.sample.android.tmdb.ui.tvshow
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
@@ -24,7 +23,5 @@ abstract class TVShowFragment : MainFragment<TVShow>() {
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
-    override fun putItemParcelable(bundle: Bundle, t: TVShow) {
-        bundle.putParcelable(EXTRA_TV_SHOW, t)
-    }
+    override fun getKeyParcelable() = EXTRA_TV_SHOW
 }
