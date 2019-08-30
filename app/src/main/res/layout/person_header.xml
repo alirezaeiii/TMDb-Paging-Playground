@@ -18,25 +18,6 @@
         app:layout_constraintVertical_bias="0.38"
         tools:ignore="ContentDescription" />
 
-    <FrameLayout
-        android:id="@+id/search_back_frame"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:paddingStart="@dimen/padding_micro"
-        tools:ignore="RtlSymmetry">
-
-        <ImageButton
-            android:id="@+id/search_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back_padded"
-            android:transitionName="@string/transition_search_back"
-            tools:ignore="contentDescription" />
-
-    </FrameLayout>
-
     <View
         android:id="@+id/icon_background"
         android:layout_width="0dp"
@@ -55,6 +36,25 @@
         android:tint="@color/window_background"
         app:layout_constraintBottom_toTopOf="@id/icon_background"
         tools:ignore="PxUsage,contentDescription" />
+
+    <FrameLayout
+        android:id="@+id/search_back_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:paddingStart="@dimen/padding_micro"
+        tools:ignore="RtlSymmetry">
+
+        <ImageButton
+            android:id="@+id/search_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back_padded"
+            android:transitionName="@string/transition_search_back"
+            tools:ignore="contentDescription" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/name"
