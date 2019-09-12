@@ -110,6 +110,7 @@
                     android:text="@{@string/rating(tvShow.voteAverage)}" />
 
                 <TextView
+                    android:id="@id/summary_label"
                     style="@style/TmdbMargin.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
