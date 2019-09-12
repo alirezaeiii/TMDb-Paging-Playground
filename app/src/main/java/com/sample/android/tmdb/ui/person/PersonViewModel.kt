@@ -35,7 +35,7 @@ class PersonViewModel(
                     isVisible.set(true)
                     this.person.postValue(person)
                     var alsoKnownAs = ""
-                    for (i in 0 until person.alsoKnowAs.size) {
+                    for (i in person.alsoKnowAs.indices) {
                         alsoKnownAs += person.alsoKnowAs[i]
                         if (i != person.alsoKnowAs.size - 1) {
                             alsoKnownAs += ", "

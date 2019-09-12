@@ -17,6 +17,7 @@ import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import com.sample.android.tmdb.ui.person.PersonExtra
 import com.sample.android.tmdb.util.setupActionBar
+import com.sample.android.tmdb.util.visibleGone
 import com.sample.android.tmdb.vo.TmdbItem
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
@@ -65,6 +66,8 @@ abstract class DetailFragment<T : TmdbItem>
                     setDisplayShowHomeEnabled(true)
                 }
             }
+
+            summary_label.visibleGone(getTmdbItem().overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
