@@ -1,8 +1,7 @@
 package com.sample.android.tmdb.ui.person
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.util.EspressoIdlingResource
@@ -13,9 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class PersonViewModel(
-        context: Application,
         private val dataSource: MoviesRemoteDataSource)
-    : AndroidViewModel(context) {
+    : ViewModel() {
 
     val person = MutableLiveData<Person>()
     val isVisible = ObservableBoolean(false)
