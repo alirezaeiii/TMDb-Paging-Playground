@@ -1,11 +1,9 @@
 package com.sample.android.tmdb.ui.person
 
 import android.os.Bundle
-import android.os.Parcelable
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.parcel.Parcelize
 import javax.inject.Inject
 
 class PersonActivity : DaggerAppCompatActivity() {
@@ -27,14 +25,6 @@ class PersonActivity : DaggerAppCompatActivity() {
     }
 
     companion object {
-
         const val EXTRA_PERSON = "person"
     }
 }
-
-@Parcelize
-class PersonExtra(
-        val personId: Int,
-        val personName: String,
-        val profilePath: String?,
-        val backdropPath: String?) : Parcelable
