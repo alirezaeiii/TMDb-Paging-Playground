@@ -13,7 +13,6 @@ import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import com.sample.android.tmdb.NavType
@@ -90,10 +89,6 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
 
             incrementEspressoIdlingResource()
 
-            val controller = AnimationUtils
-                    .loadLayoutAnimation(context,
-                            R.anim.grid_layout_animation_from_bottom)
-
             model.items.observe(this@BaseFragment, Observer<PagedList<T>> {
 
                 // This callback may be called twice, once for the cache and once for loading
@@ -103,7 +98,6 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
                     EspressoIdlingResource.decrement() // Set app as idle.
                 }
 
-                list.layoutAnimation = controller
                 adapter.submitList(it)
                 list.scheduleLayoutAnimation()
             })
