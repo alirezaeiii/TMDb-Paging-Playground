@@ -37,8 +37,6 @@ constructor() // Required empty public constructor
 
     private lateinit var viewModel: PersonViewModel
 
-    private val compositeDisposable = CompositeDisposable()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -72,7 +70,7 @@ constructor() // Required empty public constructor
                     .into(image_background)
         }
 
-        binding.vm?.showPerson(person.personId)?.let { compositeDisposable.add(it) }
+        binding.vm?.showPerson(person.personId)
 
         with(root) {
 
@@ -101,10 +99,5 @@ constructor() // Required empty public constructor
         }
 
         return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        compositeDisposable.clear()
     }
 }

@@ -1,21 +1,20 @@
 package com.sample.android.tmdb.ui.detail
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
+import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.vo.Cast
 import com.sample.android.tmdb.vo.TmdbItem
 import com.sample.android.tmdb.vo.Video
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class DetailViewModel : ViewModel() {
+abstract class DetailViewModel : BaseViewModel() {
 
     val trailers: ObservableList<Video> = ObservableArrayList()
     val isTrailersVisible = ObservableBoolean(false)
@@ -26,9 +25,9 @@ abstract class DetailViewModel : ViewModel() {
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
 
-    fun showTrailers(item: TmdbItem): Disposable {
+    fun showTrailers(item: TmdbItem) {
         EspressoIdlingResource.increment() // App is busy until further notice
-        return getTrailers(item.id)
+        compositeDisposable.add(getTrailers(item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {
@@ -45,12 +44,12 @@ abstract class DetailViewModel : ViewModel() {
                         addAll(videos)
                     }
                 }
-                ) { throwable -> Timber.e(throwable) }
+                ) { throwable -> Timber.e(throwable) })
     }
 
-    fun showCast(item: TmdbItem): Disposable {
+    fun showCast(item: TmdbItem) {
         EspressoIdlingResource.increment() // App is busy until further notice
-        return getCast(item.id)
+        compositeDisposable.add(getCast(item.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {
@@ -64,6 +63,6 @@ abstract class DetailViewModel : ViewModel() {
                     }
                     this.cast.postValue(cast)
                 }
-                ) { throwable -> Timber.e(throwable) }
+                ) { throwable -> Timber.e(throwable) })
     }
 }

@@ -20,7 +20,6 @@ import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import com.sample.android.tmdb.vo.TmdbItem
 import dagger.android.support.DaggerFragment
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 import javax.inject.Inject
 
@@ -29,8 +28,6 @@ abstract class DetailFragment<T : TmdbItem>
 
     @Inject
     lateinit var dataSource: MoviesRemoteDataSource
-
-    private val compositeDisposable = CompositeDisposable()
 
     protected lateinit var viewModel: DetailViewModel
 
@@ -54,8 +51,8 @@ abstract class DetailFragment<T : TmdbItem>
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModel.showTrailers(getTmdbItem()).let { compositeDisposable.add(it) }
-        viewModel.showCast(getTmdbItem()).let { compositeDisposable.add(it) }
+        viewModel.showTrailers(getTmdbItem())
+        viewModel.showCast(getTmdbItem())
 
         with(root) {
 
@@ -120,11 +117,6 @@ abstract class DetailFragment<T : TmdbItem>
                 }
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        compositeDisposable.clear()
     }
 
     override fun onClick(personId: Int, personName: String, profilePath: String?) {
