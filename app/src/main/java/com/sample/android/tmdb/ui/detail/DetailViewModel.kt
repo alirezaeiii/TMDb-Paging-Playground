@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.ui.detail
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
@@ -18,7 +19,10 @@ abstract class DetailViewModel : BaseViewModel() {
 
     val trailers: ObservableList<Video> = ObservableArrayList()
     val isTrailersVisible = ObservableBoolean(false)
-    val cast = MutableLiveData<List<Cast>>()
+
+    private val _cast = MutableLiveData<List<Cast>>()
+    val cast: LiveData<List<Cast>> = _cast
+
     val isCastVisible = ObservableBoolean(false)
 
     protected abstract fun getTrailers(id: Int): Observable<List<Video>>
@@ -61,7 +65,7 @@ abstract class DetailViewModel : BaseViewModel() {
                     if (cast.isNotEmpty()) {
                         isCastVisible.set(true)
                     }
-                    this.cast.postValue(cast)
+                    this._cast.postValue(cast)
                 }
                 ) { throwable -> Timber.e(throwable) })
     }

@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.ui.person
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
@@ -14,9 +15,13 @@ class PersonViewModel(
         private val dataSource: MoviesRemoteDataSource)
     : BaseViewModel() {
 
-    val person = MutableLiveData<Person>()
+    private val _person = MutableLiveData<Person>()
+    val person: LiveData<Person> = _person
+
     val isVisible = ObservableBoolean(false)
-    val knownAs = MutableLiveData<String>()
+
+    private val _knownAs = MutableLiveData<String>()
+    val knownAs: LiveData<String> = _knownAs
 
     fun showPerson(personId: Int) {
         EspressoIdlingResource.increment() // App is busy until further notice
@@ -30,7 +35,7 @@ class PersonViewModel(
                 }
                 .subscribe({ person ->
                     isVisible.set(true)
-                    this.person.postValue(person)
+                    this._person.postValue(person)
                     var alsoKnownAs = ""
                     for (i in person.alsoKnowAs.indices) {
                         alsoKnownAs += person.alsoKnowAs[i]
@@ -38,7 +43,7 @@ class PersonViewModel(
                             alsoKnownAs += ", "
                         }
                     }
-                    knownAs.postValue(alsoKnownAs)
+                    _knownAs.postValue(alsoKnownAs)
                 }
                 ) { throwable -> Timber.e(throwable) })
     }
