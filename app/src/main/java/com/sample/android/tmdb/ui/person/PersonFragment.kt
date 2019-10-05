@@ -42,7 +42,7 @@ constructor() // Required empty public constructor
         viewModel = ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return PersonViewModel(dataSource) as T
+                return PersonViewModel(dataSource, person.personId) as T
             }
         })[PersonViewModel::class.java]
 
@@ -68,8 +68,6 @@ constructor() // Required empty public constructor
                     .load("$BASE_BACKDROP_PATH${person.backdropPath}")
                     .into(image_background)
         }
-
-        binding.vm?.showPerson(person.personId)
 
         with(root) {
 

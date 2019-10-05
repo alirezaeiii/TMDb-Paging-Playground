@@ -12,9 +12,10 @@ import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.After
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -97,6 +98,22 @@ class DetailViewModelTest {
                 assertFalse(isEmpty())
                 assertTrue(size == 1)
             }
+        }
+    }
+
+    @Test
+    fun errorLoadMovieCast() {
+        val observableResponse =
+                Observable.error<ItemApi.CastWrapper>(Exception())
+        `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
+
+        with(viewModel) {
+            assertFalse(isCastVisible.get())
+
+            showCast(movie)
+
+            assertFalse(isCastVisible.get())
+            assertThat(viewModel.cast.value, `is`(nullValue()))
         }
     }
 }

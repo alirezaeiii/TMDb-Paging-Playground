@@ -12,7 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class PersonViewModel(
-        private val dataSource: MoviesRemoteDataSource)
+        private val dataSource: MoviesRemoteDataSource,
+        private val personId : Int)
     : BaseViewModel() {
 
     private val _person = MutableLiveData<Person>()
@@ -23,7 +24,11 @@ class PersonViewModel(
     private val _knownAs = MutableLiveData<String>()
     val knownAs: LiveData<String> = _knownAs
 
-    fun showPerson(personId: Int) {
+    init {
+        showPerson()
+    }
+
+    fun showPerson() {
         EspressoIdlingResource.increment() // App is busy until further notice
         compositeDisposable.add(dataSource.getPerson(personId)
                 .subscribeOn(Schedulers.io())

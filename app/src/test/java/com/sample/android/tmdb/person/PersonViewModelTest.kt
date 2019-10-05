@@ -9,7 +9,10 @@ import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.nullValue
 import org.junit.*
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
@@ -27,7 +30,7 @@ class PersonViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var viewModel: PersonViewModel
+    private lateinit var dataSource: MoviesRemoteDataSource
 
     @Before
     fun setUp() {
@@ -35,8 +38,7 @@ class PersonViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        val dataSource = MoviesRemoteDataSource(itemApi)
-        viewModel = PersonViewModel(dataSource)
+        dataSource = MoviesRemoteDataSource(itemApi)
     }
 
     @After
@@ -56,11 +58,9 @@ class PersonViewModelTest {
         val observableResponse = Observable.just(person)
         `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
 
+        val viewModel = PersonViewModel(dataSource, anyInt())
+
         with(viewModel) {
-            Assert.assertFalse(isVisible.get())
-
-            showPerson(personId)
-
             assertTrue(isVisible.get())
             assertTrue(this.person.value?.id == personId)
             with(this.person.value?.alsoKnowAs!!) {
@@ -68,6 +68,19 @@ class PersonViewModelTest {
                 assertTrue(this[0] == knownAs1)
                 assertTrue(this[1] == knownAs2)
             }
+        }
+    }
+
+    @Test
+    fun errorLoadPerson() {
+        val observableResponse = Observable.error<Person>(Exception())
+        `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
+
+        val viewModel = PersonViewModel(dataSource, anyInt())
+
+        with(viewModel) {
+            assertFalse(isVisible.get())
+            Assert.assertThat(person.value, `is`(nullValue()))
         }
     }
 }
