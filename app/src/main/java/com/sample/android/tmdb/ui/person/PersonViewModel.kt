@@ -28,7 +28,7 @@ class PersonViewModel(
         showPerson()
     }
 
-    fun showPerson() {
+    private fun showPerson() {
         EspressoIdlingResource.increment() // App is busy until further notice
         compositeDisposable.add(dataSource.getPerson(personId)
                 .subscribeOn(Schedulers.io())
