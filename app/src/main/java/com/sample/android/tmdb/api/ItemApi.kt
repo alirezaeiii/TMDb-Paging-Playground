@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.api
 
 import com.google.gson.annotations.SerializedName
-import com.sample.android.tmdb.vo.*
+import com.sample.android.tmdb.domain.*
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET

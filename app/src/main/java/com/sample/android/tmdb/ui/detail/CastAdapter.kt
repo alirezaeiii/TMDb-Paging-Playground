@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.CastItemBinding
 import com.sample.android.tmdb.util.layoutInflater
-import com.sample.android.tmdb.vo.Cast
+import com.sample.android.tmdb.domain.Cast
 
 class CastAdapter(
         private val cast: List<Cast>,

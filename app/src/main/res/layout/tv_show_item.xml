@@ -6,7 +6,7 @@
 
         <variable
             name="tvShow"
-            type="com.sample.android.tmdb.vo.TVShow" />
+            type="com.sample.android.tmdb.domain.TVShow" />
 
         <variable
             name="callback"

@@ -8,7 +8,7 @@ import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
 import com.sample.android.tmdb.ui.tvshow.TVShowsViewModel
-import com.sample.android.tmdb.vo.TVShow
+import com.sample.android.tmdb.domain.TVShow
 import javax.inject.Inject
 
 @ActivityScoped
@@ -17,7 +17,7 @@ constructor() // Required empty public constructor
     : SearchBaseFragment<TVShow>() {
 
     override fun initViewModel() {
-        model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+        viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return TVShowsViewModel(dataSource = dataSource,

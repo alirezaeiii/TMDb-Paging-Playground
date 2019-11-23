@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.repository.NetworkState
-import com.sample.android.tmdb.vo.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import java.util.*
 
 abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)

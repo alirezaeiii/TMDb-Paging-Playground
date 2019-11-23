@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.ItemClickCallback
-import com.sample.android.tmdb.vo.TVShow
+import com.sample.android.tmdb.domain.TVShow
 
 class TVShowAdapter(
         private val itemClickCallback: ItemClickCallback<TVShow>,

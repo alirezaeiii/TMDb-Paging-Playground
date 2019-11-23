@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.search
 
-import com.sample.android.tmdb.NavType
+import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.di.FragmentScoped
 import com.sample.android.tmdb.ui.search.SearchActivity.Companion.EXTRA_NAV_TYPE

@@ -5,9 +5,9 @@ import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
-import com.sample.android.tmdb.vo.Cast
-import com.sample.android.tmdb.vo.Movie
-import com.sample.android.tmdb.vo.Video
+import com.sample.android.tmdb.domain.Cast
+import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.domain.Video
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins

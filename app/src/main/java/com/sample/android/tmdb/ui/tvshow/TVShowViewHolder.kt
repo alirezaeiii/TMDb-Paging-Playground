@@ -7,7 +7,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.TvShowItemBinding
 import com.sample.android.tmdb.ui.ItemClickCallback
 import com.sample.android.tmdb.util.layoutInflater
-import com.sample.android.tmdb.vo.TVShow
+import com.sample.android.tmdb.domain.TVShow
 
 class TVShowViewHolder(internal val binding: TvShowItemBinding)
     : RecyclerView.ViewHolder(binding.root) {

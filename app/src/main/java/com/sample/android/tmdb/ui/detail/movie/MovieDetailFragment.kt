@@ -8,7 +8,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailMovieBinding
 import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.detail.DetailFragment
-import com.sample.android.tmdb.vo.Movie
+import com.sample.android.tmdb.domain.Movie
 import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
@@ -21,14 +21,13 @@ constructor() // Required empty public constructor
     @Nullable
     lateinit var movie: Movie
 
-    override fun initViewModel() {
-        viewModel = ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return MovieDetailViewModel(dataSource) as T
-            }
-        })[MovieDetailViewModel::class.java]
-    }
+    override fun getViewModel() =
+            ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
+                override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                    @Suppress("UNCHECKED_CAST")
+                    return MovieDetailViewModel(dataSource) as T
+                }
+            })[MovieDetailViewModel::class.java]
 
     override fun getLayoutId(): Int = R.layout.fragment_detail_movie
 

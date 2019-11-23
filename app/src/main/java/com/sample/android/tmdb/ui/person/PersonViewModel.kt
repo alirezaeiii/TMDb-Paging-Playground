@@ -6,7 +6,7 @@ import android.databinding.ObservableBoolean
 import com.sample.android.tmdb.repository.MoviesRemoteDataSource
 import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.util.EspressoIdlingResource
-import com.sample.android.tmdb.vo.Person
+import com.sample.android.tmdb.domain.Person
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

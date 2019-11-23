@@ -8,7 +8,7 @@
 
         <variable
             name="movie"
-            type="com.sample.android.tmdb.vo.Movie" />
+            type="com.sample.android.tmdb.domain.Movie" />
 
         <variable
             name="vm"

@@ -7,9 +7,9 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.util.EspressoIdlingResource
-import com.sample.android.tmdb.vo.Cast
-import com.sample.android.tmdb.vo.TmdbItem
-import com.sample.android.tmdb.vo.Video
+import com.sample.android.tmdb.domain.Cast
+import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.Video
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

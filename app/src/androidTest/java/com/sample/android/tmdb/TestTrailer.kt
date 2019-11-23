@@ -2,7 +2,6 @@ package com.sample.android.tmdb
 
 import android.content.Intent
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.intent.Intents.intended
@@ -30,7 +29,7 @@ class TestTrailer : TestBase() {
     @Test
     fun shouldBeAbleToDisplayTrailer() {
         onView(ViewMatchers.withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(7, ViewActions.click()))
+                .actionOnItemAtPosition<MovieViewHolder>(7, click()))
 
         onView(ViewMatchers.withId(R.id.trailer_scroll_view)).perform(customScrollTo, click())
 

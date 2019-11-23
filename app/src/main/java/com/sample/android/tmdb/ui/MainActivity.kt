@@ -13,7 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.sample.android.tmdb.NavType
+import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
@@ -104,7 +104,7 @@ class MainActivity : DaggerAppCompatActivity(),
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
-                    else -> throw RuntimeException("Unknown sortType to replace detailFragment")
+                    else -> throw RuntimeException("Unknown sortType to replace fragment")
                 }
                 replaceFragmentInActivity(fragment, R.id.fragment_container)
                 true
@@ -146,18 +146,20 @@ class MainActivity : DaggerAppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         bottom_navigation.selectedItemId = R.id.action_popular
-        when (item.itemId) {
+        val fragment = when (item.itemId) {
             R.id.action_movies -> {
                 viewModel.setNavType(NavType.MOVIES)
                 viewModel.setHeadline(R.string.menu_movies)
-                replaceFragmentInActivity(popularMoviesFragment, R.id.fragment_container)
+                popularMoviesFragment
             }
             R.id.action_tv_series -> {
                 viewModel.setNavType(NavType.TV_SERIES)
                 viewModel.setHeadline(R.string.menu_tv_series)
-                replaceFragmentInActivity(popularTVShowFragment, R.id.fragment_container)
+                popularTVShowFragment
             }
+            else -> throw RuntimeException("Unknown navType to replace fragment")
         }
+        replaceFragmentInActivity(fragment, R.id.fragment_container)
         return true
     }
 

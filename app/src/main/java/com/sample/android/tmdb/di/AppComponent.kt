@@ -2,7 +2,7 @@ package com.sample.android.tmdb.di
 
 import android.app.Application
 
-import com.sample.android.tmdb.MovieApp
+import com.sample.android.tmdb.TmdbApp
 
 import javax.inject.Singleton
 
@@ -15,7 +15,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(modules = [ActivityBindingModule::class,
     AndroidSupportInjectionModule::class,
     NetworkModule::class])
-interface AppComponent : AndroidInjector<MovieApp> {
+interface AppComponent : AndroidInjector<TmdbApp> {
 
     @Component.Builder
     interface Builder {

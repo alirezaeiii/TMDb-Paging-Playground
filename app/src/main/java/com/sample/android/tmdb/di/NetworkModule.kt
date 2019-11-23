@@ -33,18 +33,15 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun retrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(BuildConfig.TMDB_BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-    }
+    fun retrofit(okHttpClient: OkHttpClient): Retrofit =
+            Retrofit.Builder()
+                    .baseUrl(BuildConfig.TMDB_BASE_URL)
+                    .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
 
     @Singleton
     @Provides
-    fun movieApi(retrofit: Retrofit): ItemApi {
-        return retrofit.create(ItemApi::class.java)
-    }
+    fun movieApi(retrofit: Retrofit): ItemApi = retrofit.create(ItemApi::class.java)
 }

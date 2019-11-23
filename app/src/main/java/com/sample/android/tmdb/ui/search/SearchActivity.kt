@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
-import com.sample.android.tmdb.NavType
+import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -56,13 +56,13 @@ class SearchActivity : DaggerAppCompatActivity() {
 
         search_view.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                fragment.searchViewClicked(query)
+                fragment.search(query)
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isNotEmpty()) {
-                    fragment.searchViewClicked(query)
+                    fragment.search(query)
                 }
                 return true
             }

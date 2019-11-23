@@ -18,20 +18,16 @@ import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import com.sample.android.tmdb.ui.person.PersonExtra
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
-import com.sample.android.tmdb.vo.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.BaseDaggerFragment
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 import javax.inject.Inject
 
 abstract class DetailFragment<T : TmdbItem>
-    : DaggerFragment(), CastClickCallback {
+    : BaseDaggerFragment(), CastClickCallback {
 
-    @Inject
-    lateinit var dataSource: MoviesRemoteDataSource
-
-    protected lateinit var viewModel: DetailViewModel
-
-    protected abstract fun initViewModel()
+    protected abstract fun getViewModel(): DetailViewModel
 
     protected abstract fun getLayoutId(): Int
 
@@ -42,7 +38,7 @@ abstract class DetailFragment<T : TmdbItem>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        initViewModel()
+        val viewModel = getViewModel()
 
         val root = inflater.inflate(getLayoutId(), container, false)
 
@@ -75,6 +71,16 @@ abstract class DetailFragment<T : TmdbItem>
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
 
+            viewModel.cast.observe(viewLifecycleOwner, Observer {
+                it?.apply {
+                    val adapter = CastAdapter(it, this@DetailFragment)
+                    cast_list.apply {
+                        setHasFixedSize(true)
+                        cast_list.adapter = adapter
+                    }
+                }
+            })
+
             with(details_rv) {
                 postDelayed({ scrollTo(0, 0) }, 100)
             }
@@ -104,16 +110,6 @@ abstract class DetailFragment<T : TmdbItem>
                         view.details_appbar_background.cutProgress = 1f
                         view.details_poster.visibility = View.VISIBLE
                     }
-                }
-            }
-        })
-
-        viewModel.cast.observe(this, Observer {
-            it?.apply {
-                val adapter = CastAdapter(it, this@DetailFragment)
-                view.cast_list.apply {
-                    setHasFixedSize(true)
-                    cast_list.adapter = adapter
                 }
             }
         })

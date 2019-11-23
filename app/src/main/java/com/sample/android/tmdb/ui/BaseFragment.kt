@@ -15,26 +15,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.sample.android.tmdb.NavType
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.SortType
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.EspressoIdlingResource
-import com.sample.android.tmdb.vo.TmdbItem
+import com.sample.android.tmdb.util.NavType
+import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.widget.MarginDecoration
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
-import javax.inject.Inject
 
-abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<T> {
+abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallback<T> {
 
-    @Inject
-    lateinit var dataSource: MoviesRemoteDataSource
-
-    protected lateinit var model: ItemViewModel<T>
+    protected lateinit var viewModel: ItemViewModel<T>
 
     protected abstract fun getSortType(): SortType?
 
@@ -56,7 +50,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
         initViewModel()
 
         val adapter = getAdapter {
-            model.retry()
+            viewModel.retry()
         }
 
         with(root) {
@@ -68,11 +62,11 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
                         ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 )
 
-                model.refreshState.observe(this@BaseFragment, Observer {
+                viewModel.refreshState.observe(this@BaseFragment, Observer {
                     isRefreshing = it == NetworkState.LOADING
                 })
 
-                setOnRefreshListener { model.refresh() }
+                setOnRefreshListener { viewModel.refresh() }
             }
 
             list.apply {
@@ -89,7 +83,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
 
             incrementEspressoIdlingResource()
 
-            model.items.observe(this@BaseFragment, Observer<PagedList<T>> {
+            viewModel.items.observe(this@BaseFragment, Observer<PagedList<T>> {
 
                 // This callback may be called twice, once for the cache and once for loading
                 // the data from the server API, so we check before decrementing, otherwise
@@ -103,7 +97,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), ItemClickCallback<
             })
         }
 
-        model.networkState.observe(this, Observer {
+        viewModel.networkState.observe(this, Observer {
             adapter.setNetworkState(it)
         })
 

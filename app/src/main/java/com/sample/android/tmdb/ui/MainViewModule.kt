@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.sample.android.tmdb.NavType
+import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
 import timber.log.Timber
 
@@ -21,7 +21,7 @@ class MainViewModule(app: Application) : AndroidViewModel(app) {
     private val context = app
 
     init {
-        Timber.d("View model created")
+        Timber.d("View viewModel created")
         _headline.value = context.getString(R.string.menu_movies)
         _currentType.value = NavType.MOVIES
     }

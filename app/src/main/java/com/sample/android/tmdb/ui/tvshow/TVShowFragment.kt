@@ -6,19 +6,18 @@ import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.MainFragment
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
-import com.sample.android.tmdb.vo.TVShow
+import com.sample.android.tmdb.domain.TVShow
 
 abstract class TVShowFragment : MainFragment<TVShow>() {
 
     override fun initViewModel() {
-        model = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+        viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return TVShowsViewModel(dataSource = dataSource,
                         sortType = getSortType()) as T
             }
         })[TVShowsViewModel::class.java]
-        model.showQuery("")
     }
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
