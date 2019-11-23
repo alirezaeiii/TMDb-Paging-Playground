@@ -30,12 +30,10 @@ constructor() // Required empty public constructor
     @Inject
     lateinit var person: PersonExtra
 
-    private lateinit var viewModel: PersonViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+        val viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return PersonViewModel(dataSource, person.personId) as T
