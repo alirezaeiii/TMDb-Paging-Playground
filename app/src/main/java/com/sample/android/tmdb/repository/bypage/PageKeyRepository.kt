@@ -4,11 +4,11 @@ import android.arch.lifecycle.Transformations
 import android.arch.paging.LivePagedListBuilder
 import android.support.annotation.MainThread
 import com.sample.android.tmdb.repository.Listing
-import com.sample.android.tmdb.repository.MovieRepository
+import com.sample.android.tmdb.repository.ItemRepository
 import java.util.concurrent.Executor
 
 abstract class PageKeyRepository<T, E>(
-        private val networkExecutor: Executor) : MovieRepository<T> {
+        private val networkExecutor: Executor) : ItemRepository<T> {
 
     protected abstract fun getSourceFactory(query: String): ItemDataSourceFactory<T, E>
 

@@ -2,7 +2,7 @@ package com.sample.android.tmdb.person
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.repository.RemoteDataSource
 import com.sample.android.tmdb.ui.person.PersonViewModel
 import com.sample.android.tmdb.domain.Person
 import io.reactivex.Observable
@@ -30,7 +30,7 @@ class PersonViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var dataSource: MoviesRemoteDataSource
+    private lateinit var dataSource: RemoteDataSource
 
     @Before
     fun setUp() {
@@ -38,7 +38,7 @@ class PersonViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        dataSource = MoviesRemoteDataSource(itemApi)
+        dataSource = RemoteDataSource(itemApi)
     }
 
     @After

@@ -3,7 +3,7 @@ package com.sample.android.tmdb.detail
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.repository.RemoteDataSource
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.Movie
@@ -36,7 +36,7 @@ class DetailViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var dataSource: MoviesRemoteDataSource
+    private lateinit var dataSource: RemoteDataSource
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var movie: Movie
 
@@ -46,7 +46,7 @@ class DetailViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        dataSource = MoviesRemoteDataSource(itemApi)
+        dataSource = RemoteDataSource(itemApi)
         viewModel = MovieDetailViewModel(dataSource)
 
         movie = Movie(1, "overview", "date",

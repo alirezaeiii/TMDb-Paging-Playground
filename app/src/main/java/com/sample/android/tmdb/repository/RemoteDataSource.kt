@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MoviesRemoteDataSource @Inject
+class RemoteDataSource @Inject
 constructor(private val itemApi: ItemApi) {
 
     fun fetchMovies(sortType: SortType, page: Int): Call<MovieWrapper> =

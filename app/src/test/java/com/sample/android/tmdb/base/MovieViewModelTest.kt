@@ -6,7 +6,7 @@ import android.arch.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.MoviesRemoteDataSource
+import com.sample.android.tmdb.repository.RemoteDataSource
 import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.domain.Movie
 import org.hamcrest.CoreMatchers.`is`
@@ -34,13 +34,13 @@ class MovieViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var dataSource: MoviesRemoteDataSource
+    private lateinit var dataSource: RemoteDataSource
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        dataSource = MoviesRemoteDataSource(itemApi)
+        dataSource = RemoteDataSource(itemApi)
     }
 
     @Test
