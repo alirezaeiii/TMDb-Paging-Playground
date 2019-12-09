@@ -3,11 +3,11 @@ package com.sample.android.tmdb.detail
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.Video
+import com.sample.android.tmdb.repository.RemoteDataSource
+import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -47,8 +47,6 @@ class DetailViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         dataSource = RemoteDataSource(itemApi)
-        viewModel = MovieDetailViewModel(dataSource)
-
         movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
     }
@@ -68,12 +66,9 @@ class DetailViewModelTest {
                 Observable.just(ItemApi.VideoWrapper(Lists.newArrayList(video)))
         `when`(itemApi.movieTrailers(anyInt())).thenReturn(observableResponse)
 
+        viewModel = MovieDetailViewModel(dataSource, movie)
 
         with(viewModel) {
-            assertFalse(isTrailersVisible.get())
-
-            showTrailers(movie)
-
             assertTrue(isTrailersVisible.get())
             assertFalse(trailers.isEmpty())
             assertTrue(trailers.size == 1)
@@ -88,11 +83,9 @@ class DetailViewModelTest {
                 Observable.just(ItemApi.CastWrapper(Lists.newArrayList(cast)))
         `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
 
+        viewModel = MovieDetailViewModel(dataSource, movie)
+
         with(viewModel) {
-            assertFalse(isCastVisible.get())
-
-            showCast(movie)
-
             assertTrue(isCastVisible.get())
             with(this.cast.value!!) {
                 assertFalse(isEmpty())
@@ -107,13 +100,11 @@ class DetailViewModelTest {
                 Observable.error<ItemApi.CastWrapper>(Exception())
         `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
 
+        viewModel = MovieDetailViewModel(dataSource, movie)
+
         with(viewModel) {
             assertFalse(isCastVisible.get())
-
-            showCast(movie)
-
-            assertFalse(isCastVisible.get())
-            assertThat(viewModel.cast.value, `is`(nullValue()))
+            assertThat(cast.value, `is`(nullValue()))
         }
     }
 }
