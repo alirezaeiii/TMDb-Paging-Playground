@@ -17,14 +17,17 @@ import timber.log.Timber
 
 abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
 
-    val trailers: ObservableList<Video> = ObservableArrayList()
-    val isTrailersVisible = ObservableBoolean(false)
+    val trailers: ObservableList<Video> by lazy {
+        ObservableArrayList<Video>().also {
+            showTrailers()
+        }
+    }
 
+    val isTrailersVisible = ObservableBoolean(false)
     val isCastVisible = ObservableBoolean(false)
 
-    private val _cast:MutableLiveData<List<Cast>> by lazy {
+    private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            showTrailers()
             showCast()
         }
     }
