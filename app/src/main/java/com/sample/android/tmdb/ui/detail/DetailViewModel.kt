@@ -23,8 +23,8 @@ abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
         }
     }
 
-    val isTrailersVisible = ObservableBoolean(false)
-    val isCastVisible = ObservableBoolean(false)
+    val isTrailersLabelVisible = ObservableBoolean(false)
+    val isCastLabelVisible = ObservableBoolean(false)
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
@@ -50,7 +50,7 @@ abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
                 }
                 .subscribe({ videos ->
                     if (videos.isNotEmpty()) {
-                        isTrailersVisible.set(true)
+                        isTrailersLabelVisible.set(true)
                     }
                     with(trailers) {
                         clear()
@@ -72,7 +72,7 @@ abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
                 }
                 .subscribe({ cast ->
                     if (cast.isNotEmpty()) {
-                        isCastVisible.set(true)
+                        isCastLabelVisible.set(true)
                     }
                     _cast.postValue(cast)
                 }

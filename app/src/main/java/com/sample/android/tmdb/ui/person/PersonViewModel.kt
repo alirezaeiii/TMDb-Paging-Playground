@@ -19,7 +19,7 @@ class PersonViewModel(
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person> = _person
 
-    val isVisible = ObservableBoolean(false)
+    val isPersonDetailVisible = ObservableBoolean(false)
 
     private val _knownAs = MutableLiveData<String>()
     val knownAs: LiveData<String> = _knownAs
@@ -39,7 +39,7 @@ class PersonViewModel(
                     }
                 }
                 .subscribe({ person ->
-                    isVisible.set(true)
+                    isPersonDetailVisible.set(true)
                     this._person.postValue(person)
                     var alsoKnownAs = ""
                     for (i in person.alsoKnowAs.indices) {

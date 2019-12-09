@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:visibleGone="@{vm.isVisible}">
+                app:visibleGone="@{vm.isPersonDetailVisible}">
 
                 <TextView
                     style="@style/TmdbMargin.Small"

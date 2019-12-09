@@ -69,7 +69,7 @@ class DetailViewModelTest {
         viewModel = MovieDetailViewModel(dataSource, movie)
 
         with(viewModel) {
-            assertTrue(isTrailersVisible.get())
+            assertTrue(isTrailersLabelVisible.get())
             assertFalse(trailers.isEmpty())
             assertTrue(trailers.size == 1)
         }
@@ -83,10 +83,8 @@ class DetailViewModelTest {
                 Observable.just(ItemApi.CastWrapper(Lists.newArrayList(cast)))
         `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
 
-        viewModel = MovieDetailViewModel(dataSource, movie)
-
         with(viewModel) {
-            assertTrue(isCastVisible.get())
+            assertTrue(isCastLabelVisible.get())
             with(this.cast.value!!) {
                 assertFalse(isEmpty())
                 assertTrue(size == 1)
@@ -100,10 +98,8 @@ class DetailViewModelTest {
                 Observable.error<ItemApi.CastWrapper>(Exception())
         `when`(itemApi.movieCast(anyInt())).thenReturn(observableResponse)
 
-        viewModel = MovieDetailViewModel(dataSource, movie)
-
         with(viewModel) {
-            assertFalse(isCastVisible.get())
+            assertFalse(isCastLabelVisible.get())
             assertThat(cast.value, `is`(nullValue()))
         }
     }
