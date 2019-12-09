@@ -44,9 +44,6 @@ abstract class DetailFragment<T : TmdbItem>
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModel.showTrailers(getTmdbItem())
-        viewModel.showCast(getTmdbItem())
-
         with(root) {
 
             with(activity as AppCompatActivity) {

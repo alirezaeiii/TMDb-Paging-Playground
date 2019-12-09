@@ -25,7 +25,7 @@ constructor() // Required empty public constructor
             ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                     @Suppress("UNCHECKED_CAST")
-                    return TVShowDetailViewModel(dataSource) as T
+                    return TVShowDetailViewModel(dataSource, tvShow) as T
                 }
             })[TVShowDetailViewModel::class.java]
 

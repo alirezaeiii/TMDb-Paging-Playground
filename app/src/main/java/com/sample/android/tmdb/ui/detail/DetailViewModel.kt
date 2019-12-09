@@ -5,6 +5,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
+import android.os.Handler
+import android.os.Looper
 import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.domain.Cast
@@ -15,7 +17,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class DetailViewModel : BaseViewModel() {
+abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
+
+    private val handler = Handler(Looper.getMainLooper())
 
     val trailers: ObservableList<Video> = ObservableArrayList()
     val isTrailersVisible = ObservableBoolean(false)
@@ -25,11 +29,18 @@ abstract class DetailViewModel : BaseViewModel() {
 
     val isCastVisible = ObservableBoolean(false)
 
+    init {
+        handler.postDelayed({
+            showTrailers()
+            showCast()
+        }, 100)
+    }
+
     protected abstract fun getTrailers(id: Int): Observable<List<Video>>
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
 
-    fun showTrailers(item: TmdbItem) {
+    fun showTrailers() {
         EspressoIdlingResource.increment() // App is busy until further notice
         compositeDisposable.add(getTrailers(item.id)
                 .subscribeOn(Schedulers.io())
@@ -51,7 +62,7 @@ abstract class DetailViewModel : BaseViewModel() {
                 ) { throwable -> Timber.e(throwable) })
     }
 
-    fun showCast(item: TmdbItem) {
+    fun showCast() {
         EspressoIdlingResource.increment() // App is busy until further notice
         compositeDisposable.add(getCast(item.id)
                 .subscribeOn(Schedulers.io())
