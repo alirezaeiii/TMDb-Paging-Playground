@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.base
+package com.sample.android.tmdb
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer

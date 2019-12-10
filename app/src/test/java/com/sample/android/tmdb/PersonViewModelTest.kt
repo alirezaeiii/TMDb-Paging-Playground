@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.person
+package com.sample.android.tmdb
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.api.ItemApi
@@ -61,7 +61,7 @@ class PersonViewModelTest {
         val viewModel = PersonViewModel(dataSource, anyInt())
 
         with(viewModel) {
-            assertTrue(isVisible.get())
+            assertTrue(isPersonDetailVisible.get())
             assertTrue(this.person.value?.id == personId)
             with(this.person.value?.alsoKnowAs!!) {
                 assertTrue(size == 2)
@@ -79,7 +79,7 @@ class PersonViewModelTest {
         val viewModel = PersonViewModel(dataSource, anyInt())
 
         with(viewModel) {
-            assertFalse(isVisible.get())
+            assertFalse(isPersonDetailVisible.get())
             Assert.assertThat(person.value, `is`(nullValue()))
         }
     }
