@@ -31,11 +31,11 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
 
     protected abstract val sortType: SortType?
 
+    protected abstract val keyParcelable : String
+
     protected abstract fun initViewModel()
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
-
-    protected abstract val keyParcelable : String
 
     protected abstract fun getNavType(): NavType?
 
@@ -59,7 +59,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
                         ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 )
 
-                viewModel.refreshState.observe(this@BaseFragment, Observer {
+                viewModel.refreshState.observe(viewLifecycleOwner, Observer {
                     isRefreshing = it == NetworkState.LOADING
                 })
 
@@ -78,7 +78,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
                 }
             }
 
-            viewModel.items.observe(this@BaseFragment, Observer<PagedList<T>> {
+            viewModel.items.observe(viewLifecycleOwner, Observer<PagedList<T>> {
                 adapter.submitList(it)
                 list.scheduleLayoutAnimation()
             })
