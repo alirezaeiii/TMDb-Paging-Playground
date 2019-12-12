@@ -8,13 +8,11 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import android.view.View
 import android.widget.EditText
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.movie.MovieViewHolder
 import com.sample.android.tmdb.ui.detail.CastAdapter
-import org.hamcrest.Matchers.not
+import com.sample.android.tmdb.ui.movie.MovieViewHolder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -86,14 +84,9 @@ class TestMainActivity : TestBase() {
     @Test
     fun shouldBeAbleToSearchItem() {
         onView(withId(R.id.action_search)).perform(click())
-
         onView(isAssignableFrom(EditText::class.java))
                 .perform(typeText("Harry Potter"),
                         pressImeActionButton())
-
-        // Check error message view is not displayed
-        onView(withId(R.id.error_msg)).check(matches(not<View>(isDisplayed())))
-
         onView(withId(R.id.list)).check(matches(isDisplayed()))
     }
 }

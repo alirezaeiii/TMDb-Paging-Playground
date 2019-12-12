@@ -20,7 +20,6 @@ import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.widget.MarginDecoration
@@ -31,8 +30,6 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
     protected lateinit var viewModel: ItemViewModel<T>
 
     protected abstract val sortType: SortType?
-
-    protected abstract fun incrementEspressoIdlingResource()
 
     protected abstract fun initViewModel()
 
@@ -81,17 +78,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
                 }
             }
 
-            incrementEspressoIdlingResource()
-
             viewModel.items.observe(this@BaseFragment, Observer<PagedList<T>> {
-
-                // This callback may be called twice, once for the cache and once for loading
-                // the data from the server API, so we check before decrementing, otherwise
-                // it throws "Counter has been corrupted!" exception.
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-
                 adapter.submitList(it)
                 list.scheduleLayoutAnimation()
             })

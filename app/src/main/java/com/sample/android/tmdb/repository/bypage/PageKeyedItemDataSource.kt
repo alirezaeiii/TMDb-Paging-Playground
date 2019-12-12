@@ -3,6 +3,7 @@ package com.sample.android.tmdb.repository.bypage
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
 import com.sample.android.tmdb.repository.NetworkState
+import com.sample.android.tmdb.util.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
@@ -83,6 +84,10 @@ abstract class PageKeyedItemDataSource<T, E>(
         networkState.postValue(NetworkState.LOADING)
         initialLoad.postValue(NetworkState.LOADING)
 
+        // The network request might be handled in a different thread so make sure Espresso knows
+        // that the app is busy until the response is handled.
+        EspressoIdlingResource.increment() // App is busy until further notice
+
         // triggered by a refresh, we better execute sync
         try {
             val response = fetchItems(1).execute()
@@ -90,6 +95,9 @@ abstract class PageKeyedItemDataSource<T, E>(
                 retry = null
                 networkState.postValue(NetworkState.LOADED)
                 initialLoad.postValue(NetworkState.LOADED)
+                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                    EspressoIdlingResource.decrement() // Set app as idle.
+                }
                 callback.onResult(getItems(response), null, 2)
             } else {
                 retry = {

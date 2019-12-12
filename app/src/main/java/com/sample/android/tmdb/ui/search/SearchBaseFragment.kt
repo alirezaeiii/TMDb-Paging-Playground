@@ -11,11 +11,6 @@ abstract class SearchBaseFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override val sortType: SortType? = null
 
-    override fun incrementEspressoIdlingResource() {
-        // Not required for the search fragment because the {@link MainFragment} handles
-        // the logic of incrementing Espresso IdlingResource.
-    }
-
     override fun getNavType(): NavType = (activity as SearchActivity).navType
 
     fun search(query: String?) {
