@@ -171,5 +171,5 @@ class MainActivity : DaggerAppCompatActivity(),
         }
     }
 
-    fun getNavType(): NavType? = viewModel.currentType.value
+    fun getNavType() = viewModel.currentType.value
 }

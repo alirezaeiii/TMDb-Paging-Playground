@@ -1,15 +1,15 @@
 package com.sample.android.tmdb.ui.search
 
-import com.sample.android.tmdb.util.NavType
-import com.sample.android.tmdb.util.SortType
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.util.NavType
+import com.sample.android.tmdb.util.SortType
 import kotlinx.android.synthetic.main.fragment_main.*
 
 abstract class SearchBaseFragment<T : TmdbItem> : BaseFragment<T>() {
 
-    override fun getSortType(): SortType? = null
+    override val sortType: SortType? = null
 
     override fun incrementEspressoIdlingResource() {
         // Not required for the search fragment because the {@link MainFragment} handles

@@ -30,7 +30,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
 
     protected lateinit var viewModel: ItemViewModel<T>
 
-    protected abstract fun getSortType(): SortType?
+    protected abstract val sortType: SortType?
 
     protected abstract fun incrementEspressoIdlingResource()
 
@@ -38,7 +38,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
 
-    protected abstract fun getKeyParcelable() : String
+    protected abstract val keyParcelable : String
 
     protected abstract fun getNavType(): NavType?
 
@@ -107,7 +107,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
     override fun onClick(t: T, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(getKeyParcelable(), t)
+                putParcelable(keyParcelable, t)
                 putParcelable(EXTRA_NAV_TYPE, getNavType())
             })
         }

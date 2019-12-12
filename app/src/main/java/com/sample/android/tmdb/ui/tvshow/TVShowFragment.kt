@@ -15,12 +15,12 @@ abstract class TVShowFragment : MainFragment<TVShow>() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return TVShowsViewModel(dataSource = dataSource,
-                        sortType = getSortType()) as T
+                        sortType = sortType) as T
             }
         })[TVShowsViewModel::class.java]
     }
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
-    override fun getKeyParcelable() = EXTRA_TV_SHOW
+    override val keyParcelable = EXTRA_TV_SHOW
 }

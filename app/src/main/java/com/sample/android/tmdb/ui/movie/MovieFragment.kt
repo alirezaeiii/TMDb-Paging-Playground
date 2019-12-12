@@ -15,12 +15,12 @@ abstract class MovieFragment : MainFragment<Movie>() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return MovieViewModel(dataSource = dataSource,
-                        sortType = getSortType()) as T
+                        sortType = sortType) as T
             }
         })[MovieViewModel::class.java]
     }
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<Movie> = MovieAdapter(this, retryCallback)
 
-    override fun getKeyParcelable() = EXTRA_MOVIE
+    override val keyParcelable = EXTRA_MOVIE
 }
