@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
                 }
             })[MovieDetailViewModel::class.java]
 
-    override fun getLayoutId(): Int = R.layout.fragment_detail_movie
+    override val layoutId = R.layout.fragment_detail_movie
 
     override fun initViewBinding(root: View): FragmentDetailMovieBinding =
             FragmentDetailMovieBinding.bind(root).apply {

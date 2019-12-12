@@ -24,9 +24,9 @@ import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 abstract class DetailFragment<T : TmdbItem>
     : BaseDaggerFragment(), CastClickCallback {
 
-    protected abstract fun getViewModel(): DetailViewModel
+    protected abstract val layoutId: Int
 
-    protected abstract fun getLayoutId(): Int
+    protected abstract fun getViewModel(): DetailViewModel
 
     protected abstract fun initViewBinding(root: View): ViewDataBinding
 
@@ -37,7 +37,7 @@ abstract class DetailFragment<T : TmdbItem>
 
         val viewModel = getViewModel()
 
-        val root = inflater.inflate(getLayoutId(), container, false)
+        val root = inflater.inflate(layoutId, container, false)
 
         initViewBinding(root).apply {
             setVariable(BR.vm, viewModel)
@@ -66,7 +66,7 @@ abstract class DetailFragment<T : TmdbItem>
             }
 
             viewModel.cast.observe(viewLifecycleOwner, Observer {
-                it?.apply {
+                it?.let {
                     val adapter = CastAdapter(it, this@DetailFragment)
                     cast_list.apply {
                         setHasFixedSize(true)

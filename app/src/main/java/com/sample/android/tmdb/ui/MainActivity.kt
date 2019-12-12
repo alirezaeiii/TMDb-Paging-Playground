@@ -134,7 +134,7 @@ class MainActivity : DaggerAppCompatActivity(),
                         SearchActivity::class.java).apply {
                     action = ACTION_SEARCH
                     putExtras(Bundle().apply {
-                        putParcelable(EXTRA_NAV_TYPE, viewModel.currentType.value)
+                        putParcelable(EXTRA_NAV_TYPE, getNavType())
                     })
                 }
                 startActivity(intent, options)

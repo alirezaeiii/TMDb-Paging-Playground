@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
                 }
             })[TVShowDetailViewModel::class.java]
 
-    override fun getLayoutId(): Int = R.layout.fragment_detail_tv_show
+    override val layoutId = R.layout.fragment_detail_tv_show
 
     override fun initViewBinding(root: View): FragmentDetailTvShowBinding =
             FragmentDetailTvShowBinding.bind(root).apply {
