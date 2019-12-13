@@ -12,7 +12,7 @@ class MovieAdapter(
         retryCallback: () -> Unit)
     : ItemAdapter<Movie>(retryCallback) {
 
-    override fun getLayoutID(): Int = R.layout.movie_item
+    override val layoutID = R.layout.movie_item
 
     override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {

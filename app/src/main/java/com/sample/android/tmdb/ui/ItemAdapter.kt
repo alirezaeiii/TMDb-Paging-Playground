@@ -20,7 +20,7 @@ abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
 
     private var networkState: NetworkState? = null
 
-    protected abstract fun getLayoutID(): Int
+    protected abstract val layoutID: Int
 
     protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int)
 
@@ -28,14 +28,14 @@ abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            getLayoutID() -> onBindItemViewHolder(holder, position)
+            layoutID -> onBindItemViewHolder(holder, position)
             R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState, position)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            getLayoutID() -> onCreateViewHolder(parent)
+            layoutID -> onCreateViewHolder(parent)
             R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
@@ -45,7 +45,7 @@ abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.network_state_item
         } else {
-            getLayoutID()
+            layoutID
         }
     }
 

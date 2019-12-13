@@ -12,7 +12,7 @@ class TVShowAdapter(
         retryCallback: () -> Unit)
     : ItemAdapter<TVShow>(retryCallback) {
 
-    override fun getLayoutID(): Int = R.layout.tv_show_item
+    override val layoutID = R.layout.tv_show_item
 
     override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
