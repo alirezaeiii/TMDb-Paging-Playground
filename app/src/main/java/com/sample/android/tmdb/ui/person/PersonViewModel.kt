@@ -13,16 +13,18 @@ import timber.log.Timber
 
 class PersonViewModel(
         private val dataSource: RemoteDataSource,
-        private val personId : Int)
+        private val personId: Int)
     : BaseViewModel() {
 
     private val _person = MutableLiveData<Person>()
-    val person: LiveData<Person> = _person
+    val person: LiveData<Person>
+        get() = _person
 
     val isPersonDetailVisible = ObservableBoolean(false)
 
     private val _knownAs = MutableLiveData<String>()
-    val knownAs: LiveData<String> = _knownAs
+    val knownAs: LiveData<String>
+        get() = _knownAs
 
     init {
         showPerson()

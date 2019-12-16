@@ -16,7 +16,7 @@ class MainViewModule(app: Application) : AndroidViewModel(app) {
 
     private val _currentType = MutableLiveData<NavType>()
     val currentType: LiveData<NavType>
-    get() = _currentType
+        get() = _currentType
 
     private val context = app
 
