@@ -16,17 +16,14 @@ class PageKeyedTVShowsDataSource(
         retryExecutor: Executor)
     : PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper>(retryExecutor) {
 
-    override fun getItems(response: Response<ItemApi.TVShowWrapper>): List<TVShow> {
-        val data = response.body()?.tvShows
-        return data?.map { it } ?: emptyList()
-    }
+    override fun getItems(response: Response<ItemApi.TVShowWrapper>): List<TVShow> =
+            response.body()?.tvShows?.map { it } ?: emptyList()
 
-    override fun fetchItems(page: Int): Call<ItemApi.TVShowWrapper> {
-        if (sortType != null) {
-            return dataSource.fetchTVShows(sortType = sortType, page = page)
-        } else if (query.isNotEmpty()) {
-            return dataSource.fetchTVShows(page = page, query = query)
-        }
-        throw RuntimeException("Unknown state to fetch items")
-    }
+
+    override fun fetchItems(page: Int): Call<ItemApi.TVShowWrapper> =
+            if (query.isEmpty()) {
+                dataSource.fetchTVShows(sortType = sortType!!, page = page)
+            } else {
+                dataSource.fetchTVShows(page = page, query = query)
+            }
 }

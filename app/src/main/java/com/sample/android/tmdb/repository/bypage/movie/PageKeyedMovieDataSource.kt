@@ -16,17 +16,13 @@ class PageKeyedMovieDataSource(
         retryExecutor: Executor)
     : PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper>(retryExecutor) {
 
-    override fun getItems(response: Response<ItemApi.MovieWrapper>): List<Movie> {
-        val data = response.body()?.movies
-        return data?.map { it } ?: emptyList()
-    }
+    override fun getItems(response: Response<ItemApi.MovieWrapper>): List<Movie> =
+            response.body()?.movies?.map { it } ?: emptyList()
 
-    override fun fetchItems(page: Int): Call<ItemApi.MovieWrapper> {
-        if (sortType != null) {
-            return dataSource.fetchMovies(sortType = sortType, page = page)
-        } else if (query.isNotEmpty()) {
-            return dataSource.fetchMovies(page = page, query = query)
-        }
-        throw RuntimeException("Unknown state to fetch items")
-    }
+    override fun fetchItems(page: Int): Call<ItemApi.MovieWrapper> =
+            if (query.isEmpty()) {
+                dataSource.fetchMovies(sortType = sortType!!, page = page)
+            } else {
+                dataSource.fetchMovies(page = page, query = query)
+            }
 }
