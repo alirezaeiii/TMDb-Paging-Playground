@@ -14,19 +14,15 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBindingModule {
 
-    @ActivityScoped
     @ContributesAndroidInjector(modules = [ItemModule::class])
     internal abstract fun mainActivity(): MainActivity
 
-    @ActivityScoped
     @ContributesAndroidInjector(modules = [SearchModule::class])
     internal abstract fun searchActivity(): SearchActivity
 
-    @ActivityScoped
     @ContributesAndroidInjector(modules = [DetailModule::class])
     internal abstract fun detailActivity(): DetailActivity
 
-    @ActivityScoped
     @ContributesAndroidInjector(modules = [PersonModule::class])
     internal abstract fun personActivity(): PersonActivity
 }

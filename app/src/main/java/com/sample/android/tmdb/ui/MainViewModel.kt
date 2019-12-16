@@ -8,7 +8,7 @@ import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
 import timber.log.Timber
 
-class MainViewModule(app: Application) : AndroidViewModel(app) {
+class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _headline = MutableLiveData<String>()
     val headline: LiveData<String>

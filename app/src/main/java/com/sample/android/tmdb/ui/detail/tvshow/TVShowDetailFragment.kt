@@ -6,13 +6,11 @@ import android.arch.lifecycle.ViewModelProviders
 import android.view.View
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailTvShowBinding
-import com.sample.android.tmdb.di.ActivityScoped
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import com.sample.android.tmdb.domain.TVShow
 import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 
-@ActivityScoped
 class TVShowDetailFragment @Inject
 constructor() // Required empty public constructor
     : DetailFragment<TVShow>() {

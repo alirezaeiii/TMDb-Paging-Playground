@@ -51,7 +51,7 @@ class MainActivity : DaggerAppCompatActivity(),
     @Inject
     lateinit var latestTVShowFragment: LatestTVShowFragment
 
-    private lateinit var viewModel: MainViewModule
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,7 +112,7 @@ class MainActivity : DaggerAppCompatActivity(),
         }
 
         viewModel = ViewModelProviders.of(this)
-                .get(MainViewModule::class.java)
+                .get(MainViewModel::class.java)
         viewModel.headline.observe(this, Observer {
             title = it
         })
