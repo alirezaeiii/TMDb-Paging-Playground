@@ -46,7 +46,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
 
         initViewModel()
 
-        val adapter = getAdapter {
+        val itemAdapter = getAdapter {
             viewModel.retry()
         }
 
@@ -69,23 +69,23 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallb
             list.apply {
                 addItemDecoration(MarginDecoration(context))
                 setHasFixedSize(true)
-                list.adapter = adapter
+                adapter = itemAdapter
                 manager.spanSizeLookup = object : SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        return if (adapter.getItemViewType(position) != R.layout.network_state_item)
+                        return if (itemAdapter.getItemViewType(position) != R.layout.network_state_item)
                             1 else manager.spanCount
                     }
                 }
             }
 
             viewModel.items.observe(viewLifecycleOwner, Observer<PagedList<T>> {
-                adapter.submitList(it)
+                itemAdapter.submitList(it)
                 list.scheduleLayoutAnimation()
             })
         }
 
         viewModel.networkState.observe(this, Observer {
-            adapter.setNetworkState(it)
+            itemAdapter.setNetworkState(it)
         })
 
         return root
