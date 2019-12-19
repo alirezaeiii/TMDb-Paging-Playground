@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
+import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.movie.MovieAdapter
 import com.sample.android.tmdb.ui.movie.MovieViewModel
 

@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.person
 
-import com.sample.android.tmdb.ui.person.PersonActivity.Companion.EXTRA_PERSON
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

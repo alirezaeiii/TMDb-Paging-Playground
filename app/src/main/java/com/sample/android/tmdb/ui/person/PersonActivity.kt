@@ -23,8 +23,6 @@ class PersonActivity : DaggerAppCompatActivity() {
             }
         }
     }
-
-    companion object {
-        const val EXTRA_PERSON = "person"
-    }
 }
+
+const val EXTRA_PERSON = "person"

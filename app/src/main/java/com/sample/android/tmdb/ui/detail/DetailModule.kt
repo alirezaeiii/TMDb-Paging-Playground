@@ -2,9 +2,6 @@ package com.sample.android.tmdb.ui.detail
 
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
 import com.sample.android.tmdb.util.NavType

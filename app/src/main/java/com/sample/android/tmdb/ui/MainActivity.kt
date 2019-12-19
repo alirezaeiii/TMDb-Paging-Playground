@@ -18,8 +18,8 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
 import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
+import com.sample.android.tmdb.ui.search.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.search.SearchActivity
-import com.sample.android.tmdb.ui.search.SearchActivity.Companion.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.tvshow.PopularTVShowFragment

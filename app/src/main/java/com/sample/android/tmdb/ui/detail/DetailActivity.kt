@@ -43,10 +43,8 @@ class DetailActivity : DaggerAppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    companion object {
-        const val EXTRA_MOVIE = "movie"
-        const val EXTRA_TV_SHOW = "tv_show"
-        const val EXTRA_NAV_TYPE = "nav_type"
-    }
 }
+
+const val EXTRA_MOVIE = "movie"
+const val EXTRA_TV_SHOW = "tv_show"
+const val EXTRA_NAV_TYPE = "nav_type"

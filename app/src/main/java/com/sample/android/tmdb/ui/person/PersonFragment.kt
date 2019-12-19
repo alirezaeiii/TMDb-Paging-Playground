@@ -67,8 +67,9 @@ constructor() // Required empty public constructor
             }
 
             viewModel.person.observe(this@PersonFragment, Observer {
-
-                biography_label.visibleGone(it?.biography?.trim() != "")
+                it?.let {
+                    biography_label.visibleGone(it.biography.trim().isNotEmpty())
+                }
             })
 
             biography.setOnClickListener {
@@ -77,14 +78,12 @@ constructor() // Required empty public constructor
             }
 
             viewModel.knownAs.observe(this@PersonFragment, Observer {
-
                 it?.let {
                     known_as.visibleGone(it.isNotEmpty())
                     known_as.text = getString(R.string.known_as, it)
                 }
             })
         }
-
         return root
     }
 }

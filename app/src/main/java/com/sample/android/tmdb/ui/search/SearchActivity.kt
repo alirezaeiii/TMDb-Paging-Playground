@@ -76,9 +76,6 @@ class SearchActivity : DaggerAppCompatActivity() {
             NavType.TV_SERIES -> (fragment as SearchTVShowFragment).search(query)
         }
     }
-
-    companion object {
-
-        const val EXTRA_NAV_TYPE = "nav_type"
-    }
 }
+
+const val EXTRA_NAV_TYPE = "nav_type"

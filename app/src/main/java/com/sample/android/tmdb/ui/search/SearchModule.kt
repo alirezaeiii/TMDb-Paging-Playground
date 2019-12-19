@@ -1,7 +1,6 @@
 package com.sample.android.tmdb.ui.search
 
 import com.sample.android.tmdb.util.NavType
-import com.sample.android.tmdb.ui.search.SearchActivity.Companion.EXTRA_NAV_TYPE
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

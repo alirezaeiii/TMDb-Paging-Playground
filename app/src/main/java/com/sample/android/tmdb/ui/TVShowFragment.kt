@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
+import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
 import com.sample.android.tmdb.ui.tvshow.TVShowsViewModel
 
