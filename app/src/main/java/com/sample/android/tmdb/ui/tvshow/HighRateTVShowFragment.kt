@@ -4,7 +4,7 @@ import com.sample.android.tmdb.util.SortType.HIGHEST_RATED
 import javax.inject.Inject
 
 class HighRateTVShowFragment @Inject
-constructor() : MainTVShowFragment() {
+constructor() : TVShowFragment() {
 
-    override val sortType= HIGHEST_RATED
+    override val sortType = HIGHEST_RATED
 }
