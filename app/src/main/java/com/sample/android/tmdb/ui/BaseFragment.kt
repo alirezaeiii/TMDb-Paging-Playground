@@ -21,15 +21,12 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.NavType
-import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.widget.MarginDecoration
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallback<T> {
 
     protected lateinit var viewModel: ItemViewModel<T>
-
-    protected abstract val sortType: SortType?
 
     protected abstract val keyParcelable : String
 

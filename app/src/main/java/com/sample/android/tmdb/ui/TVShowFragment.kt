@@ -8,7 +8,7 @@ import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
 import com.sample.android.tmdb.ui.tvshow.TVShowsViewModel
 
-abstract class TVShowFragment : BaseFragment<TVShow>() {
+abstract class TVShowFragment : BaseItemFragment<TVShow>() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {

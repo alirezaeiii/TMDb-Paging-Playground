@@ -1,22 +1,18 @@
-package com.sample.android.tmdb.ui.tvshow
+package com.sample.android.tmdb.ui.search
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.repository.Listing
 import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.repository.bypage.tvshow.TVShowsPageKeyRepository
-import com.sample.android.tmdb.ui.BaseItemViewModel
-import com.sample.android.tmdb.util.SortType
+import com.sample.android.tmdb.repository.bypage.search.SearchTVShowPageKeyRepository
+import com.sample.android.tmdb.ui.ItemViewModel
 
-class TVShowsViewModel(
-        dataSource: RemoteDataSource,
-        sortType: SortType) : BaseItemViewModel<TVShow>() {
+class SearchTvShowViewModel(dataSource: RemoteDataSource) : ItemViewModel<TVShow>() {
 
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
-        TVShowsPageKeyRepository(
+        SearchTVShowPageKeyRepository(
                 dataSource = dataSource,
-                sortType = sortType,
                 networkExecutor = NETWORK_IO).getItems(it, 20)
     }
 }

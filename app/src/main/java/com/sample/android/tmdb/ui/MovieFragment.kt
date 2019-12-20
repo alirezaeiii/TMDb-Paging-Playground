@@ -8,7 +8,7 @@ import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.movie.MovieAdapter
 import com.sample.android.tmdb.ui.movie.MovieViewModel
 
-abstract class MovieFragment : BaseFragment<Movie>() {
+abstract class MovieFragment : BaseItemFragment<Movie>() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
