@@ -8,12 +8,12 @@ import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
 import java.util.concurrent.Executor
 
 class SearchMovieDataSourceFactory(
-        private val dataSource: RemoteDataSource,
-        private val query: String,
-        private val retryExecutor: Executor)
+        dataSource: RemoteDataSource,
+        query: String,
+        retryExecutor: Executor)
     : ItemDataSourceFactory<Movie, ItemApi.MovieWrapper>() {
 
-    override fun getDataSource(): PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper> =
+    override val source: PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper> =
             PageKeyedSearchMovieDataSource(dataSource = dataSource,
                     query = query,
                     retryExecutor = retryExecutor)

@@ -9,12 +9,12 @@ import com.sample.android.tmdb.domain.Movie
 import java.util.concurrent.Executor
 
 class MoviesDataSourceFactory(
-        private val dataSource: RemoteDataSource,
-        private val sortType: SortType,
-        private val retryExecutor: Executor)
+        dataSource: RemoteDataSource,
+        sortType: SortType,
+        retryExecutor: Executor)
     : ItemDataSourceFactory<Movie, ItemApi.MovieWrapper>() {
 
-    override fun getDataSource(): PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper> =
+    override val source: PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper> =
             PageKeyedMovieDataSource(dataSource = dataSource,
                     sortType = sortType,
                     retryExecutor = retryExecutor)
