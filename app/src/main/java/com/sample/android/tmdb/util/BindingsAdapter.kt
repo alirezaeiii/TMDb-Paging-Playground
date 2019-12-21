@@ -20,10 +20,6 @@ import com.sample.android.tmdb.domain.Video
 
 object BindingsAdapter {
 
-    private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
-    internal const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
-    internal const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
-
     @JvmStatic
     @BindingAdapter("movieImageUrl")
     fun bindImageMovie(cardView: CardView, url: String?) {
@@ -132,3 +128,7 @@ object BindingsAdapter {
                 .into(imageView)
     }
 }
+
+private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
+const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
+const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"

@@ -14,8 +14,8 @@ import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
 import com.sample.android.tmdb.ui.BaseDaggerFragment
-import com.sample.android.tmdb.util.BindingsAdapter.BASE_BACKDROP_PATH
-import com.sample.android.tmdb.util.BindingsAdapter.IMAGE_LOW_RES_BASE_URL
+import com.sample.android.tmdb.util.BASE_BACKDROP_PATH
+import com.sample.android.tmdb.util.IMAGE_LOW_RES_BASE_URL
 import com.sample.android.tmdb.util.visibleGone
 import kotlinx.android.synthetic.main.fragment_person.view.*
 import kotlinx.android.synthetic.main.person_header.view.*
