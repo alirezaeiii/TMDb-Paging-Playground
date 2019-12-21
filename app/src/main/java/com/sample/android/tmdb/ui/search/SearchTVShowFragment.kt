@@ -20,9 +20,9 @@ constructor() // Required empty public constructor
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return SearchTvShowViewModel(dataSource = dataSource) as T
+                return SearchTVShowViewModel(dataSource = dataSource) as T
             }
-        })[SearchTvShowViewModel::class.java]
+        })[SearchTVShowViewModel::class.java]
     }
 
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)

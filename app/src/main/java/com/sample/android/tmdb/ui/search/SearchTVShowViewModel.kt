@@ -8,7 +8,7 @@ import com.sample.android.tmdb.repository.RemoteDataSource
 import com.sample.android.tmdb.repository.bypage.search.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.ui.ItemViewModel
 
-class SearchTvShowViewModel(dataSource: RemoteDataSource) : ItemViewModel<TVShow>() {
+class SearchTVShowViewModel(dataSource: RemoteDataSource) : ItemViewModel<TVShow>() {
 
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
         SearchTVShowPageKeyRepository(
