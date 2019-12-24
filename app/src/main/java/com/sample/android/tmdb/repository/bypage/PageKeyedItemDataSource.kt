@@ -6,7 +6,6 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Response
-import java.io.IOException
 import java.util.concurrent.Executor
 
 abstract class PageKeyedItemDataSource<T, E>(
@@ -89,33 +88,23 @@ abstract class PageKeyedItemDataSource<T, E>(
         EspressoIdlingResource.increment() // App is busy until further notice
 
         // triggered by a refresh, we better execute sync
-        try {
-            val response = fetchItems(1).execute()
-            if (response.isSuccessful) {
-                retry = null
-                networkState.postValue(NetworkState.LOADED)
-                initialLoad.postValue(NetworkState.LOADED)
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-                callback.onResult(getItems(response), null, 2)
-            } else {
-                retry = {
-                    loadInitial(params, callback)
-                }
-                initNetworkError("error code: ${response.code()} " + response.message())
-            }
-        } catch (ioException: IOException) {
+
+        val response = fetchItems(1).execute()
+        if (response.isSuccessful) {
+            retry = null
+            networkState.postValue(NetworkState.LOADED)
+            initialLoad.postValue(NetworkState.LOADED)
+            callback.onResult(getItems(response), null, 2)
+        } else {
             retry = {
                 loadInitial(params, callback)
             }
-            initNetworkError(ioException.message ?: "unknown error")
+            val error = NetworkState.error("error code: ${response.code()} " + response.message())
+            networkState.postValue(error)
+            initialLoad.postValue(error)
         }
-    }
-
-    private fun initNetworkError(msg: String) {
-        val error = NetworkState.error(msg)
-        networkState.postValue(error)
-        initialLoad.postValue(error)
+        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+            EspressoIdlingResource.decrement() // Set app as idle.
+        }
     }
 }
