@@ -3,7 +3,6 @@ package com.sample.android.tmdb.ui.search
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
@@ -13,7 +12,6 @@ import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
-
 
 class SearchActivity : DaggerAppCompatActivity() {
 
@@ -57,24 +55,17 @@ class SearchActivity : DaggerAppCompatActivity() {
 
         search_view.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                search(fragment, query)
+                fragment.search(query)
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isNotEmpty()) {
-                    search(fragment, query)
+                    fragment.search(query)
                 }
                 return true
             }
         })
-    }
-
-    private fun search(fragment : Fragment, query : String) {
-        when (navType) {
-            NavType.MOVIES -> (fragment as SearchMovieFragment).search(query)
-            NavType.TV_SERIES -> (fragment as SearchTVShowFragment).search(query)
-        }
     }
 }
 

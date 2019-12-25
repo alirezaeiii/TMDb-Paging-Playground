@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE
 import com.sample.android.tmdb.ui.movie.MovieAdapter
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 class SearchMovieFragment @Inject
 constructor() // Required empty public constructor
-    : BaseFragment<Movie>() {
+    : BaseSearchFragment<Movie>() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -31,7 +30,7 @@ constructor() // Required empty public constructor
 
     override fun getNavType(): NavType = (activity as SearchActivity).navType
 
-    fun search(query: String?) {
+    override fun search(query: String) {
         if (viewModel.showQuery(query)) {
             list.scrollToPosition(0)
             (list.adapter as MovieAdapter).submitList(null)

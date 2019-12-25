@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 class SearchTVShowFragment @Inject
 constructor() // Required empty public constructor
-    : BaseFragment<TVShow>() {
+    : BaseSearchFragment<TVShow>() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
@@ -31,7 +30,7 @@ constructor() // Required empty public constructor
 
     override fun getNavType(): NavType = (activity as SearchActivity).navType
 
-    fun search(query: String?) {
+    override fun search(query: String) {
         if (viewModel.showQuery(query)) {
             list.scrollToPosition(0)
             (list.adapter as TVShowAdapter).submitList(null)
