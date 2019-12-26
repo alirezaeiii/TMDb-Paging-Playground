@@ -8,7 +8,6 @@ import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
 import com.sample.android.tmdb.util.NavType
-import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 class SearchTVShowFragment @Inject
@@ -29,8 +28,4 @@ constructor() // Required empty public constructor
     override val keyParcelable = EXTRA_TV_SHOW
 
     override fun getNavType(): NavType = (activity as SearchActivity).navType
-
-    override fun resetAdapter() {
-        (list.adapter as TVShowAdapter).submitList(null)
-    }
 }
