@@ -30,10 +30,7 @@ constructor() // Required empty public constructor
 
     override fun getNavType(): NavType = (activity as SearchActivity).navType
 
-    override fun search(query: String) {
-        if (viewModel.showQuery(query)) {
-            list.scrollToPosition(0)
-            (list.adapter as MovieAdapter).submitList(null)
-        }
+    override fun resetAdapter() {
+        (list.adapter as MovieAdapter).submitList(null)
     }
 }
