@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE
-import com.sample.android.tmdb.ui.movie.MovieAdapter
+import com.sample.android.tmdb.ui.item.movie.MovieAdapter
 import com.sample.android.tmdb.util.NavType
 import javax.inject.Inject
 

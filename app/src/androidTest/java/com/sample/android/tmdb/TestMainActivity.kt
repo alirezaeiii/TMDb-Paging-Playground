@@ -12,7 +12,7 @@ import android.widget.EditText
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.CastAdapter
-import com.sample.android.tmdb.ui.movie.MovieViewHolder
+import com.sample.android.tmdb.ui.item.movie.MovieViewHolder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

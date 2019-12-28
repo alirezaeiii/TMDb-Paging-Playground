@@ -9,12 +9,12 @@ import com.sample.android.tmdb.domain.TVShow
 import java.util.concurrent.Executor
 
 class TVShowsDataSourceFactory(
-        dataSource: RemoteDataSource,
-        sortType: SortType,
-        retryExecutor: Executor)
+        private val dataSource: RemoteDataSource,
+        private val sortType: SortType,
+        private val retryExecutor: Executor)
     : ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper>() {
 
-    override val source: PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper> =
+    override fun getDataSource(): PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper> =
             PageKeyedTVShowsDataSource(dataSource = dataSource,
                     sortType = sortType,
                     retryExecutor = retryExecutor)

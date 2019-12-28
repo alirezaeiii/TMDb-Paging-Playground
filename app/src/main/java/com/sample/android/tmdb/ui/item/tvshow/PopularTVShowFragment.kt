@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.tvshow
+package com.sample.android.tmdb.ui.item.tvshow
 
 import com.sample.android.tmdb.util.SortType.MOST_POPULAR
 import javax.inject.Inject

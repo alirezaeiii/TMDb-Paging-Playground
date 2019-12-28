@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.movie
+package com.sample.android.tmdb.ui.item.movie
 
 import com.sample.android.tmdb.util.SortType.UPCOMING
 import javax.inject.Inject

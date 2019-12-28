@@ -1,4 +1,6 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.item
+
+import com.sample.android.tmdb.ui.ItemViewModel
 
 abstract class BaseItemViewModel<T> : ItemViewModel<T>() {
 

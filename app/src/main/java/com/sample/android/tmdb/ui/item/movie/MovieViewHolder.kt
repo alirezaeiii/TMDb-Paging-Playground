@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.movie
+package com.sample.android.tmdb.ui.item.movie
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView

@@ -8,12 +8,12 @@ import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
 import java.util.concurrent.Executor
 
 class SearchTVShowDataSourceFactory(
-        dataSource: RemoteDataSource,
-        query: String,
-        retryExecutor: Executor)
+        private val dataSource: RemoteDataSource,
+        private val query: String,
+        private val retryExecutor: Executor)
     : ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper>() {
 
-    override val source: PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper> =
+    override fun getDataSource(): PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper> =
             PageKeyedSearchTVShowDataSource(dataSource = dataSource,
                     query = query,
                     retryExecutor = retryExecutor)

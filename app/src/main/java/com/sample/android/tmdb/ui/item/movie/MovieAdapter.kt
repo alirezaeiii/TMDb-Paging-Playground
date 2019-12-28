@@ -1,29 +1,29 @@
-package com.sample.android.tmdb.ui.tvshow
+package com.sample.android.tmdb.ui.item.movie
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.ItemClickCallback
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.Movie
 
-class TVShowAdapter(
-        private val itemClickCallback: ItemClickCallback<TVShow>,
+class MovieAdapter(
+        private val itemClickCallback: ItemClickCallback<Movie>,
         retryCallback: () -> Unit)
-    : ItemAdapter<TVShow>(retryCallback) {
+    : ItemAdapter<Movie>(retryCallback) {
 
-    override val layoutID = R.layout.tv_show_item
+    override val layoutID = R.layout.movie_item
 
     override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
-            with((holder as TVShowViewHolder).binding) {
-                tvShow = it
+            with((holder as MovieViewHolder).binding) {
+                movie = it
                 executePendingBindings()
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return TVShowViewHolder.create(parent, itemClickCallback)
+        return MovieViewHolder.create(parent, itemClickCallback)
     }
 }

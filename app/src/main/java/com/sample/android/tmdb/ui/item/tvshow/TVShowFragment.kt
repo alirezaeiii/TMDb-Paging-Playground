@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.ui.tvshow
+package com.sample.android.tmdb.ui.item.tvshow
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.ui.BaseItemFragment
+import com.sample.android.tmdb.ui.item.BaseItemFragment
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW

@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.ItemModule
+import com.sample.android.tmdb.ui.item.ItemModule
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.DetailModule
 import com.sample.android.tmdb.ui.person.PersonActivity

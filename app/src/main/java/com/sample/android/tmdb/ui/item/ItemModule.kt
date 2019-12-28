@@ -1,9 +1,9 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.item
 
-import com.sample.android.tmdb.ui.tvshow.*
-import com.sample.android.tmdb.ui.movie.HighRateMoviesFragment
-import com.sample.android.tmdb.ui.movie.PopularMoviesFragment
-import com.sample.android.tmdb.ui.movie.UpcomingMoviesFragment
+import com.sample.android.tmdb.ui.item.tvshow.*
+import com.sample.android.tmdb.ui.item.movie.HighRateMoviesFragment
+import com.sample.android.tmdb.ui.item.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.item.movie.UpcomingMoviesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

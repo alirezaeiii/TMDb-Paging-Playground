@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.tvshow
+package com.sample.android.tmdb.ui.item.tvshow
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView

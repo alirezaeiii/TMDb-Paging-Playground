@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.ui.ItemAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
-import com.sample.android.tmdb.ui.tvshow.TVShowAdapter
+import com.sample.android.tmdb.ui.item.tvshow.TVShowAdapter
 import com.sample.android.tmdb.util.NavType
 import javax.inject.Inject
 
