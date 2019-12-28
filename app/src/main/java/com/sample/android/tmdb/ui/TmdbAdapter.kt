@@ -9,7 +9,7 @@ import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.domain.TmdbItem
 import java.util.*
 
-abstract class ItemAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
+abstract class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
     : PagedListAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
             Objects.equals(oldItem, newItem)

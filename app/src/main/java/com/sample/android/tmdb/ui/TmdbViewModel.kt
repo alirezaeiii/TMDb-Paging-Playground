@@ -10,7 +10,7 @@ import com.sample.android.tmdb.repository.NetworkState
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-abstract class ItemViewModel<T>(
+abstract class TmdbViewModel<T>(
         // thread pool used for network requests
         protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5))
     : ViewModel() {

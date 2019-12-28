@@ -3,14 +3,14 @@ package com.sample.android.tmdb.ui.item.movie
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.ItemClickCallback
+import com.sample.android.tmdb.ui.TmdbAdapter
+import com.sample.android.tmdb.ui.TmdbClickCallback
 import com.sample.android.tmdb.domain.Movie
 
 class MovieAdapter(
-        private val itemClickCallback: ItemClickCallback<Movie>,
+        private val tmdbClickCallback: TmdbClickCallback<Movie>,
         retryCallback: () -> Unit)
-    : ItemAdapter<Movie>(retryCallback) {
+    : TmdbAdapter<Movie>(retryCallback) {
 
     override val layoutID = R.layout.movie_item
 
@@ -24,6 +24,6 @@ class MovieAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return MovieViewHolder.create(parent, itemClickCallback)
+        return MovieViewHolder.create(parent, tmdbClickCallback)
     }
 }

@@ -3,14 +3,14 @@ package com.sample.android.tmdb.ui.item.tvshow
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.ItemClickCallback
+import com.sample.android.tmdb.ui.TmdbAdapter
+import com.sample.android.tmdb.ui.TmdbClickCallback
 import com.sample.android.tmdb.domain.TVShow
 
 class TVShowAdapter(
-        private val itemClickCallback: ItemClickCallback<TVShow>,
+        private val tmdbClickCallback: TmdbClickCallback<TVShow>,
         retryCallback: () -> Unit)
-    : ItemAdapter<TVShow>(retryCallback) {
+    : TmdbAdapter<TVShow>(retryCallback) {
 
     override val layoutID = R.layout.tv_show_item
 
@@ -24,6 +24,6 @@ class TVShowAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return TVShowViewHolder.create(parent, itemClickCallback)
+        return TVShowViewHolder.create(parent, tmdbClickCallback)
     }
 }

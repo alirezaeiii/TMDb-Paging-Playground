@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.ui.ItemAdapter
+import com.sample.android.tmdb.ui.TmdbAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_TV_SHOW
 import com.sample.android.tmdb.ui.item.BaseItemFragment
 
@@ -20,7 +20,7 @@ abstract class TVShowFragment : BaseItemFragment<TVShow>() {
         })[TVShowsViewModel::class.java]
     }
 
-    override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<TVShow> = TVShowAdapter(this, retryCallback)
+    override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
     override val keyParcelable = EXTRA_TV_SHOW
 }

@@ -10,7 +10,7 @@
 
         <variable
             name="callback"
-            type="com.sample.android.tmdb.ui.ItemClickCallback" />
+            type="com.sample.android.tmdb.ui.TmdbClickCallback" />
 
         <variable
             name="poster"

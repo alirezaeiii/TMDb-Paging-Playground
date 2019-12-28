@@ -24,15 +24,15 @@ import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.widget.MarginDecoration
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), ItemClickCallback<T> {
+abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallback<T> {
 
-    protected lateinit var viewModel: ItemViewModel<T>
+    protected lateinit var viewModel: TmdbViewModel<T>
 
     protected abstract val keyParcelable : String
 
     protected abstract fun initViewModel()
 
-    protected abstract fun getAdapter(retryCallback: () -> Unit): ItemAdapter<T>
+    protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
 
     protected abstract fun getNavType(): NavType?
 
