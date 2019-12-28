@@ -4,11 +4,9 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.ui.item.BaseItemFragment
 import com.sample.android.tmdb.ui.ItemAdapter
-import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE
-import com.sample.android.tmdb.util.NavType
+import com.sample.android.tmdb.ui.item.BaseItemFragment
 
 abstract class MovieFragment : BaseItemFragment<Movie>() {
 
@@ -25,6 +23,4 @@ abstract class MovieFragment : BaseItemFragment<Movie>() {
     override fun getAdapter(retryCallback: () -> Unit): ItemAdapter<Movie> = MovieAdapter(this, retryCallback)
 
     override val keyParcelable = EXTRA_MOVIE
-
-    override fun getNavType(): NavType? = (activity as MainActivity).getNavType()
 }
