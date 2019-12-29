@@ -80,7 +80,7 @@ class MainActivity : DaggerAppCompatActivity(),
 
             setOnNavigationItemSelectedListener {
 
-                val navType = viewModel.currentType.value
+                val navType = getNavType()
 
                 when (it.itemId) {
                     R.id.action_popular -> {
