@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:columnWidth="@dimen/column_width"
-        android:layoutAnimation="@anim/grid_layout_animation_from_bottom"
         android:padding="@dimen/padding_small"
         tools:listitem="@layout/movie_item" />
 

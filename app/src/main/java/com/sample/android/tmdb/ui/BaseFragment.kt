@@ -75,7 +75,6 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
 
             viewModel.items.observe(viewLifecycleOwner, Observer<PagedList<T>> {
                 itemAdapter.submitList(it)
-                list.scheduleLayoutAnimation()
             })
         }
 
