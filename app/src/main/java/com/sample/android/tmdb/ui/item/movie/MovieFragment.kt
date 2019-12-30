@@ -10,15 +10,14 @@ import com.sample.android.tmdb.ui.item.BaseItemFragment
 
 abstract class MovieFragment : BaseItemFragment<Movie>() {
 
-    override fun initViewModel() {
-        viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return MovieViewModel(dataSource = dataSource,
-                        sortType = sortType) as T
-            }
-        })[MovieViewModel::class.java]
-    }
+    override fun initViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            @Suppress("UNCHECKED_CAST")
+            return MovieViewModel(dataSource = dataSource,
+                    sortType = sortType) as T
+        }
+    })[MovieViewModel::class.java]
+
 
     override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<Movie> = MovieAdapter(this, retryCallback)
 

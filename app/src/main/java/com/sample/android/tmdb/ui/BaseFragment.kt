@@ -26,11 +26,11 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallback<T> {
 
-    protected lateinit var viewModel: TmdbViewModel<T>
+    protected val viewModel: TmdbViewModel<T> by lazy { initViewModel() }
 
-    protected abstract val keyParcelable : String
+    protected abstract val keyParcelable: String
 
-    protected abstract fun initViewModel()
+    protected abstract fun initViewModel(): TmdbViewModel<T>
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
 
@@ -40,8 +40,6 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
                               savedInstanceState: Bundle?): View? {
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-
-        initViewModel()
 
         val itemAdapter = getAdapter {
             viewModel.retry()
