@@ -72,11 +72,11 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
                     }
                 }
             }
-
-            viewModel.items.observe(viewLifecycleOwner, Observer<PagedList<T>> {
-                itemAdapter.submitList(it)
-            })
         }
+
+        viewModel.items.observe(this, Observer<PagedList<T>> {
+            itemAdapter.submitList(it)
+        })
 
         viewModel.networkState.observe(this, Observer {
             itemAdapter.setNetworkState(it)
