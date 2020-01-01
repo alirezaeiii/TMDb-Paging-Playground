@@ -17,6 +17,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.Video
+import de.hdodenhof.circleimageview.CircleImageView
 
 object BindingsAdapter {
 
@@ -127,8 +128,19 @@ object BindingsAdapter {
                 .apply(options)
                 .into(imageView)
     }
+
+    @JvmStatic
+    @BindingAdapter("profileUrl")
+    fun bindProfileImage(imageView: CircleImageView, url: String?) {
+
+        Glide.with(imageView.context)
+                .load("$IMAGE_LOW_RES_BASE_URL$url")
+                .apply(RequestOptions()
+                        .error(R.drawable.ic_error_outline_white_96dp))
+                .into(imageView)
+    }
 }
 
 private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
-const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
-const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
+private const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
+private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"

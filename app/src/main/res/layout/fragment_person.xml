@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="person"
+            type="com.sample.android.tmdb.ui.person.PersonExtra" />
+
+        <variable
             name="vm"
             type="com.sample.android.tmdb.ui.person.PersonViewModel" />
     </data>
@@ -22,7 +26,8 @@
 
             <include
                 android:id="@+id/person_header"
-                layout="@layout/person_header" />
+                layout="@layout/person_header"
+                app:person="@{person}" />
 
         </android.support.design.widget.AppBarLayout>
 

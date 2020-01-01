@@ -1,88 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sample.android.tmdb.widget.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minHeight="?attr/actionBarSize"
-    app:layoutDescription="@xml/scene_person_header"
-    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-    tools:background="?attr/colorPrimary"
-    tools:maxHeight="320dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/image_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintVertical_bias="0.38"
-        tools:ignore="ContentDescription" />
+    <data>
 
-    <View
-        android:id="@+id/icon_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/window_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+        <variable
+            name="person"
+            type="com.sample.android.tmdb.ui.person.PersonExtra" />
 
-    <ImageView
-        android:id="@+id/tileable_edge"
+    </data>
+
+    <com.sample.android.tmdb.widget.CollapsibleToolbar
         android:layout_width="match_parent"
-        android:layout_height="30px"
-        android:scaleType="fitXY"
-        android:src="@drawable/tileable_edge"
-        android:tint="@color/window_background"
-        app:layout_constraintBottom_toTopOf="@id/icon_background"
-        tools:ignore="PxUsage,contentDescription" />
+        android:layout_height="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        app:layoutDescription="@xml/scene_person_header"
+        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+        tools:background="?attr/colorPrimary"
+        tools:maxHeight="320dp">
 
-    <FrameLayout
-        android:id="@+id/search_back_frame"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:paddingStart="@dimen/padding_micro"
-        tools:ignore="RtlSymmetry">
+        <ImageView
+            android:id="@+id/image_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{person.backdropPath}"
+            app:layout_constraintVertical_bias="0.38"
+            tools:ignore="ContentDescription" />
 
-        <ImageButton
-            android:id="@+id/search_back"
+        <View
+            android:id="@+id/icon_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/window_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+        <ImageView
+            android:id="@+id/tileable_edge"
+            android:layout_width="match_parent"
+            android:layout_height="30px"
+            android:scaleType="fitXY"
+            android:src="@drawable/tileable_edge"
+            android:tint="@color/window_background"
+            app:layout_constraintBottom_toTopOf="@id/icon_background"
+            tools:ignore="PxUsage,contentDescription" />
+
+        <FrameLayout
+            android:id="@+id/back_frame"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:paddingStart="@dimen/padding_micro"
+            tools:ignore="RtlSymmetry">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back_padded"
+                android:transitionName="@string/transition_search_back"
+                tools:ignore="contentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="162dp"
+            android:layout_height="41dp"
+            android:text="@{person.personName}"
+            app:autoSizeTextType="uniform"
+            tools:text="Ali Rezaei" />
+
+        <RelativeLayout
+            android:id="@+id/icon_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
+                app:profileUrl="@{person.profilePath}"
+                tools:src="@drawable/ic_error_outline_black_36dp" />
+
+        </RelativeLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back_padded"
-            android:transitionName="@string/transition_search_back"
-            tools:ignore="contentDescription" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.67" />
 
-    </FrameLayout>
+    </com.sample.android.tmdb.widget.CollapsibleToolbar>
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="162dp"
-        android:layout_height="41dp"
-        app:autoSizeTextType="uniform"
-        tools:text="Ali Rezaei" />
-
-    <RelativeLayout
-        android:id="@+id/icon_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/icon"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp"
-            tools:src="@drawable/ic_error_outline_black_36dp" />
-
-    </RelativeLayout>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67" />
-
-</com.sample.android.tmdb.widget.CollapsibleToolbar>
+</layout>

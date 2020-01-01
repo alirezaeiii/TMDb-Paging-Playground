@@ -68,7 +68,7 @@
                 motion:layout_constraintVertical_chainStyle="packed" />
 
             <Constraint
-                android:id="@id/search_back_frame"
+                android:id="@id/back_frame"
                 android:layout_width="72dp"
                 android:layout_height="?attr/actionBarSize"
                 motion:layout_constraintTop_toTopOf="parent" />
@@ -103,7 +103,7 @@
                 android:layout_height="28dp"
                 android:layout_marginBottom="14dp"
                 motion:layout_constraintBottom_toBottomOf="parent"
-                motion:layout_constraintStart_toEndOf="@+id/search_back_frame" />
+                motion:layout_constraintStart_toEndOf="@+id/back_frame" />
 
             <Constraint
                 android:id="@id/icon_layout"
@@ -116,7 +116,7 @@
                 motion:layout_constraintEnd_toEndOf="parent" />
 
             <Constraint
-                android:id="@id/search_back_frame"
+                android:id="@id/back_frame"
                 android:layout_width="72dp"
                 android:layout_height="?attr/actionBarSize"
                 motion:layout_constraintBottom_toBottomOf="parent" />
