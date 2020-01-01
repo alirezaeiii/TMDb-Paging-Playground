@@ -44,11 +44,10 @@ constructor() // Required empty public constructor
         with(root) {
 
             back.setOnClickListener {
-                back.background = null
-                activity?.finishAfterTransition()
+                activity?.finish()
             }
 
-            viewModel.person.observe(this@PersonFragment, Observer {
+            viewModel.person.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     biography_label.visibleGone(it.biography.trim().isNotEmpty())
                 }
@@ -59,7 +58,7 @@ constructor() // Required empty public constructor
                 biography.maxLines = if (biography.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
 
-            viewModel.knownAs.observe(this@PersonFragment, Observer {
+            viewModel.knownAs.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     known_as.visibleGone(it.isNotEmpty())
                     known_as.text = getString(R.string.known_as, it)
