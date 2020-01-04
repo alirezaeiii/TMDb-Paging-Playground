@@ -37,7 +37,6 @@ class SearchActivity : DaggerAppCompatActivity() {
         search_view.requestFocus()
 
         search_back.setOnClickListener {
-            search_back.background = null
             finishAfterTransition()
         }
 
