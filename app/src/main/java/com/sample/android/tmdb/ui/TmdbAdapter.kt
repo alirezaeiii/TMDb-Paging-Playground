@@ -22,13 +22,13 @@ abstract class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
 
     protected abstract val layoutID: Int
 
-    protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int)
+    protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, item: T?)
 
     protected abstract fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            layoutID -> onBindItemViewHolder(holder, position)
+            layoutID -> onBindItemViewHolder(holder, getItem(position))
             R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState, position)
         }
     }

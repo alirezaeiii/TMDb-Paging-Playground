@@ -14,12 +14,10 @@ class TVShowAdapter(
 
     override val layoutID = R.layout.tv_show_item
 
-    override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        getItem(position)?.let {
-            with((holder as TVShowViewHolder).binding) {
-                tvShow = it
-                executePendingBindings()
-            }
+    override fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, item: TVShow?) {
+        with((holder as TVShowViewHolder).binding) {
+            tvShow = item
+            executePendingBindings()
         }
     }
 
