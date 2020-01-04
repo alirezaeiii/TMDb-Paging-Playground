@@ -28,7 +28,7 @@ abstract class DetailFragment<T : TmdbItem>
 
     protected abstract fun getViewModel(): DetailViewModel
 
-    protected abstract fun initViewBinding(root: View): ViewDataBinding
+    protected abstract fun getViewBinding(root: View): ViewDataBinding
 
     protected abstract fun getTmdbItem(): T
 
@@ -38,11 +38,20 @@ abstract class DetailFragment<T : TmdbItem>
         val viewModel = getViewModel()
 
         val root = inflater.inflate(layoutId, container, false)
-
-        initViewBinding(root).apply {
+        getViewBinding(root).apply {
             setVariable(BR.vm, viewModel)
             lifecycleOwner = viewLifecycleOwner
         }
+
+        viewModel.cast.observe(this, Observer {
+            it?.let {
+                val castAdapter = CastAdapter(it, this)
+                root.cast_list.apply {
+                    setHasFixedSize(true)
+                    adapter = castAdapter
+                }
+            }
+        })
 
         with(root) {
 
@@ -64,16 +73,6 @@ abstract class DetailFragment<T : TmdbItem>
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
-
-            viewModel.cast.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    val castAdapter = CastAdapter(it, this@DetailFragment)
-                    cast_list.apply {
-                        setHasFixedSize(true)
-                        adapter = castAdapter
-                    }
-                }
-            })
 
             with(details_rv) {
                 postDelayed({ scrollTo(0, 0) }, 100)

@@ -13,7 +13,7 @@ class SearchTVShowFragment @Inject
 constructor() // Required empty public constructor
     : BaseSearchFragment<TVShow>() {
 
-    override fun initViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+    override fun getTmdbViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return SearchTVShowViewModel(dataSource = dataSource) as T

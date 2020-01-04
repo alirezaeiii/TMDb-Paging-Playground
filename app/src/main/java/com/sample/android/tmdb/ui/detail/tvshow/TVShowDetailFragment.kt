@@ -29,7 +29,7 @@ constructor() // Required empty public constructor
 
     override val layoutId = R.layout.fragment_detail_tv_show
 
-    override fun initViewBinding(root: View): FragmentDetailTvShowBinding =
+    override fun getViewBinding(root: View): FragmentDetailTvShowBinding =
             FragmentDetailTvShowBinding.bind(root).apply {
                 tvShow = this@TVShowDetailFragment.tvShow
             }

@@ -10,7 +10,7 @@ import com.sample.android.tmdb.ui.item.BaseItemFragment
 
 abstract class MovieFragment : BaseItemFragment<Movie>() {
 
-    override fun initViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+    override fun getTmdbViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return MovieViewModel(dataSource = dataSource,
