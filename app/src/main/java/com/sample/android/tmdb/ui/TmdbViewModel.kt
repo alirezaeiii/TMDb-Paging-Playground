@@ -26,7 +26,7 @@ abstract class TmdbViewModel<T>(
         repoResult.value?.refresh?.invoke()
     }
 
-    fun showQuery(query: String?): Boolean {
+    fun showQuery(query: String): Boolean {
         if (this.query.value == query) {
             return false
         }
