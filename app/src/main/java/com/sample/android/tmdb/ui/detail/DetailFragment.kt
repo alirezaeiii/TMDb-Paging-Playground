@@ -21,8 +21,7 @@ import com.sample.android.tmdb.ui.BaseDaggerFragment
 import com.sample.android.tmdb.ui.person.EXTRA_PERSON
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 
-abstract class DetailFragment<T : TmdbItem>
-    : BaseDaggerFragment(), CastClickCallback {
+abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
     protected abstract val layoutId: Int
 
@@ -45,10 +44,21 @@ abstract class DetailFragment<T : TmdbItem>
 
         viewModel.cast.observe(this, Observer {
             it?.let {
-                val castAdapter = CastAdapter(it, this)
                 root.cast_list.apply {
                     setHasFixedSize(true)
-                    adapter = castAdapter
+                    adapter = CastAdapter(it, object : CastClickCallback {
+                        override fun onClick(personId: Int, personName: String, profilePath: String?) {
+                            val intent = Intent(activity, PersonActivity::class.java).apply {
+                                putExtras(Bundle().apply {
+                                    putParcelable(EXTRA_PERSON, PersonExtra(personId,
+                                            personName,
+                                            profilePath,
+                                            getTmdbItem().backdropPath))
+                                })
+                            }
+                            startActivity(intent)
+                        }
+                    })
                 }
             }
         })
@@ -106,17 +116,5 @@ abstract class DetailFragment<T : TmdbItem>
                 }
             }
         })
-    }
-
-    override fun onClick(personId: Int, personName: String, profilePath: String?) {
-        val intent = Intent(activity, PersonActivity::class.java).apply {
-            putExtras(Bundle().apply {
-                putParcelable(EXTRA_PERSON, PersonExtra(personId,
-                        personName,
-                        profilePath,
-                        getTmdbItem().backdropPath))
-            })
-        }
-        startActivity(intent)
     }
 }
