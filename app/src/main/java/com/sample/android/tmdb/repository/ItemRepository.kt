@@ -1,5 +1,7 @@
 package com.sample.android.tmdb.repository
 
-interface ItemRepository<T> {
+import com.sample.android.tmdb.domain.TmdbItem
+
+interface ItemRepository<T : TmdbItem> {
     fun getItems(query: String, pageSize: Int): Listing<T>
 }

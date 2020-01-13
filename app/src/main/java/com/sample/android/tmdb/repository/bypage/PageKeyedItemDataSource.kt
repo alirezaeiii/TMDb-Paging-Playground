@@ -2,6 +2,7 @@ package com.sample.android.tmdb.repository.bypage
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import retrofit2.Call
@@ -9,7 +10,7 @@ import retrofit2.Response
 import java.io.IOException
 import java.util.concurrent.Executor
 
-abstract class PageKeyedItemDataSource<T, E>(
+abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
         private val retryExecutor: Executor)
     : PageKeyedDataSource<Int, T>() {
 

@@ -3,11 +3,12 @@ package com.sample.android.tmdb.repository.bypage
 import android.arch.lifecycle.Transformations
 import android.arch.paging.LivePagedListBuilder
 import android.support.annotation.MainThread
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.Listing
 import com.sample.android.tmdb.repository.ItemRepository
 import java.util.concurrent.Executor
 
-abstract class PageKeyRepository<T, E>(
+abstract class PageKeyRepository<T : TmdbItem, E>(
         private val networkExecutor: Executor) : ItemRepository<T> {
 
     protected abstract fun getSourceFactory(query: String): ItemDataSourceFactory<T, E>

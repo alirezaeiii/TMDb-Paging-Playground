@@ -5,12 +5,13 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations.switchMap
 import android.arch.lifecycle.ViewModel
 import android.arch.paging.PagedList
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.Listing
 import com.sample.android.tmdb.repository.NetworkState
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-abstract class TmdbViewModel<T>(
+abstract class TmdbViewModel<T : TmdbItem>(
         // thread pool used for network requests
         protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5))
     : ViewModel() {
