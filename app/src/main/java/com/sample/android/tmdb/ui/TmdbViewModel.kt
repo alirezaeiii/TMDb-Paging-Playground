@@ -16,8 +16,12 @@ abstract class TmdbViewModel<T : TmdbItem>(
         protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5))
     : ViewModel() {
 
-    protected val query = MutableLiveData<String>()
     protected abstract val repoResult: LiveData<Listing<T>>
+
+    private val _query = MutableLiveData<String>()
+    protected val query: LiveData<String>
+        get() = _query
+
 
     val items: LiveData<PagedList<T>> by lazy { switchMap(repoResult) { it.pagedList } }
     val networkState: LiveData<NetworkState> by lazy { switchMap(repoResult) { it.networkState } }
@@ -28,10 +32,10 @@ abstract class TmdbViewModel<T : TmdbItem>(
     }
 
     fun showQuery(query: String): Boolean {
-        if (this.query.value == query) {
+        if (_query.value == query) {
             return false
         }
-        this.query.value = query
+        _query.value = query
         return true
     }
 
