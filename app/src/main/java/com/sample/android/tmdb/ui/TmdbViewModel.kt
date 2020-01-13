@@ -22,7 +22,6 @@ abstract class TmdbViewModel<T : TmdbItem>(
     protected val query: LiveData<String>
         get() = _query
 
-
     val items: LiveData<PagedList<T>> by lazy { switchMap(repoResult) { it.pagedList } }
     val networkState: LiveData<NetworkState> by lazy { switchMap(repoResult) { it.networkState } }
     val refreshState: LiveData<NetworkState> by lazy { switchMap(repoResult) { it.refreshState } }
