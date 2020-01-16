@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.Intent.ACTION_SEARCH
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -30,8 +29,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_nav.*
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(),
-        NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var popularMoviesFragment: PopularMoviesFragment
@@ -65,7 +63,25 @@ class MainActivity : DaggerAppCompatActivity(),
             nav_view.setCheckedItem(R.id.action_movies)
         }
 
-        nav_view.setNavigationItemSelectedListener(this)
+        nav_view.setNavigationItemSelectedListener { item ->
+            drawer_layout.closeDrawer(GravityCompat.START)
+            bottom_navigation.selectedItemId = R.id.action_popular
+            val fragment = when (item.itemId) {
+                R.id.action_movies -> {
+                    viewModel.setNavType(NavType.MOVIES)
+                    viewModel.setHeadline(R.string.menu_movies)
+                    popularMoviesFragment
+                }
+                R.id.action_tv_series -> {
+                    viewModel.setNavType(NavType.TV_SERIES)
+                    viewModel.setHeadline(R.string.menu_tv_series)
+                    popularTVShowFragment
+                }
+                else -> throw RuntimeException("Unknown navType to replace fragment")
+            }
+            replaceFragmentInActivity(fragment, R.id.fragment_container)
+            true
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar,
@@ -78,27 +94,25 @@ class MainActivity : DaggerAppCompatActivity(),
 
         bottom_navigation.apply {
 
-            setOnNavigationItemSelectedListener {
+            setOnNavigationItemSelectedListener {item ->
 
-                val navType = getNavType()
-
-                when (it.itemId) {
+                when (item.itemId) {
                     R.id.action_popular -> {
-                        fragment = when (navType) {
+                        fragment = when (getNavType()) {
                             NavType.MOVIES -> popularMoviesFragment
                             NavType.TV_SERIES -> popularTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_highest_rate -> {
-                        fragment = when (navType) {
+                        fragment = when (getNavType()) {
                             NavType.MOVIES -> highRateMoviesFragment
                             NavType.TV_SERIES -> highRateTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_upcoming -> {
-                        fragment = when (navType) {
+                        fragment = when (getNavType()) {
                             NavType.MOVIES -> upcomingMoviesFragment
                             NavType.TV_SERIES -> latestTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
@@ -141,26 +155,6 @@ class MainActivity : DaggerAppCompatActivity(),
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        drawer_layout.closeDrawer(GravityCompat.START)
-        bottom_navigation.selectedItemId = R.id.action_popular
-        val fragment = when (item.itemId) {
-            R.id.action_movies -> {
-                viewModel.setNavType(NavType.MOVIES)
-                viewModel.setHeadline(R.string.menu_movies)
-                popularMoviesFragment
-            }
-            R.id.action_tv_series -> {
-                viewModel.setNavType(NavType.TV_SERIES)
-                viewModel.setHeadline(R.string.menu_tv_series)
-                popularTVShowFragment
-            }
-            else -> throw RuntimeException("Unknown navType to replace fragment")
-        }
-        replaceFragmentInActivity(fragment, R.id.fragment_container)
-        return true
     }
 
     override fun onBackPressed() {
