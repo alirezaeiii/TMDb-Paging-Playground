@@ -125,8 +125,7 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
 
-        viewModel = ViewModelProviders.of(this)
-                .get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.headline.observe(this, Observer {
             title = it
         })

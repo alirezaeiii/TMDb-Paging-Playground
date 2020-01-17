@@ -4,9 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
-import timber.log.Timber
+import com.sample.android.tmdb.util.NavType
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -21,13 +20,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val context = app
 
     init {
-        Timber.d("View viewModel created")
         _headline.value = context.getString(R.string.menu_movies)
         _currentType.value = NavType.MOVIES
     }
 
     fun setHeadline(titleId: Int) {
-        this._headline.value = context.getString(titleId)
+        _headline.value = context.getString(titleId)
     }
 
     fun setNavType(navType: NavType) {

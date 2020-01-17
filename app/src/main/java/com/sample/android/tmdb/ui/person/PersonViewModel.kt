@@ -42,7 +42,7 @@ class PersonViewModel(
                 }
                 .subscribe({ person ->
                     isPersonDetailVisible.set(true)
-                    this._person.postValue(person)
+                    _person.postValue(person)
                     var alsoKnownAs = ""
                     for (i in person.alsoKnowAs.indices) {
                         alsoKnownAs += person.alsoKnowAs[i]
