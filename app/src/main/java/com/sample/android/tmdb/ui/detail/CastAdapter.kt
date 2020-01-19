@@ -26,11 +26,11 @@ class CastAdapter(
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
         with(holder.binding) {
-            cast = this@CastAdapter.cast[position]
+            castItem = cast[position]
             executePendingBindings()
         }
     }
 
-    class CastViewHolder(internal val binding: CastItemBinding) :
+    inner class CastViewHolder(internal val binding: CastItemBinding) :
             RecyclerView.ViewHolder(binding.root)
 }

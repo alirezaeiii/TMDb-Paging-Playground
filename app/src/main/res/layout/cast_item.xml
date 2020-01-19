@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="cast"
+            name="castItem"
             type="com.sample.android.tmdb.domain.Cast" />
 
         <variable
@@ -21,7 +21,7 @@
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{() -> callback.onClick(cast.id, cast.name, cast.profilePath)}"
+        android:onClick="@{() -> callback.onClick(castItem.id, castItem.name, castItem.profilePath)}"
         app:cardElevation="@dimen/z_app_bar"
         app:cardUseCompatPadding="true"
         tools:ignore="KeyboardInaccessibleWidget">
@@ -34,7 +34,7 @@
                 android:id="@+id/cast_item_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
-                app:profileUrl="@{cast.profilePath}"
+                app:profileUrl="@{castItem.profilePath}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:gravity="center"
-                android:text="@{cast.name}"
+                android:text="@{castItem.name}"
                 android:textColor="@color/md_black_1000"
                 android:textSize="14sp" />
 
@@ -56,7 +56,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:gravity="center"
-                android:text="@{cast.character}"
+                android:text="@{castItem.character}"
                 android:textColor="@color/md_grey_600"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />

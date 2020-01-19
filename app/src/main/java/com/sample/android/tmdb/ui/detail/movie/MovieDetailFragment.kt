@@ -17,13 +17,13 @@ constructor() // Required empty public constructor
 
     @Inject
     @Nullable
-    lateinit var movie: Movie
+    lateinit var movieItem: Movie
 
     override fun getViewModel() =
             ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                     @Suppress("UNCHECKED_CAST")
-                    return MovieDetailViewModel(dataSource, movie) as T
+                    return MovieDetailViewModel(dataSource, movieItem) as T
                 }
             })[MovieDetailViewModel::class.java]
 
@@ -31,8 +31,8 @@ constructor() // Required empty public constructor
 
     override fun getViewBinding(root: View): FragmentDetailMovieBinding =
             FragmentDetailMovieBinding.bind(root).apply {
-                movie = this@MovieDetailFragment.movie
+                movie = movieItem
             }
 
-    override fun getTmdbItem(): Movie = movie
+    override fun getTmdbItem(): Movie = movieItem
 }

@@ -17,13 +17,13 @@ constructor() // Required empty public constructor
 
     @Inject
     @Nullable
-    lateinit var tvShow: TVShow
+    lateinit var tvShowItem: TVShow
 
     override fun getViewModel() =
             ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                     @Suppress("UNCHECKED_CAST")
-                    return TVShowDetailViewModel(dataSource, tvShow) as T
+                    return TVShowDetailViewModel(dataSource, tvShowItem) as T
                 }
             })[TVShowDetailViewModel::class.java]
 
@@ -31,8 +31,8 @@ constructor() // Required empty public constructor
 
     override fun getViewBinding(root: View): FragmentDetailTvShowBinding =
             FragmentDetailTvShowBinding.bind(root).apply {
-                tvShow = this@TVShowDetailFragment.tvShow
+                tvShow = tvShowItem
             }
 
-    override fun getTmdbItem(): TVShow = tvShow
+    override fun getTmdbItem(): TVShow = tvShowItem
 }
