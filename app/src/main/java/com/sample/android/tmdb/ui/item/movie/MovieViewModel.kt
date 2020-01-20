@@ -17,6 +17,6 @@ class MovieViewModel(
         MoviePageKeyRepository(
                 dataSource = dataSource,
                 sortType = sortType,
-                networkExecutor = NETWORK_IO).getItems(it, 20)
+                networkExecutor = NETWORK_IO).getItems(it, PAGE_SIZE)
     }
 }

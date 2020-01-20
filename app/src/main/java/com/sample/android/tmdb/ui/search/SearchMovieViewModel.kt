@@ -13,6 +13,6 @@ class SearchMovieViewModel(dataSource: RemoteDataSource) : TmdbViewModel<Movie>(
     override val repoResult: LiveData<Listing<Movie>> = Transformations.map(query) {
         SearchMoviePageKeyRepository(
                 dataSource = dataSource,
-                networkExecutor = NETWORK_IO).getItems(it, 20)
+                networkExecutor = NETWORK_IO).getItems(it, PAGE_SIZE)
     }
 }

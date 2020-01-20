@@ -13,6 +13,6 @@ class SearchTVShowViewModel(dataSource: RemoteDataSource) : TmdbViewModel<TVShow
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
         SearchTVShowPageKeyRepository(
                 dataSource = dataSource,
-                networkExecutor = NETWORK_IO).getItems(it, 20)
+                networkExecutor = NETWORK_IO).getItems(it, PAGE_SIZE)
     }
 }

@@ -13,7 +13,8 @@ import java.util.concurrent.Executors
 
 abstract class TmdbViewModel<T : TmdbItem>(
         // thread pool used for network requests
-        protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5))
+        protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5),
+        protected val PAGE_SIZE: Int = 20)
     : ViewModel() {
 
     protected abstract val repoResult: LiveData<Listing<T>>
