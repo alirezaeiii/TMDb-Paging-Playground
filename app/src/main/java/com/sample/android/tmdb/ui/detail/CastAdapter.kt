@@ -9,9 +9,15 @@ import com.sample.android.tmdb.util.layoutInflater
 import com.sample.android.tmdb.domain.Cast
 
 class CastAdapter(
-        private val cast: List<Cast>,
+        cast: List<Cast>,
         private val castClickCallback: CastClickCallback)
     : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
+
+    private var cast: List<Cast> = cast
+        set(cast) {
+            field = cast
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
         val binding: CastItemBinding = DataBindingUtil
