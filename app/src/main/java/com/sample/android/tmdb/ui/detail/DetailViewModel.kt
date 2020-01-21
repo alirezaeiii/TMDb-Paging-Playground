@@ -15,20 +15,41 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
+abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
-    val trailers: ObservableList<Video> by lazy {
-        ObservableArrayList<Video>().also {
-            showTrailers()
-        }
-    }
-
+    val trailers: ObservableList<Video> = ObservableArrayList<Video>()
     val isTrailersLabelVisible = ObservableBoolean(false)
     val isCastLabelVisible = ObservableBoolean(false)
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            showCast()
+            EspressoIdlingResource.increment() // App is busy until further notice
+            compositeDisposable.addAll(getTrailers(item.id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally {
+                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                            EspressoIdlingResource.decrement() // Set app as idle.
+                        }
+                    }
+                    .subscribe({ videos ->
+                        if (videos.isNotEmpty()) {
+                            isTrailersLabelVisible.set(true)
+                        }
+                        with(trailers) {
+                            clear()
+                            addAll(videos)
+                        }
+                    }) { throwable -> Timber.e(throwable) }
+                    , getCast(item.id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ cast ->
+                        if (cast.isNotEmpty()) {
+                            isCastLabelVisible.set(true)
+                        }
+                        _cast.postValue(cast)
+                    }) { throwable -> Timber.e(throwable) })
         }
     }
     val cast: LiveData<List<Cast>>
@@ -37,45 +58,4 @@ abstract class DetailViewModel(private val item: TmdbItem) : BaseViewModel() {
     protected abstract fun getTrailers(id: Int): Observable<List<Video>>
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
-
-    private fun showTrailers() {
-        EspressoIdlingResource.increment() // App is busy until further notice
-        compositeDisposable.add(getTrailers(item.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                        EspressoIdlingResource.decrement() // Set app as idle.
-                    }
-                }
-                .subscribe({ videos ->
-                    if (videos.isNotEmpty()) {
-                        isTrailersLabelVisible.set(true)
-                    }
-                    with(trailers) {
-                        clear()
-                        addAll(videos)
-                    }
-                }
-                ) { throwable -> Timber.e(throwable) })
-    }
-
-    private fun showCast() {
-        EspressoIdlingResource.increment() // App is busy until further notice
-        compositeDisposable.add(getCast(item.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                        EspressoIdlingResource.decrement() // Set app as idle.
-                    }
-                }
-                .subscribe({ cast ->
-                    if (cast.isNotEmpty()) {
-                        isCastLabelVisible.set(true)
-                    }
-                    _cast.postValue(cast)
-                }
-                ) { throwable -> Timber.e(throwable) })
-    }
 }
