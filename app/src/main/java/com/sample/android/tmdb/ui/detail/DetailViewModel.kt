@@ -23,7 +23,9 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            EspressoIdlingResource.increment() // App is busy until further notice
+            for(i in 1..REQUEST_NUMBER) {
+                EspressoIdlingResource.increment() // App is busy until further notice
+            }
             compositeDisposable.addAll(getTrailers(item.id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -44,6 +46,11 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
                     , getCast(item.id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally {
+                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                            EspressoIdlingResource.decrement() // Set app as idle.
+                        }
+                    }
                     .subscribe({ cast ->
                         if (cast.isNotEmpty()) {
                             isCastLabelVisible.set(true)
@@ -59,3 +66,5 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
 }
+
+private const val REQUEST_NUMBER = 2
