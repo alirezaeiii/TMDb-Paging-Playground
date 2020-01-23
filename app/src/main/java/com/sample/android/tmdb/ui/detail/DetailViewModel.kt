@@ -23,10 +23,10 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            for(i in 1..REQUEST_NUMBER) {
-                EspressoIdlingResource.increment() // App is busy until further notice
-            }
             compositeDisposable.addAll(getTrailers(item.id)
+                    .doOnSubscribe {
+                        EspressoIdlingResource.increment() // App is busy until further notice
+                    }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doFinally {
@@ -44,6 +44,9 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
                         }
                     }) { throwable -> Timber.e(throwable) }
                     , getCast(item.id)
+                    .doOnSubscribe {
+                        EspressoIdlingResource.increment() // App is busy until further notice
+                    }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doFinally {
@@ -66,5 +69,3 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     protected abstract fun getCast(id: Int): Observable<List<Cast>>
 }
-
-private const val REQUEST_NUMBER = 2
