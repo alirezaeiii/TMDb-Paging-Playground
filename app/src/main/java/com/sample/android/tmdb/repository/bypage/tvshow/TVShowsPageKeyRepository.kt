@@ -10,12 +10,11 @@ import java.util.concurrent.Executor
 
 class TVShowsPageKeyRepository(
         private val dataSource: RemoteDataSource,
-        private val sortType: SortType,
-        private val networkExecutor: Executor)
-    : PageKeyRepository<TVShow, ItemApi.TVShowWrapper>(networkExecutor) {
+        private val sortType: SortType)
+    : PageKeyRepository<TVShow, ItemApi.TVShowWrapper>() {
 
-    override fun getSourceFactory(query: String): ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper> =
+    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper> =
             TVShowsDataSourceFactory(dataSource = dataSource,
                     sortType = sortType,
-                    retryExecutor = networkExecutor)
+                    retryExecutor = retryExecutor)
 }

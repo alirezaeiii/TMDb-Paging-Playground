@@ -16,7 +16,6 @@ class MovieViewModel(
     override val repoResult: LiveData<Listing<Movie>> = Transformations.map(query) {
         MoviePageKeyRepository(
                 dataSource = dataSource,
-                sortType = sortType,
-                networkExecutor = NETWORK_IO).getItems(it, PAGE_SIZE)
+                sortType = sortType).getItems(it, NETWORK_IO)
     }
 }

@@ -7,12 +7,11 @@ import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
 import com.sample.android.tmdb.repository.bypage.PageKeyRepository
 import java.util.concurrent.Executor
 
-class SearchTVShowPageKeyRepository(private val dataSource: RemoteDataSource,
-                                    private val networkExecutor: Executor)
-    : PageKeyRepository<TVShow, ItemApi.TVShowWrapper>(networkExecutor) {
+class SearchTVShowPageKeyRepository(private val dataSource: RemoteDataSource)
+    : PageKeyRepository<TVShow, ItemApi.TVShowWrapper>() {
 
-    override fun getSourceFactory(query: String): ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper> =
+    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper> =
             SearchTVShowDataSourceFactory(dataSource = dataSource,
                     query = query,
-                    retryExecutor = networkExecutor)
+                    retryExecutor = retryExecutor)
 }

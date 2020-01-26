@@ -45,7 +45,7 @@ class MovieViewModelTest {
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(dataSource, SortType.MOST_POPULAR, networkExecutor)
+        val repository = MoviePageKeyRepository(dataSource, SortType.MOST_POPULAR)
         val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 
@@ -53,7 +53,7 @@ class MovieViewModelTest {
                 ItemApi.MovieWrapper(Lists.newArrayList(movie))))
         `when`(itemApi.popularMovies(anyInt())).thenReturn(mockCall)
 
-        val listing = repository.getItems("", 20)
+        val listing = repository.getItems("", networkExecutor)
         val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
 

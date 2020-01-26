@@ -10,12 +10,11 @@ import java.util.concurrent.Executor
 
 class MoviePageKeyRepository(
         private val dataSource: RemoteDataSource,
-        private val sortType: SortType,
-        private val networkExecutor: Executor)
-    : PageKeyRepository<Movie, ItemApi.MovieWrapper>(networkExecutor) {
+        private val sortType: SortType)
+    : PageKeyRepository<Movie, ItemApi.MovieWrapper>() {
 
-    override fun getSourceFactory(query: String): ItemDataSourceFactory<Movie, ItemApi.MovieWrapper> =
+    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<Movie, ItemApi.MovieWrapper> =
             MoviesDataSourceFactory(dataSource = dataSource,
                     sortType = sortType,
-                    retryExecutor = networkExecutor)
+                    retryExecutor = retryExecutor)
 }

@@ -16,7 +16,6 @@ class TVShowsViewModel(
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
         TVShowsPageKeyRepository(
                 dataSource = dataSource,
-                sortType = sortType,
-                networkExecutor = NETWORK_IO).getItems(it, PAGE_SIZE)
+                sortType = sortType).getItems(it, NETWORK_IO)
     }
 }
