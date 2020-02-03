@@ -13,12 +13,12 @@ class SearchMovieFragment @Inject
 constructor() // Required empty public constructor
     : BaseSearchFragment<Movie>() {
 
-    override fun getTmdbViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+    override val viewModel by lazy { ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return SearchMovieViewModel(dataSource = dataSource) as T
         }
-    })[SearchMovieViewModel::class.java]
+    })[SearchMovieViewModel::class.java] }
 
     override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<Movie> = MovieAdapter(this, retryCallback)
 

@@ -26,11 +26,9 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallback<T> {
 
-    protected val viewModel: TmdbViewModel<T> by lazy { getTmdbViewModel() }
+    protected abstract val viewModel: TmdbViewModel<T>
 
     protected abstract val keyParcelable: String
-
-    protected abstract fun getTmdbViewModel(): TmdbViewModel<T>
 
     protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
 

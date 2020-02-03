@@ -10,13 +10,13 @@ import com.sample.android.tmdb.ui.item.BaseItemFragment
 
 abstract class TVShowFragment : BaseItemFragment<TVShow>() {
 
-    override fun getTmdbViewModel() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+    override val viewModel by lazy { ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return TVShowsViewModel(dataSource = dataSource,
                     sortType = sortType) as T
         }
-    })[TVShowsViewModel::class.java]
+    })[TVShowsViewModel::class.java] }
 
     override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
