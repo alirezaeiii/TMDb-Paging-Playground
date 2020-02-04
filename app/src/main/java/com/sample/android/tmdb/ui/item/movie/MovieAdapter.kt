@@ -21,7 +21,6 @@ class MovieAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return MovieViewHolder.create(parent, tmdbClickCallback)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
+            MovieViewHolder.create(parent, tmdbClickCallback)
 }

@@ -17,7 +17,7 @@ import com.sample.android.tmdb.repository.Status.RUNNING
  * It is used to show the network state of paging.
  */
 class NetworkStateItemViewHolder(root: View,
-                                 private val retryCallback: () -> Unit)
+                                 retryCallback: () -> Unit)
     : RecyclerView.ViewHolder(root) {
 
     private val progressBar = root.findViewById<ProgressBar>(R.id.progress_bar)

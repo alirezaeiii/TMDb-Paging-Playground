@@ -21,7 +21,6 @@ class TVShowAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return TVShowViewHolder.create(parent, tmdbClickCallback)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
+            TVShowViewHolder.create(parent, tmdbClickCallback)
 }

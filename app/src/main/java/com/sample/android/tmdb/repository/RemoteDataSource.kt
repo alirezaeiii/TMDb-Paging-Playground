@@ -16,19 +16,17 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject
 constructor(private val itemApi: ItemApi) {
 
-    fun fetchMovies(sortType: SortType, page: Int): Call<MovieWrapper> =
-            when (sortType) {
-                SortType.MOST_POPULAR -> itemApi.popularMovies(page)
-                SortType.HIGHEST_RATED -> itemApi.highestRatedMovies(page)
-                SortType.UPCOMING -> itemApi.upcomingMovies(page)
-            }
+    fun fetchMovies(sortType: SortType, page: Int): Call<MovieWrapper> = when (sortType) {
+        SortType.MOST_POPULAR -> itemApi.popularMovies(page)
+        SortType.HIGHEST_RATED -> itemApi.highestRatedMovies(page)
+        SortType.UPCOMING -> itemApi.upcomingMovies(page)
+    }
 
-    fun fetchTVShows(sortType: SortType, page: Int): Call<TVShowWrapper> =
-            when (sortType) {
-                SortType.MOST_POPULAR -> itemApi.popularTVShows(page)
-                SortType.HIGHEST_RATED -> itemApi.topRatedTVShows(page)
-                SortType.UPCOMING -> itemApi.latestTvShows(page)
-            }
+    fun fetchTVShows(sortType: SortType, page: Int): Call<TVShowWrapper> = when (sortType) {
+        SortType.MOST_POPULAR -> itemApi.popularTVShows(page)
+        SortType.HIGHEST_RATED -> itemApi.topRatedTVShows(page)
+        SortType.UPCOMING -> itemApi.latestTvShows(page)
+    }
 
     fun fetchMovies(page: Int, query: String): Call<MovieWrapper> = itemApi.searchMovies(page, query)
 

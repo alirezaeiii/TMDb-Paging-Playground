@@ -20,5 +20,4 @@ class PageKeyedSearchTVShowDataSource(
 
     override fun fetchItems(page: Int): Call<ItemApi.TVShowWrapper> =
             dataSource.fetchTVShows(page = page, query = query)
-
 }

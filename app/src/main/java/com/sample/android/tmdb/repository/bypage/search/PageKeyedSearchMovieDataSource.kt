@@ -19,5 +19,4 @@ class PageKeyedSearchMovieDataSource(
 
     override fun fetchItems(page: Int): Call<ItemApi.MovieWrapper> =
             dataSource.fetchMovies(page = page, query = query)
-
 }

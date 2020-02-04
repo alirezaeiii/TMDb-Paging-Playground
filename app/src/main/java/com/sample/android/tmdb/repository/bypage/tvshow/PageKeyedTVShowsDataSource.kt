@@ -21,5 +21,4 @@ class PageKeyedTVShowsDataSource(
 
     override fun fetchItems(page: Int): Call<ItemApi.TVShowWrapper> =
             dataSource.fetchTVShows(sortType = sortType, page = page)
-
 }
