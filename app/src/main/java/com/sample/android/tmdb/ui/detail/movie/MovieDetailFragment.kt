@@ -30,10 +30,10 @@ constructor() // Required empty public constructor
 
     override val layoutId = R.layout.fragment_detail_movie
 
+    override val tmdbItem: Movie by lazy { movieItem }
+
     override fun getViewBinding(root: View): FragmentDetailMovieBinding =
             FragmentDetailMovieBinding.bind(root).apply {
                 movie = movieItem
             }
-
-    override fun getTmdbItem(): Movie = movieItem
 }

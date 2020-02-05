@@ -30,10 +30,10 @@ constructor() // Required empty public constructor
 
     override val layoutId = R.layout.fragment_detail_tv_show
 
+    override val tmdbItem: TVShow by lazy { tvShowItem }
+
     override fun getViewBinding(root: View): FragmentDetailTvShowBinding =
             FragmentDetailTvShowBinding.bind(root).apply {
                 tvShow = tvShowItem
             }
-
-    override fun getTmdbItem(): TVShow = tvShowItem
 }

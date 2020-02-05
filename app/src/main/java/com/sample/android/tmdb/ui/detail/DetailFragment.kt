@@ -27,9 +27,9 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
     protected abstract val viewModel: DetailViewModel
 
-    protected abstract fun getViewBinding(root: View): ViewDataBinding
+    protected abstract val tmdbItem: T
 
-    protected abstract fun getTmdbItem(): T
+    protected abstract fun getViewBinding(root: View): ViewDataBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -51,7 +51,7 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
                                     putParcelable(EXTRA_PERSON, PersonExtra(personId,
                                             personName,
                                             profilePath,
-                                            getTmdbItem().backdropPath))
+                                            tmdbItem.backdropPath))
                                 })
                             }
                             startActivity(intent)
@@ -71,7 +71,7 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
                 }
             }
 
-            summary_label.visibleGone(getTmdbItem().overview.trim().isNotEmpty())
+            summary_label.visibleGone(tmdbItem.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
