@@ -19,13 +19,14 @@ constructor() // Required empty public constructor
     @Nullable
     lateinit var movieItem: Movie
 
-    override fun getViewModel() =
-            ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
-                override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                    @Suppress("UNCHECKED_CAST")
-                    return MovieDetailViewModel(dataSource, movieItem) as T
-                }
-            })[MovieDetailViewModel::class.java]
+    override val viewModel by lazy {
+        ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return MovieDetailViewModel(dataSource, movieItem) as T
+            }
+        })[MovieDetailViewModel::class.java]
+    }
 
     override val layoutId = R.layout.fragment_detail_movie
 

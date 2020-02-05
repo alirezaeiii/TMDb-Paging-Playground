@@ -25,7 +25,7 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
     protected abstract val layoutId: Int
 
-    protected abstract fun getViewModel(): DetailViewModel
+    protected abstract val viewModel: DetailViewModel
 
     protected abstract fun getViewBinding(root: View): ViewDataBinding
 
@@ -33,8 +33,6 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        val viewModel = getViewModel()
 
         val root = inflater.inflate(layoutId, container, false)
         getViewBinding(root).apply {
