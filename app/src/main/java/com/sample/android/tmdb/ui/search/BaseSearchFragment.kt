@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 
 abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
-    override fun getNavType(): NavType = (activity as SearchActivity).navType
+    override val navType: NavType by lazy { (activity as SearchActivity).navType }
 
     internal fun search(query: String) {
         if (viewModel.showQuery(query)) {

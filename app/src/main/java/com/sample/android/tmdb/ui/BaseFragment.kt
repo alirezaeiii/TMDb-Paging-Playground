@@ -30,9 +30,9 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
 
     protected abstract val keyParcelable: String
 
-    protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
+    protected abstract val navType: NavType?
 
-    protected abstract fun getNavType(): NavType?
+    protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -87,7 +87,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(keyParcelable, t)
-                putParcelable(EXTRA_NAV_TYPE, getNavType())
+                putParcelable(EXTRA_NAV_TYPE, navType)
             })
         }
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

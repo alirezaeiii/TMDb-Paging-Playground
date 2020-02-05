@@ -94,7 +94,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         bottom_navigation.apply {
 
-            setOnNavigationItemSelectedListener {item ->
+            setOnNavigationItemSelectedListener { item ->
 
                 when (item.itemId) {
                     R.id.action_popular -> {
