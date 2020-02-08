@@ -22,5 +22,5 @@ constructor() // Required empty public constructor
 
     override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<Movie> = MovieAdapter(this, retryCallback)
 
-    override val keyParcelable = EXTRA_MOVIE
+    override val keyItem = EXTRA_MOVIE
 }

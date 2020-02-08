@@ -20,5 +20,5 @@ abstract class TVShowFragment : BaseItemFragment<TVShow>() {
 
     override fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<TVShow> = TVShowAdapter(this, retryCallback)
 
-    override val keyParcelable = EXTRA_TV_SHOW
+    override val keyItem = EXTRA_TV_SHOW
 }

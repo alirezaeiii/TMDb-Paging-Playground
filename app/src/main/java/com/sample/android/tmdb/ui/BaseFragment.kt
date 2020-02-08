@@ -28,7 +28,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
 
     protected abstract val viewModel: TmdbViewModel<T>
 
-    protected abstract val keyParcelable: String
+    protected abstract val keyItem: String
 
     protected abstract val navType: NavType?
 
@@ -86,7 +86,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallb
     override fun onClick(t: T, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(keyParcelable, t)
+                putParcelable(keyItem, t)
                 putParcelable(EXTRA_NAV_TYPE, navType)
             })
         }
