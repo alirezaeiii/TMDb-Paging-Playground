@@ -4,18 +4,18 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.repository.Listing
-import com.sample.android.tmdb.repository.RemoteDataSource
 import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.item.BaseItemViewModel
+import com.sample.android.tmdb.usecase.UseCase
 import com.sample.android.tmdb.util.SortType
 
 class MovieViewModel(
-        dataSource: RemoteDataSource,
+        useCase: UseCase,
         sortType: SortType) : BaseItemViewModel<Movie>() {
 
     override val repoResult: LiveData<Listing<Movie>> = Transformations.map(query) {
         MoviePageKeyRepository(
-                dataSource = dataSource,
+                useCase = useCase,
                 sortType = sortType).getItems(it, NETWORK_IO)
     }
 }

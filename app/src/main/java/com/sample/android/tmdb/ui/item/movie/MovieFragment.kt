@@ -13,7 +13,7 @@ abstract class MovieFragment : BaseItemFragment<Movie>() {
     override val viewModel by lazy { ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
-            return MovieViewModel(dataSource = dataSource,
+            return MovieViewModel(useCase = useCase,
                     sortType = sortType) as T
         }
     })[MovieViewModel::class.java] }

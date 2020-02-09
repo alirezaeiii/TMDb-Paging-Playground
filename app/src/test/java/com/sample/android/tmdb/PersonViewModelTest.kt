@@ -2,9 +2,9 @@ package com.sample.android.tmdb
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.ui.person.PersonViewModel
 import com.sample.android.tmdb.domain.Person
+import com.sample.android.tmdb.ui.person.PersonViewModel
+import com.sample.android.tmdb.usecase.UseCase
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -30,7 +30,7 @@ class PersonViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var dataSource: RemoteDataSource
+    private lateinit var useCase: UseCase
 
     @Before
     fun setUp() {
@@ -38,7 +38,7 @@ class PersonViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        dataSource = RemoteDataSource(itemApi)
+        useCase = UseCase(itemApi)
     }
 
     @After
@@ -58,7 +58,7 @@ class PersonViewModelTest {
         val observableResponse = Observable.just(person)
         `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
 
-        val viewModel = PersonViewModel(dataSource, anyInt())
+        val viewModel = PersonViewModel(useCase, anyInt())
 
         with(viewModel) {
             assertTrue(isPersonDetailVisible.get())
@@ -76,7 +76,7 @@ class PersonViewModelTest {
         val observableResponse = Observable.error<Person>(Exception())
         `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
 
-        val viewModel = PersonViewModel(dataSource, anyInt())
+        val viewModel = PersonViewModel(useCase, anyInt())
 
         with(viewModel) {
             assertFalse(isPersonDetailVisible.get())

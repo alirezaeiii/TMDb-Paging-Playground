@@ -9,10 +9,7 @@ import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.Video
 import com.sample.android.tmdb.ui.BaseViewModel
-import com.sample.android.tmdb.util.EspressoIdlingResource
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
@@ -24,14 +21,6 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
             compositeDisposable.addAll(getTrailers(item.id)
-                    .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doFinally {
-                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                            EspressoIdlingResource.decrement() // Set app as idle.
-                        }
-                    }
                     .subscribe({ videos ->
                         if (videos.isNotEmpty()) {
                             isTrailersLabelVisible.set(true)
@@ -42,14 +31,6 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
                         }
                     }) { throwable -> Timber.e(throwable) }
                     , getCast(item.id)
-                    .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doFinally {
-                        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                            EspressoIdlingResource.decrement() // Set app as idle.
-                        }
-                    }
                     .subscribe({ cast ->
                         if (cast.isNotEmpty()) {
                             isCastLabelVisible.set(true)

@@ -4,11 +4,11 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import com.google.common.collect.Lists
-import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
+import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.util.SortType
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
 import org.junit.Assert.assertThat
@@ -34,18 +34,18 @@ class MovieViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var dataSource: RemoteDataSource
+    private lateinit var useCase: UseCase
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        dataSource = RemoteDataSource(itemApi)
+        useCase = UseCase(itemApi)
     }
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(dataSource, SortType.MOST_POPULAR)
+        val repository = MoviePageKeyRepository(useCase, SortType.MOST_POPULAR)
         val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 

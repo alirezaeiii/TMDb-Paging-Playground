@@ -1,16 +1,16 @@
 package com.sample.android.tmdb.repository.bypage.movie
 
-import com.sample.android.tmdb.util.SortType
 import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
+import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.util.SortType
 import retrofit2.Call
 import retrofit2.Response
 import java.util.concurrent.Executor
 
 class PageKeyedMovieDataSource(
-        private val dataSource: RemoteDataSource,
+        private val useCase: UseCase,
         private val sortType: SortType,
         retryExecutor: Executor)
     : PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper>(retryExecutor) {
@@ -19,5 +19,5 @@ class PageKeyedMovieDataSource(
             response.body()?.movies?.map { it } ?: emptyList()
 
     override fun fetchItems(page: Int): Call<ItemApi.MovieWrapper> =
-            dataSource.fetchMovies(sortType = sortType, page = page)
+            useCase.fetchMovies(sortType = sortType, page = page)
 }

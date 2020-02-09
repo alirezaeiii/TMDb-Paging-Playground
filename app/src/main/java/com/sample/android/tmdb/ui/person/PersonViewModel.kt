@@ -3,15 +3,12 @@ package com.sample.android.tmdb.ui.person
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
-import com.sample.android.tmdb.repository.RemoteDataSource
-import com.sample.android.tmdb.ui.BaseViewModel
-import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.domain.Person
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.sample.android.tmdb.ui.BaseViewModel
+import com.sample.android.tmdb.usecase.UseCase
 import timber.log.Timber
 
-class PersonViewModel(dataSource: RemoteDataSource, personId: Int) : BaseViewModel() {
+class PersonViewModel(useCase: UseCase, personId: Int) : BaseViewModel() {
 
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person>
@@ -24,15 +21,7 @@ class PersonViewModel(dataSource: RemoteDataSource, personId: Int) : BaseViewMod
         get() = _knownAs
 
     init {
-        EspressoIdlingResource.increment() // App is busy until further notice
-        compositeDisposable.add(dataSource.getPerson(personId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally {
-                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                        EspressoIdlingResource.decrement() // Set app as idle.
-                    }
-                }
+        compositeDisposable.add(useCase.getPerson(personId)
                 .subscribe({ person ->
                     isPersonDetailVisible.set(true)
                     _person.postValue(person)

@@ -30,7 +30,7 @@ constructor() // Required empty public constructor
         val viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return PersonViewModel(dataSource, personExtra.personId) as T
+                return PersonViewModel(useCase, personExtra.personId) as T
             }
         })[PersonViewModel::class.java]
 
