@@ -4,7 +4,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.person.PersonViewModel
-import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.usecase.PersonUseCase
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -30,7 +30,7 @@ class PersonViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var useCase: UseCase
+    private lateinit var useCase: PersonUseCase
 
     @Before
     fun setUp() {
@@ -38,7 +38,7 @@ class PersonViewModelTest {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
 
-        useCase = UseCase(itemApi)
+        useCase = PersonUseCase(itemApi)
     }
 
     @After

@@ -11,15 +11,19 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
-import com.sample.android.tmdb.ui.BaseDaggerFragment
+import com.sample.android.tmdb.usecase.PersonUseCase
 import com.sample.android.tmdb.util.visibleGone
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_person.view.*
 import kotlinx.android.synthetic.main.person_header.view.*
 import javax.inject.Inject
 
 class PersonFragment @Inject
 constructor() // Required empty public constructor
-    : BaseDaggerFragment() {
+    : DaggerFragment() {
+
+    @Inject
+    lateinit var useCase: PersonUseCase
 
     @Inject
     lateinit var personExtra: PersonExtra

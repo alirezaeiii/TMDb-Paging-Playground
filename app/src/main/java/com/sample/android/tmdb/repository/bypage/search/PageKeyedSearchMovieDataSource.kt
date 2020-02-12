@@ -3,13 +3,13 @@ package com.sample.android.tmdb.repository.bypage.search
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
-import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.usecase.SearchUseCase
 import retrofit2.Call
 import retrofit2.Response
 import java.util.concurrent.Executor
 
 class PageKeyedSearchMovieDataSource(
-        private val useCase: UseCase,
+        private val useCase: SearchUseCase,
         private val query: String,
         retryExecutor: Executor)
     : PageKeyedItemDataSource<Movie, ItemApi.MovieWrapper>(retryExecutor) {

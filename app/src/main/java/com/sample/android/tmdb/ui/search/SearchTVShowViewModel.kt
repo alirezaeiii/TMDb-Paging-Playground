@@ -6,9 +6,9 @@ import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.repository.Listing
 import com.sample.android.tmdb.repository.bypage.search.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.ui.TmdbViewModel
-import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.usecase.SearchUseCase
 
-class SearchTVShowViewModel(useCase: UseCase) : TmdbViewModel<TVShow>() {
+class SearchTVShowViewModel(useCase: SearchUseCase) : TmdbViewModel<TVShow>() {
 
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
         SearchTVShowPageKeyRepository(

@@ -5,10 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.BaseViewModel
-import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.usecase.PersonUseCase
 import timber.log.Timber
 
-class PersonViewModel(useCase: UseCase, personId: Int) : BaseViewModel() {
+class PersonViewModel(useCase: PersonUseCase, personId: Int) : BaseViewModel() {
 
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person>

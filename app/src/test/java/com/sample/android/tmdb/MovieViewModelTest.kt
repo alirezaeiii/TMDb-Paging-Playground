@@ -7,7 +7,7 @@ import com.google.common.collect.Lists
 import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
-import com.sample.android.tmdb.usecase.UseCase
+import com.sample.android.tmdb.usecase.ItemUseCase
 import com.sample.android.tmdb.util.SortType
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
@@ -34,13 +34,13 @@ class MovieViewModelTest {
 
     @Mock
     private lateinit var itemApi: ItemApi
-    private lateinit var useCase: UseCase
+    private lateinit var useCase: ItemUseCase
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = UseCase(itemApi)
+        useCase = ItemUseCase(itemApi)
     }
 
     @Test

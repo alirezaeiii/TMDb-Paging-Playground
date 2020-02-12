@@ -17,11 +17,16 @@ import com.sample.android.tmdb.ui.person.PersonExtra
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.BaseDaggerFragment
 import com.sample.android.tmdb.ui.person.EXTRA_PERSON
+import com.sample.android.tmdb.usecase.DetailUseCase
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
+import javax.inject.Inject
 
-abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
+abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
+
+    @Inject
+    lateinit var useCase: DetailUseCase
 
     protected abstract val layoutId: Int
 
