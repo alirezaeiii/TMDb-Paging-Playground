@@ -1,8 +1,6 @@
 package com.sample.android.tmdb.ui.person
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +9,6 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
-import com.sample.android.tmdb.usecase.PersonUseCase
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_person.view.*
@@ -23,25 +20,17 @@ constructor() // Required empty public constructor
     : DaggerFragment() {
 
     @Inject
-    lateinit var useCase: PersonUseCase
-
-    @Inject
-    lateinit var personExtra: PersonExtra
+    lateinit var factory: PersonViewModel.Factory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return PersonViewModel(useCase, personExtra.personId) as T
-            }
-        })[PersonViewModel::class.java]
+        val viewModel = ViewModelProviders.of(this, factory).get(PersonViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_person, container, false)
         FragmentPersonBinding.bind(root).apply {
             setVariable(BR.vm, viewModel)
-            person = personExtra
+            person = factory.person
             lifecycleOwner = viewLifecycleOwner
         }
 

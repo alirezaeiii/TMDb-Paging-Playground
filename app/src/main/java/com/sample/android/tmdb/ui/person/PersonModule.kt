@@ -1,5 +1,7 @@
 package com.sample.android.tmdb.ui.person
 
+import android.arch.lifecycle.ViewModelProvider
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -9,6 +11,9 @@ abstract class PersonModule {
 
     @ContributesAndroidInjector
     internal abstract fun personFragment(): PersonFragment
+
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: PersonViewModel.Factory): ViewModelProvider.Factory
 
     @Module
     companion object {

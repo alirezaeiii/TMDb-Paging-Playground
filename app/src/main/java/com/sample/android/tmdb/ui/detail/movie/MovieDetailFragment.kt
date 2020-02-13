@@ -20,7 +20,7 @@ constructor() // Required empty public constructor
     lateinit var movieItem: Movie
 
     override val viewModel by lazy {
-        ViewModelProviders.of(requireActivity(), object : ViewModelProvider.Factory {
+        ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return MovieDetailViewModel(useCase, movieItem) as T
