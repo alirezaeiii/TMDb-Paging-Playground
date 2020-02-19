@@ -12,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
 import org.junit.*
-import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
@@ -61,7 +60,6 @@ class PersonViewModelTest {
         val viewModel = PersonViewModel(useCase, anyInt())
 
         with(viewModel) {
-            assertTrue(isPersonDetailVisible.get())
             assertTrue(this.person.value?.id == personId)
             with(this.person.value?.alsoKnowAs!!) {
                 assertTrue(size == 2)
@@ -79,7 +77,6 @@ class PersonViewModelTest {
         val viewModel = PersonViewModel(useCase, anyInt())
 
         with(viewModel) {
-            assertFalse(isPersonDetailVisible.get())
             Assert.assertThat(person.value, `is`(nullValue()))
         }
     }
