@@ -2,9 +2,6 @@ package com.sample.android.tmdb.ui.detail
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableList
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.Video
@@ -14,27 +11,18 @@ import timber.log.Timber
 
 abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
-    val trailers: ObservableList<Video> = ObservableArrayList<Video>()
-    val isTrailersLabelVisible = ObservableBoolean(false)
-    val isCastLabelVisible = ObservableBoolean(false)
+    private val _trailers = MutableLiveData<List<Video>>()
+    val trailers: LiveData<List<Video>>
+        get() = _trailers
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
             compositeDisposable.addAll(getTrailers(item.id)
                     .subscribe({ videos ->
-                        if (videos.isNotEmpty()) {
-                            isTrailersLabelVisible.set(true)
-                        }
-                        with(trailers) {
-                            clear()
-                            addAll(videos)
-                        }
+                        _trailers.postValue(videos)
                     }) { throwable -> Timber.e(throwable) }
                     , getCast(item.id)
                     .subscribe({ cast ->
-                        if (cast.isNotEmpty()) {
-                            isCastLabelVisible.set(true)
-                        }
                         _cast.postValue(cast)
                     }) { throwable -> Timber.e(throwable) })
         }

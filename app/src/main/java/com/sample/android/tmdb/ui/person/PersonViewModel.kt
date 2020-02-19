@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.databinding.ObservableBoolean
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.usecase.PersonUseCase
@@ -17,8 +16,6 @@ class PersonViewModel(useCase: PersonUseCase, personId: Int) : BaseViewModel() {
     val person: LiveData<Person>
         get() = _person
 
-    val isPersonDetailVisible = ObservableBoolean(false)
-
     private val _knownAs = MutableLiveData<String>()
     val knownAs: LiveData<String>
         get() = _knownAs
@@ -26,7 +23,6 @@ class PersonViewModel(useCase: PersonUseCase, personId: Int) : BaseViewModel() {
     init {
         compositeDisposable.add(useCase.getPerson(personId)
                 .subscribe({ person ->
-                    isPersonDetailVisible.set(true)
                     _person.postValue(person)
                     var alsoKnownAs = ""
                     for (i in person.alsoKnowAs.indices) {

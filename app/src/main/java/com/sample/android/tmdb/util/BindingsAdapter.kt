@@ -85,7 +85,7 @@ object BindingsAdapter {
 
     @JvmStatic
     @BindingAdapter("items")
-    fun addItems(linearLayout: LinearLayout, trailers: List<Video>) {
+    fun addItems(linearLayout: LinearLayout, trailers: List<Video>?) {
 
         linearLayout.removeAllViews()
         val context = linearLayout.context
@@ -95,7 +95,8 @@ object BindingsAdapter {
                 .centerCrop()
                 .override(150, 150)
 
-        for (trailer in trailers) {
+
+        trailers?.forEach { trailer ->
             val thumbContainer = context.layoutInflater.inflate(R.layout.video, linearLayout, false)
             val thumbView = thumbContainer.findViewById<ImageView>(R.id.video_thumb)
 

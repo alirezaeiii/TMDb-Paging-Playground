@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
                     android:text="@string/cast"
-                    app:visibleGone="@{vm.isCastLabelVisible}" />
+                    app:visibleGone="@{vm.cast != null}" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/cast_list"
