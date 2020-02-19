@@ -91,12 +91,18 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
         // triggered by a refresh, we better execute sync
         try {
             val response = fetchItems(1).execute()
+            if (response.isSuccessful) {
                 retry = null
                 _networkState.postValue(NetworkState.LOADED)
                 _initialLoad.postValue(NetworkState.LOADED)
                 callback.onResult(getItems(response), null, 2)
-            if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                EspressoIdlingResource.decrement() // Set app as idle.
+            } else {
+                retry = {
+                    loadInitial(params, callback)
+                }
+                val error = NetworkState.error("error code: ${response.code()} " + response.message())
+                _networkState.postValue(error)
+                _initialLoad.postValue(error)
             }
         } catch (ioException: IOException) {
             retry = {
@@ -105,6 +111,9 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
             val error = NetworkState.error(ioException.message ?: "unknown error")
             _networkState.postValue(error)
             _initialLoad.postValue(error)
+        }
+        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+            EspressoIdlingResource.decrement() // Set app as idle.
         }
     }
 }
