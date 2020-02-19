@@ -12,15 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.person.PersonActivity
-import com.sample.android.tmdb.ui.person.PersonExtra
-import com.sample.android.tmdb.util.setupActionBar
-import com.sample.android.tmdb.util.visibleGone
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.person.EXTRA_PERSON
+import com.sample.android.tmdb.ui.person.PersonActivity
+import com.sample.android.tmdb.ui.person.PersonExtra
 import com.sample.android.tmdb.usecase.DetailUseCase
+import com.sample.android.tmdb.util.setupActionBar
+import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
+import kotlinx.android.synthetic.main.trailers.view.*
 import javax.inject.Inject
 
 abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
@@ -67,6 +68,18 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
         })
 
         with(root) {
+
+            viewModel.trailers.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    trailers_label.visibleGone(it.isNotEmpty())
+                }
+            })
+
+            viewModel.cast.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    cast_label.visibleGone(it.isNotEmpty())
+                }
+            })
 
             with(activity as AppCompatActivity) {
                 setupActionBar(details_toolbar) {

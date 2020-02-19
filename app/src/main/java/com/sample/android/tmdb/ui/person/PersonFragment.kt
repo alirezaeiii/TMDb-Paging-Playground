@@ -53,7 +53,7 @@ constructor() // Required empty public constructor
 
             viewModel.knownAs.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    known_as.visibleGone(it.isNotEmpty())
+                    known_as.visibleGone(it.trim().isNotEmpty())
                     known_as.text = getString(R.string.known_as, it)
                 }
             })
