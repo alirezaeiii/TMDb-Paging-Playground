@@ -132,21 +132,22 @@
                     app:vm="@{vm}"
                     tools:ignore="RtlHardcoded" />
 
-                <TextView
-                    android:id="@+id/cast_label"
-                    style="@style/TmdbMargin.Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@string/cast"/>
+                    <TextView
+                        android:id="@+id/cast_label"
+                        style="@style/TmdbMargin.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_normal"
+                        android:text="@string/cast"
+                        android:visibility="invisible"/>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/cast_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="12dp"
-                    app:layoutManager="GridLayoutManager"
-                    app:spanCount="@integer/no_of_columns" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/cast_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+                        app:layoutManager="GridLayoutManager"
+                        app:spanCount="@integer/no_of_columns" />
 
             </LinearLayout>
 

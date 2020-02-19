@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.view.View
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailMovieBinding
-import com.sample.android.tmdb.ui.detail.DetailFragment
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.ui.detail.DetailFragment
 import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
 

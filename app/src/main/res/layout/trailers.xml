@@ -12,14 +12,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:visibleGone="@{vm.trailers != null}">
 
         <TextView
             android:id="@+id/trailers_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trailers"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:visibility="invisible"/>
 
         <HorizontalScrollView
             android:id="@+id/trailer_scroll_view"
