@@ -8,7 +8,7 @@ class TVShow(
         override val id: Int,
         override val overview: String,
         @SerializedName("first_air_date")
-        val firstAirDate: String,
+        val firstAirDate: String?,
         @SerializedName("poster_path")
         override val posterPath: String?,
         @SerializedName("backdrop_path")

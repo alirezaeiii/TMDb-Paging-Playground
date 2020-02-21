@@ -101,7 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@{@string/release_date(tvShow.firstAirDate)}" />
+                    android:text="@{@string/release_date(tvShow.firstAirDate)}"
+                    app:visibleGone="@{tvShow.firstAirDate !=null &amp;&amp; !tvShow.firstAirDate.trim().empty}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
@@ -139,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
                     android:text="@string/cast"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/cast_list"
