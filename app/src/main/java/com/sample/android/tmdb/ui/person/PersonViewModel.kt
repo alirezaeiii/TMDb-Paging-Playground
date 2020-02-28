@@ -24,14 +24,7 @@ class PersonViewModel(useCase: PersonUseCase, personId: Int) : BaseViewModel() {
         compositeDisposable.add(useCase.getPerson(personId)
                 .subscribe({ person ->
                     _person.postValue(person)
-                    var alsoKnownAs = ""
-                    for (i in person.alsoKnowAs.indices) {
-                        alsoKnownAs += person.alsoKnowAs[i]
-                        if (i != person.alsoKnowAs.size - 1) {
-                            alsoKnownAs += ", "
-                        }
-                    }
-                    _knownAs.postValue(alsoKnownAs)
+                    _knownAs.postValue(person.alsoKnowAs.joinToString())
                 }
                 ) { throwable -> Timber.e(throwable) })
     }
