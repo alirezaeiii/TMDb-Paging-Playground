@@ -1,21 +1,20 @@
 package com.sample.android.tmdb.repository.bypage.tvshow
 
-import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
 import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
-import com.sample.android.tmdb.usecase.ItemUseCase
 import com.sample.android.tmdb.util.SortType
 import java.util.concurrent.Executor
 
 class TVShowsDataSourceFactory(
-        private val useCase: ItemUseCase,
+        private val api: TmdbApi,
         private val sortType: SortType,
         private val retryExecutor: Executor)
-    : ItemDataSourceFactory<TVShow, ItemApi.TVShowWrapper>() {
+    : ItemDataSourceFactory<TVShow, TmdbApi.TVShowWrapper>() {
 
-    override fun getDataSource(): PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper> =
-            PageKeyedTVShowsDataSource(useCase = useCase,
+    override fun getDataSource(): PageKeyedItemDataSource<TVShow, TmdbApi.TVShowWrapper> =
+            PageKeyedTVShowsDataSource(api = api,
                     sortType = sortType,
                     retryExecutor = retryExecutor)
 }

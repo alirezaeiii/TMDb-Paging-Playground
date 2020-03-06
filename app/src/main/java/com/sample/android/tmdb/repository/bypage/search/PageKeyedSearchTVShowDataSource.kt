@@ -1,23 +1,22 @@
 package com.sample.android.tmdb.repository.bypage.search
 
-import com.sample.android.tmdb.api.ItemApi
+import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
-import com.sample.android.tmdb.usecase.SearchUseCase
 import retrofit2.Call
 import retrofit2.Response
 import java.util.concurrent.Executor
 
 class PageKeyedSearchTVShowDataSource(
-        private val useCase: SearchUseCase,
+        private val api: TmdbApi,
         private val query: String,
         retryExecutor: Executor)
-    : PageKeyedItemDataSource<TVShow, ItemApi.TVShowWrapper>(retryExecutor) {
+    : PageKeyedItemDataSource<TVShow, TmdbApi.TVShowWrapper>(retryExecutor) {
 
-    override fun getItems(response: Response<ItemApi.TVShowWrapper>): List<TVShow> =
+    override fun getItems(response: Response<TmdbApi.TVShowWrapper>): List<TVShow> =
             response.body()?.tvShows?.map { it } ?: emptyList()
 
 
-    override fun fetchItems(page: Int): Call<ItemApi.TVShowWrapper> =
-            useCase.fetchTVShows(page = page, query = query)
+    override fun fetchItems(page: Int): Call<TmdbApi.TVShowWrapper> =
+            api.searchTVShows(page, query)
 }

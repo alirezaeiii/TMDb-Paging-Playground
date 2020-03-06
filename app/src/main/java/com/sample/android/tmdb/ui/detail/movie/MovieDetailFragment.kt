@@ -23,7 +23,7 @@ constructor() // Required empty public constructor
         ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return MovieDetailViewModel(useCase, movieItem) as T
+                return MovieDetailViewModel(api, movieItem) as T
             }
         })[MovieDetailViewModel::class.java]
     }

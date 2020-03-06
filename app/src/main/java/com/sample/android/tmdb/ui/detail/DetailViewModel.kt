@@ -17,14 +17,14 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            compositeDisposable.addAll(getTrailers(item.id)
+            arrayOf(composeObservable { getTrailers(item.id) }
                     .subscribe({ videos ->
                         _trailers.postValue(videos)
                     }) { throwable -> Timber.e(throwable) }
-                    , getCast(item.id)
+                    , composeObservable { getCast(item.id) }
                     .subscribe({ cast ->
                         _cast.postValue(cast)
-                    }) { throwable -> Timber.e(throwable) })
+                    }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
         }
     }
     val cast: LiveData<List<Cast>>

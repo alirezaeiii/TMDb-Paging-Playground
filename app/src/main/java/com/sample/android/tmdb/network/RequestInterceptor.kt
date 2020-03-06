@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.api
+package com.sample.android.tmdb.network
 
 import com.sample.android.tmdb.BuildConfig
 import okhttp3.Interceptor

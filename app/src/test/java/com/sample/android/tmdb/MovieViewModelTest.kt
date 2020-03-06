@@ -4,10 +4,9 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import com.google.common.collect.Lists
-import com.sample.android.tmdb.api.ItemApi
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.repository.bypage.movie.MoviePageKeyRepository
-import com.sample.android.tmdb.usecase.ItemUseCase
 import com.sample.android.tmdb.util.SortType
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
@@ -33,25 +32,23 @@ class MovieViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var itemApi: ItemApi
-    private lateinit var useCase: ItemUseCase
+    private lateinit var api: TmdbApi
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        useCase = ItemUseCase(itemApi)
     }
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(useCase, SortType.MOST_POPULAR)
+        val repository = MoviePageKeyRepository(api, SortType.MOST_POPULAR)
         val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 
         val mockCall = Calls.response(Response.success(
-                ItemApi.MovieWrapper(Lists.newArrayList(movie))))
-        `when`(itemApi.popularMovies(anyInt())).thenReturn(mockCall)
+                TmdbApi.MovieWrapper(Lists.newArrayList(movie))))
+        `when`(api.popularMovies(anyInt())).thenReturn(mockCall)
 
         val listing = repository.getItems("", networkExecutor)
         val observer = LoggingObserver<PagedList<Movie>>()

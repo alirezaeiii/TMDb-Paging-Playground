@@ -16,7 +16,7 @@ constructor() // Required empty public constructor
     override val viewModel by lazy { ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
-            return SearchMovieViewModel(useCase = useCase) as T
+            return SearchMovieViewModel(api) as T
         }
     })[SearchMovieViewModel::class.java] }
 

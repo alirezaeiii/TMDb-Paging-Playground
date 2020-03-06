@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.BuildConfig
-import com.sample.android.tmdb.api.ItemApi
-import com.sample.android.tmdb.api.RequestInterceptor
+import com.sample.android.tmdb.network.TmdbApi
+import com.sample.android.tmdb.network.RequestInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -43,5 +43,5 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun movieApi(retrofit: Retrofit): ItemApi = retrofit.create(ItemApi::class.java)
+    fun movieApi(retrofit: Retrofit): TmdbApi = retrofit.create(TmdbApi::class.java)
 }

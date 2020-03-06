@@ -13,8 +13,7 @@ abstract class TVShowFragment : BaseItemFragment<TVShow>() {
     override val viewModel by lazy { ViewModelProviders.of(this, object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
-            return TVShowsViewModel(useCase = useCase,
-                    sortType = sortType) as T
+            return TVShowsViewModel(api, sortType) as T
         }
     })[TVShowsViewModel::class.java] }
 

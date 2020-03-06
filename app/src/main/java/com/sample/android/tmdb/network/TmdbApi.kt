@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.api
+package com.sample.android.tmdb.network
 
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.*
@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ItemApi {
+interface TmdbApi {
 
     @GET("3/discover/movie?language=en&sort_by=popularity.desc")
     fun popularMovies(@Query("page") page: Int): Call<MovieWrapper>

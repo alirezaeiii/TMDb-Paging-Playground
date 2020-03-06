@@ -22,10 +22,9 @@ import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.widget.MarginDecoration
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<T> {
+abstract class BaseFragment<T : TmdbItem> : BaseDaggerFragment(), TmdbClickCallback<T> {
 
     protected abstract val viewModel: TmdbViewModel<T>
 

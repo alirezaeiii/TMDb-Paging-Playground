@@ -1,10 +1,9 @@
 package com.sample.android.tmdb
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sample.android.tmdb.api.ItemApi
+import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.person.PersonViewModel
-import com.sample.android.tmdb.usecase.PersonUseCase
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
@@ -28,16 +27,13 @@ class PersonViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var itemApi: ItemApi
-    private lateinit var useCase: PersonUseCase
+    private lateinit var api: TmdbApi
 
     @Before
     fun setUp() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         MockitoAnnotations.initMocks(this)
-
-        useCase = PersonUseCase(itemApi)
     }
 
     @After
@@ -55,9 +51,9 @@ class PersonViewModelTest {
                 "biography", "place")
 
         val observableResponse = Observable.just(person)
-        `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
+        `when`(api.person(anyInt())).thenReturn(observableResponse)
 
-        val viewModel = PersonViewModel(useCase, anyInt())
+        val viewModel = PersonViewModel(api, anyInt())
 
         with(viewModel) {
             assertTrue(this.person.value?.id == personId)
@@ -72,9 +68,9 @@ class PersonViewModelTest {
     @Test
     fun errorLoadPerson() {
         val observableResponse = Observable.error<Person>(Exception())
-        `when`(itemApi.person(anyInt())).thenReturn(observableResponse)
+        `when`(api.person(anyInt())).thenReturn(observableResponse)
 
-        val viewModel = PersonViewModel(useCase, anyInt())
+        val viewModel = PersonViewModel(api, anyInt())
 
         with(viewModel) {
             Assert.assertThat(person.value, `is`(nullValue()))
