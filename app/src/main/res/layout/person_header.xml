@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="com.sample.android.tmdb.ui.person.PersonExtra" />
+            type="com.sample.android.tmdb.ui.person.PersonWrapper" />
 
     </data>
 

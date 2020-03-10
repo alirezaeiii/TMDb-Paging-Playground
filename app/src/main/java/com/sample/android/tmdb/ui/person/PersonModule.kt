@@ -19,7 +19,7 @@ abstract class PersonModule {
     companion object {
         @Provides
         @JvmStatic
-        internal fun providePersonExtra(activity: PersonActivity): PersonExtra =
+        internal fun providePersonExtra(activity: PersonActivity): PersonWrapper =
                 activity.intent.extras.getParcelable(EXTRA_PERSON)
     }
 }

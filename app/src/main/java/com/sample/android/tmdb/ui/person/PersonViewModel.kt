@@ -34,7 +34,7 @@ class PersonViewModel(api: TmdbApi, personId: Int) : BaseViewModel() {
      */
     class Factory @Inject constructor(
             private val api: TmdbApi,
-            val person: PersonExtra
+            val person: PersonWrapper
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PersonViewModel::class.java)) {
