@@ -14,7 +14,7 @@ import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.BaseDaggerFragment
-import com.sample.android.tmdb.ui.person.EXTRA_PERSON
+import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.setupActionBar
@@ -49,7 +49,7 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
                         override fun onClick(personId: Int, personName: String, profilePath: String?) {
                             val intent = Intent(activity, PersonActivity::class.java).apply {
                                 putExtras(Bundle().apply {
-                                    putParcelable(EXTRA_PERSON, PersonWrapper(personId,
+                                    putParcelable(PERSON_WRAPPER, PersonWrapper(personId,
                                             personName,
                                             profilePath,
                                             tmdbItem.backdropPath))

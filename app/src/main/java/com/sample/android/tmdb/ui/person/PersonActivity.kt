@@ -25,4 +25,4 @@ class PersonActivity : DaggerAppCompatActivity() {
     }
 }
 
-const val EXTRA_PERSON = "person"
+const val PERSON_WRAPPER = "person"
