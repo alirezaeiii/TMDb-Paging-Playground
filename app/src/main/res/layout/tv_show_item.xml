@@ -29,7 +29,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{() -> callback.onClick(tvShow, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:tvShowImageUrl="@{tvShow.posterPath}"
+        app:tvShowImageUrl="@{@string/base_poster_path(tvShow.posterPath)}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

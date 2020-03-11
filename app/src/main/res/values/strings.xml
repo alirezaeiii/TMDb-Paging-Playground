@@ -29,4 +29,7 @@
     <string name="menu_tv_series">TV Series</string>
     <string name="open_nav_drawer">Open navigation drawer</string>
     <string name="close_nav_drawer">Close navigation drawer</string>
+
+    <string name="base_poster_path">http://image.tmdb.org/t/p/w342%s</string>
+    <string name="base_backdrop_path">http://image.tmdb.org/t/p/w780%s</string>
 </resources>

@@ -29,7 +29,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{() -> callback.onClick(movie, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:movieImageUrl="@{movie.posterPath}"
+        app:movieImageUrl="@{@string/base_poster_path(movie.posterPath)}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

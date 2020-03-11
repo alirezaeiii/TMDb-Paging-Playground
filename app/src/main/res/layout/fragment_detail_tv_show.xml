@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            app:imageUrl="@{tvShow.backdropPath}"
+            app:imageUrl="@{@string/base_backdrop_path(tvShow.backdropPath)}"
             tools:ignore="ContentDescription" />
 
         <View
@@ -47,7 +47,7 @@
             android:transformPivotX="0px"
             android:transformPivotY="0px"
             android:transitionName="@string/view_name_header_image"
-            app:imageUrl="@{tvShow.posterPath}" />
+            app:imageUrl="@{@string/base_poster_path(tvShow.posterPath)}" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
         <View

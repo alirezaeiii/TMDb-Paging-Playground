@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
-import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.ImageView
@@ -24,10 +23,9 @@ object BindingsAdapter {
     @JvmStatic
     @BindingAdapter("movieImageUrl")
     fun bindImageMovie(cardView: CardView, url: String?) {
-
         Glide.with(cardView.context)
                 .asBitmap()
-                .load("$BASE_POSTER_PATH$url")
+                .load(url)
                 .apply(RequestOptions().centerCrop())
                 .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.movie_poster)) {
                     override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
@@ -46,10 +44,9 @@ object BindingsAdapter {
     @JvmStatic
     @BindingAdapter("tvShowImageUrl")
     fun bindImageTvShow(cardView: CardView, url: String?) {
-
         Glide.with(cardView.context)
                 .asBitmap()
-                .load("$BASE_POSTER_PATH$url")
+                .load(url)
                 .apply(RequestOptions().centerCrop())
                 .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.tv_show_poster)) {
                     override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
@@ -67,26 +64,13 @@ object BindingsAdapter {
 
     @JvmStatic
     @BindingAdapter("imageUrl")
-    fun bindImage(imageView: AppCompatImageView, url: String?) {
-
-        Glide.with(imageView.context)
-                .load("$BASE_POSTER_PATH$url")
-                .into(imageView)
-    }
-
-    @JvmStatic
-    @BindingAdapter("imageUrl")
     fun bindImage(imageView: ImageView, url: String?) {
-
-        Glide.with(imageView.context)
-                .load("$BASE_BACKDROP_PATH$url")
-                .into(imageView)
+        Glide.with(imageView.context).load(url).into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter("items")
     fun addItems(linearLayout: LinearLayout, trailers: List<Video>?) {
-
         linearLayout.removeAllViews()
         val context = linearLayout.context
 
@@ -119,7 +103,6 @@ object BindingsAdapter {
     @JvmStatic
     @BindingAdapter("profileUrl")
     fun bindProfileImage(imageView: ImageView, url: String?) {
-
         val options = RequestOptions()
                 .centerCrop()
                 .error(R.drawable.ic_error_outline_black_36dp)
@@ -133,7 +116,6 @@ object BindingsAdapter {
     @JvmStatic
     @BindingAdapter("profileUrl")
     fun bindProfileImage(imageView: CircleImageView, url: String?) {
-
         Glide.with(imageView.context)
                 .load("$IMAGE_LOW_RES_BASE_URL$url")
                 .apply(RequestOptions()
@@ -142,6 +124,4 @@ object BindingsAdapter {
     }
 }
 
-private const val BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w342"
-private const val BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w780"
 private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
