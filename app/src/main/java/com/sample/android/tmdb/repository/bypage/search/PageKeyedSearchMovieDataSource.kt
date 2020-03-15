@@ -14,7 +14,7 @@ class PageKeyedSearchMovieDataSource(
     : PageKeyedItemDataSource<Movie, TmdbApi.MovieWrapper>(retryExecutor) {
 
     override fun getItems(response: Response<TmdbApi.MovieWrapper>): List<Movie> =
-            response.body()?.movies?.map { it } ?: emptyList()
+            response.body()?.movies ?: emptyList()
 
     override fun fetchItems(page: Int): Call<TmdbApi.MovieWrapper> =
             api.searchMovies(page, query)

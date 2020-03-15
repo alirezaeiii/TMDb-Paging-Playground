@@ -14,7 +14,7 @@ class PageKeyedSearchTVShowDataSource(
     : PageKeyedItemDataSource<TVShow, TmdbApi.TVShowWrapper>(retryExecutor) {
 
     override fun getItems(response: Response<TmdbApi.TVShowWrapper>): List<TVShow> =
-            response.body()?.tvShows?.map { it } ?: emptyList()
+            response.body()?.tvShows ?: emptyList()
 
 
     override fun fetchItems(page: Int): Call<TmdbApi.TVShowWrapper> =
