@@ -41,27 +41,6 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModel.cast.observe(this, Observer {
-            it?.let {
-                root.cast_list.apply {
-                    setHasFixedSize(true)
-                    adapter = CastAdapter(it, object : CastClickCallback {
-                        override fun onClick(personId: Int, personName: String, profilePath: String?) {
-                            val intent = Intent(activity, PersonActivity::class.java).apply {
-                                putExtras(Bundle().apply {
-                                    putParcelable(PERSON_WRAPPER, PersonWrapper(personId,
-                                            personName,
-                                            profilePath,
-                                            tmdbItem.backdropPath))
-                                })
-                            }
-                            startActivity(intent)
-                        }
-                    })
-                }
-            }
-        })
-
         with(root) {
 
             viewModel.trailers.observe(viewLifecycleOwner, Observer {
@@ -73,6 +52,22 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
             viewModel.cast.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     cast_label.visibleGone(it.isNotEmpty())
+                    cast_list.apply {
+                        setHasFixedSize(true)
+                        adapter = CastAdapter(it, object : CastClickCallback {
+                            override fun onClick(personId: Int, personName: String, profilePath: String?) {
+                                val intent = Intent(activity, PersonActivity::class.java).apply {
+                                    putExtras(Bundle().apply {
+                                        putParcelable(PERSON_WRAPPER, PersonWrapper(personId,
+                                                personName,
+                                                profilePath,
+                                                tmdbItem.backdropPath))
+                                    })
+                                }
+                                startActivity(intent)
+                            }
+                        })
+                    }
                 }
             })
 
