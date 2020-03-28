@@ -108,7 +108,8 @@
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/rating(tvShow.voteAverage)}" />
+                    android:text="@{@string/rating(tvShow.voteAverage)}"
+                    app:visibleGone="@{tvShow.voteAverage!=0.0}"/>
 
                 <TextView
                     android:id="@id/summary_label"
