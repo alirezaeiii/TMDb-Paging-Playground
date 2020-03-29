@@ -43,12 +43,6 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
         with(root) {
 
-            viewModel.trailers.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    trailers_label.visibleGone(it.isNotEmpty())
-                }
-            })
-
             viewModel.cast.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     cast_label.visibleGone(it.isNotEmpty())
