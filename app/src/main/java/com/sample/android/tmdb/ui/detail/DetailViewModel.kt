@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.Video
+import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.ui.BaseViewModel
 import io.reactivex.Observable
 import timber.log.Timber
@@ -17,11 +18,11 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     private val _cast: MutableLiveData<List<Cast>> by lazy {
         MutableLiveData<List<Cast>>().also {
-            arrayOf(composeObservable { getTrailers(item.id) }
+            arrayOf(composeObservable { getTrailers(item.id).map { it.videos } }
                     .subscribe({ videos ->
                         _trailers.postValue(videos)
                     }) { throwable -> Timber.e(throwable) }
-                    , composeObservable { getCast(item.id) }
+                    , composeObservable { getCast(item.id).map { it.cast } }
                     .subscribe({ cast ->
                         _cast.postValue(cast)
                     }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
@@ -30,7 +31,7 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
     val cast: LiveData<List<Cast>>
         get() = _cast
 
-    protected abstract fun getTrailers(id: Int): Observable<List<Video>>
+    protected abstract fun getTrailers(id: Int): Observable<TmdbApi.VideoWrapper>
 
-    protected abstract fun getCast(id: Int): Observable<List<Cast>>
+    protected abstract fun getCast(id: Int): Observable<TmdbApi.CastWrapper>
 }
