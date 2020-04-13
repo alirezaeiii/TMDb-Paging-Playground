@@ -24,11 +24,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         _currentType.value = NavType.MOVIES
     }
 
-    fun setHeadline(titleId: Int) {
+    fun setHeadlineAndNavType(titleId: Int, navType: NavType) {
         _headline.value = context.getString(titleId)
-    }
-
-    fun setNavType(navType: NavType) {
         _currentType.value = navType
     }
 }

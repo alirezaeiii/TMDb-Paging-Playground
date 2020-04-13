@@ -68,13 +68,11 @@ class MainActivity : DaggerAppCompatActivity() {
             bottom_navigation.selectedItemId = R.id.action_popular
             val fragment = when (item.itemId) {
                 R.id.action_movies -> {
-                    viewModel.setNavType(NavType.MOVIES)
-                    viewModel.setHeadline(R.string.menu_movies)
+                    viewModel.setHeadlineAndNavType(R.string.menu_movies, NavType.MOVIES)
                     popularMoviesFragment
                 }
                 R.id.action_tv_series -> {
-                    viewModel.setNavType(NavType.TV_SERIES)
-                    viewModel.setHeadline(R.string.menu_tv_series)
+                    viewModel.setHeadlineAndNavType(R.string.menu_tv_series, NavType.TV_SERIES)
                     popularTVShowFragment
                 }
                 else -> throw RuntimeException("Unknown navType to replace fragment")
