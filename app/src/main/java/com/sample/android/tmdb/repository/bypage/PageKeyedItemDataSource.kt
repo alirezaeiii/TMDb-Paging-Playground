@@ -111,9 +111,10 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
             val error = NetworkState.error(ioException.message ?: "unknown error")
             _networkState.postValue(error)
             _initialLoad.postValue(error)
-        }
-        if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-            EspressoIdlingResource.decrement() // Set app as idle.
+        } finally {
+            if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                EspressoIdlingResource.decrement() // Set app as idle.
+            }
         }
     }
 }
