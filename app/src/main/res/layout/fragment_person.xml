@@ -40,28 +40,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:visibleGone="@{vm.person != null}">
+                app:goneIfNull="@{vm.person}">
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/born(vm.person.birthDay)}"
-                    app:visibleGone="@{vm.person.birthDay!=null}" />
+                    app:goneIfNull="@{vm.person.birthDay}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/from(vm.person.placeOfBirth)}"
-                    app:visibleGone="@{vm.person.placeOfBirth!=null}" />
+                    app:goneIfNull="@{vm.person.placeOfBirth}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/death(vm.person.deathDay)}"
-                    app:visibleGone="@{vm.person.deathDay!=null}" />
+                    app:goneIfNull="@{vm.person.deathDay}" />
 
                 <TextView
                     android:id="@+id/known_as"
