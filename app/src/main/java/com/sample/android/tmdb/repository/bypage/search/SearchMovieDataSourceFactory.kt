@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.repository.bypage.search
 
+import android.content.Context
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
@@ -9,11 +10,13 @@ import java.util.concurrent.Executor
 class SearchMovieDataSourceFactory(
         private val api: TmdbApi,
         private val query: String,
-        private val retryExecutor: Executor)
+        private val retryExecutor: Executor,
+        private val context: Context)
     : ItemDataSourceFactory<Movie, TmdbApi.MovieWrapper>() {
 
     override fun getDataSource(): PageKeyedItemDataSource<Movie, TmdbApi.MovieWrapper> =
             PageKeyedSearchMovieDataSource(api = api,
                     query = query,
-                    retryExecutor = retryExecutor)
+                    retryExecutor = retryExecutor,
+                    context = context)
 }

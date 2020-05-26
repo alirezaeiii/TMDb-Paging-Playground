@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.repository.bypage.tvshow
 
+import android.content.Context
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
@@ -11,8 +12,9 @@ import java.util.concurrent.Executor
 class PageKeyedTVShowsDataSource(
         private val api: TmdbApi,
         private val sortType: SortType,
-        retryExecutor: Executor)
-    : PageKeyedItemDataSource<TVShow, TmdbApi.TVShowWrapper>(retryExecutor) {
+        retryExecutor: Executor,
+        context: Context)
+    : PageKeyedItemDataSource<TVShow, TmdbApi.TVShowWrapper>(retryExecutor, context) {
 
     override fun getItems(response: Response<TmdbApi.TVShowWrapper>): List<TVShow> =
             response.body()?.tvShows ?: emptyList()

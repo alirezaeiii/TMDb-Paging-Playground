@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.ui.item.tvshow
 
+import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TVShow
@@ -11,11 +12,13 @@ import com.sample.android.tmdb.util.SortType
 
 class TVShowsViewModel(
         api: TmdbApi,
-        sortType: SortType) : BaseItemViewModel<TVShow>() {
+        sortType: SortType,
+        app: Application) : BaseItemViewModel<TVShow>(app = app) {
 
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
         TVShowsPageKeyRepository(
                 api = api,
-                sortType = sortType).getItems(it, NETWORK_IO)
+                sortType = sortType,
+                context = app.applicationContext).getItems(it, NETWORK_IO)
     }
 }

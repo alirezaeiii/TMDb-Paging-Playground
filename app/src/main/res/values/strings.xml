@@ -32,4 +32,6 @@
 
     <string name="base_poster_path">http://image.tmdb.org/t/p/w342%s</string>
     <string name="base_backdrop_path">http://image.tmdb.org/t/p/w780%s</string>
+
+    <string name="failed_loading_msg">Something went wrong &#8230;</string>
 </resources>

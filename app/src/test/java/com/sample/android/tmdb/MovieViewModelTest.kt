@@ -3,6 +3,7 @@ package com.sample.android.tmdb
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
+import android.content.Context
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.TmdbApi
@@ -33,6 +34,10 @@ class MovieViewModelTest {
 
     @Mock
     private lateinit var api: TmdbApi
+
+    @Mock
+    private lateinit var context: Context
+
     private val networkExecutor = Executor { command -> command.run() }
 
     @Before
@@ -42,7 +47,7 @@ class MovieViewModelTest {
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(api, SortType.MOST_POPULAR)
+        val repository = MoviePageKeyRepository(api, SortType.MOST_POPULAR, context)
         val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 

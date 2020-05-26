@@ -3,6 +3,8 @@ package com.sample.android.tmdb.repository.bypage
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
+import android.content.Context
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.util.EspressoIdlingResource
@@ -12,7 +14,8 @@ import java.io.IOException
 import java.util.concurrent.Executor
 
 abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
-        private val retryExecutor: Executor)
+        private val retryExecutor: Executor,
+        private val context: Context)
     : PageKeyedDataSource<Int, T>() {
 
     // keep a function reference for the retry event
@@ -58,7 +61,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                 retry = {
                     loadAfter(params, callback)
                 }
-                _networkState.postValue(NetworkState.error(failed_loading_msg))
+                _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
             }
 
             override fun onResponse(call: Call<E>, response: Response<E>) {
@@ -71,7 +74,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                     retry = {
                         loadAfter(params, callback)
                     }
-                    _networkState.postValue(NetworkState.error(failed_loading_msg))
+                    _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
                 }
             }
         }
@@ -98,7 +101,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                 retry = {
                     loadInitial(params, callback)
                 }
-                val error = NetworkState.error(failed_loading_msg)
+                val error = NetworkState.error(context.getString(R.string.failed_loading_msg))
                 _networkState.postValue(error)
                 _initialLoad.postValue(error)
             }
@@ -106,7 +109,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
             retry = {
                 loadInitial(params, callback)
             }
-            val error = NetworkState.error(failed_loading_msg)
+            val error = NetworkState.error(context.getString(R.string.failed_loading_msg))
             _networkState.postValue(error)
             _initialLoad.postValue(error)
         } finally {
@@ -116,5 +119,3 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
         }
     }
 }
-
-private const val failed_loading_msg = "Something went wrong ..."

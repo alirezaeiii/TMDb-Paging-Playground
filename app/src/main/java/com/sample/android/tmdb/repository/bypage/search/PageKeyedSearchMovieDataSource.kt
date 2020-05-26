@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.repository.bypage.search
 
+import android.content.Context
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
@@ -10,8 +11,9 @@ import java.util.concurrent.Executor
 class PageKeyedSearchMovieDataSource(
         private val api: TmdbApi,
         private val query: String,
-        retryExecutor: Executor)
-    : PageKeyedItemDataSource<Movie, TmdbApi.MovieWrapper>(retryExecutor) {
+        retryExecutor: Executor,
+        context: Context)
+    : PageKeyedItemDataSource<Movie, TmdbApi.MovieWrapper>(retryExecutor, context) {
 
     override fun getItems(response: Response<TmdbApi.MovieWrapper>): List<Movie> =
             response.body()?.movies ?: emptyList()
