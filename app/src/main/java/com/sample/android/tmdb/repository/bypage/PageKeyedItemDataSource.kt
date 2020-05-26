@@ -71,9 +71,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                     retry = {
                         loadAfter(params, callback)
                     }
-                    _networkState.postValue(
-                            NetworkState.error("error code: ${response.code()} " +
-                                    response.message()))
+                    _networkState.postValue(NetworkState.error(failed_loading_msg))
                 }
             }
         }
@@ -100,7 +98,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                 retry = {
                     loadInitial(params, callback)
                 }
-                val error = NetworkState.error("error code: ${response.code()} " + response.message())
+                val error = NetworkState.error(failed_loading_msg)
                 _networkState.postValue(error)
                 _initialLoad.postValue(error)
             }
@@ -108,7 +106,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
             retry = {
                 loadInitial(params, callback)
             }
-            val error = NetworkState.error(ioException.message ?: "unknown error")
+            val error = NetworkState.error(failed_loading_msg)
             _networkState.postValue(error)
             _initialLoad.postValue(error)
         } finally {
@@ -118,3 +116,5 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
         }
     }
 }
+
+private const val failed_loading_msg = "Something went wrong ..."

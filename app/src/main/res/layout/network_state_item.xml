@@ -9,6 +9,7 @@
         android:id="@+id/error_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_gravity="center_horizontal" />
 
     <ProgressBar
