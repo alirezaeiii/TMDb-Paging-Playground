@@ -58,7 +58,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                 retry = {
                     loadAfter(params, callback)
                 }
-                _networkState.postValue(NetworkState.error(t.message ?: "unknown err"))
+                _networkState.postValue(NetworkState.error(failed_loading_msg))
             }
 
             override fun onResponse(call: Call<E>, response: Response<E>) {
