@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.detail
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.Video

@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.repository.bypage
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.DataSource
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.sample.android.tmdb.domain.TmdbItem
 
 abstract class ItemDataSourceFactory<T : TmdbItem, E> : DataSource.Factory<Int, T>() {

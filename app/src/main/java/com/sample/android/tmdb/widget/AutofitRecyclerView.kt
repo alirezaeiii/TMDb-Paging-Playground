@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.widget
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 
 class AutofitRecyclerView : RecyclerView {
 
-    var manager:GridLayoutManager by Delegates.notNull()
+    var manager: GridLayoutManager by Delegates.notNull()
     private var columnWidth = -1
 
     constructor(context: Context) : super(context) {

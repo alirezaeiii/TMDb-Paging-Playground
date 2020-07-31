@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.ui.detail.movie
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import android.view.View
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailMovieBinding

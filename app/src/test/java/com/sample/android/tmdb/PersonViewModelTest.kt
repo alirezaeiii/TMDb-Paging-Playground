@@ -1,6 +1,6 @@
 package com.sample.android.tmdb
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.person.PersonViewModel

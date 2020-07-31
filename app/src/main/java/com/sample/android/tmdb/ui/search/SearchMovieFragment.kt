@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.ui.search
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.ui.TmdbAdapter
 import com.sample.android.tmdb.ui.detail.EXTRA_MOVIE

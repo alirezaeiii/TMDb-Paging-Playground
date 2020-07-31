@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.repository.bypage
 
-import android.arch.lifecycle.Transformations
-import android.arch.paging.LivePagedListBuilder
-import android.support.annotation.MainThread
+import androidx.lifecycle.Transformations
+import androidx.annotation.MainThread
+import androidx.paging.LivePagedListBuilder
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.ItemRepository
 import com.sample.android.tmdb.repository.Listing

@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.ui.person
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.ui.BaseViewModel

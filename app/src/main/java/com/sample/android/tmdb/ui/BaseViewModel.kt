@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -15,7 +15,7 @@
             type="com.sample.android.tmdb.ui.detail.DetailViewModel" />
     </data>
 
-    <android.support.constraint.motion.MotionLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/details_motion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="@id/details_backdrop"
             app:layout_constraintTop_toTopOf="@id/details_backdrop" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/details_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -65,7 +65,7 @@
             app:backgroundColor="@color/window_background"
             app:topLeftCutSize="@dimen/details_corner_cutout" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/details_title"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -74,14 +74,14 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:transitionName="@string/view_name_header_title" />
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/details_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:theme="@style/Toolbar" />
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/details_rv"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -142,7 +142,7 @@
                     android:text="@string/cast"
                     android:visibility="invisible" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cast_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -152,7 +152,7 @@
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
         <!-- This needs to be updated to use WindowInsets. See https://issuetracker.google.com/issues/112605433 -->
@@ -162,6 +162,6 @@
             android:layout_height="24dp"
             android:background="@color/status_bar_scrim_translucent_dark" />
 
-    </android.support.constraint.motion.MotionLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 </layout>

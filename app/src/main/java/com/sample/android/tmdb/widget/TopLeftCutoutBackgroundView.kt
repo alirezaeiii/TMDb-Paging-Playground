@@ -4,12 +4,12 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Outline
 import android.graphics.Path
-import android.support.design.shape.CutCornerTreatment
-import android.support.design.shape.MaterialShapeDrawable
-import android.support.design.shape.ShapePathModel
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
+import com.google.android.material.shape.CutCornerTreatment
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapePathModel
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.util.lerp
 

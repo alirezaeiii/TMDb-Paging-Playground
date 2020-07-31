@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.item.tvshow
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.TmdbAdapter

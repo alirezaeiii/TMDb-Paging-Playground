@@ -1,9 +1,9 @@
 package com.sample.android.tmdb
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.lifecycle.Observer
-import android.arch.paging.PagedList
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import android.content.Context
+import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.TmdbApi

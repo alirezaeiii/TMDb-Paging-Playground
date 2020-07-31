@@ -1,15 +1,15 @@
 package com.sample.android.tmdb.ui.detail
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.Observer
 import android.content.Intent
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.constraint.motion.MotionLayout
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
@@ -20,7 +20,6 @@ import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
-import kotlinx.android.synthetic.main.trailers.view.*
 
 abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
 
@@ -96,8 +95,11 @@ abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.details_motion.setTransitionListener(object : MotionLayout.TransitionListener {
-            override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
 
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
+
+            override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
                 view.details_appbar_background.cutProgress = 1f - progress
                 view.details_poster.visibility = View.VISIBLE
             }

@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.ui.item.tvshow
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.repository.Listing

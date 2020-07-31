@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.util
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.view.View
 
 @BindingAdapter("visibleGone")

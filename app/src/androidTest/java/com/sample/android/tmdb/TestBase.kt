@@ -1,6 +1,6 @@
 package com.sample.android.tmdb
 
-import android.support.test.espresso.IdlingRegistry
+import androidx.test.espresso.IdlingRegistry
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before

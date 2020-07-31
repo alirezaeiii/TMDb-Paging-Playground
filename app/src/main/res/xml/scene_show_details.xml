@@ -34,7 +34,7 @@
                 app:framePosition="20"
                 app:keyPositionType="deltaRelative"
                 app:percentY="0.51"
-                app:target="@id/details_poster" />
+                app:motionTarget="@id/details_poster" />
 
             <!-- This looks weird. We need a quick change from elevated to not-so-elevated at 20% so we set 2 key
                  attributes, one at 20% and other at 25%. -->
@@ -43,18 +43,18 @@
                 android:rotation="45"
                 android:rotationY="15"
                 app:framePosition="20"
-                app:target="@id/details_poster" />
+                app:motionTarget="@id/details_poster" />
 
             <KeyAttribute
                 android:elevation="@dimen/details_poster_not_elevation"
                 app:framePosition="25"
-                app:target="@id/details_poster" />
+                app:motionTarget="@id/details_poster" />
 
             <!-- Only elevate the appbar background over the last 25% -->
             <KeyAttribute
                 android:elevation="0dp"
                 app:framePosition="75"
-                app:target="@id/details_appbar_background" />
+                app:motionTarget="@id/details_appbar_background" />
 
         </KeyFrameSet>
 
