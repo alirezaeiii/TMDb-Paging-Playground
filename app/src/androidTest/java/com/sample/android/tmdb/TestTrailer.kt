@@ -8,8 +8,8 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.customScrollTo
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.item.movie.MovieViewHolder

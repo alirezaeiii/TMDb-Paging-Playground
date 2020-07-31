@@ -6,9 +6,9 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.CastAdapter
