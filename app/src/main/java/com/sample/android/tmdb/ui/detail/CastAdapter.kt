@@ -37,6 +37,6 @@ class CastAdapter(
         }
     }
 
-    inner class CastViewHolder(internal val binding: CastItemBinding) :
+    class CastViewHolder(internal val binding: CastItemBinding) :
             RecyclerView.ViewHolder(binding.root)
 }
