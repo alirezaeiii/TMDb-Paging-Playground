@@ -3,6 +3,7 @@ package com.sample.android.tmdb.di
 import android.app.Application
 
 import com.sample.android.tmdb.TmdbApp
+import com.sample.android.tmdb.network.NetworkModule
 
 import javax.inject.Singleton
 

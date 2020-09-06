@@ -1,8 +1,6 @@
-package com.sample.android.tmdb.di
+package com.sample.android.tmdb.network
 
 import com.sample.android.tmdb.BuildConfig
-import com.sample.android.tmdb.network.TmdbApi
-import com.sample.android.tmdb.network.RequestInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
