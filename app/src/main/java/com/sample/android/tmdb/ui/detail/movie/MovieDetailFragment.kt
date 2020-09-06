@@ -1,12 +1,13 @@
 package com.sample.android.tmdb.ui.detail.movie
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import android.view.View
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailMovieBinding
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import org.jetbrains.annotations.Nullable
 import javax.inject.Inject
@@ -18,6 +19,9 @@ constructor() // Required empty public constructor
     @Inject
     @Nullable
     lateinit var movieItem: Movie
+
+    @Inject
+    lateinit var api: MovieApi
 
     override val viewModel by lazy {
         ViewModelProviders.of(this, object : ViewModelProvider.Factory {

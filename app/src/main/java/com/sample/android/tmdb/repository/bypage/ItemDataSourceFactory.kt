@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.sample.android.tmdb.domain.TmdbItem
 
-abstract class ItemDataSourceFactory<T : TmdbItem, E> : DataSource.Factory<Int, T>() {
+abstract class ItemDataSourceFactory<T : TmdbItem> : DataSource.Factory<Int, T>() {
 
-    private val _sourceLiveData = MutableLiveData<PageKeyedItemDataSource<T, E>>()
-    val sourceLiveData: LiveData<PageKeyedItemDataSource<T, E>>
+    private val _sourceLiveData = MutableLiveData<PageKeyedItemDataSource<T>>()
+    val sourceLiveData: LiveData<PageKeyedItemDataSource<T>>
         get() = _sourceLiveData
 
-    protected abstract fun getDataSource(): PageKeyedItemDataSource<T, E>
+    protected abstract fun getDataSource(): PageKeyedItemDataSource<T>
 
     override fun create(): DataSource<Int, T> {
         val source = getDataSource()

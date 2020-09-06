@@ -1,11 +1,12 @@
 package com.sample.android.tmdb.repository.bypage
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import android.content.Context
 import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import retrofit2.Call
@@ -13,7 +14,7 @@ import retrofit2.Response
 import java.io.IOException
 import java.util.concurrent.Executor
 
-abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
+abstract class PageKeyedItemDataSource<T : TmdbItem>(
         private val retryExecutor: Executor,
         private val context: Context)
     : PageKeyedDataSource<Int, T>() {
@@ -43,9 +44,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
         }
     }
 
-    protected abstract fun getItems(response: Response<E>): List<T>
-
-    protected abstract fun fetchItems(page: Int): Call<E>
+    protected abstract fun fetchItems(page: Int): Call<ItemWrapper<T>>
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         // ignored, since we only ever append to our initial load
@@ -54,9 +53,9 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
 
         _networkState.postValue(NetworkState.LOADING)
-        fetchItems(params.key).enqueue(object : retrofit2.Callback<E> {
+        fetchItems(params.key).enqueue(object : retrofit2.Callback<ItemWrapper<T>> {
 
-            override fun onFailure(call: Call<E>, t: Throwable) {
+            override fun onFailure(call: Call<ItemWrapper<T>>, t: Throwable) {
                 // keep a lambda for future retry
                 retry = {
                     loadAfter(params, callback)
@@ -64,7 +63,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
                 _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
             }
 
-            override fun onResponse(call: Call<E>, response: Response<E>) {
+            override fun onResponse(call: Call<ItemWrapper<T>>, response: Response<ItemWrapper<T>>) {
                 if (response.isSuccessful) {
                     // clear retry since last request succeeded
                     retry = null
@@ -118,4 +117,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem, E>(
             }
         }
     }
+
+    private fun getItems(response: Response<ItemWrapper<T>>): List<T> =
+            response.body()?.items ?: emptyList()
 }

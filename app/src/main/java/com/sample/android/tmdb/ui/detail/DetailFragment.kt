@@ -13,15 +13,15 @@ import androidx.lifecycle.Observer
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.BaseDaggerFragment
 import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
 
-abstract class DetailFragment<T : TmdbItem> : BaseDaggerFragment() {
+abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
 
     protected abstract val layoutId: Int
 

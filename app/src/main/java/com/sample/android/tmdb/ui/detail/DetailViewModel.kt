@@ -2,10 +2,7 @@ package com.sample.android.tmdb.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.sample.android.tmdb.domain.Cast
-import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.domain.Video
-import com.sample.android.tmdb.network.TmdbApi
+import com.sample.android.tmdb.domain.*
 import com.sample.android.tmdb.ui.BaseViewModel
 import io.reactivex.Observable
 import timber.log.Timber
@@ -31,7 +28,7 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
     val cast: LiveData<List<Cast>>
         get() = _cast
 
-    protected abstract fun getTrailers(id: Int): Observable<TmdbApi.VideoWrapper>
+    protected abstract fun getTrailers(id: Int): Observable<VideoWrapper>
 
-    protected abstract fun getCast(id: Int): Observable<TmdbApi.CastWrapper>
+    protected abstract fun getCast(id: Int): Observable<CastWrapper>
 }

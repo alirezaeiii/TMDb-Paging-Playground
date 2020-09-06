@@ -8,9 +8,9 @@ import com.sample.android.tmdb.repository.ItemRepository
 import com.sample.android.tmdb.repository.Listing
 import java.util.concurrent.Executor
 
-abstract class PageKeyRepository<T : TmdbItem, E>: ItemRepository<T> {
+abstract class PageKeyRepository<T : TmdbItem>: ItemRepository<T> {
 
-    protected abstract fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<T, E>
+    protected abstract fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<T>
 
     @MainThread
     override fun getItems(query: String, networkExecutor: Executor): Listing<T> {

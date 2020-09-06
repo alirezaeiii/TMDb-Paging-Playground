@@ -41,5 +41,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun movieApi(retrofit: Retrofit): TmdbApi = retrofit.create(TmdbApi::class.java)
+    fun movieApi(retrofit: Retrofit): MovieApi = retrofit.create(MovieApi::class.java)
+
+    @Singleton
+    @Provides
+    fun tvShowApi(retrofit: Retrofit): TVShowApi = retrofit.create(TVShowApi::class.java)
+
+    @Singleton
+    @Provides
+    fun personApi(retrofit: Retrofit): PersonApi = retrofit.create(PersonApi::class.java)
 }
