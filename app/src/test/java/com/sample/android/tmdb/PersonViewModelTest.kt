@@ -1,8 +1,8 @@
 package com.sample.android.tmdb
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sample.android.tmdb.network.TmdbApi
 import com.sample.android.tmdb.domain.Person
+import com.sample.android.tmdb.network.PersonApi
 import com.sample.android.tmdb.ui.person.PersonViewModel
 import io.reactivex.Observable
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -27,7 +27,7 @@ class PersonViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var api: TmdbApi
+    private lateinit var api: PersonApi
 
     @Before
     fun setUp() {
