@@ -67,7 +67,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
                 if (response.isSuccessful) {
                     // clear retry since last request succeeded
                     retry = null
-                    callback.onResult(getItems(response), params.key + 1)
+                    callback.onResult(response.body()?.items ?: emptyList(), params.key + 1)
                     _networkState.postValue(NetworkState.LOADED)
                 } else {
                     retry = {
@@ -76,8 +76,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
                     _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
                 }
             }
-        }
-        )
+        })
     }
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
@@ -95,7 +94,7 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
                 retry = null
                 _networkState.postValue(NetworkState.LOADED)
                 _initialLoad.postValue(NetworkState.LOADED)
-                callback.onResult(getItems(response), null, 2)
+                callback.onResult(response.body()?.items ?: emptyList(), null, 2)
             } else {
                 retry = {
                     loadInitial(params, callback)
@@ -117,7 +116,4 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
             }
         }
     }
-
-    private fun getItems(response: Response<ItemWrapper<T>>): List<T> =
-            response.body()?.items ?: emptyList()
 }
