@@ -42,7 +42,7 @@ constructor() // Required empty public constructor
 
             viewModel.person.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    biography_label.visibleGone(it.biography.trim().isNotEmpty())
+                    visibleGone(biography_label, it.biography.trim().isNotEmpty())
                 }
             })
 
@@ -53,7 +53,7 @@ constructor() // Required empty public constructor
 
             viewModel.knownAs.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    known_as.visibleGone(it.trim().isNotEmpty())
+                    visibleGone(known_as, it.trim().isNotEmpty())
                     known_as.text = getString(R.string.known_as, it)
                 }
             })

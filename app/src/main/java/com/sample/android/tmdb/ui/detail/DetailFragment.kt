@@ -44,7 +44,7 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
 
             viewModel.cast.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    cast_label.visibleGone(it.isNotEmpty())
+                    visibleGone(cast_label, it.isNotEmpty())
                     cast_list.apply {
                         setHasFixedSize(true)
                         adapter = CastAdapter(it, object : CastClickCallback {
@@ -72,7 +72,7 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
                 }
             }
 
-            summary_label.visibleGone(tmdbItem.overview.trim().isNotEmpty())
+            visibleGone(summary_label, tmdbItem.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or

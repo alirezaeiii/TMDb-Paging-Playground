@@ -120,4 +120,9 @@ fun goneIfNull(view: View, it: Any?) {
     view.visibility = if (it == null) View.GONE else View.VISIBLE
 }
 
+@BindingAdapter("visibleGone")
+fun visibleGone(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
 private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
