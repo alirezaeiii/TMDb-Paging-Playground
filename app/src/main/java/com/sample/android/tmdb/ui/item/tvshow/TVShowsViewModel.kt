@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.repository.Listing
-import com.sample.android.tmdb.repository.bypage.tvshow.TVShowsPageKeyRepository
+import com.sample.android.tmdb.paging.Listing
+import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository
 import com.sample.android.tmdb.ui.item.BaseItemViewModel
 import com.sample.android.tmdb.util.SortType
 

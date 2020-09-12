@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.repository.bypage.search
+package com.sample.android.tmdb.paging.search
 
 import android.content.Context
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
-import com.sample.android.tmdb.repository.bypage.PageKeyRepository
+import com.sample.android.tmdb.paging.ItemDataSourceFactory
+import com.sample.android.tmdb.paging.PageKeyRepository
 import java.util.concurrent.Executor
 
 class SearchTVShowPageKeyRepository(private val api: TVShowApi,

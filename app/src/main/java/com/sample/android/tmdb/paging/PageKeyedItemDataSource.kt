@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository.bypage
+package com.sample.android.tmdb.paging
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -7,7 +7,6 @@ import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.repository.NetworkState
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Response

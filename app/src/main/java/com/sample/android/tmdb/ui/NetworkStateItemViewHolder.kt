@@ -8,9 +8,9 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.repository.NetworkState
-import com.sample.android.tmdb.repository.Status.FAILED
-import com.sample.android.tmdb.repository.Status.RUNNING
+import com.sample.android.tmdb.paging.NetworkState
+import com.sample.android.tmdb.paging.Status.FAILED
+import com.sample.android.tmdb.paging.Status.RUNNING
 
 /**
  * A View Holder that can display a loading or have click action.

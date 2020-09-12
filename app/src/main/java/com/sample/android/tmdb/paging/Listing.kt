@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.paging
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList

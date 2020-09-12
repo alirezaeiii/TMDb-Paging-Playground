@@ -1,9 +1,9 @@
-package com.sample.android.tmdb.repository.bypage.search
+package com.sample.android.tmdb.paging.search
 
 import android.content.Context
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
+import com.sample.android.tmdb.paging.PageKeyedItemDataSource
 import java.util.concurrent.Executor
 
 class PageKeyedSearchTVShowDataSource(

@@ -1,11 +1,9 @@
-package com.sample.android.tmdb.repository.bypage
+package com.sample.android.tmdb.paging
 
 import androidx.lifecycle.Transformations
 import androidx.annotation.MainThread
 import androidx.paging.LivePagedListBuilder
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.repository.ItemRepository
-import com.sample.android.tmdb.repository.Listing
 import java.util.concurrent.Executor
 
 abstract class PageKeyRepository<T : TmdbItem>: ItemRepository<T> {

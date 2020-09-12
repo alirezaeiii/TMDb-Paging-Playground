@@ -17,7 +17,7 @@ import android.widget.TextView
 import androidx.paging.PagedList
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.repository.NetworkState
+import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.NavType

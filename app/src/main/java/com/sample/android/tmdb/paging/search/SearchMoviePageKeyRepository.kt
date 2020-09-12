@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.repository.bypage.search
+package com.sample.android.tmdb.paging.search
 
 import android.content.Context
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.repository.bypage.ItemDataSourceFactory
-import com.sample.android.tmdb.repository.bypage.PageKeyRepository
+import com.sample.android.tmdb.paging.ItemDataSourceFactory
+import com.sample.android.tmdb.paging.PageKeyRepository
 import java.util.concurrent.Executor
 
 class SearchMoviePageKeyRepository(private val api: MovieApi,

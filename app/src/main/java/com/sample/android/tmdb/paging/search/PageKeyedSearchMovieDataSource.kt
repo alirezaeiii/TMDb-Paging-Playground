@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.repository.bypage.search
+package com.sample.android.tmdb.paging.search
 
 import android.content.Context
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.repository.bypage.PageKeyedItemDataSource
+import com.sample.android.tmdb.paging.PageKeyedItemDataSource
 import retrofit2.Call
 import java.util.concurrent.Executor
 

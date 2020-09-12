@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.repository.NetworkState
+import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.domain.TmdbItem
 import java.util.*
 

@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.repository.Listing
-import com.sample.android.tmdb.repository.bypage.search.SearchTVShowPageKeyRepository
+import com.sample.android.tmdb.paging.Listing
+import com.sample.android.tmdb.paging.search.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.ui.TmdbViewModel
 
 class SearchTVShowViewModel(api: TVShowApi, app: Application) : TmdbViewModel<TVShow>(app = app) {
