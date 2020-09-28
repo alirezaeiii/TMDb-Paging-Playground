@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.detail.tvshow
 
-import com.sample.android.tmdb.domain.CastWrapper
+import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.VideoWrapper
 import com.sample.android.tmdb.network.TVShowApi
@@ -12,5 +12,5 @@ class TVShowDetailViewModel(private val api: TVShowApi,
 
     override fun getTrailers(id: Int): Observable<VideoWrapper> = api.tvTrailers(id)
 
-    override fun getCast(id: Int): Observable<CastWrapper> = api.tvCast(id)
+    override fun getCast(id: Int): Observable<CreditWrapper> = api.tvCast(id)
 }

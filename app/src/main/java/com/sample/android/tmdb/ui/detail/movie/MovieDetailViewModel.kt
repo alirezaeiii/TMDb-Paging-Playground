@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.detail.movie
 
-import com.sample.android.tmdb.domain.CastWrapper
+import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.VideoWrapper
 import com.sample.android.tmdb.network.MovieApi
@@ -12,5 +12,5 @@ class MovieDetailViewModel(private val api: MovieApi,
 
     override fun getTrailers(id: Int): Observable<VideoWrapper> = api.movieTrailers(id)
 
-    override fun getCast(id: Int): Observable<CastWrapper> = api.movieCast(id)
+    override fun getCast(id: Int): Observable<CreditWrapper> = api.movieCast(id)
 }

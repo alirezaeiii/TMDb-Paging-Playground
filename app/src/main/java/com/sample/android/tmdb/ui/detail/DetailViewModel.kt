@@ -13,22 +13,21 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
     val trailers: LiveData<List<Video>>
         get() = _trailers
 
-    private val _cast: MutableLiveData<List<Cast>> by lazy {
-        MutableLiveData<List<Cast>>().also {
+    private val _creditWrapper: MutableLiveData<CreditWrapper> by lazy {
+        MutableLiveData<CreditWrapper>().also {
             arrayOf(composeObservable { getTrailers(item.id).map { it.videos } }
                     .subscribe({ videos ->
                         _trailers.postValue(videos)
-                    }) { throwable -> Timber.e(throwable) }
-                    , composeObservable { getCast(item.id).map { it.cast } }
-                    .subscribe({ cast ->
-                        _cast.postValue(cast)
+                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCast(item.id) }
+                    .subscribe({ credit ->
+                        _creditWrapper.postValue(credit)
                     }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
         }
     }
-    val cast: LiveData<List<Cast>>
-        get() = _cast
+    val creditWrapper: LiveData<CreditWrapper>
+        get() = _creditWrapper
 
     protected abstract fun getTrailers(id: Int): Observable<VideoWrapper>
 
-    protected abstract fun getCast(id: Int): Observable<CastWrapper>
+    protected abstract fun getCast(id: Int): Observable<CreditWrapper>
 }

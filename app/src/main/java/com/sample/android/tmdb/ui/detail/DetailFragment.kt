@@ -1,7 +1,6 @@
 package com.sample.android.tmdb.ui.detail
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.google.android.material.tabs.TabLayoutMediator
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.domain.Cast
+import com.sample.android.tmdb.domain.Crew
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
-import com.sample.android.tmdb.ui.person.PersonActivity
-import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
+
 
 abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
 
@@ -42,25 +42,22 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
 
         with(root) {
 
-            viewModel.cast.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    visibleGone(cast_label, it.isNotEmpty())
-                    cast_list.apply {
-                        setHasFixedSize(true)
-                        adapter = CastAdapter(it, object : CastClickCallback {
-                            override fun onClick(personId: Int, personName: String, profilePath: String?) {
-                                val intent = Intent(activity, PersonActivity::class.java).apply {
-                                    putExtras(Bundle().apply {
-                                        putParcelable(PERSON_WRAPPER, PersonWrapper(personId,
-                                                personName,
-                                                profilePath,
-                                                tmdbItem.backdropPath))
-                                    })
-                                }
-                                startActivity(intent)
-                            }
-                        })
-                    }
+            viewModel.creditWrapper.observe(viewLifecycleOwner, Observer { creditWrapper ->
+                fragmentManager?.let {
+                    val myAdapter = ViewPagerFragmentAdapter(it, lifecycle)
+
+                    val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
+                            creditWrapper.cast as ArrayList<Cast>), R.string.cast)
+                    val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
+                            creditWrapper.crew as ArrayList<Crew>), R.string.crew)
+
+                    myAdapter.addFragment(castPagerItem)
+                    myAdapter.addFragment(crewPagerItem)
+
+                    pager.adapter = myAdapter
+                    TabLayoutMediator(tab_layout, pager) { tab, position ->
+                        tab.text = getString(myAdapter.creditFragments[position].title)
+                    }.attach()
                 }
             })
 

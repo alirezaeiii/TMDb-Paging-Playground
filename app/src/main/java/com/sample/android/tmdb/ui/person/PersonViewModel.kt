@@ -10,7 +10,7 @@ import com.sample.android.tmdb.ui.BaseViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
-class PersonViewModel(api: PersonApi, personId: Int) : BaseViewModel() {
+class PersonViewModel(api: PersonApi, personId: Any) : BaseViewModel() {
 
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person>

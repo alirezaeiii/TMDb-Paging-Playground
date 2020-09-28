@@ -12,7 +12,7 @@ class VideoWrapper(
         val videos: List<Video>
 )
 
-class CastWrapper(
-        @SerializedName("cast")
-        val cast: List<Cast>
+class CreditWrapper(
+        val cast: List<Cast>,
+        val crew: List<Crew>
 )

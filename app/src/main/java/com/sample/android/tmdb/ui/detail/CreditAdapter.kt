@@ -1,42 +1,42 @@
 package com.sample.android.tmdb.ui.detail
 
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import android.view.ViewGroup
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.databinding.CastItemBinding
+import com.sample.android.tmdb.databinding.CreditItemBinding
+import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.util.layoutInflater
-import com.sample.android.tmdb.domain.Cast
 
-class CastAdapter(
-        cast: List<Cast>,
-        private val castClickCallback: CastClickCallback)
-    : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
+class CreditAdapter<T : Credit>(
+        credits: ArrayList<T>,
+        private val creditClickCallback: CreditClickCallback)
+    : RecyclerView.Adapter<CreditAdapter.CastViewHolder>() {
 
-    private var cast: List<Cast> = cast
+    private var credits: List<T> = credits
         set(cast) {
             field = cast
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
-        val binding: CastItemBinding = DataBindingUtil
+        val binding: CreditItemBinding = DataBindingUtil
                 .inflate(parent.context.layoutInflater,
-                        R.layout.cast_item,
+                        R.layout.credit_item,
                         parent, false)
-        binding.callback = castClickCallback
+        binding.callback = creditClickCallback
         return CastViewHolder(binding)
     }
 
-    override fun getItemCount() = cast.size
+    override fun getItemCount() = credits.size
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
         with(holder.binding) {
-            castItem = cast[position]
+            credit = credits[position]
             executePendingBindings()
         }
     }
 
-    class CastViewHolder(internal val binding: CastItemBinding) :
+    class CastViewHolder(internal val binding: CreditItemBinding) :
             RecyclerView.ViewHolder(binding.root)
 }

@@ -11,7 +11,7 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.detail.CastAdapter
+import com.sample.android.tmdb.ui.detail.CreditAdapter
 import com.sample.android.tmdb.ui.item.movie.MovieViewHolder
 import org.junit.Rule
 import org.junit.Test
@@ -61,15 +61,15 @@ class TestMainActivity : TestBase() {
     fun shouldBeAbleToDisplayCast() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-        onView(withId(R.id.cast_list)).perform(nestedScrollTo()).check(matches(isDisplayed()))
+        onView(withId(R.id.credit_list)).perform(nestedScrollTo()).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayPersonDetail() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<MovieViewHolder>(10, click()))
-        onView(withId(R.id.cast_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
-                .actionOnItemAtPosition<CastAdapter.CastViewHolder>(2, click()))
+        onView(withId(R.id.credit_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
+                .actionOnItemAtPosition<CreditAdapter.CastViewHolder>(2, click()))
         onView(withText(R.string.biography)).check(matches(isDisplayed()))
     }
 

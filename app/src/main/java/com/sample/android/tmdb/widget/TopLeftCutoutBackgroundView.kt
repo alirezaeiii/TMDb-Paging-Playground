@@ -53,7 +53,6 @@ class TopLeftCutoutBackgroundView : View {
     private fun syncCutSize() {
         val shapeModel = shapeDrawable.shapedViewModel ?: ShapePathModel()
         shapeModel.topLeftCorner = CutCornerTreatment(lerp(0f, maxCutSize, cutProgress))
-        shapeDrawable.shapedViewModel = shapeModel
     }
 
     class MaterialShapeDrawableOutlineProvider(

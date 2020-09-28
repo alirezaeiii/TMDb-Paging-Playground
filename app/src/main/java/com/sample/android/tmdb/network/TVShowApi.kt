@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.network
 
-import com.sample.android.tmdb.domain.CastWrapper
+import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.domain.VideoWrapper
@@ -28,5 +28,5 @@ interface TVShowApi {
     fun tvTrailers(@Path("tvId") tvId: Int): Observable<VideoWrapper>
 
     @GET("3/tv/{tvId}/credits")
-    fun tvCast(@Path("tvId") tvId: Int): Observable<CastWrapper>
+    fun tvCast(@Path("tvId") tvId: Int): Observable<CreditWrapper>
 }

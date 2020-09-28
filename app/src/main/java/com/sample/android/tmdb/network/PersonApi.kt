@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface PersonApi {
 
     @GET("3/person/{personId}")
-    fun person(@Path("personId") personId: Int): Observable<Person>
+    fun person(@Path("personId") personId: Any): Observable<Person>
 }

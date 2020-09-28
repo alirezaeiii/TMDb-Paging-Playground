@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/rating(movie.voteAverage)}"
-                    app:visibleGone="@{movie.voteAverage!=0.0}"/>
+                    app:visibleGone="@{movie.voteAverage!=0.0}" />
 
                 <TextView
                     android:id="@+id/summary_label"
@@ -133,22 +133,19 @@
                     app:vm="@{vm}"
                     tools:ignore="RtlHardcoded" />
 
-                <TextView
-                    android:id="@+id/cast_label"
-                    style="@style/TmdbMargin.Title"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@string/cast"
-                    android:visibility="invisible" />
+                    app:tabSelectedTextColor="@color/colorAccent"
+                    app:tabTextColor="@android:color/white" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cast_list"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="12dp"
-                    app:layoutManager="GridLayoutManager"
-                    app:spanCount="@integer/no_of_columns" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
