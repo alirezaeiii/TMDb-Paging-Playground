@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.detail
+package com.sample.android.tmdb.ui.detail.credit
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

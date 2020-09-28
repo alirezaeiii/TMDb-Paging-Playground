@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.detail
+package com.sample.android.tmdb.ui.detail.credit
 
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

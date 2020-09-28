@@ -11,7 +11,7 @@
 
         <variable
             name="callback"
-            type="com.sample.android.tmdb.ui.detail.CreditClickCallback" />
+            type="com.sample.android.tmdb.ui.detail.credit.CreditClickCallback" />
 
     </data>
 

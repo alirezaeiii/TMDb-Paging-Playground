@@ -15,6 +15,9 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.Cast
 import com.sample.android.tmdb.domain.Crew
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.detail.credit.CreditFragment
+import com.sample.android.tmdb.ui.detail.credit.PagerItem
+import com.sample.android.tmdb.ui.detail.credit.ViewPagerFragmentAdapter
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment

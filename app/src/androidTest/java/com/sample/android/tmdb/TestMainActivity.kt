@@ -11,7 +11,7 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.detail.CreditAdapter
+import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
 import com.sample.android.tmdb.ui.item.movie.MovieViewHolder
 import org.junit.Rule
 import org.junit.Test
