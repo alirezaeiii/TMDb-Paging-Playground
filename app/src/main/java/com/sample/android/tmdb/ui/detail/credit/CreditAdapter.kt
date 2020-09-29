@@ -11,7 +11,7 @@ import com.sample.android.tmdb.util.layoutInflater
 class CreditAdapter<T : Credit>(
         credits: ArrayList<T>,
         private val creditClickCallback: CreditClickCallback)
-    : RecyclerView.Adapter<CreditAdapter.CastViewHolder>() {
+    : RecyclerView.Adapter<CreditAdapter.CreditViewHolder>() {
 
     private var credits: List<T> = credits
         set(credit) {
@@ -19,24 +19,24 @@ class CreditAdapter<T : Credit>(
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreditViewHolder {
         val binding: CreditItemBinding = DataBindingUtil
                 .inflate(parent.context.layoutInflater,
                         R.layout.credit_item,
                         parent, false)
         binding.callback = creditClickCallback
-        return CastViewHolder(binding)
+        return CreditViewHolder(binding)
     }
 
     override fun getItemCount() = credits.size
 
-    override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CreditViewHolder, position: Int) {
         with(holder.binding) {
             credit = credits[position]
             executePendingBindings()
         }
     }
 
-    class CastViewHolder(internal val binding: CreditItemBinding) :
+    class CreditViewHolder(internal val binding: CreditItemBinding) :
             RecyclerView.ViewHolder(binding.root)
 }

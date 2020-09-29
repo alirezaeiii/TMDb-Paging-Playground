@@ -69,7 +69,7 @@ class TestMainActivity : TestBase() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<MovieViewHolder>(10, click()))
         onView(withId(R.id.credit_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
-                .actionOnItemAtPosition<CreditAdapter.CastViewHolder>(2, click()))
+                .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(2, click()))
         onView(withText(R.string.biography)).check(matches(isDisplayed()))
     }
 
