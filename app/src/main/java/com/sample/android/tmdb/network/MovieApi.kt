@@ -28,5 +28,5 @@ interface MovieApi {
     fun movieTrailers(@Path("movieId") movieId: Int): Observable<VideoWrapper>
 
     @GET("3/movie/{movieId}/credits")
-    fun movieCast(@Path("movieId") movieId: Int): Observable<CreditWrapper>
+    fun movieCredit(@Path("movieId") movieId: Int): Observable<CreditWrapper>
 }

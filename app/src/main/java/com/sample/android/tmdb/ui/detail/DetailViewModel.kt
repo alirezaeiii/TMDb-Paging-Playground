@@ -18,7 +18,7 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
             arrayOf(composeObservable { getTrailers(item.id).map { it.videos } }
                     .subscribe({ videos ->
                         _trailers.postValue(videos)
-                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCast(item.id) }
+                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCredit(item.id) }
                     .subscribe({ credit ->
                         _creditWrapper.postValue(credit)
                     }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
@@ -29,5 +29,5 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     protected abstract fun getTrailers(id: Int): Observable<VideoWrapper>
 
-    protected abstract fun getCast(id: Int): Observable<CreditWrapper>
+    protected abstract fun getCredit(id: Int): Observable<CreditWrapper>
 }

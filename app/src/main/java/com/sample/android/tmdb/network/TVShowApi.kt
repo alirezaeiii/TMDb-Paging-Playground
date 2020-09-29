@@ -28,5 +28,5 @@ interface TVShowApi {
     fun tvTrailers(@Path("tvId") tvId: Int): Observable<VideoWrapper>
 
     @GET("3/tv/{tvId}/credits")
-    fun tvCast(@Path("tvId") tvId: Int): Observable<CreditWrapper>
+    fun tvCredit(@Path("tvId") tvId: Int): Observable<CreditWrapper>
 }

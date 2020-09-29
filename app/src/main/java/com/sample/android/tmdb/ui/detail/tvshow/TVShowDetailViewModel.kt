@@ -12,5 +12,5 @@ class TVShowDetailViewModel(private val api: TVShowApi,
 
     override fun getTrailers(id: Int): Observable<VideoWrapper> = api.tvTrailers(id)
 
-    override fun getCast(id: Int): Observable<CreditWrapper> = api.tvCast(id)
+    override fun getCredit(id: Int): Observable<CreditWrapper> = api.tvCredit(id)
 }

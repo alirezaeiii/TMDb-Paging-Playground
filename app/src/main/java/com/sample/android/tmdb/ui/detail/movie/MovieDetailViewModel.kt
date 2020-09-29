@@ -12,5 +12,5 @@ class MovieDetailViewModel(private val api: MovieApi,
 
     override fun getTrailers(id: Int): Observable<VideoWrapper> = api.movieTrailers(id)
 
-    override fun getCast(id: Int): Observable<CreditWrapper> = api.movieCast(id)
+    override fun getCredit(id: Int): Observable<CreditWrapper> = api.movieCredit(id)
 }
