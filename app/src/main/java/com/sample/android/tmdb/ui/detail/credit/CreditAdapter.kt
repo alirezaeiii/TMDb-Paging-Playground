@@ -14,8 +14,8 @@ class CreditAdapter<T : Credit>(
     : RecyclerView.Adapter<CreditAdapter.CastViewHolder>() {
 
     private var credits: List<T> = credits
-        set(cast) {
-            field = cast
+        set(credit) {
+            field = credit
             notifyDataSetChanged()
         }
 

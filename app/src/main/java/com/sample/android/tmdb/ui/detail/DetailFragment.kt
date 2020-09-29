@@ -17,7 +17,7 @@ import com.sample.android.tmdb.domain.Crew
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.credit.CreditFragment
 import com.sample.android.tmdb.ui.detail.credit.PagerItem
-import com.sample.android.tmdb.ui.detail.credit.ViewPagerFragmentAdapter
+import com.sample.android.tmdb.ui.detail.credit.CreditViewPagerAdapter
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
@@ -47,19 +47,19 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
 
             viewModel.creditWrapper.observe(viewLifecycleOwner, Observer { creditWrapper ->
                 fragmentManager?.let {
-                    val myAdapter = ViewPagerFragmentAdapter(it, lifecycle)
+                    val adapter = CreditViewPagerAdapter(it, lifecycle)
 
                     val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
                             creditWrapper.cast as ArrayList<Cast>), R.string.cast)
                     val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
                             creditWrapper.crew as ArrayList<Crew>), R.string.crew)
 
-                    myAdapter.addFragment(castPagerItem)
-                    myAdapter.addFragment(crewPagerItem)
+                    adapter.addFragment(castPagerItem)
+                    adapter.addFragment(crewPagerItem)
 
-                    pager.adapter = myAdapter
+                    pager.adapter = adapter
                     TabLayoutMediator(tab_layout, pager) { tab, position ->
-                        tab.text = getString(myAdapter.creditFragments[position].title)
+                        tab.text = getString(adapter.creditFragments[position].title)
                     }.attach()
                 }
             })
