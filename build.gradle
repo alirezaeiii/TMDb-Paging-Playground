@@ -53,4 +53,7 @@ ext {
     constraintLayoutVersion = '2.0.0-rc1'
     okhttpVersion = '3.12.0'
     circleimageviewVersion = '2.2.0'
+    viewPagerVersion = '1.0.0'
+    materialVersion = '1.2.1'
+    swiperefreshVersion = '1.1.0'
 }

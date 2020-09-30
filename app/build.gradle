@@ -40,12 +40,11 @@ dependencies {
     // Support libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
-    implementation "com.google.android.material:material:$supportLibraryVersion"
     implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation "com.google.android.material:material:1.2.1"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshVersion"
     implementation "androidx.palette:palette:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.guava:guava:$guavaVersion"
