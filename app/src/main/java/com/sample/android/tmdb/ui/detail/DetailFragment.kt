@@ -12,12 +12,10 @@ import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.domain.Cast
-import com.sample.android.tmdb.domain.Crew
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.credit.CreditFragment
-import com.sample.android.tmdb.ui.detail.credit.PagerItem
 import com.sample.android.tmdb.ui.detail.credit.CreditViewPagerAdapter
+import com.sample.android.tmdb.ui.detail.credit.PagerItem
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
@@ -50,9 +48,9 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
                     val adapter = CreditViewPagerAdapter(it, lifecycle)
 
                     val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            creditWrapper.cast as ArrayList<Cast>), R.string.cast)
+                            creditWrapper.cast), R.string.cast)
                     val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            creditWrapper.crew as ArrayList<Crew>), R.string.crew)
+                            creditWrapper.crew), R.string.crew)
 
                     adapter.addFragment(castPagerItem)
                     adapter.addFragment(crewPagerItem)

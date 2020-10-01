@@ -21,11 +21,11 @@ class CreditFragment<T : Credit> : Fragment() {
         private const val CREDITS = "credits"
 
         @JvmStatic
-        fun <T : Credit> newInstance(item: TmdbItem, credits: ArrayList<T>) =
+        fun <T : Credit> newInstance(item: TmdbItem, credits: List<T>) =
                 CreditFragment<T>().apply {
                     arguments = Bundle(2).apply {
                         putParcelable(TMDB_ITEM, item)
-                        putParcelableArrayList(CREDITS, credits)
+                        putParcelableArrayList(CREDITS, credits as ArrayList)
                     }
                 }
     }
