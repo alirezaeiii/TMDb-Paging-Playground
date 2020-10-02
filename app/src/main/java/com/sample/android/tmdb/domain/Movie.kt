@@ -8,11 +8,12 @@ class Movie(
         override val id: Int,
         override val overview: String,
         @SerializedName("release_date")
-        val releaseDate: String,
+        override val releaseDate: String,
         @SerializedName("poster_path")
         override val posterPath: String?,
         @SerializedName("backdrop_path")
         override val backdropPath: String?,
-        val title: String,
+        @SerializedName("title")
+        override val name: String,
         @SerializedName("vote_average")
         override val voteAverage: Double) : TmdbItem

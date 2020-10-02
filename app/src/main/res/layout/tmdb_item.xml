@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="tvShow"
-            type="com.sample.android.tmdb.domain.TVShow" />
+            name="tmdbItem"
+            type="com.sample.android.tmdb.domain.TmdbItem" />
 
         <variable
             name="callback"
@@ -27,13 +27,13 @@
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{() -> callback.onClick(tvShow, poster, name)}"
+        android:onClick="@{() -> callback.onClick(tmdbItem, poster, name)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:tvShowImageUrl="@{@string/base_poster_path(tvShow.posterPath)}"
+        app:ImageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView
-            android:id="@+id/tv_show_poster"
+            android:id="@+id/item_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -50,14 +50,14 @@
             tools:background="@color/black_translucent_60" />
 
         <TextView
-            android:id="@+id/tv_show_name"
+            android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:gravity="center"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="@{tvShow.name}"
+            android:text="@{tmdbItem.name}"
             android:textSize="12sp"
             android:transitionName="@string/view_name_header_title" />
 

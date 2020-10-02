@@ -9,7 +9,8 @@ import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.domain.TmdbItem
 import java.util.*
 
-abstract class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
+class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
+                                private val tmdbClickCallback: TmdbClickCallback<T>)
     : PagedListAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
             Objects.equals(oldItem, newItem)
@@ -20,22 +21,21 @@ abstract class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
 
     private var networkState: NetworkState? = null
 
-    protected abstract val layoutID: Int
-
-    protected abstract fun onBindItemViewHolder(holder: RecyclerView.ViewHolder, item: T?)
-
-    protected abstract fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            layoutID -> onBindItemViewHolder(holder, getItem(position))
+            R.layout.tmdb_item -> {
+                with((holder as TmdbViewHolder).binding) {
+                    tmdbItem = getItem(position)
+                    executePendingBindings()
+                }
+            }
             R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState, position)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            layoutID -> onCreateViewHolder(parent)
+            R.layout.tmdb_item -> TmdbViewHolder.create(parent, tmdbClickCallback)
             R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
@@ -45,7 +45,7 @@ abstract class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit)
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.network_state_item
         } else {
-            layoutID
+            R.layout.tmdb_item
         }
     }
 

@@ -45,6 +45,5 @@ class DetailActivity : DaggerAppCompatActivity() {
     }
 }
 
-const val EXTRA_MOVIE = "movie"
-const val EXTRA_TV_SHOW = "tv_show"
+const val EXTRA_TMDB_ITEM = "tmdbItem"
 const val EXTRA_NAV_TYPE = "nav_type"

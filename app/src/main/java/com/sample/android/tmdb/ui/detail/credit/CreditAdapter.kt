@@ -32,7 +32,7 @@ class CreditAdapter<T : Credit>(
 
     override fun onBindViewHolder(holder: CreditViewHolder, position: Int) {
         with(holder.binding) {
-            credit = credits[position]
+            creditItem = credits[position]
             executePendingBindings()
         }
     }

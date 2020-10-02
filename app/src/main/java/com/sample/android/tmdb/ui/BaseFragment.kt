@@ -20,6 +20,7 @@ import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
+import com.sample.android.tmdb.ui.detail.EXTRA_TMDB_ITEM
 import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
@@ -29,20 +30,14 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
     protected abstract val viewModel: TmdbViewModel<T>
 
-    protected abstract val keyItem: String
-
     protected abstract val navType: NavType?
-
-    protected abstract fun getAdapter(retryCallback: () -> Unit): TmdbAdapter<T>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val itemAdapter = getAdapter {
-            viewModel.retry()
-        }
+        val itemAdapter = TmdbAdapter({ viewModel.retry() }, this)
 
         with(root) {
 
@@ -87,7 +82,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
     override fun onClick(t: T, poster: ImageView, name: TextView) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
-                putParcelable(keyItem, t)
+                putParcelable(EXTRA_TMDB_ITEM, t)
                 putParcelable(EXTRA_NAV_TYPE, navType)
             })
         }

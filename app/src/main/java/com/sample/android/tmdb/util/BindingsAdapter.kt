@@ -18,33 +18,13 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.Video
 import de.hdodenhof.circleimageview.CircleImageView
 
-@BindingAdapter("movieImageUrl")
-fun bindImageMovie(cardView: CardView, url: String?) {
+@BindingAdapter("ImageUrl")
+fun bindImageItem(cardView: CardView, url: String?) {
     Glide.with(cardView.context)
             .asBitmap()
             .load(url)
             .apply(RequestOptions().centerCrop())
-            .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.movie_poster)) {
-                override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
-                    super.onResourceReady(bitmap, transition)
-                    Palette.from(bitmap).generate { palette ->
-                        val color = palette!!.getVibrantColor(
-                                ContextCompat.getColor(cardView.context,
-                                        R.color.black_translucent_60))
-
-                        cardView.findViewById<View>(R.id.title_background).setBackgroundColor(color)
-                    }
-                }
-            })
-}
-
-@BindingAdapter("tvShowImageUrl")
-fun bindImageTvShow(cardView: CardView, url: String?) {
-    Glide.with(cardView.context)
-            .asBitmap()
-            .load(url)
-            .apply(RequestOptions().centerCrop())
-            .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.tv_show_poster)) {
+            .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.item_poster)) {
                 override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
                     super.onResourceReady(bitmap, transition)
                     Palette.from(bitmap).generate { palette ->

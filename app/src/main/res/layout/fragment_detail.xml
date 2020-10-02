@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.detail.movie.MovieDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="movie"
-            type="com.sample.android.tmdb.domain.Movie" />
+            name="tmdbItem"
+            type="com.sample.android.tmdb.domain.TmdbItem" />
 
         <variable
             name="vm"
@@ -26,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            app:imageUrl="@{@string/base_backdrop_path(movie.backdropPath)}"
+            app:imageUrl="@{@string/base_backdrop_path(tmdbItem.backdropPath)}"
             tools:ignore="ContentDescription" />
 
         <View
@@ -47,7 +46,7 @@
             android:transformPivotX="0px"
             android:transformPivotY="0px"
             android:transitionName="@string/view_name_header_image"
-            app:imageUrl="@{@string/base_poster_path(movie.posterPath)}" />
+            app:imageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
         <View
@@ -70,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:ellipsize="end"
-            android:text="@{movie.title}"
+            android:text="@{tmdbItem.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:transitionName="@string/view_name_header_title" />
 
@@ -101,14 +100,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@{@string/release_date(movie.releaseDate)}" />
+                    android:text="@{@string/release_date(tmdbItem.releaseDate)}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/rating(movie.voteAverage)}"
-                    app:visibleGone="@{movie.voteAverage!=0.0}" />
+                    android:text="@{@string/rating(tmdbItem.voteAverage)}"
+                    app:visibleGone="@{tmdbItem.voteAverage!=0.0}" />
 
                 <TextView
                     android:id="@+id/summary_label"
@@ -122,7 +121,7 @@
                     style="@style/TmdbMargin.Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{movie.overview}" />
+                    android:text="@{tmdbItem.overview}" />
 
                 <include
                     layout="@layout/trailers"

@@ -12,7 +12,7 @@ import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.nestedScrollTo
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
-import com.sample.android.tmdb.ui.item.movie.MovieViewHolder
+import com.sample.android.tmdb.ui.TmdbViewHolder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -39,35 +39,35 @@ class TestMainActivity : TestBase() {
     @Test
     fun shouldBeAbleToScrollViewMovieDetails() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withText(R.string.summary)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayTrailerLabel() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withText(R.string.trailers)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayCastLabel() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withText(R.string.cast)).perform(nestedScrollTo()).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayCast() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withId(R.id.credit_list)).perform(nestedScrollTo()).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayPersonDetail() {
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withId(R.id.credit_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
                 .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(2, click()))
         onView(withText(R.string.biography)).check(matches(isDisplayed()))
@@ -77,7 +77,7 @@ class TestMainActivity : TestBase() {
     fun shouldBeAbleToChangeTabAndViewDetails() {
         onView(withId(R.id.action_upcoming)).perform(click())
         onView(withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(10, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
         onView(withText(R.string.summary)).check(matches(isDisplayed()))
     }
 

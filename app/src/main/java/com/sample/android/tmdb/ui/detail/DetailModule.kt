@@ -1,7 +1,6 @@
 package com.sample.android.tmdb.ui.detail
 
-import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
 import com.sample.android.tmdb.util.NavType
@@ -22,13 +21,8 @@ abstract class DetailModule {
     companion object {
         @Provides
         @JvmStatic
-        internal fun provideMovie(activity: DetailActivity): Movie? =
-                activity.intent.extras.getParcelable(EXTRA_MOVIE)
-
-        @Provides
-        @JvmStatic
-        internal fun provideTVShow(activity: DetailActivity): TVShow? =
-                activity.intent.extras.getParcelable(EXTRA_TV_SHOW)
+        internal fun provideTmdbItem(activity: DetailActivity): TmdbItem =
+                activity.intent.extras.getParcelable(EXTRA_TMDB_ITEM)
 
         @Provides
         @JvmStatic

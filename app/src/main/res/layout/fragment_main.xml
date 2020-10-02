@@ -12,6 +12,6 @@
         android:clipToPadding="false"
         android:columnWidth="@dimen/column_width"
         android:padding="@dimen/padding_small"
-        tools:listitem="@layout/movie_item" />
+        tools:listitem="@layout/tmdb_item" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

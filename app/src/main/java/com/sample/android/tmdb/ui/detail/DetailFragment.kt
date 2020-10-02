@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.credit.CreditFragment
 import com.sample.android.tmdb.ui.detail.credit.CreditViewPagerAdapter
@@ -19,26 +19,25 @@ import com.sample.android.tmdb.ui.detail.credit.PagerItem
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.visibleGone
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_detail_movie.view.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import javax.inject.Inject
 
 
-abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
+abstract class DetailFragment : DaggerFragment() {
 
-    protected abstract val layoutId: Int
+    @Inject
+    lateinit var item: TmdbItem
 
     protected abstract val viewModel: DetailViewModel
-
-    protected abstract val tmdbItem: T
-
-    protected abstract fun getViewBinding(root: View): ViewDataBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val root = inflater.inflate(layoutId, container, false)
-        getViewBinding(root).apply {
+        val root = inflater.inflate(R.layout.fragment_detail, container, false)
+        FragmentDetailBinding.bind(root).apply {
             setVariable(BR.vm, viewModel)
             lifecycleOwner = viewLifecycleOwner
+            tmdbItem = item
         }
 
         with(root) {
@@ -47,13 +46,17 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
                 fragmentManager?.let {
                     val adapter = CreditViewPagerAdapter(it, lifecycle)
 
-                    val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            creditWrapper.cast), R.string.cast)
-                    val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            creditWrapper.crew), R.string.crew)
+                    if(creditWrapper.cast.isNotEmpty()) {
+                        val castPagerItem = PagerItem(CreditFragment.newInstance(item,
+                                creditWrapper.cast), R.string.cast)
+                        adapter.addFragment(castPagerItem)
+                    }
 
-                    adapter.addFragment(castPagerItem)
-                    adapter.addFragment(crewPagerItem)
+                    if(creditWrapper.crew.isNotEmpty()) {
+                        val crewPagerItem = PagerItem(CreditFragment.newInstance(item,
+                                creditWrapper.crew), R.string.crew)
+                        adapter.addFragment(crewPagerItem)
+                    }
 
                     pager.adapter = adapter
                     TabLayoutMediator(tab_layout, pager) { tab, position ->
@@ -70,7 +73,7 @@ abstract class DetailFragment<T : TmdbItem> : DaggerFragment() {
                 }
             }
 
-            visibleGone(summary_label, tmdbItem.overview.trim().isNotEmpty())
+            visibleGone(summary_label, item.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or

@@ -12,7 +12,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.TestUtils.customScrollTo
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.item.movie.MovieViewHolder
+import com.sample.android.tmdb.ui.TmdbViewHolder
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +29,7 @@ class TestTrailer : TestBase() {
     @Test
     fun shouldBeAbleToDisplayTrailer() {
         onView(ViewMatchers.withId(R.id.list)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<MovieViewHolder>(7, click()))
+                .actionOnItemAtPosition<TmdbViewHolder>(7, click()))
 
         onView(ViewMatchers.withId(R.id.trailer_scroll_view)).perform(customScrollTo, click())
 
