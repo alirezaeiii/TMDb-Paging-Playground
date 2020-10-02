@@ -12,7 +12,7 @@ import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
-import kotlinx.android.synthetic.main.credit_fragment.view.*
+import kotlinx.android.synthetic.main.fragment_credit.view.*
 
 class CreditFragment<T : Credit> : Fragment() {
 
@@ -33,7 +33,7 @@ class CreditFragment<T : Credit> : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val root = inflater.inflate(R.layout.credit_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_credit, container, false)
         root.credit_list.apply {
             setHasFixedSize(true)
             adapter = arguments?.getParcelableArrayList<T>(CREDITS)?.let {
