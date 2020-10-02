@@ -100,7 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    android:text="@{@string/release_date(tmdbItem.releaseDate)}" />
+                    android:text="@{@string/release_date(tmdbItem.releaseDate)}"
+                    app:visibleGone="@{!tmdbItem.releaseDate.empty &amp; tmdbItem.releaseDate!=null}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
@@ -136,7 +137,6 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_small"
                     app:tabSelectedTextColor="@color/colorAccent"
                     app:tabTextColor="@android:color/white" />
 

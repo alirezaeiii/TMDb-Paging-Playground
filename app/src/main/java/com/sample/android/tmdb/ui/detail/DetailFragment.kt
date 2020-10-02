@@ -74,6 +74,7 @@ abstract class DetailFragment : DaggerFragment() {
             }
 
             visibleGone(summary_label, item.overview.trim().isNotEmpty())
+            visibleGone(summary, item.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or

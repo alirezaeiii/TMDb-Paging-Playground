@@ -8,7 +8,7 @@ class Movie(
         override val id: Int,
         override val overview: String,
         @SerializedName("release_date")
-        override val releaseDate: String,
+        override val releaseDate: String?,
         @SerializedName("poster_path")
         override val posterPath: String?,
         @SerializedName("backdrop_path")
