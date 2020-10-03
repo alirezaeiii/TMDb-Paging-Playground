@@ -10,7 +10,7 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override val navType: NavType by lazy { (activity as SearchActivity).navType }
 
-    internal fun search(query: String) {
+    fun search(query: String) {
         if (viewModel.showQuery(query)) {
             list.scrollToPosition(0)
             @Suppress("UNCHECKED_CAST")
