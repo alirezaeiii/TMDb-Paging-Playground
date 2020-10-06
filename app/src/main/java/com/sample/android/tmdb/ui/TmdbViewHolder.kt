@@ -12,7 +12,7 @@ class TmdbViewHolder(internal val binding: TmdbItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
-        fun <T : TmdbItem> create(parent: ViewGroup, movieClickCallback: TmdbClickCallback<T>): TmdbViewHolder {
+        fun <T : TmdbItem> create(parent: ViewGroup, tmdbClickCallback: TmdbClickCallback<T>): TmdbViewHolder {
             val binding: TmdbItemBinding = DataBindingUtil
                     .inflate(parent.context.layoutInflater,
                             R.layout.tmdb_item,
@@ -20,7 +20,7 @@ class TmdbViewHolder(internal val binding: TmdbItemBinding)
             with(binding) {
                 poster = itemPoster
                 name = itemName
-                callback = movieClickCallback
+                callback = tmdbClickCallback
             }
             return TmdbViewHolder(binding)
         }
