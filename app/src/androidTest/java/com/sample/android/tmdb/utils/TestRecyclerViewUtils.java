@@ -1,4 +1,4 @@
-package com.sample.android.tmdb;
+package com.sample.android.tmdb.utils;
 
 import android.view.View;
 import android.view.ViewParent;
@@ -23,9 +23,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibilit
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.core.AllOf.allOf;
 
-public class TestUtils {
+public class TestRecyclerViewUtils {
 
-    static ViewAction nestedScrollTo() {
+    public static ViewAction nestedScrollTo() {
         return new ViewAction() {
 
             @Override
@@ -87,7 +87,7 @@ public class TestUtils {
         return view.getParent();
     }
 
-    static ViewAction customScrollTo = new ViewAction() {
+    public static ViewAction customScrollTo = new ViewAction() {
 
         @Override
         public Matcher<View> getConstraints() {

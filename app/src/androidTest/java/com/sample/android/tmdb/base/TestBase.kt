@@ -1,4 +1,4 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.base
 
 import androidx.test.espresso.IdlingRegistry
 import com.sample.android.tmdb.util.EspressoIdlingResource
