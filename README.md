@@ -1,5 +1,5 @@
 # TMDb-Paging
-[A sample](https://play.google.com/store/apps/details?id=com.sample.android.tmdb) to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Retrofit, DataBinding, MotionLayout and Espresso.
+[A sample](https://play.google.com/store/apps/details?id=com.sample.android.tmdb) to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Retrofit, DataBinding, MotionLayout, Espresso and Unit test.
 
 ### Prerequisites
 
