@@ -63,6 +63,30 @@ public class TestRecyclerViewUtils {
         };
     }
 
+    public static ViewAction customScrollTo = new ViewAction() {
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE), isDescendantOfA(anyOf(
+                    isAssignableFrom(ScrollView.class),
+                    isAssignableFrom(HorizontalScrollView.class),
+                    isAssignableFrom(NestedScrollView.class)))
+            );
+        }
+
+        @Override
+        public String getDescription() {
+            return null;
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            new ScrollToAction().perform(uiController, view);
+        }
+    };
+
+    /* Helper Methods */
+
     private static View findFirstParentLayoutOfClass(View view, Class<? extends View> parentClass) {
         ViewParent parent = new FrameLayout(view.getContext());
         ViewParent incrementView = null;
@@ -86,26 +110,4 @@ public class TestRecyclerViewUtils {
     private static ViewParent findParent(ViewParent view) {
         return view.getParent();
     }
-
-    public static ViewAction customScrollTo = new ViewAction() {
-
-        @Override
-        public Matcher<View> getConstraints() {
-            return allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE), isDescendantOfA(anyOf(
-                    isAssignableFrom(ScrollView.class),
-                    isAssignableFrom(HorizontalScrollView.class),
-                    isAssignableFrom(NestedScrollView.class)))
-            );
-        }
-
-        @Override
-        public String getDescription() {
-            return null;
-        }
-
-        @Override
-        public void perform(UiController uiController, View view) {
-            new ScrollToAction().perform(uiController, view);
-        }
-    };
 }
