@@ -12,6 +12,8 @@ import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.base.TestBase
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbViewHolder
+import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
+import com.sample.android.tmdb.utils.TestRecyclerViewUtils.nestedScrollTo
 import com.sample.android.tmdb.utils.matchCurrentTabTitle
 import com.sample.android.tmdb.utils.matchTabTitleAtPosition
 import org.junit.Rule
@@ -66,14 +68,15 @@ class TestMainActivity : TestBase() {
         onView(withId(R.id.tab_layout)).check(matches(matchTabTitleAtPosition("Crew", 1)))
     }
 
-//    @Test
-//    fun shouldBeAbleToDisplayPersonDetail() {
-//        onView(withId(R.id.list)).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<TmdbViewHolder>(10, click()))
-//        onView(withId(R.id.credit_list)).perform(nestedScrollTo()).perform(RecyclerViewActions
-//                .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(2, click()))
-//        onView(withText(R.string.biography)).check(matches(isDisplayed()))
-//    }
+    @Test
+    fun shouldBeAbleToDisplayPersonDetail() {
+        onView(withId(R.id.list)).perform(RecyclerViewActions
+                .actionOnItemAtPosition<TmdbViewHolder>(0, click()))
+        onView(withId(R.id.pager)).perform(nestedScrollTo()).check(matches(isDisplayed()))
+        onView(withId(R.id.credit_list)).perform(RecyclerViewActions
+                .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(2, click()))
+        onView(withText(R.string.biography)).check(matches(isDisplayed()))
+    }
 
     @Test
     fun shouldBeAbleToChangeTabAndViewDetails() {
