@@ -10,7 +10,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.base.TestBase
+import com.sample.android.tmdb.base.TestEspressoBase
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbViewHolder
 import com.sample.android.tmdb.utils.TestRecyclerViewUtils.customScrollTo
@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestTrailer : TestBase() {
+class TestTrailer : TestEspressoBase() {
 
     @Rule
     @JvmField
@@ -36,5 +36,4 @@ class TestTrailer : TestBase() {
 
         intended(allOf(hasAction(Intent.ACTION_VIEW)))
     }
-
 }

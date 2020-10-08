@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.base.TestBase
+import com.sample.android.tmdb.base.TestEspressoBase
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbViewHolder
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestMainActivity : TestBase() {
+class TestMainActivity : TestEspressoBase() {
 
     @Rule
     @JvmField

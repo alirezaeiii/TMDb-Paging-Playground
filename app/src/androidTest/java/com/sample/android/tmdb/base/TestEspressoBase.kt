@@ -5,7 +5,7 @@ import com.sample.android.tmdb.util.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 
-open class TestBase {
+open class TestEspressoBase {
 
     /**
      * Prepare your test fixture for this test. In this case we register an IdlingResources with
