@@ -28,7 +28,7 @@ import retrofit2.mock.Calls
 import java.util.concurrent.Executor
 
 @RunWith(MockitoJUnitRunner::class)
-class MovieViewModelTest {
+class MoviePageKeyRepositoryTest {
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -40,11 +40,6 @@ class MovieViewModelTest {
     private lateinit var context: Context
 
     private val networkExecutor = Executor { command -> command.run() }
-
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
-    }
 
     @Test
     fun loadMostPopularMovies() {

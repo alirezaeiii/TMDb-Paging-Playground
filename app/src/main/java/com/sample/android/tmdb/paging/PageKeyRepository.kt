@@ -6,7 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import com.sample.android.tmdb.domain.TmdbItem
 import java.util.concurrent.Executor
 
-abstract class PageKeyRepository<T : TmdbItem>: ItemRepository<T> {
+abstract class PageKeyRepository<T : TmdbItem>: TmdbPageKeyRepository<T> {
 
     protected abstract fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<T>
 
