@@ -6,7 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import com.sample.android.tmdb.domain.TmdbItem
 import java.util.concurrent.Executor
 
-abstract class PageKeyRepository<T : TmdbItem>: TmdbPageKeyRepository<T> {
+abstract class PageKeyRepository<T : TmdbItem> : TmdbPageKeyRepository<T> {
 
     protected abstract fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<T>
 
@@ -24,11 +24,14 @@ abstract class PageKeyRepository<T : TmdbItem>: TmdbPageKeyRepository<T> {
         val refreshState = Transformations.switchMap(sourceFactory.sourceLiveData) {
             it.initialLoad
         }
+
+        val networkState = Transformations.switchMap(sourceFactory.sourceLiveData) {
+            it.networkState
+        }
+
         return Listing(
                 pagedList = livePagedList,
-                networkState = Transformations.switchMap(sourceFactory.sourceLiveData) {
-                    it.networkState
-                },
+                networkState = networkState,
                 refresh = {
                     sourceFactory.sourceLiveData.value?.invalidate()
                 },
