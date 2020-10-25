@@ -14,6 +14,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.paging.Status.FAILED
 import com.sample.android.tmdb.paging.Status.RUNNING
+import com.sample.android.tmdb.util.toVisibility
 
 /**
  * A View Holder that can display a loading or have click action.
@@ -44,7 +45,7 @@ class NetworkStateItemViewHolder(private val root: View,
                     0,
                     0,
                     root.context.resources.getDimension(R.dimen.network_state_bottom_padding).toInt())
-            progressBar.visibility = toVisibility(false)
+            progressBar.visibility = View.GONE
         } else {
             networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
                     LayoutParams.MATCH_PARENT,
@@ -52,10 +53,10 @@ class NetworkStateItemViewHolder(private val root: View,
             networkStateLayout.gravity = Gravity.NO_GRAVITY
             val padding = root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
             networkStateLayout.setPadding(padding, padding, padding, padding)
-            progressBar.visibility = toVisibility(networkState?.status == RUNNING)
+            progressBar.toVisibility(networkState?.status == RUNNING)
         }
-        retry.visibility = toVisibility(networkState?.status == FAILED)
-        errorMsg.visibility = toVisibility(networkState?.msg != null)
+        retry.toVisibility(networkState?.status == FAILED)
+        errorMsg.toVisibility(networkState?.msg != null)
         errorMsg.text = networkState?.msg
     }
 
@@ -64,14 +65,6 @@ class NetworkStateItemViewHolder(private val root: View,
             val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.network_state_item, parent, false)
             return NetworkStateItemViewHolder(view, retryCallback)
-        }
-
-        fun toVisibility(constraint: Boolean): Int {
-            return if (constraint) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
         }
     }
 }

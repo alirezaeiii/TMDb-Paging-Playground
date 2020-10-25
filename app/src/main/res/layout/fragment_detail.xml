@@ -101,14 +101,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
                     android:text="@{@string/release_date(tmdbItem.releaseDate)}"
-                    app:visibleGone="@{!tmdbItem.releaseDate.empty &amp; tmdbItem.releaseDate!=null}" />
+                    app:toVisibility="@{!tmdbItem.releaseDate.empty &amp; tmdbItem.releaseDate!=null}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/rating(tmdbItem.voteAverage)}"
-                    app:visibleGone="@{tmdbItem.voteAverage!=0.0}" />
+                    app:toVisibility="@{tmdbItem.voteAverage!=0.0}" />
 
                 <TextView
                     android:id="@+id/summary_label"

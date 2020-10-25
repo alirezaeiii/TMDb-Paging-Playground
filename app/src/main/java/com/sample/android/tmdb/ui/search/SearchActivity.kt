@@ -57,7 +57,7 @@ class SearchActivity : DaggerAppCompatActivity() {
 
             override fun onQueryTextChange(query: String): Boolean {
                 val hasQuery = query.isNotEmpty()
-                toVisibility(fragment_container, hasQuery)
+                fragment_container.toVisibility(hasQuery)
                 if (hasQuery) {
                     fragment.search(query)
                 }
