@@ -88,6 +88,8 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     testImplementation "android.arch.core:core-testing:$archLifecycleVersion"
+    // mock extension function
+    testImplementation "io.mockk:mockk:$mockkVersion"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"

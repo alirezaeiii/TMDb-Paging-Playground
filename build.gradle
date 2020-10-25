@@ -56,4 +56,5 @@ ext {
     viewPagerVersion = '1.0.0'
     materialVersion = '1.2.1'
     swiperefreshVersion = '1.1.0'
+    mockkVersion = '1.10.0'
 }
