@@ -14,4 +14,7 @@
     <dimen name="z_app_bar">4dp</dimen>
     <dimen name="details_poster_not_elevation">0dp</dimen>
 
+    <dimen name="network_state_padding">8dp</dimen>
+    <dimen name="network_state_bottom_padding">86dp</dimen>
+
 </resources>
