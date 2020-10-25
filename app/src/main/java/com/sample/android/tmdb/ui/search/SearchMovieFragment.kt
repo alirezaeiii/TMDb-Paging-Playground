@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.ui.TmdbAdapter
 import javax.inject.Inject
 
 class SearchMovieFragment @Inject
