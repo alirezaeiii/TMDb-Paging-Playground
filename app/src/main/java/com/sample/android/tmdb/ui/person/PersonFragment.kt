@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
-import com.sample.android.tmdb.util.visibleGone
+import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_person.view.*
 import kotlinx.android.synthetic.main.person_header.view.*
@@ -42,7 +42,7 @@ constructor() // Required empty public constructor
 
             viewModel.person.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    visibleGone(biography_label, it.biography.trim().isNotEmpty())
+                    toVisibility(biography_label, it.biography.trim().isNotEmpty())
                 }
             })
 
@@ -53,7 +53,7 @@ constructor() // Required empty public constructor
 
             viewModel.knownAs.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    visibleGone(known_as, it.trim().isNotEmpty())
+                    toVisibility(known_as, it.trim().isNotEmpty())
                     known_as.text = getString(R.string.known_as, it)
                 }
             })

@@ -101,7 +101,7 @@ fun goneIfNull(view: View, it: Any?) {
 }
 
 @BindingAdapter("visibleGone")
-fun visibleGone(view: View, visible: Boolean) {
+fun toVisibility(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.GONE
 }
 

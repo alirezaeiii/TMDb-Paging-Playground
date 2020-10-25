@@ -17,7 +17,7 @@ import com.sample.android.tmdb.ui.detail.credit.CreditFragment
 import com.sample.android.tmdb.ui.detail.credit.CreditViewPagerAdapter
 import com.sample.android.tmdb.ui.detail.credit.PagerItem
 import com.sample.android.tmdb.util.setupActionBar
-import com.sample.android.tmdb.util.visibleGone
+import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import javax.inject.Inject
@@ -72,7 +72,7 @@ abstract class DetailFragment : DaggerFragment() {
                 }
             }
 
-            visibleGone(summary_label, item.overview.trim().isNotEmpty())
+            toVisibility(summary_label, item.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
