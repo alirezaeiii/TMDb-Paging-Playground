@@ -35,4 +35,5 @@
     <string name="base_backdrop_path">http://image.tmdb.org/t/p/w780%s</string>
 
     <string name="failed_loading_msg">Something went wrong &#8230;</string>
+    <string name="failed_network_msg">No internet connection &#8230;</string>
 </resources>
