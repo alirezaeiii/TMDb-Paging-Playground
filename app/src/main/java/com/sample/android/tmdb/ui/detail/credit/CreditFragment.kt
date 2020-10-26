@@ -20,7 +20,6 @@ class CreditFragment<T : Credit> : Fragment() {
         private const val TMDB_ITEM = "tmdb_item"
         private const val CREDITS = "credits"
 
-        @JvmStatic
         fun <T : Credit> newInstance(item: TmdbItem, credits: List<T>) =
                 CreditFragment<T>().apply {
                     arguments = Bundle(2).apply {

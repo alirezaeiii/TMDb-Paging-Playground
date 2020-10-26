@@ -1,7 +1,5 @@
 package com.sample.android.tmdb.ui
 
-import android.view.Gravity
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.paging.Status.FAILED
@@ -40,17 +39,13 @@ class NetworkStateItemViewHolder(private val root: View,
             networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.MATCH_PARENT))
-            networkStateLayout.gravity = Gravity.CENTER
-            networkStateLayout.setPadding(0,
-                    0,
-                    0,
+            networkStateLayout.setPadding(0, 0, 0,
                     root.context.resources.getDimension(R.dimen.network_state_bottom_padding).toInt())
             progressBar.visibility = View.GONE
         } else {
             networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT))
-            networkStateLayout.gravity = Gravity.NO_GRAVITY
             val padding = root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
             networkStateLayout.setPadding(padding, padding, padding, padding)
             progressBar.toVisibility(networkState?.status == RUNNING)
