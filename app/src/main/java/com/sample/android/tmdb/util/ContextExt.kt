@@ -22,6 +22,7 @@ fun Context.isNetworkAvailable(): Boolean {
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
             //for check internet over Bluetooth
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> true
             else -> false
         }
     } else {
