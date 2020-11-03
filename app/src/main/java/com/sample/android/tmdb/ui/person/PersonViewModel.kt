@@ -39,7 +39,7 @@ class PersonViewModel(api: PersonApi, personId: Any) : BaseViewModel() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PersonViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return PersonViewModel(api, person.personId) as T
+                return PersonViewModel(api, person.credit.id) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

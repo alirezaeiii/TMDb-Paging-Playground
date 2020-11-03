@@ -1,12 +1,10 @@
 package com.sample.android.tmdb.ui.person
 
 import android.os.Parcelable
+import com.sample.android.tmdb.domain.Credit
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
 
 @Parcelize
 class PersonWrapper(
-        val personId: @RawValue Any,
-        val personName: String,
-        val profilePath: String?,
+        val credit : Credit,
         val backdropPath: String?) : Parcelable

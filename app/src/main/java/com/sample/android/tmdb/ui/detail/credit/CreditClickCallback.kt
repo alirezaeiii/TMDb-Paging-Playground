@@ -1,5 +1,7 @@
 package com.sample.android.tmdb.ui.detail.credit
 
-interface CreditClickCallback {
-    fun onClick(personId: Any, personName: String, profilePath: String?)
+import android.os.Parcelable
+
+interface CreditClickCallback<T : Parcelable> {
+    fun onClick(credit : T)
 }

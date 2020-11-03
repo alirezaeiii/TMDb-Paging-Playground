@@ -21,7 +21,7 @@
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{() -> callback.onClick(creditItem.id, creditItem.name, creditItem.profilePath)}"
+        android:onClick="@{() -> callback.onClick(creditItem)}"
         app:cardElevation="@dimen/z_app_bar"
         app:cardUseCompatPadding="true"
         tools:ignore="KeyboardInaccessibleWidget">

@@ -36,13 +36,11 @@ class CreditFragment<T : Credit> : Fragment() {
         root.credit_list.apply {
             setHasFixedSize(true)
             adapter = arguments?.getParcelableArrayList<T>(CREDITS)?.let {
-                CreditAdapter(it, object : CreditClickCallback {
-                    override fun onClick(personId: Any, personName: String, profilePath: String?) {
+                CreditAdapter(it, object : CreditClickCallback<T> {
+                    override fun onClick(credit: T) {
                         val intent = Intent(activity, PersonActivity::class.java).apply {
                             putExtras(Bundle().apply {
-                                putParcelable(PERSON_WRAPPER, PersonWrapper(personId,
-                                        personName,
-                                        profilePath,
+                                putParcelable(PERSON_WRAPPER, PersonWrapper(credit,
                                         arguments?.getParcelable<TmdbItem>(TMDB_ITEM)?.backdropPath))
                             })
                         }

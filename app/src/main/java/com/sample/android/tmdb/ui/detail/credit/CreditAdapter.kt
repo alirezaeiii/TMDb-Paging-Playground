@@ -10,7 +10,7 @@ import com.sample.android.tmdb.util.layoutInflater
 
 class CreditAdapter<T : Credit>(
         credits: ArrayList<T>,
-        private val creditClickCallback: CreditClickCallback)
+        private val creditClickCallback: CreditClickCallback<T>)
     : RecyclerView.Adapter<CreditAdapter.CreditViewHolder>() {
 
     private var credits: List<T> = credits
