@@ -7,7 +7,7 @@ import com.sample.android.tmdb.ui.BaseViewModel
 import io.reactivex.Observable
 import timber.log.Timber
 
-abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
+abstract class DetailViewModel : BaseViewModel() {
 
     private val _trailers = MutableLiveData<List<Video>>()
     val trailers: LiveData<List<Video>>
@@ -15,10 +15,10 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
 
     private val _creditWrapper: MutableLiveData<CreditWrapper> by lazy {
         MutableLiveData<CreditWrapper>().also {
-            arrayOf(composeObservable { getTrailers(item.id).map { it.videos } }
+            arrayOf(composeObservable { getTrailers().map { it.videos } }
                     .subscribe({ videos ->
                         _trailers.postValue(videos)
-                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCredit(item.id) }
+                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCredit() }
                     .subscribe({ credit ->
                         _creditWrapper.postValue(credit)
                     }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
@@ -27,7 +27,7 @@ abstract class DetailViewModel(item: TmdbItem) : BaseViewModel() {
     val creditWrapper: LiveData<CreditWrapper>
         get() = _creditWrapper
 
-    protected abstract fun getTrailers(id: Int): Observable<VideoWrapper>
+    protected abstract fun getTrailers(): Observable<VideoWrapper>
 
-    protected abstract fun getCredit(id: Int): Observable<CreditWrapper>
+    protected abstract fun getCredit(): Observable<CreditWrapper>
 }

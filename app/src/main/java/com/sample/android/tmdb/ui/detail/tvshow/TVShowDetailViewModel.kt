@@ -8,9 +8,9 @@ import com.sample.android.tmdb.ui.detail.DetailViewModel
 import io.reactivex.Observable
 
 class TVShowDetailViewModel(private val api: TVShowApi,
-                            item: TmdbItem) : DetailViewModel(item) {
+                            private val item: TmdbItem) : DetailViewModel() {
 
-    override fun getTrailers(id: Int): Observable<VideoWrapper> = api.tvTrailers(id)
+    override fun getTrailers(): Observable<VideoWrapper> = api.tvTrailers(item.id)
 
-    override fun getCredit(id: Int): Observable<CreditWrapper> = api.tvCredit(id)
+    override fun getCredit(): Observable<CreditWrapper> = api.tvCredit(item.id)
 }
