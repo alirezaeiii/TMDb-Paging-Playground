@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.ItemWrapper
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import retrofit2.Call

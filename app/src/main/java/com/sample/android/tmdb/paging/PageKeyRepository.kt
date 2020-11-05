@@ -8,7 +8,7 @@ import java.util.concurrent.Executor
 
 abstract class PageKeyRepository<T : TmdbItem> : TmdbPageKeyRepository<T> {
 
-    protected abstract fun getSourceFactory(retryExecutor: Executor): ItemDataSourceFactory<T>
+    protected abstract fun getSourceFactory(retryExecutor: Executor): TmdbDataSourceFactory<T>
 
     @MainThread
     override fun getItems(networkExecutor: Executor): Listing<T> {
