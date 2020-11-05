@@ -56,7 +56,7 @@ class MoviePageKeyRepositoryTest {
                 ItemWrapper(Lists.newArrayList(movie))))
         `when`(api.popularItems(anyInt())).thenReturn(mockCall)
 
-        val listing = repository.getItems("", networkExecutor)
+        val listing = repository.getItems(networkExecutor)
         val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
 
