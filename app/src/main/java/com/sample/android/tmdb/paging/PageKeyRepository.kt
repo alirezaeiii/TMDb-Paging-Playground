@@ -8,12 +8,12 @@ import java.util.concurrent.Executor
 
 abstract class PageKeyRepository<T : TmdbItem> : TmdbPageKeyRepository<T> {
 
-    protected abstract fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<T>
+    protected abstract fun getSourceFactory(retryExecutor: Executor): ItemDataSourceFactory<T>
 
     @MainThread
-    override fun getItems(query: String, networkExecutor: Executor): Listing<T> {
+    override fun getItems(networkExecutor: Executor): Listing<T> {
 
-        val sourceFactory = getSourceFactory(query, networkExecutor)
+        val sourceFactory = getSourceFactory(networkExecutor)
 
         val livePagedList = LivePagedListBuilder(sourceFactory, 20)
                 // provide custom executor for network requests, otherwise it will default to

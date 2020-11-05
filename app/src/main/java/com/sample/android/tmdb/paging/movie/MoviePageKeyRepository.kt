@@ -14,7 +14,7 @@ class MoviePageKeyRepository(
         private val context: Context)
     : PageKeyRepository<Movie>() {
 
-    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<Movie> =
+    override fun getSourceFactory(retryExecutor: Executor): ItemDataSourceFactory<Movie> =
             MoviesDataSourceFactory(api = api,
                     sortType = sortType,
                     retryExecutor = retryExecutor,

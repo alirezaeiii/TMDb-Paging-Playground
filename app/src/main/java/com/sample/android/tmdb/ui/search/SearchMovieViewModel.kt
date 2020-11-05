@@ -12,6 +12,6 @@ import com.sample.android.tmdb.ui.TmdbViewModel
 class SearchMovieViewModel(api: MovieApi, app: Application) : TmdbViewModel<Movie>(app = app) {
 
     override val repoResult: LiveData<Listing<Movie>> = Transformations.map(query) {
-        SearchMoviePageKeyRepository(api, app.applicationContext).getItems(it, NETWORK_IO)
+        SearchMoviePageKeyRepository(api, it, app.applicationContext).getItems(NETWORK_IO)
     }
 }

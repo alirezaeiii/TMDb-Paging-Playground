@@ -12,6 +12,6 @@ import com.sample.android.tmdb.ui.TmdbViewModel
 class SearchTVShowViewModel(api: TVShowApi, app: Application) : TmdbViewModel<TVShow>(app = app) {
 
     override val repoResult: LiveData<Listing<TVShow>> = Transformations.map(query) {
-        SearchTVShowPageKeyRepository(api, app.applicationContext).getItems(it, NETWORK_IO)
+        SearchTVShowPageKeyRepository(api, it, app.applicationContext).getItems(NETWORK_IO)
     }
 }

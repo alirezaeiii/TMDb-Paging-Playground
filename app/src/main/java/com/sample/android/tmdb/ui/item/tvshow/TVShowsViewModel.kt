@@ -19,6 +19,6 @@ class TVShowsViewModel(
         TVShowsPageKeyRepository(
                 api = api,
                 sortType = sortType,
-                context = app.applicationContext).getItems(it, NETWORK_IO)
+                context = app.applicationContext).getItems(NETWORK_IO)
     }
 }

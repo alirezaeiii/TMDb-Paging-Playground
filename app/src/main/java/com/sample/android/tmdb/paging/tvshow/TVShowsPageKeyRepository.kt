@@ -14,7 +14,7 @@ class TVShowsPageKeyRepository(
         private val context: Context)
     : PageKeyRepository<TVShow>() {
 
-    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<TVShow> =
+    override fun getSourceFactory(retryExecutor: Executor): ItemDataSourceFactory<TVShow> =
             TVShowsDataSourceFactory(api = api,
                     sortType = sortType,
                     retryExecutor = retryExecutor,

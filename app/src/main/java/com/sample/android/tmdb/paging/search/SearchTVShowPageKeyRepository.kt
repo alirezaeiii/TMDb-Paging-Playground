@@ -8,10 +8,11 @@ import com.sample.android.tmdb.paging.PageKeyRepository
 import java.util.concurrent.Executor
 
 class SearchTVShowPageKeyRepository(private val api: TVShowApi,
+                                    private val query : String,
                                     private val context: Context)
     : PageKeyRepository<TVShow>() {
 
-    override fun getSourceFactory(query: String, retryExecutor: Executor): ItemDataSourceFactory<TVShow> =
+    override fun getSourceFactory(retryExecutor: Executor): ItemDataSourceFactory<TVShow> =
             SearchTVShowDataSourceFactory(api = api,
                     query = query,
                     retryExecutor = retryExecutor,
