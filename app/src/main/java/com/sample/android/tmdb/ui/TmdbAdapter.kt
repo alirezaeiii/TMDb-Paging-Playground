@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.ui
 
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.NetworkState
@@ -20,6 +20,7 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
 }) {
 
     private var networkState: NetworkState? = null
+    private var refreshState: NetworkState? = null
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
@@ -29,7 +30,8 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
                     executePendingBindings()
                 }
             }
-            R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(networkState, position)
+            R.layout.network_state_item ->
+                (holder as NetworkStateItemViewHolder).bindTo(networkState, refreshState)
         }
     }
 
@@ -67,5 +69,9 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
         } else if (hasExtraRow && previousState != newNetworkState) {
             notifyItemChanged(itemCount - 1)
         }
+    }
+
+    fun setRefreshState(refreshState: NetworkState?) {
+        this.refreshState = refreshState
     }
 }

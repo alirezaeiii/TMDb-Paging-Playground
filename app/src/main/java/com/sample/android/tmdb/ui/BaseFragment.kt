@@ -50,6 +50,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
                 viewModel.refreshState.observe(viewLifecycleOwner, Observer {
                     isRefreshing = it == NetworkState.LOADING
+                    itemAdapter.setRefreshState(it)
                 })
 
                 setOnRefreshListener { viewModel.refresh() }

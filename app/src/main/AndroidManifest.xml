@@ -16,7 +16,6 @@
 
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask"
             android:theme="@style/Theme.Tmdb.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +26,6 @@
 
         <activity
             android:name=".ui.search.SearchActivity"
-            android:launchMode="singleTop"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/Theme.Tmdb.Search"></activity>
 
