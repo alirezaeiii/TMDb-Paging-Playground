@@ -55,7 +55,7 @@ class NetworkStateItemViewHolder(
                 val itemWidth = root.context.resources.getDimension(R.dimen.column_width)
                 val heightCount = (deviceHeight / itemHeight).toInt()
                 val widthCount = (deviceWidth / itemWidth).toInt()
-                if (itemCount < heightCount + widthCount + 1) {
+                if (itemCount <= heightCount * widthCount + 1) {
                     progressBar.visibility = View.GONE
                 } else {
                     networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
