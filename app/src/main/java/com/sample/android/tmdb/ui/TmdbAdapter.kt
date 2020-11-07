@@ -25,7 +25,7 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             R.layout.tmdb_item -> {
-                with((holder as TmdbViewHolder).binding) {
+                with((holder as TmdbItemViewHolder).binding) {
                     tmdbItem = getItem(position)
                     executePendingBindings()
                 }
@@ -37,7 +37,7 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.tmdb_item -> TmdbViewHolder.create(parent, tmdbClickCallback)
+            R.layout.tmdb_item -> TmdbItemViewHolder.create(parent, tmdbClickCallback)
             R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
