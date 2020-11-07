@@ -23,7 +23,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="@dimen/column_height"
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"

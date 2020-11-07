@@ -31,7 +31,7 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
                 }
             }
             R.layout.network_state_item ->
-                (holder as NetworkStateItemViewHolder).bindTo(networkState, refreshState)
+                (holder as NetworkStateItemViewHolder).bindTo(networkState, refreshState, itemCount)
         }
     }
 

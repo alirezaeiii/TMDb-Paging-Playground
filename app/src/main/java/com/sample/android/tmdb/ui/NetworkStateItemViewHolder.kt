@@ -11,7 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.paging.NetworkState
-import com.sample.android.tmdb.paging.Status.*
+import com.sample.android.tmdb.paging.Status.FAILED
+import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.util.toVisibility
 
 /**
@@ -34,7 +35,7 @@ class NetworkStateItemViewHolder(
         }
     }
 
-    fun bindTo(networkState: NetworkState?, refreshState: NetworkState?) {
+    fun bindTo(networkState: NetworkState?, refreshState: NetworkState?, itemCount: Int) {
         when (refreshState?.status) {
             RUNNING -> {
                 progressBar.visibility = View.GONE
@@ -48,12 +49,22 @@ class NetworkStateItemViewHolder(
                 progressBar.visibility = View.GONE
             }
             else -> {
-                networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
-                        LayoutParams.MATCH_PARENT,
-                        LayoutParams.WRAP_CONTENT))
-                val padding = root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
-                networkStateLayout.setPadding(padding, padding, padding, padding)
-                progressBar.toVisibility(networkState?.status == RUNNING)
+                val deviceHeight = root.context.resources.displayMetrics.heightPixels
+                val deviceWidth = root.context.resources.displayMetrics.widthPixels
+                val itemHeight = root.context.resources.getDimension(R.dimen.column_height)
+                val itemWidth = root.context.resources.getDimension(R.dimen.column_width)
+                val heightCount = (deviceHeight / itemHeight).toInt()
+                val widthCount = (deviceWidth / itemWidth).toInt()
+                if (itemCount < heightCount + widthCount + 1) {
+                    progressBar.visibility = View.GONE
+                } else {
+                    networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
+                            LayoutParams.MATCH_PARENT,
+                            LayoutParams.WRAP_CONTENT))
+                    val padding = root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
+                    networkStateLayout.setPadding(padding, padding, padding, padding)
+                    progressBar.toVisibility(networkState?.status == RUNNING)
+                }
             }
         }
         retry.toVisibility(networkState?.status == FAILED)
