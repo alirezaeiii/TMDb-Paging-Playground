@@ -18,11 +18,7 @@ class TmdbScreenItemCount private constructor(context: Context, var maxItemCount
     companion object {
         private var instance: TmdbScreenItemCount? = null
 
-        fun getInstance(context: Context): TmdbScreenItemCount {
-            if (instance == null) {
-                instance = TmdbScreenItemCount(context.applicationContext)
-            }
-            return instance!!
-        }
+        fun getInstance(context: Context): TmdbScreenItemCount = instance
+                ?: TmdbScreenItemCount(context.applicationContext).also { instance = it }
     }
 }
