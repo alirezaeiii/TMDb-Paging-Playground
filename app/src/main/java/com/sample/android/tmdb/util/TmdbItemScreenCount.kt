@@ -3,7 +3,9 @@ package com.sample.android.tmdb.util
 import android.content.Context
 import com.sample.android.tmdb.R
 
-class TmdbScreenItemCount private constructor(context: Context, var maxItemCount: Int? = null) {
+class TmdbScreenItemCount private constructor(context: Context) {
+
+    var maxItemCount: Int
 
     init {
         val deviceHeight = context.resources.displayMetrics.heightPixels

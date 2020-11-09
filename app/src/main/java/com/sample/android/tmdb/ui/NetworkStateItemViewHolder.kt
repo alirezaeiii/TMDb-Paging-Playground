@@ -50,7 +50,7 @@ class NetworkStateItemViewHolder(
                 progressBar.visibility = View.GONE
             }
             else -> {
-                if (itemCount <= TmdbScreenItemCount.getInstance(root.context).maxItemCount!!) {
+                if (itemCount <= TmdbScreenItemCount.getInstance(root.context).maxItemCount) {
                     progressBar.visibility = View.GONE
                 } else {
                     networkStateLayout.layoutParams = ViewGroup.LayoutParams(LayoutParams(
