@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.paging.search
+package com.sample.android.tmdb.paging.search.movie
 
 import android.content.Context
 import com.sample.android.tmdb.domain.ItemWrapper
