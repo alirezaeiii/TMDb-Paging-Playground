@@ -15,7 +15,7 @@ interface TmdbItem : Parcelable {
 }
 
 @Parcelize
-class Movie(
+data class Movie(
         override val id: Int,
         override val overview: String,
         @SerializedName("release_date")
@@ -30,7 +30,7 @@ class Movie(
         override val voteAverage: Double) : TmdbItem
 
 @Parcelize
-class TVShow(
+data class TVShow(
         override val id: Int,
         override val overview: String,
         @SerializedName("first_air_date")
