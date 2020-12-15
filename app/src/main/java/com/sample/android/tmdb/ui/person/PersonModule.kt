@@ -20,6 +20,6 @@ abstract class PersonModule {
         @Provides
         @JvmStatic
         internal fun providePersonWrapper(activity: PersonActivity): PersonWrapper =
-                activity.intent.extras.getParcelable(PERSON_WRAPPER)
+                activity.intent.extras?.getParcelable(PERSON_WRAPPER)!!
     }
 }

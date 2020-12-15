@@ -22,11 +22,11 @@ abstract class DetailModule {
         @Provides
         @JvmStatic
         internal fun provideTmdbItem(activity: DetailActivity): TmdbItem =
-                activity.intent.extras.getParcelable(EXTRA_TMDB_ITEM)
+                activity.intent.extras?.getParcelable(EXTRA_TMDB_ITEM)!!
 
         @Provides
         @JvmStatic
         internal fun provideNavType(activity: DetailActivity): NavType =
-                activity.intent.extras.getParcelable(EXTRA_NAV_TYPE)
+                activity.intent.extras?.getParcelable(EXTRA_NAV_TYPE)!!
     }
 }

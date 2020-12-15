@@ -19,6 +19,6 @@ abstract class SearchModule {
         @Provides
         @JvmStatic
         internal fun provideNavType(activity: SearchActivity): NavType =
-                activity.intent.extras.getParcelable(EXTRA_NAV_TYPE)
+                activity.intent.extras?.getParcelable(EXTRA_NAV_TYPE)!!
     }
 }
