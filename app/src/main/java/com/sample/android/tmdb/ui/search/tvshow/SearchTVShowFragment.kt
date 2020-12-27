@@ -1,10 +1,11 @@
-package com.sample.android.tmdb.ui.search
+package com.sample.android.tmdb.ui.search.tvshow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.ui.search.BaseSearchFragment
 import javax.inject.Inject
 
 class SearchTVShowFragment @Inject

@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.search
+package com.sample.android.tmdb.ui.search.movie
 
 import android.app.Application
 import androidx.lifecycle.LiveData
