@@ -20,8 +20,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val context = app
 
     init {
-        _headline.value = context.getString(R.string.menu_movies)
-        _currentType.value = NavType.MOVIES
+        setHeadlineAndNavType(R.string.menu_movies, NavType.MOVIES)
     }
 
     fun setHeadlineAndNavType(titleId: Int, navType: NavType) {
