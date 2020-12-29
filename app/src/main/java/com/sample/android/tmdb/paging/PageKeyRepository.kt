@@ -15,7 +15,7 @@ abstract class PageKeyRepository<T : TmdbItem> : TmdbPageKeyRepository<T> {
 
         val sourceFactory = getSourceFactory(networkExecutor)
 
-        val livePagedList = LivePagedListBuilder(sourceFactory, 20)
+        val livePagedList = LivePagedListBuilder(sourceFactory, PAGE_SIZE)
                 // provide custom executor for network requests, otherwise it will default to
                 // Arch Components' IO pool which is also used for disk access
                 .setFetchExecutor(networkExecutor)
@@ -40,5 +40,9 @@ abstract class PageKeyRepository<T : TmdbItem> : TmdbPageKeyRepository<T> {
                     sourceFactory.sourceLiveData.value?.retryAllFailed()
                 }
         )
+    }
+
+    companion object {
+        private const val PAGE_SIZE = 20
     }
 }
