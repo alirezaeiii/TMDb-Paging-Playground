@@ -2,8 +2,8 @@ package com.sample.android.tmdb.ui.detail
 
 import android.os.Bundle
 import android.view.MenuItem
-import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
 import com.sample.android.tmdb.util.addFragmentToActivity

@@ -7,9 +7,9 @@ import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.search.movie.SearchMovieFragment
 import com.sample.android.tmdb.ui.search.tvshow.SearchTVShowFragment
-import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerAppCompatActivity

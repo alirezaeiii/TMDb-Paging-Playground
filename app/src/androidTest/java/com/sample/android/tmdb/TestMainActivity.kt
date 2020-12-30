@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.base.TestEspressoBase
+import com.sample.android.tmdb.base.BaseEspresso
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbItemViewHolder
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestMainActivity : TestEspressoBase() {
+class TestMainActivity : BaseEspresso() {
 
     @Rule
     @JvmField
@@ -36,26 +36,26 @@ class TestMainActivity : TestEspressoBase() {
 
     @Test
     fun shouldBeAbleToLoadMovies() {
-        onView(withId(R.id.list)).check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToScrollViewMovieDetails() {
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
         onView(withText(R.string.summary)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayTrailerLabel() {
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
         onView(withText(R.string.trailers)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldBeAbleToDisplayCastTab() {
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
         onView(withId(R.id.tab_layout)).check(matches(matchCurrentTabTitle("Cast")))
 
@@ -63,14 +63,14 @@ class TestMainActivity : TestEspressoBase() {
 
     @Test
     fun shouldBeAbleToDisplayCrewTab() {
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
         onView(withId(R.id.tab_layout)).check(matches(matchTabTitleAtPosition("Crew", 1)))
     }
 
     @Test
     fun shouldBeAbleToDisplayPersonDetail() {
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
         onView(withId(R.id.pager)).perform(nestedScrollTo()).check(matches(isDisplayed()))
         onView(withId(R.id.credit_list)).perform(RecyclerViewActions
@@ -81,7 +81,7 @@ class TestMainActivity : TestEspressoBase() {
     @Test
     fun shouldBeAbleToChangeTabAndViewDetails() {
         onView(withId(R.id.action_upcoming)).perform(click())
-        onView(withId(R.id.list)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
         onView(withText(R.string.summary)).check(matches(isDisplayed()))
     }
@@ -92,6 +92,6 @@ class TestMainActivity : TestEspressoBase() {
         onView(isAssignableFrom(EditText::class.java))
                 .perform(typeText("Harry Potter"),
                         pressImeActionButton())
-        onView(withId(R.id.list)).check(matches(isDisplayed()))
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
     }
 }

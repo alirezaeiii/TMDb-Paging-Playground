@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.item.movie
 
-import com.sample.android.tmdb.util.SortType.MOST_POPULAR
+import com.sample.android.tmdb.ui.item.SortType.MOST_POPULAR
 import javax.inject.Inject
 
 class PopularMoviesFragment @Inject

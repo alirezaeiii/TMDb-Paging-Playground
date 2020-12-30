@@ -8,7 +8,7 @@ import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.paging.Listing
 import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.item.BaseItemViewModel
-import com.sample.android.tmdb.util.SortType
+import com.sample.android.tmdb.ui.item.SortType
 
 class MovieViewModel(
         api: MovieApi,

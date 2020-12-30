@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.ui.search
 
+import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.search.movie.SearchMovieFragment
 import com.sample.android.tmdb.ui.search.tvshow.SearchTVShowFragment
-import com.sample.android.tmdb.util.NavType
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

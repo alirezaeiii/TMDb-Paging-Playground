@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.item.movie
 
-import com.sample.android.tmdb.util.SortType.UPCOMING
+import com.sample.android.tmdb.ui.item.SortType.UPCOMING
 import javax.inject.Inject
 
 class UpcomingMoviesFragment @Inject

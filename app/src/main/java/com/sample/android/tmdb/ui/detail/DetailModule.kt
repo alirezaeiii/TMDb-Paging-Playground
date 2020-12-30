@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.ui.detail
 
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
-import com.sample.android.tmdb.util.NavType
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

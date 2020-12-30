@@ -12,7 +12,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.sample.android.tmdb.util.NavType
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.item.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.item.movie.PopularMoviesFragment

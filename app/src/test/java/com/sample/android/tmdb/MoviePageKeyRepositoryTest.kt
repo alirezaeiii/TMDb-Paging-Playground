@@ -9,7 +9,7 @@ import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
-import com.sample.android.tmdb.util.SortType
+import com.sample.android.tmdb.ui.item.SortType.MOST_POPULAR
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -48,7 +48,7 @@ class MoviePageKeyRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
-        val repository = MoviePageKeyRepository(api, SortType.MOST_POPULAR, context)
+        val repository = MoviePageKeyRepository(api, MOST_POPULAR, context)
         val movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
 

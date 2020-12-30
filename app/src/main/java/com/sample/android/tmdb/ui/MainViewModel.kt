@@ -1,11 +1,12 @@
 package com.sample.android.tmdb.ui
 
 import android.app.Application
+import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.util.NavType
+import kotlinx.android.parcel.Parcelize
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -27,4 +28,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         _headline.value = context.getString(titleId)
         _currentType.value = navType
     }
+}
+
+@Parcelize
+enum class NavType : Parcelable {
+    MOVIES,
+    TV_SERIES
 }

@@ -10,7 +10,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.base.TestEspressoBase
+import com.sample.android.tmdb.base.BaseEspresso
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbItemViewHolder
 import com.sample.android.tmdb.utils.TestRecyclerViewUtils.customScrollTo
@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestTrailer : TestEspressoBase() {
+class TestTrailer : BaseEspresso() {
 
     @Rule
     @JvmField
@@ -29,7 +29,7 @@ class TestTrailer : TestEspressoBase() {
 
     @Test
     fun shouldBeAbleToDisplayTrailer() {
-        onView(ViewMatchers.withId(R.id.list)).perform(RecyclerViewActions
+        onView(ViewMatchers.withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
 
         onView(ViewMatchers.withId(R.id.trailer_scroll_view)).perform(customScrollTo, click())
