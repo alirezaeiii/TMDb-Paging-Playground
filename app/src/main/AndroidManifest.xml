@@ -27,7 +27,7 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/Theme.Tmdb.Search"></activity>
+            android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
             android:name=".ui.detail.DetailActivity"
