@@ -45,6 +45,7 @@ ext {
     runnerVersion = '1.1.0'
     rulesVersion = '1.1.0'
     espressoVersion = '3.1.0'
+    okHttpIdlingResourceVersion = '1.0.0'
     daggerVersion = '2.24'
     pagingVersion = '2.0.0'
     archLifecycleVersion = '2.0.0'

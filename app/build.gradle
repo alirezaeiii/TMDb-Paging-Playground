@@ -99,6 +99,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation "com.jakewharton.espresso:okhttp3-idling-resource:$okHttpIdlingResourceVersion"
     implementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
 }
 

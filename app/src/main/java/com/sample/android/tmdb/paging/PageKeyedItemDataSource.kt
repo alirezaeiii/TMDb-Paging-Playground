@@ -7,7 +7,6 @@ import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.util.EspressoIdlingResource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import retrofit2.Call
 import retrofit2.Response
@@ -90,10 +89,6 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
         _initialLoad.postValue(NetworkState.LOADING)
 
         if (context.isNetworkAvailable()) {
-            // The network request might be handled in a different thread so make sure Espresso knows
-            // that the app is busy until the response is handled.
-            EspressoIdlingResource.increment() // App is busy until further notice
-
             // triggered by a refresh, we better execute sync
             try {
                 val response = fetchItems(1).execute()
@@ -117,11 +112,6 @@ abstract class PageKeyedItemDataSource<T : TmdbItem>(
                 val error = NetworkState.error(context.getString(R.string.failed_loading_msg))
                 _networkState.postValue(error)
                 _initialLoad.postValue(error)
-
-            } finally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
             }
         } else {
             retry = {
