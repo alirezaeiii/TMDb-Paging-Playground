@@ -29,7 +29,7 @@ import org.junit.runner.RunWith
 @LargeTest
 class TestMainActivity {
 
-    private val resource : IdlingResource = OkHttp3IdlingResource.create("okhttp", OkHttpProvider.instance)
+    private val resource : IdlingResource = OkHttp3IdlingResource.create("OkHttp", OkHttpProvider.instance)
 
     @Rule
     @JvmField
