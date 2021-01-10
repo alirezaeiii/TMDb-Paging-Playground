@@ -11,7 +11,7 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
     override val navType: NavType by lazy { (activity as SearchActivity).navType }
 
     fun search(query: String) {
-        if (viewModel.showQuery(query)) {
+        if ((viewModel as BaseSearchViewModel).showQuery(query)) {
             recyclerView.scrollToPosition(0)
             @Suppress("UNCHECKED_CAST")
             (recyclerView.adapter as TmdbAdapter<T>).submitList(null)

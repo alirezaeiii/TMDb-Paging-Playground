@@ -53,6 +53,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$pagingVersion"
     implementation "androidx.lifecycle:lifecycle-runtime:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 
     // Gson
     implementation "com.google.code.gson:gson:$gsonVersion"
@@ -74,7 +75,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
 
-    // Network
+    // Other
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     implementation "de.hdodenhof:circleimageview:$circleimageviewVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
@@ -82,6 +83,9 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
