@@ -11,9 +11,7 @@ import com.sample.android.tmdb.ui.TmdbViewModel
 
 abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : TmdbViewModel<T>(app = app) {
 
-    private val _query = MutableLiveData<String>()
-    private val query: LiveData<String>
-        get() = _query
+    private val query = MutableLiveData<String>()
 
     protected abstract fun getRepoResult(query : String) : TmdbPageKeyRepository<T>
 
@@ -22,10 +20,10 @@ abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : TmdbViewMod
     }
 
     fun showQuery(query: String): Boolean {
-        if (_query.value == query) {
+        if (this.query.value == query) {
             return false
         }
-        _query.value = query
+        this.query.value = query
         return true
     }
 }
