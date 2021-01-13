@@ -11,7 +11,6 @@ import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.search.movie.SearchMovieFragment
 import com.sample.android.tmdb.ui.search.tvshow.SearchTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
-import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
@@ -58,9 +57,7 @@ class SearchActivity : DaggerAppCompatActivity() {
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                val hasQuery = query.isNotEmpty()
-                fragment_container.toVisibility(hasQuery)
-                if (hasQuery) {
+                if(query.isNotEmpty()) {
                     fragment.search(query)
                 }
                 return true

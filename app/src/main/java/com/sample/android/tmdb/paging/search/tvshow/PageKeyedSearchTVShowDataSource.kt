@@ -10,8 +10,8 @@ class PageKeyedSearchTVShowDataSource(
         private val api: TVShowApi,
         private val query: String,
         retryExecutor: Executor,
-        context: Context)
-    : PageKeyedItemDataSource<TVShow>(retryExecutor, context) {
+        context: Context
+) : PageKeyedItemDataSource<TVShow>(retryExecutor, context) {
 
     override fun fetchItems(page: Int) = api.searchItems(page, query)
 }

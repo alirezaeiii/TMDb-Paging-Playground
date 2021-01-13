@@ -12,9 +12,8 @@ class PageKeyedSearchMovieDataSource(
         private val api: MovieApi,
         private val query: String,
         retryExecutor: Executor,
-        context: Context)
-    : PageKeyedItemDataSource<Movie>(retryExecutor, context) {
+        context: Context
+) : PageKeyedItemDataSource<Movie>(retryExecutor, context) {
 
-    override fun fetchItems(page: Int): Call<ItemWrapper<Movie>> =
-            api.searchItems(page, query)
+    override fun fetchItems(page: Int): Call<ItemWrapper<Movie>> = api.searchItems(page, query)
 }
