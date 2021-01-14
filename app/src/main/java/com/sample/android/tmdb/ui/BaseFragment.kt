@@ -31,7 +31,9 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
     protected abstract val navType: NavType?
 
-    protected abstract fun refresh()
+    protected open fun refresh() {
+        viewModel.refresh()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

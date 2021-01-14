@@ -10,10 +10,6 @@ abstract class BaseItemFragment<T : TmdbItem> : BaseFragment<T>() {
     protected abstract val sortType: SortType
 
     override val navType: NavType? by lazy { (activity as MainActivity).getNavType() }
-
-    override fun refresh() {
-        viewModel.refresh()
-    }
 }
 
 enum class SortType {
