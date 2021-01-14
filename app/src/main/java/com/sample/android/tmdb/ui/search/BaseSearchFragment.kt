@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.search
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.paging.Status
+import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.TmdbAdapter
@@ -17,7 +17,7 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.refreshState.observe(this, Observer {
-            recyclerView.toVisibility(it.status == Status.SUCCESS)
+            recyclerView.toVisibility(it.status != RUNNING)
         })
     }
 
