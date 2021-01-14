@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
-import androidx.lifecycle.Observer
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.paging.Status
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.search.movie.SearchMovieFragment
 import com.sample.android.tmdb.ui.search.tvshow.SearchTVShowFragment
@@ -16,7 +14,6 @@ import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 class SearchActivity : DaggerAppCompatActivity() {
@@ -66,9 +63,7 @@ class SearchActivity : DaggerAppCompatActivity() {
                 if (hasQuery) {
                     fragment.search(query)
                 } else {
-                    fragment.searchViewModel.refreshState.observe(fragment, Observer {
-                        recyclerView.toVisibility(it.status != Status.RUNNING)
-                    })
+                    fragment.observeNetworkState()
                 }
                 return true
             }
