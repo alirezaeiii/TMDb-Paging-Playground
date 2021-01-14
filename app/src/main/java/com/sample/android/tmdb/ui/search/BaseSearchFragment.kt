@@ -14,15 +14,21 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override val navType: NavType by lazy { (activity as SearchActivity).navType }
 
+    private val searchViewModel by lazy { viewModel as BaseSearchViewModel }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.refreshState.observe(this, Observer {
-            recyclerView.toVisibility(it.status != RUNNING)
-        })
+        swipe_refresh.setOnRefreshListener {
+            searchViewModel.refreshState.removeObservers(this)
+            searchViewModel.refresh()
+        }
     }
 
     fun search(query: String) {
-        if ((viewModel as BaseSearchViewModel).showQuery(query)) {
+        if (searchViewModel.showQuery(query)) {
+            searchViewModel.refreshState.observe(this, Observer {
+                recyclerView.toVisibility(it.status != RUNNING)
+            })
             recyclerView.scrollToPosition(0)
             @Suppress("UNCHECKED_CAST")
             (recyclerView.adapter as TmdbAdapter<T>).submitList(null)
