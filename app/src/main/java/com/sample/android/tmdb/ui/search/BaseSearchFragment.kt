@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.search
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
@@ -16,12 +15,9 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     private val searchViewModel by lazy { viewModel as BaseSearchViewModel }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        swipe_refresh.setOnRefreshListener {
-            searchViewModel.refreshState.removeObservers(this)
-            searchViewModel.refresh()
-        }
+    override fun refresh() {
+        searchViewModel.refreshState.removeObservers(this)
+        searchViewModel.refresh()
     }
 
     fun search(query: String) {

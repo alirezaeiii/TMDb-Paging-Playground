@@ -31,6 +31,8 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
     protected abstract val navType: NavType?
 
+    protected abstract fun refresh()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -52,7 +54,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
                     itemAdapter.setRefreshState(it)
                 })
 
-                setOnRefreshListener { viewModel.refresh() }
+                setOnRefreshListener { refresh() }
             }
 
             recyclerView.apply {
