@@ -17,7 +17,7 @@ import android.widget.TextView
 import androidx.paging.PagedList
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.paging.NetworkState
+import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.detail.EXTRA_TMDB_ITEM
@@ -35,8 +35,10 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
         viewModel.refresh()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
@@ -52,7 +54,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
                 )
 
                 viewModel.refreshState.observe(viewLifecycleOwner, Observer {
-                    isRefreshing = it == NetworkState.LOADING
+                    isRefreshing = it.status == RUNNING
                     itemAdapter.setRefreshState(it)
                 })
 
@@ -65,7 +67,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
                 adapter = itemAdapter
                 manager.spanSizeLookup = object : SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        return if (itemAdapter.getItemViewType(position) != R.layout.network_state_item)
+                        return if (itemAdapter.getItemViewType(position) == R.layout.tmdb_item)
                             1 else manager.spanCount
                     }
                 }
