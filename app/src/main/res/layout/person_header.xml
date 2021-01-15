@@ -44,7 +44,7 @@
             android:layout_height="30px"
             android:scaleType="fitXY"
             android:src="@drawable/tileable_edge"
-            android:tint="@color/window_background"
+            app:tint="@color/window_background"
             app:layout_constraintBottom_toTopOf="@id/icon_background"
             tools:ignore="PxUsage,contentDescription" />
 
