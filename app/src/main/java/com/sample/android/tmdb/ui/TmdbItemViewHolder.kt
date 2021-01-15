@@ -8,7 +8,7 @@ import com.sample.android.tmdb.databinding.TmdbItemBinding
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.util.layoutInflater
 
-class TmdbItemViewHolder(internal val binding: TmdbItemBinding)
+class TmdbItemViewHolder(val binding: TmdbItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
     companion object {

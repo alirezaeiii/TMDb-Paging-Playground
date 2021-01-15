@@ -42,7 +42,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val itemAdapter = TmdbAdapter({ viewModel.retry() }, this)
+        val tmdbAdapter = TmdbAdapter({ viewModel.retry() }, this)
 
         with(root) {
 
@@ -55,7 +55,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
                 viewModel.refreshState.observe(viewLifecycleOwner, Observer {
                     isRefreshing = it.status == RUNNING
-                    itemAdapter.setRefreshState(it)
+                    tmdbAdapter.setRefreshState(it)
                 })
 
                 setOnRefreshListener { refresh() }
@@ -64,10 +64,10 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
             recyclerView.apply {
                 addItemDecoration(MarginDecoration(context))
                 setHasFixedSize(true)
-                adapter = itemAdapter
+                adapter = tmdbAdapter
                 manager.spanSizeLookup = object : SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        return if (itemAdapter.getItemViewType(position) == R.layout.tmdb_item)
+                        return if (tmdbAdapter.getItemViewType(position) == R.layout.tmdb_item)
                             1 else manager.spanCount
                     }
                 }
@@ -75,11 +75,11 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
         }
 
         viewModel.items.observe(this, Observer<PagedList<T>> {
-            itemAdapter.submitList(it)
+            tmdbAdapter.submitList(it)
         })
 
         viewModel.networkState.observe(this, Observer {
-            itemAdapter.setNetworkState(it)
+            tmdbAdapter.setNetworkState(it)
         })
 
         return root
