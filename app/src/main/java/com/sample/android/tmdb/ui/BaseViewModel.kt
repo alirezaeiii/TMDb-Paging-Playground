@@ -14,15 +14,17 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    protected open val mutableLiveData = MutableLiveData<T>()
+    private val _liveData: MutableLiveData<T> by lazy {
+        MutableLiveData<T>().also { sendRequest() }
+    }
     val liveData: LiveData<T>
-        get() = mutableLiveData
+        get() = _liveData
 
     protected abstract val requestObservable: Observable<T>
 
-    protected fun sendRequest() {
+    private fun sendRequest() {
         composeObservable { requestObservable }.subscribe({
-            mutableLiveData.postValue(it)
+            _liveData.postValue(it)
         }) {
             Timber.e(it)
         }.also { compositeDisposable.add(it) }

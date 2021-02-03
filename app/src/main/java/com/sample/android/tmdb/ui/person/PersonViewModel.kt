@@ -12,10 +12,6 @@ class PersonViewModel(api: PersonApi, personId: Any) : BaseViewModel<Person>() {
 
     override val requestObservable: Observable<Person> = api.person(personId)
 
-    init {
-        sendRequest()
-    }
-
     /**
      * Factory for constructing PersonViewModel with parameter
      */

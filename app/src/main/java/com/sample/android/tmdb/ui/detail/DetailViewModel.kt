@@ -18,10 +18,6 @@ abstract class DetailViewModel : BaseViewModel<DetailWrapper>() {
                 })
     }
 
-    override val mutableLiveData: MutableLiveData<DetailWrapper> by lazy {
-        MutableLiveData<DetailWrapper>().also { sendRequest() }
-    }
-
     protected abstract val trailers : Observable<VideoWrapper>
 
     protected abstract val credits: Observable<CreditWrapper>
