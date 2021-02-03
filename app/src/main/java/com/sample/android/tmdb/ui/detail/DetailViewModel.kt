@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.detail
 
-import androidx.lifecycle.MutableLiveData
 import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.Video
 import com.sample.android.tmdb.domain.VideoWrapper
