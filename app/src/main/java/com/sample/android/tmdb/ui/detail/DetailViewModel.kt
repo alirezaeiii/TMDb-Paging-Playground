@@ -17,7 +17,7 @@ abstract class DetailViewModel : BaseViewModel<DetailWrapper>() {
                 })
     }
 
-    protected abstract val trailers : Observable<VideoWrapper>
+    protected abstract val trailers: Observable<VideoWrapper>
 
     protected abstract val credits: Observable<CreditWrapper>
 
