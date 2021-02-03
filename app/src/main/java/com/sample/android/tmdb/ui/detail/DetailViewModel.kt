@@ -1,33 +1,33 @@
 package com.sample.android.tmdb.ui.detail
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.sample.android.tmdb.domain.*
+import com.sample.android.tmdb.domain.CreditWrapper
+import com.sample.android.tmdb.domain.Video
+import com.sample.android.tmdb.domain.VideoWrapper
 import com.sample.android.tmdb.ui.BaseViewModel
+import com.sample.android.tmdb.ui.detail.DetailViewModel.DetailWrapper
 import io.reactivex.Observable
-import timber.log.Timber
+import io.reactivex.functions.BiFunction
 
-abstract class DetailViewModel : BaseViewModel() {
+abstract class DetailViewModel : BaseViewModel<DetailWrapper>() {
 
-    private val _trailers = MutableLiveData<List<Video>>()
-    val trailers: LiveData<List<Video>>
-        get() = _trailers
-
-    private val _creditWrapper: MutableLiveData<CreditWrapper> by lazy {
-        MutableLiveData<CreditWrapper>().also {
-            arrayOf(composeObservable { getTrailers().map { it.videos } }
-                    .subscribe({ videos ->
-                        _trailers.postValue(videos)
-                    }) { throwable -> Timber.e(throwable) }, composeObservable { getCredit() }
-                    .subscribe({ credit ->
-                        _creditWrapper.postValue(credit)
-                    }) { throwable -> Timber.e(throwable) }).also { compositeDisposable.addAll(*it) }
-        }
+    override val requestObservable: Observable<DetailWrapper> by lazy {
+        Observable.zip(trailers.map { it.videos }, credits,
+                BiFunction<List<Video>, CreditWrapper, DetailWrapper> { trailers, creditWrapper ->
+                    DetailWrapper(trailers, creditWrapper)
+                })
     }
-    val creditWrapper: LiveData<CreditWrapper>
-        get() = _creditWrapper
 
-    protected abstract fun getTrailers(): Observable<VideoWrapper>
+    override val mutableLiveData: MutableLiveData<DetailWrapper> by lazy {
+        MutableLiveData<DetailWrapper>().also { sendRequest() }
+    }
 
-    protected abstract fun getCredit(): Observable<CreditWrapper>
+    protected abstract val trailers : Observable<VideoWrapper>
+
+    protected abstract val credits: Observable<CreditWrapper>
+
+    class DetailWrapper(
+            val trailers: List<Video>,
+            val creditWrapper: CreditWrapper
+    )
 }

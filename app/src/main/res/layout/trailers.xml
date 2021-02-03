@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:goneIfNull="@{vm.trailers}">
+        app:goneIfNull="@{vm.liveData}">
 
         <TextView
             android:id="@+id/trailers_label"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@string/trailers"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:toVisibility="@{!vm.trailers.empty}" />
+            app:toVisibility="@{!vm.liveData.trailers.empty}" />
 
         <HorizontalScrollView
             android:id="@+id/trailer_scroll_view"
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:items="@{vm.trailers}" />
+                app:items="@{vm.liveData.trailers}" />
 
         </HorizontalScrollView>
 

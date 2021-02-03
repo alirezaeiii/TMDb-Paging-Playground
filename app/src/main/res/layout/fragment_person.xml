@@ -40,28 +40,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:goneIfNull="@{vm.person}">
+                app:goneIfNull="@{vm.liveData}">
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/born(vm.person.birthDay)}"
-                    app:goneIfNull="@{vm.person.birthDay}" />
+                    android:text="@{@string/born(vm.liveData.birthDay)}"
+                    app:goneIfNull="@{vm.liveData.birthDay}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/from(vm.person.placeOfBirth)}"
-                    app:goneIfNull="@{vm.person.placeOfBirth}" />
+                    android:text="@{@string/from(vm.liveData.placeOfBirth)}"
+                    app:goneIfNull="@{vm.liveData.placeOfBirth}" />
 
                 <TextView
                     style="@style/TmdbMargin.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/death(vm.person.deathDay)}"
-                    app:goneIfNull="@{vm.person.deathDay}" />
+                    android:text="@{@string/death(vm.liveData.deathDay)}"
+                    app:goneIfNull="@{vm.liveData.deathDay}" />
 
                 <TextView
                     android:id="@+id/known_as"
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/padding_normal"
-                    android:text="@{vm.person.biography}" />
+                    android:text="@{vm.liveData.biography}" />
 
             </LinearLayout>
 

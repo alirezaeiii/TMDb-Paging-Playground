@@ -40,23 +40,16 @@ constructor() // Required empty public constructor
                 activity?.finish()
             }
 
-            viewModel.person.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    biography_label.toVisibility(it.biography.trim().isNotEmpty())
-                }
+            viewModel.liveData.observe(viewLifecycleOwner, Observer {
+                biography_label.toVisibility(it.biography.trim().isNotEmpty())
+                known_as.toVisibility(it.alsoKnowAs.isNotEmpty())
+                known_as.text = getString(R.string.known_as, it.alsoKnowAs.joinToString())
             })
 
             biography.setOnClickListener {
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 biography.maxLines = if (biography.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
-
-            viewModel.knownAs.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    known_as.toVisibility(it.trim().isNotEmpty())
-                    known_as.text = getString(R.string.known_as, it)
-                }
-            })
         }
         return root
     }

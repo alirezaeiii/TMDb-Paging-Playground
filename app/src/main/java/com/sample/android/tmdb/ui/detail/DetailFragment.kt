@@ -41,19 +41,19 @@ abstract class DetailFragment : DaggerFragment() {
 
         with(root) {
 
-            viewModel.creditWrapper.observe(viewLifecycleOwner, Observer { creditWrapper ->
+            viewModel.liveData.observe(viewLifecycleOwner, Observer { detailWrapper ->
                 fragmentManager?.let {
                     val adapter = CreditViewPagerAdapter(it, lifecycle)
 
-                    if(creditWrapper.cast.isNotEmpty()) {
+                    if(detailWrapper.creditWrapper.cast.isNotEmpty()) {
                         val castPagerItem = PagerItem(CreditFragment.newInstance(item,
-                                creditWrapper.cast), R.string.cast)
+                                detailWrapper.creditWrapper.cast), R.string.cast)
                         adapter.addFragment(castPagerItem)
                     }
 
-                    if(creditWrapper.crew.isNotEmpty()) {
+                    if(detailWrapper.creditWrapper.crew.isNotEmpty()) {
                         val crewPagerItem = PagerItem(CreditFragment.newInstance(item,
-                                creditWrapper.crew), R.string.crew)
+                                detailWrapper.creditWrapper.crew), R.string.crew)
                         adapter.addFragment(crewPagerItem)
                     }
 
