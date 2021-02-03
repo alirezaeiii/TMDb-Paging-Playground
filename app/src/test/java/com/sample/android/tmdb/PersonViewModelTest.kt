@@ -10,8 +10,11 @@ import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
-import org.junit.*
-import org.junit.Assert.assertTrue
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
@@ -43,29 +46,6 @@ class PersonViewModelTest {
     }
 
     @Test
-    fun loadPerson() {
-        val personId = 12
-        val knownAs1 = "Ali"
-        val knownAs2 = "Harry"
-        val person = Person(null ,null, personId, arrayOf(knownAs1, knownAs2),
-                "biography", "place")
-
-        val observableResponse = Observable.just(person)
-        `when`(api.person(anyInt())).thenReturn(observableResponse)
-
-        val viewModel = PersonViewModel(api, anyInt())
-
-        with(viewModel) {
-            assertTrue(this.person.value?.id == personId)
-            with(this.person.value?.alsoKnowAs!!) {
-                assertTrue(size == 2)
-                assertTrue(this[0] == knownAs1)
-                assertTrue(this[1] == knownAs2)
-            }
-        }
-    }
-
-    @Test
     fun errorLoadPerson() {
         val observableResponse = Observable.error<Person>(Exception())
         `when`(api.person(anyInt())).thenReturn(observableResponse)
@@ -73,7 +53,7 @@ class PersonViewModelTest {
         val viewModel = PersonViewModel(api, anyInt())
 
         with(viewModel) {
-            Assert.assertThat(person.value, `is`(nullValue()))
+            assertThat(liveData.value, `is`(nullValue()))
         }
     }
 }
