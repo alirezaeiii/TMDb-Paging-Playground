@@ -8,21 +8,16 @@ import com.sample.android.tmdb.ui.detail.DetailViewModel.DetailWrapper
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 
-abstract class DetailViewModel : BaseViewModel<DetailWrapper>() {
-
-    override val requestObservable: Observable<DetailWrapper> by lazy {
-        Observable.zip(trailers.map { it.videos }, credits,
-                BiFunction<List<Video>, CreditWrapper, DetailWrapper> { trailers, creditWrapper ->
-                    DetailWrapper(trailers, creditWrapper)
-                })
-    }
-
-    protected abstract val trailers: Observable<VideoWrapper>
-
-    protected abstract val credits: Observable<CreditWrapper>
+open class DetailViewModel(
+        trailers: Observable<VideoWrapper>,
+        credits: Observable<CreditWrapper>
+) : BaseViewModel<DetailWrapper>(Observable.zip(trailers.map { it.videos }, credits,
+        BiFunction<List<Video>, CreditWrapper, DetailWrapper> { videos, creditWrapper ->
+            DetailWrapper(videos, creditWrapper)
+        })) {
 
     class DetailWrapper(
-            val trailers: List<Video>,
+            val videos: List<Video>,
             val creditWrapper: CreditWrapper
     )
 }

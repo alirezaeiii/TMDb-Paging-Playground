@@ -10,17 +10,17 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class BaseViewModel<T> : ViewModel() {
+open class BaseViewModel<T>(private val requestObservable: Observable<T>) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val _liveData: MutableLiveData<T> by lazy {
-        MutableLiveData<T>().also { sendRequest() }
-    }
+    private val _liveData = MutableLiveData<T>()
     val liveData: LiveData<T>
         get() = _liveData
 
-    protected abstract val requestObservable: Observable<T>
+    init {
+        sendRequest()
+    }
 
     private fun sendRequest() {
         composeObservable { requestObservable }.subscribe({

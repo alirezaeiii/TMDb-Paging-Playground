@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@string/trailers"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:toVisibility="@{!vm.liveData.trailers.empty}" />
+            app:toVisibility="@{!vm.liveData.videos.empty}" />
 
         <HorizontalScrollView
             android:id="@+id/trailer_scroll_view"
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:items="@{vm.liveData.trailers}" />
+                app:items="@{vm.liveData.videos}" />
 
         </HorizontalScrollView>
 
