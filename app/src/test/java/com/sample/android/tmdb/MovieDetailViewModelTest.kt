@@ -56,9 +56,12 @@ class MovieDetailViewModelTest {
         val movie = Movie(1, "", null, null, null, "", 1.1)
         val viewModel = MovieDetailViewModel(api, movie)
 
-        with(viewModel.liveData.value) {
-            this?.videos?.get(0)?.id.let { assertTrue(it == "id") }
-            this?.creditWrapper?.cast?.get(0)?.id.let { assertTrue(it == 1) }
+        viewModel.liveData.value?.let {
+            assertTrue(it.videos.size == 1)
+            assertTrue(it.creditWrapper.cast.size == 1)
+            assertTrue(it.creditWrapper.crew.isEmpty())
+            assertTrue(it.videos[0].id == "id")
+            assertTrue(it.creditWrapper.cast[0].id == 1)
         }
     }
 

@@ -59,19 +59,17 @@ class PersonViewModelTest {
 
         val viewModel = PersonViewModel(api, anyInt())
 
-        with(viewModel.liveData.value) {
-            assertTrue(this?.id == personId)
-            with(this?.alsoKnowAs!!) {
-                assertTrue(size == 2)
-                assertTrue(this[0] == knownAs1)
-                assertTrue(this[1] == knownAs2)
-            }
+        viewModel.liveData.value?.let {
+            assertTrue(it.id == personId)
+            assertTrue(it.alsoKnowAs.size == 2)
+            assertTrue(it.alsoKnowAs[0] == knownAs1)
+            assertTrue(it.alsoKnowAs[1] == knownAs2)
         }
     }
 
     @Test
     fun errorLoadPerson() {
-        `when`(api.person(anyInt())).thenReturn( Observable.error(Exception()))
+        `when`(api.person(anyInt())).thenReturn(Observable.error(Exception()))
 
         val viewModel = PersonViewModel(api, anyInt())
 
