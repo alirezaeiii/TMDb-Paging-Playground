@@ -5,14 +5,10 @@ import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.network.PersonApi
 import com.sample.android.tmdb.ui.person.PersonViewModel
 import io.reactivex.Observable
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.After
-import org.junit.Before
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -20,9 +16,7 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import org.junit.Assert.assertTrue
 
 @RunWith(MockitoJUnitRunner::class)
 class PersonViewModelTest {
@@ -30,21 +24,11 @@ class PersonViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    var rxJavaRule: TestRule = TestRxJavaRule()
+
     @Mock
     private lateinit var api: PersonApi
-
-    @Before
-    fun setUp() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-        MockitoAnnotations.initMocks(this)
-    }
-
-    @After
-    fun tearDown() {
-        RxJavaPlugins.reset()
-        RxAndroidPlugins.reset()
-    }
 
     @Test
     fun loadPerson() {
