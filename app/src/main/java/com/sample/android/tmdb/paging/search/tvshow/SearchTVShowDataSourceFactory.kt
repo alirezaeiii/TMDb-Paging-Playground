@@ -8,16 +8,15 @@ import com.sample.android.tmdb.paging.PageKeyedItemDataSource
 import java.util.concurrent.Executor
 
 class SearchTVShowDataSourceFactory(
-        api: TVShowApi,
-        query: String,
-        retryExecutor: Executor,
-        context: Context
+        private val api: TVShowApi,
+        private val query: String,
+        private val retryExecutor: Executor,
+        private val context: Context
 ) : TmdbDataSourceFactory<TVShow>() {
 
-    override val dataSource: PageKeyedItemDataSource<TVShow> by lazy {
-        PageKeyedSearchTVShowDataSource(api = api,
-                query = query,
-                retryExecutor = retryExecutor,
-                context = context)
-    }
+    override fun getDataSource(): PageKeyedItemDataSource<TVShow> =
+            PageKeyedSearchTVShowDataSource(api = api,
+                    query = query,
+                    retryExecutor = retryExecutor,
+                    context = context)
 }

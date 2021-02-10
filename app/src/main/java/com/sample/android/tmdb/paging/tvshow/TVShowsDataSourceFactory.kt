@@ -9,16 +9,15 @@ import com.sample.android.tmdb.ui.item.SortType
 import java.util.concurrent.Executor
 
 class TVShowsDataSourceFactory(
-        api: TVShowApi,
-        sortType: SortType,
-        retryExecutor: Executor,
-        context: Context
+        private val api: TVShowApi,
+        private val sortType: SortType,
+        private val retryExecutor: Executor,
+        private val context: Context
 ) : TmdbDataSourceFactory<TVShow>() {
 
-    override val dataSource: PageKeyedItemDataSource<TVShow> by lazy {
-        PageKeyedTVShowsDataSource(api = api,
-                sortType = sortType,
-                retryExecutor = retryExecutor,
-                context = context)
-    }
+    override fun getDataSource(): PageKeyedItemDataSource<TVShow> =
+            PageKeyedTVShowsDataSource(api = api,
+                    sortType = sortType,
+                    retryExecutor = retryExecutor,
+                    context = context)
 }
