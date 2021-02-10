@@ -1,11 +1,14 @@
 package com.sample.android.tmdb.ui.search.movie
 
 import android.app.Application
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.paging.TmdbPageKeyRepository
 import com.sample.android.tmdb.paging.search.movie.SearchMoviePageKeyRepository
 import com.sample.android.tmdb.ui.search.BaseSearchViewModel
+import javax.inject.Inject
 
 class SearchMovieViewModel(
         private val api: MovieApi,
@@ -14,4 +17,17 @@ class SearchMovieViewModel(
 
     override fun getRepoResult(query: String): TmdbPageKeyRepository<Movie> =
             SearchMoviePageKeyRepository(api, query, app.applicationContext)
+
+    class Factory @Inject constructor(
+            private val api: MovieApi,
+            private val app: Application
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(SearchMovieViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return SearchMovieViewModel(api, app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 }
