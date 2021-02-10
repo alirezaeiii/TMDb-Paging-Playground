@@ -5,9 +5,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
+import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository
 import com.sample.android.tmdb.ui.item.SortType.*
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
@@ -30,20 +30,20 @@ import retrofit2.mock.Calls
 import java.util.concurrent.Executor
 
 @RunWith(MockitoJUnitRunner::class)
-class MoviePageKeyRepositoryTest {
+class TVShowPageKeyRepositoryTest {
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var api: MovieApi
+    private lateinit var api: TVShowApi
 
     @Mock
     private lateinit var context: Context
 
     private val networkExecutor = Executor { command -> command.run() }
 
-    private lateinit var mockCall: Call<ItemWrapper<Movie>>
+    private lateinit var mockCall: Call<ItemWrapper<TVShow>>
 
     @Before
     fun setup() {
@@ -51,15 +51,15 @@ class MoviePageKeyRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
-        val movie = Movie(1, "overview", "date",
+        val tvShow = TVShow(1, "overview", "date",
                 null, null, "title", 6.5)
 
-        mockCall = Calls.response(Response.success(ItemWrapper(Lists.newArrayList(movie))))
+        mockCall = Calls.response(Response.success(ItemWrapper(Lists.newArrayList(tvShow))))
     }
 
     @Test
-    fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(api, MOST_POPULAR, context)
+    fun loadMostPopularTVShows() {
+        val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, context)
         `when`(api.popularItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -69,8 +69,8 @@ class MoviePageKeyRepositoryTest {
     }
 
     @Test
-    fun loadHighRatedMovies() {
-        val repository = MoviePageKeyRepository(api, HIGHEST_RATED, context)
+    fun loadHighRatedTVShows() {
+        val repository = TVShowsPageKeyRepository(api, HIGHEST_RATED, context)
         `when`(api.topRatedItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -80,8 +80,8 @@ class MoviePageKeyRepositoryTest {
     }
 
     @Test
-    fun loadUpcomingMovies() {
-        val repository = MoviePageKeyRepository(api, UPCOMING, context)
+    fun loadUpcomingTVShows() {
+        val repository = TVShowsPageKeyRepository(api, UPCOMING, context)
         `when`(api.latestItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -90,9 +90,9 @@ class MoviePageKeyRepositoryTest {
         }
     }
 
-    private fun getObserver(repository: MoviePageKeyRepository): LoggingObserver<PagedList<Movie>> {
+    private fun getObserver(repository: TVShowsPageKeyRepository): LoggingObserver<PagedList<TVShow>> {
         val listing = repository.getItems(networkExecutor)
-        val observer = LoggingObserver<PagedList<Movie>>()
+        val observer = LoggingObserver<PagedList<TVShow>>()
         listing.pagedList.observeForever(observer)
         return observer
     }
