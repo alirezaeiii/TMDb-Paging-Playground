@@ -30,7 +30,7 @@ open class BaseViewModel<T>(private val requestObservable: Observable<T>) : View
         }.also { compositeDisposable.add(it) }
     }
 
-    private fun <T> composeObservable(task: () -> Observable<T>): Observable<T> = task()
+    private inline fun <T> composeObservable(task: () -> Observable<T>): Observable<T> = task()
             .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
