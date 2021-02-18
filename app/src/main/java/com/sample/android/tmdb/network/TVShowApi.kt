@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.domain.VideoWrapper
-import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,8 +25,8 @@ interface TVShowApi {
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Call<ItemWrapper<TVShow>>
 
     @GET("3/tv/{tvId}/videos")
-    fun tvTrailers(@Path("tvId") tvId: Int): Observable<VideoWrapper>
+    fun tvTrailers(@Path("tvId") tvId: Int): Single<VideoWrapper>
 
     @GET("3/tv/{tvId}/credits")
-    fun tvCredit(@Path("tvId") tvId: Int): Observable<CreditWrapper>
+    fun tvCredit(@Path("tvId") tvId: Int): Single<CreditWrapper>
 }

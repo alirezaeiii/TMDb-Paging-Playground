@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.domain.Person
 import com.sample.android.tmdb.network.PersonApi
 import com.sample.android.tmdb.ui.person.PersonViewModel
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
@@ -38,7 +38,7 @@ class PersonViewModelTest {
         val person = Person(null, null, personId, arrayOf(knownAs1, knownAs2),
                 "biography", "place")
 
-        val observableResponse = Observable.just(person)
+        val observableResponse = Single.just(person)
         `when`(api.person(anyInt())).thenReturn(observableResponse)
 
         val viewModel = PersonViewModel(api, anyInt())
@@ -53,7 +53,7 @@ class PersonViewModelTest {
 
     @Test
     fun errorLoadPerson() {
-        `when`(api.person(anyInt())).thenReturn(Observable.error(Exception()))
+        `when`(api.person(anyInt())).thenReturn(Single.error(Exception()))
 
         val viewModel = PersonViewModel(api, anyInt())
 

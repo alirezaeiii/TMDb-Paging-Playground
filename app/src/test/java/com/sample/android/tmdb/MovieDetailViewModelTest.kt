@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.domain.*
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailViewModel
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
@@ -42,8 +42,8 @@ class MovieDetailViewModelTest {
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.movieTrailers(anyInt())).thenReturn(Observable.just(trailers))
-        `when`(api.movieCredit(anyInt())).thenReturn(Observable.just(creditWrapper))
+        `when`(api.movieTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(api.movieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val viewModel = MovieDetailViewModel(api, movie)
 
@@ -59,8 +59,8 @@ class MovieDetailViewModelTest {
     @Test
     fun errorLoadTrailers() {
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.movieTrailers(anyInt())).thenReturn(Observable.error(Exception()))
-        `when`(api.movieCredit(anyInt())).thenReturn(Observable.just(creditWrapper))
+        `when`(api.movieTrailers(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(api.movieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val viewModel = MovieDetailViewModel(api, movie)
 
@@ -72,8 +72,8 @@ class MovieDetailViewModelTest {
     @Test
     fun errorLoadCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        `when`(api.movieTrailers(anyInt())).thenReturn(Observable.just(trailers))
-        `when`(api.movieCredit(anyInt())).thenReturn(Observable.error(Exception()))
+        `when`(api.movieTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(api.movieCredit(anyInt())).thenReturn(Single.error(Exception()))
 
         val viewModel = MovieDetailViewModel(api, movie)
 

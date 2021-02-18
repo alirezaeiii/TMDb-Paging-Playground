@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.VideoWrapper
-import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,8 +25,8 @@ interface MovieApi {
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Call<ItemWrapper<Movie>>
 
     @GET("3/movie/{movieId}/videos")
-    fun movieTrailers(@Path("movieId") movieId: Int): Observable<VideoWrapper>
+    fun movieTrailers(@Path("movieId") movieId: Int): Single<VideoWrapper>
 
     @GET("3/movie/{movieId}/credits")
-    fun movieCredit(@Path("movieId") movieId: Int): Observable<CreditWrapper>
+    fun movieCredit(@Path("movieId") movieId: Int): Single<CreditWrapper>
 }

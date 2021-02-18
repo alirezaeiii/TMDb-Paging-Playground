@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.domain.*
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailViewModel
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
@@ -42,8 +42,8 @@ class TVShowDetailViewModelTest {
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.tvTrailers(anyInt())).thenReturn(Observable.just(trailers))
-        `when`(api.tvCredit(anyInt())).thenReturn(Observable.just(creditWrapper))
+        `when`(api.tvTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(api.tvCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val viewModel = TVShowDetailViewModel(api, tvShow)
 
@@ -59,8 +59,8 @@ class TVShowDetailViewModelTest {
     @Test
     fun errorLoadTrailers() {
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.tvTrailers(anyInt())).thenReturn(Observable.error(Exception()))
-        `when`(api.tvCredit(anyInt())).thenReturn(Observable.just(creditWrapper))
+        `when`(api.tvTrailers(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(api.tvCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val viewModel = TVShowDetailViewModel(api, tvShow)
 
@@ -72,8 +72,8 @@ class TVShowDetailViewModelTest {
     @Test
     fun errorLoadCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        `when`(api.tvTrailers(anyInt())).thenReturn(Observable.just(trailers))
-        `when`(api.tvCredit(anyInt())).thenReturn(Observable.error(Exception()))
+        `when`(api.tvTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(api.tvCredit(anyInt())).thenReturn(Single.error(Exception()))
 
         val viewModel = TVShowDetailViewModel(api, tvShow)
 

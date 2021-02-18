@@ -1,12 +1,12 @@
 package com.sample.android.tmdb.network
 
 import com.sample.android.tmdb.domain.Person
-import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface PersonApi {
 
     @GET("3/person/{personId}")
-    fun person(@Path("personId") personId: Any): Observable<Person>
+    fun person(@Path("personId") personId: Any): Single<Person>
 }
