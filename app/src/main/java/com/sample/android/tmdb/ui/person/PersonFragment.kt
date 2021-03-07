@@ -15,22 +15,23 @@ import kotlinx.android.synthetic.main.fragment_person.view.*
 import kotlinx.android.synthetic.main.person_header.view.*
 import javax.inject.Inject
 
-class PersonFragment @Inject
-constructor() // Required empty public constructor
-    : DaggerFragment() {
+class PersonFragment @Inject constructor
+(private val personWrapper: PersonWrapper) : DaggerFragment() {
 
     @Inject
     lateinit var factory: PersonViewModel.Factory
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
 
         val viewModel = ViewModelProviders.of(this, factory).get(PersonViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_person, container, false)
         FragmentPersonBinding.bind(root).apply {
             setVariable(BR.vm, viewModel)
-            person = factory.person
+            person = personWrapper
             lifecycleOwner = viewLifecycleOwner
         }
 

@@ -17,7 +17,7 @@ class PersonViewModel(
      */
     class Factory @Inject constructor(
             private val api: PersonApi,
-            val person: PersonWrapper
+            private val person: PersonWrapper
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PersonViewModel::class.java)) {
