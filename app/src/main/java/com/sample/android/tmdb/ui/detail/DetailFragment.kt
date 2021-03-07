@@ -25,43 +25,43 @@ import javax.inject.Inject
 abstract class DetailFragment : DaggerFragment() {
 
     @Inject
-    lateinit var item: TmdbItem
+    lateinit var tmdbItem: TmdbItem
 
     protected abstract val viewModel: DetailViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
 
         val root = inflater.inflate(R.layout.fragment_detail, container, false)
         FragmentDetailBinding.bind(root).apply {
             setVariable(BR.vm, viewModel)
             lifecycleOwner = viewLifecycleOwner
-            tmdbItem = item
+            tmdbItem = this@DetailFragment.tmdbItem
         }
 
         with(root) {
 
             viewModel.liveData.observe(viewLifecycleOwner, Observer { detailWrapper ->
-                fragmentManager?.let {
-                    val adapter = CreditViewPagerAdapter(it, lifecycle)
+                val adapter = CreditViewPagerAdapter(childFragmentManager, lifecycle)
 
-                    if(detailWrapper.creditWrapper.cast.isNotEmpty()) {
-                        val castPagerItem = PagerItem(CreditFragment.newInstance(item,
-                                detailWrapper.creditWrapper.cast), R.string.cast)
-                        adapter.addFragment(castPagerItem)
-                    }
-
-                    if(detailWrapper.creditWrapper.crew.isNotEmpty()) {
-                        val crewPagerItem = PagerItem(CreditFragment.newInstance(item,
-                                detailWrapper.creditWrapper.crew), R.string.crew)
-                        adapter.addFragment(crewPagerItem)
-                    }
-
-                    pager.adapter = adapter
-                    TabLayoutMediator(tab_layout, pager) { tab, position ->
-                        tab.text = getString(adapter.creditFragments[position].title)
-                    }.attach()
+                if (detailWrapper.creditWrapper.cast.isNotEmpty()) {
+                    val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
+                            detailWrapper.creditWrapper.cast), R.string.cast)
+                    adapter.addFragment(castPagerItem)
                 }
+
+                if (detailWrapper.creditWrapper.crew.isNotEmpty()) {
+                    val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
+                            detailWrapper.creditWrapper.crew), R.string.crew)
+                    adapter.addFragment(crewPagerItem)
+                }
+
+                pager.adapter = adapter
+                TabLayoutMediator(tab_layout, pager) { tab, position ->
+                    tab.text = getString(adapter.creditFragments[position].title)
+                }.attach()
             })
 
             with(activity as AppCompatActivity) {
@@ -72,7 +72,7 @@ abstract class DetailFragment : DaggerFragment() {
                 }
             }
 
-            summary_label.toVisibility(item.overview.trim().isNotEmpty())
+            summary_label.toVisibility(tmdbItem.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
             details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
@@ -81,10 +81,6 @@ abstract class DetailFragment : DaggerFragment() {
             summary.setOnClickListener {
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
-            }
-
-            with(details_rv) {
-                postDelayed({ scrollTo(0, 0) }, 100)
             }
         }
 
