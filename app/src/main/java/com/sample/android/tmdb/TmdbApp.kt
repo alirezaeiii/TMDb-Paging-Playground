@@ -11,7 +11,7 @@ class TmdbApp : DaggerApplication() {
         super.onCreate()
 
         // Set up Timber
-        Timber.plant(Timber.DebugTree())
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
