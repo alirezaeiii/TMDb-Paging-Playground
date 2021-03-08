@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.item
+package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.ui.item.tvshow.*
 import com.sample.android.tmdb.ui.item.movie.HighRateMoviesFragment

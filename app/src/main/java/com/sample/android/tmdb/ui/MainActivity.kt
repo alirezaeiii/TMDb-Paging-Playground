@@ -56,7 +56,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        // Add movie detailFragment if this is first creation
+        // Add popular movieFragment if this is first creation
         if (savedInstanceState == null) {
             addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)

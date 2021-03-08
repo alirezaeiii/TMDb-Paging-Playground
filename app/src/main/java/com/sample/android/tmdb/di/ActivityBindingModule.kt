@@ -1,13 +1,9 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.item.ItemModule
 import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.ui.detail.DetailModule
 import com.sample.android.tmdb.ui.person.PersonActivity
-import com.sample.android.tmdb.ui.person.PersonModule
 import com.sample.android.tmdb.ui.search.SearchActivity
-import com.sample.android.tmdb.ui.search.SearchModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

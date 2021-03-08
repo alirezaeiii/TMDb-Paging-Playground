@@ -1,6 +1,7 @@
-package com.sample.android.tmdb.ui.person
+package com.sample.android.tmdb.di
 
 import androidx.lifecycle.ViewModelProvider
+import com.sample.android.tmdb.ui.person.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
