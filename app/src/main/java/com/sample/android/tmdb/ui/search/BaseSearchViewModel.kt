@@ -6,14 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Listing
-import com.sample.android.tmdb.paging.TmdbPageKeyRepository
+import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.ui.TmdbViewModel
 
 abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : TmdbViewModel<T>(app = app) {
 
     private val query = MutableLiveData<String>()
 
-    protected abstract fun getRepoResult(query : String) : TmdbPageKeyRepository<T>
+    protected abstract fun getRepoResult(query : String) : BasePageKeyRepository<T>
 
     override val repoResult: LiveData<Listing<T>> = Transformations.map(query) {
         getRepoResult(it).getItems(NETWORK_IO)

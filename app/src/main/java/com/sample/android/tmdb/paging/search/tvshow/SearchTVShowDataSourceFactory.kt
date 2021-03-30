@@ -3,8 +3,8 @@ package com.sample.android.tmdb.paging.search.tvshow
 import android.content.Context
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.paging.TmdbDataSourceFactory
-import com.sample.android.tmdb.paging.PageKeyedItemDataSource
+import com.sample.android.tmdb.paging.BaseDataSourceFactory
+import com.sample.android.tmdb.paging.BasePageKeyedDataSource
 import java.util.concurrent.Executor
 
 class SearchTVShowDataSourceFactory(
@@ -12,10 +12,10 @@ class SearchTVShowDataSourceFactory(
         private val query: String,
         private val retryExecutor: Executor,
         private val context: Context
-) : TmdbDataSourceFactory<TVShow>() {
+) : BaseDataSourceFactory<TVShow>() {
 
-    override fun getDataSource(): PageKeyedItemDataSource<TVShow> =
-            PageKeyedSearchTVShowDataSource(api = api,
+    override fun getDataSource(): BasePageKeyedDataSource<TVShow> =
+            SearchTVShowPageKeyedDataSource(api = api,
                     query = query,
                     retryExecutor = retryExecutor,
                     context = context)

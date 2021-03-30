@@ -4,16 +4,16 @@ import android.content.Context
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.paging.PageKeyedItemDataSource
+import com.sample.android.tmdb.paging.BasePageKeyedDataSource
 import retrofit2.Call
 import java.util.concurrent.Executor
 
-class PageKeyedSearchMovieDataSource(
+class SearchMoviePageKeyedDataSource(
         private val api: MovieApi,
         private val query: String,
         retryExecutor: Executor,
         context: Context
-) : PageKeyedItemDataSource<Movie>(retryExecutor, context) {
+) : BasePageKeyedDataSource<Movie>(retryExecutor, context) {
 
     override fun fetchItems(page: Int): Call<ItemWrapper<Movie>> = api.searchItems(page, query)
 }

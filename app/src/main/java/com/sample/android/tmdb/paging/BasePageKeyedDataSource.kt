@@ -13,7 +13,7 @@ import retrofit2.Response
 import java.io.IOException
 import java.util.concurrent.Executor
 
-abstract class PageKeyedItemDataSource<T : TmdbItem>(
+abstract class BasePageKeyedDataSource<T : TmdbItem>(
         private val retryExecutor: Executor,
         private val context: Context)
     : PageKeyedDataSource<Int, T>() {

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.paging.TmdbPageKeyRepository
+import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.search.tvshow.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.ui.search.BaseSearchViewModel
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class SearchTVShowViewModel(
         private val app: Application
 ) : BaseSearchViewModel<TVShow>(app = app) {
 
-    override fun getRepoResult(query: String): TmdbPageKeyRepository<TVShow> =
+    override fun getRepoResult(query: String): BasePageKeyRepository<TVShow> =
             SearchTVShowPageKeyRepository(api, query, app.applicationContext)
 
     class Factory @Inject constructor(
