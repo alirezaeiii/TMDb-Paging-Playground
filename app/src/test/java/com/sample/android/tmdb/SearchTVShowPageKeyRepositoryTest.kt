@@ -59,10 +59,10 @@ class SearchTVShowPageKeyRepositoryTest {
 
     @Test
     fun searchTVShows() {
-        val repository = SearchTVShowPageKeyRepository(api, "", context)
+        val repository = SearchTVShowPageKeyRepository(api, "", networkExecutor, context)
         `when`(api.searchItems(anyInt(), Mockito.anyString())).thenReturn(mockCall)
 
-        val listing = repository.getItems(networkExecutor)
+        val listing = repository.getItems()
         val observer = LoggingObserver<PagedList<TVShow>>()
         listing.pagedList.observeForever(observer)
 

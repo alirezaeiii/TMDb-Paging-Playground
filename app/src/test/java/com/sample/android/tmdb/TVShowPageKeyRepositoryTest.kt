@@ -59,7 +59,7 @@ class TVShowPageKeyRepositoryTest {
 
     @Test
     fun loadMostPopularTVShows() {
-        val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, context)
+        val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
         `when`(api.popularItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -70,7 +70,7 @@ class TVShowPageKeyRepositoryTest {
 
     @Test
     fun loadHighRatedTVShows() {
-        val repository = TVShowsPageKeyRepository(api, HIGHEST_RATED, context)
+        val repository = TVShowsPageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
         `when`(api.topRatedItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -81,7 +81,7 @@ class TVShowPageKeyRepositoryTest {
 
     @Test
     fun loadUpcomingTVShows() {
-        val repository = TVShowsPageKeyRepository(api, UPCOMING, context)
+        val repository = TVShowsPageKeyRepository(api, UPCOMING, networkExecutor, context)
         `when`(api.latestItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -91,7 +91,7 @@ class TVShowPageKeyRepositoryTest {
     }
 
     private fun getObserver(repository: TVShowsPageKeyRepository): LoggingObserver<PagedList<TVShow>> {
-        val listing = repository.getItems(networkExecutor)
+        val listing = repository.getItems()
         val observer = LoggingObserver<PagedList<TVShow>>()
         listing.pagedList.observeForever(observer)
         return observer

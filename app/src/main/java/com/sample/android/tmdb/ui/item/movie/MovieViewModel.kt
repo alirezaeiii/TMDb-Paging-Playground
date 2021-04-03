@@ -16,5 +16,6 @@ class MovieViewModel(
 
     override val baseRepoResult: BasePageKeyRepository<Movie> = MoviePageKeyRepository(api = api,
             sortType = sortType,
+            retryExecutor = NETWORK_IO,
             context = app.applicationContext)
 }

@@ -11,10 +11,11 @@ import java.util.concurrent.Executor
 class TVShowsPageKeyRepository(
         private val api: TVShowApi,
         private val sortType: SortType,
+        private val retryExecutor : Executor,
         private val context: Context)
-    : BasePageKeyRepository<TVShow>() {
+    : BasePageKeyRepository<TVShow>(retryExecutor) {
 
-    override fun getSourceFactory(retryExecutor: Executor): BaseDataSourceFactory<TVShow> =
+    override fun getSourceFactory(): BaseDataSourceFactory<TVShow> =
             TVShowsDataSourceFactory(api = api,
                     sortType = sortType,
                     retryExecutor = retryExecutor,

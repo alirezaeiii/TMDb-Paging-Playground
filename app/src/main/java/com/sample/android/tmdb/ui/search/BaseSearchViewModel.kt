@@ -16,7 +16,7 @@ abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : TmdbViewMod
     protected abstract fun getRepoResult(query : String) : BasePageKeyRepository<T>
 
     override val repoResult: LiveData<Listing<T>> = Transformations.map(query) {
-        getRepoResult(it).getItems(NETWORK_IO)
+        getRepoResult(it).getItems()
     }
 
     fun showQuery(query: String): Boolean {

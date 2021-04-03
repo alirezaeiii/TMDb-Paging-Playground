@@ -59,7 +59,7 @@ class MoviePageKeyRepositoryTest {
 
     @Test
     fun loadMostPopularMovies() {
-        val repository = MoviePageKeyRepository(api, MOST_POPULAR, context)
+        val repository = MoviePageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
         `when`(api.popularItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -70,7 +70,7 @@ class MoviePageKeyRepositoryTest {
 
     @Test
     fun loadHighRatedMovies() {
-        val repository = MoviePageKeyRepository(api, HIGHEST_RATED, context)
+        val repository = MoviePageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
         `when`(api.topRatedItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -81,7 +81,7 @@ class MoviePageKeyRepositoryTest {
 
     @Test
     fun loadUpcomingMovies() {
-        val repository = MoviePageKeyRepository(api, UPCOMING, context)
+        val repository = MoviePageKeyRepository(api, UPCOMING, networkExecutor, context)
         `when`(api.latestItems(anyInt())).thenReturn(mockCall)
 
         with(getObserver(repository).value) {
@@ -91,7 +91,7 @@ class MoviePageKeyRepositoryTest {
     }
 
     private fun getObserver(repository: MoviePageKeyRepository): LoggingObserver<PagedList<Movie>> {
-        val listing = repository.getItems(networkExecutor)
+        val listing = repository.getItems()
         val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
         return observer

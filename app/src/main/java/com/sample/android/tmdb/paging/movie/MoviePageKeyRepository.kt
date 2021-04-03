@@ -11,10 +11,11 @@ import java.util.concurrent.Executor
 class MoviePageKeyRepository(
         private val api: MovieApi,
         private val sortType: SortType,
+        private val retryExecutor : Executor,
         private val context: Context)
-    : BasePageKeyRepository<Movie>() {
+    : BasePageKeyRepository<Movie>(retryExecutor) {
 
-    override fun getSourceFactory(retryExecutor: Executor): BaseDataSourceFactory<Movie> =
+    override fun getSourceFactory(): BaseDataSourceFactory<Movie> =
             MoviesDataSourceFactory(api = api,
                     sortType = sortType,
                     retryExecutor = retryExecutor,

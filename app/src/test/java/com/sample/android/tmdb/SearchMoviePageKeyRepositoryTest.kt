@@ -57,10 +57,10 @@ class SearchMoviePageKeyRepositoryTest {
 
     @Test
     fun searchMovies() {
-        val repository = SearchMoviePageKeyRepository(api, "", context)
+        val repository = SearchMoviePageKeyRepository(api, "", networkExecutor, context)
         `when`(api.searchItems(anyInt(), anyString())).thenReturn(mockCall)
 
-        val listing = repository.getItems(networkExecutor)
+        val listing = repository.getItems()
         val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
 

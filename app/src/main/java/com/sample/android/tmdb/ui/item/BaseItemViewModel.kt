@@ -13,6 +13,6 @@ abstract class BaseItemViewModel<T : TmdbItem>(app: Application) : TmdbViewModel
     protected abstract val baseRepoResult : BasePageKeyRepository<T>
 
     override val repoResult: LiveData<Listing<T>> = liveData {
-        emit(baseRepoResult.getItems(NETWORK_IO))
+        emit(baseRepoResult.getItems())
     }
 }
