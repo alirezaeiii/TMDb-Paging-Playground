@@ -31,14 +31,14 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
                 }
             }
             R.layout.network_state_item ->
-                (holder as NetworkStateItemViewHolder).bindTo(networkState, refreshState, itemCount)
+                (holder as NetworkStateViewHolder).bindTo(networkState, refreshState, itemCount)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             R.layout.tmdb_item -> TmdbItemViewHolder.create(parent, tmdbClickCallback)
-            R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
+            R.layout.network_state_item -> NetworkStateViewHolder.create(parent, retryCallback)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
     }
