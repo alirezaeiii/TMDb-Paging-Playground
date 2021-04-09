@@ -3,7 +3,7 @@
 
 ## Features
 * MVVM Architecture.
-* Jetpack Libraries and Architecture Component.
+* Jetpack Libraries and Architecture Components.
 
 ## Prerequisites
 
