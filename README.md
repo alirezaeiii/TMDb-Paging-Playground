@@ -21,6 +21,7 @@ Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](ht
    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) ViewModel is designed to store and manage UI-related data in a lifecycle conscious way. This allows data to survive configuration changes such as screen rotations.
    * [DataBinding](https://developer.android.com/topic/libraries/data-binding/) is a Library in the support library that allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) is lifecycle-aware, meaning it respects the lifecycle of other app components updating app component observers that are in an active lifecycle state.
+* [Glide](https://github.com/bumptech/glide) is an image loading and caching library for Android.
 * [Dagger](https://developer.android.com/training/dependency-injection/dagger-multi-module) is a fully static, compile-time dependency injection framework for Java, Kotlin, and Android.
 * [RxJava](https://github.com/ReactiveX/RxJava) is a library for composing asynchronous code using observable sequences.
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) is a module that adds the minimum classes to RxJava to make writing reactive components in Android.
