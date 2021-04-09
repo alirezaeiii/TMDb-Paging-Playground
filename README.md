@@ -13,7 +13,7 @@ tmdb_api_key=YOUR_API_KEY
 ```
 
 ## Testing
-Local unit testing is done for PageKeyRepositories as well as DetailViewModels.
+Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/paging/BasePageKeyRepository.kt), Movie and TVShow [DetailViewModels](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/detail/DetailViewModel.kt) as well as [PersonViewModel](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/person/PersonViewModel.kt).
 
 ## Libraries
 * [Android Jetpack](https://developer.android.com/jetpack)
@@ -26,12 +26,13 @@ Local unit testing is done for PageKeyRepositories as well as DetailViewModels.
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) is a module that adds the minimum classes to RxJava to make writing reactive components in Android.
 * [Kotlin coroutines](https://developer.android.com/kotlin/coroutines) Executing code asynchronously.
 * [Retrofit](https://square.github.io/retrofit/) is a Type-safe HTTP client for Android and Java and Kotlin by Square.
-* [Gson](https://github.com/google/gson) is a serialization/deserialization library to convert Java Objects into JSON and back.
+* [Gson](https://github.com/google/gson) is a serialization/deserialization library to convert objects into JSON and back.
 * [OkHttp interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor) Logs HTTP requests and responses.
 * [Material Design](https://material.io/develop/android/) Build beautiful, usable products using Material Components for Android.
 * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) helps to manage motion and widget animation.
 * [JUnit4](https://junit.org/junit4/) Unit Testing
 * [Mockito](https://github.com/mockito/mockito) which is the most popular Mocking framework for unit tests written in Java as well as Kotlin.
+* [MockK](https://mockk.io/ANDROID.html) mocking library for Kotlin
 * [Espresso](https://developer.android.com/training/testing/espresso) Automated testing UI test
 
 ## Licence
