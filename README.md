@@ -31,7 +31,6 @@ Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](ht
 * [OkHttp interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor) Logs HTTP requests and responses.
 * [Material Design](https://material.io/develop/android/) Build beautiful, usable products using Material Components for Android.
 * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) helps to manage motion and widget animation.
-* [JUnit4](https://junit.org/junit4/) Unit Testing
 * [Mockito](https://github.com/mockito/mockito) which is the most popular Mocking framework for unit tests written in Java as well as Kotlin.
 * [MockK](https://mockk.io/ANDROID.html) mocking library for Kotlin
 * [Espresso](https://developer.android.com/training/testing/espresso) Automated testing UI test
