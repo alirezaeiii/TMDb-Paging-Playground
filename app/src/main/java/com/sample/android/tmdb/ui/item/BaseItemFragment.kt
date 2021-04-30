@@ -10,7 +10,7 @@ abstract class BaseItemFragment<T : TmdbItem> : BaseFragment<T>() {
     protected abstract val sortType: SortType
 
     override val navType: NavType?
-        get() = (activity as MainActivity).getNavType()
+        get() = (activity as MainActivity).navType
 }
 
 enum class SortType {

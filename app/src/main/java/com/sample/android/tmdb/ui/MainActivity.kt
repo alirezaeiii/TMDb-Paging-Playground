@@ -50,6 +50,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
+    val navType
+        get() = viewModel.currentType.value
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_nav)
@@ -95,21 +98,21 @@ class MainActivity : DaggerAppCompatActivity() {
 
                 when (item.itemId) {
                     R.id.action_popular -> {
-                        fragment = when (getNavType()) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> popularMoviesFragment
                             NavType.TV_SERIES -> popularTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_highest_rate -> {
-                        fragment = when (getNavType()) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> highRateMoviesFragment
                             NavType.TV_SERIES -> highRateTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_upcoming -> {
-                        fragment = when (getNavType()) {
+                        fragment = when (navType) {
                             NavType.MOVIES -> upcomingMoviesFragment
                             NavType.TV_SERIES -> latestTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
@@ -144,7 +147,7 @@ class MainActivity : DaggerAppCompatActivity() {
                         SearchActivity::class.java).apply {
                     action = ACTION_SEARCH
                     putExtras(Bundle().apply {
-                        putParcelable(EXTRA_NAV_TYPE, getNavType())
+                        putParcelable(EXTRA_NAV_TYPE, navType)
                     })
                 }
                 startActivity(intent, options)
@@ -160,6 +163,4 @@ class MainActivity : DaggerAppCompatActivity() {
             super.onBackPressed()
         }
     }
-
-    fun getNavType() = viewModel.currentType.value
 }
