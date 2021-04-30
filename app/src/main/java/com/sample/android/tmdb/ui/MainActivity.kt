@@ -50,7 +50,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
-    val navType
+    val navType: NavType?
         get() = viewModel.currentType.value
 
     override fun onCreate(savedInstanceState: Bundle?) {
