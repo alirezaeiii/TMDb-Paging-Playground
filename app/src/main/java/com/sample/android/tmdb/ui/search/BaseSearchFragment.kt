@@ -11,9 +11,11 @@ import kotlinx.android.synthetic.main.fragment_main.*
 
 abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
-    private val searchViewModel by lazy { viewModel as BaseSearchViewModel }
+    private val searchViewModel
+        get() = viewModel as BaseSearchViewModel
 
-    override val navType: NavType by lazy { (activity as SearchActivity).navType }
+    override val navType: NavType
+        get() = (activity as SearchActivity).navType
 
     override fun refresh() {
         super.refresh()

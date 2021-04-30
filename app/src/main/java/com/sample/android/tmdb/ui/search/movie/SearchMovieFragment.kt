@@ -12,5 +12,6 @@ constructor() // Required empty public constructor
     @Inject
     lateinit var factory: SearchMovieViewModel.Factory
 
-    override val viewModel by lazy { ViewModelProvider(this, factory).get(SearchMovieViewModel::class.java) }
+    override val viewModel
+        get() = ViewModelProvider(this, factory).get(SearchMovieViewModel::class.java)
 }
