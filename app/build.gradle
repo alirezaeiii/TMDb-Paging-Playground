@@ -91,7 +91,7 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
-    testImplementation "android.arch.core:core-testing:$archLifecycleVersion"
+    testImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
     // mock extension function
     testImplementation "io.mockk:mockk:$mockkVersion"
 

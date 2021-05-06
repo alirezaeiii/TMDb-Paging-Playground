@@ -10,7 +10,7 @@ import javax.inject.Inject
 class PersonViewModel(
         api: PersonApi,
         personId: Any
-) : BaseViewModel<Person>(api.person(personId)) {
+) : BaseViewModel<Person>(api.getPerson(personId)) {
 
     /**
      * Factory for constructing PersonViewModel with parameter

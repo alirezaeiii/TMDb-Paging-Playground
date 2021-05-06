@@ -39,7 +39,7 @@ class PersonViewModelTest {
                 "biography", "place")
 
         val observableResponse = Single.just(person)
-        `when`(api.person(anyInt())).thenReturn(observableResponse)
+        `when`(api.getPerson(anyInt())).thenReturn(observableResponse)
 
         val viewModel = PersonViewModel(api, anyInt())
 
@@ -53,7 +53,7 @@ class PersonViewModelTest {
 
     @Test
     fun errorLoadPerson() {
-        `when`(api.person(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(api.getPerson(anyInt())).thenReturn(Single.error(Exception()))
 
         val viewModel = PersonViewModel(api, anyInt())
 
