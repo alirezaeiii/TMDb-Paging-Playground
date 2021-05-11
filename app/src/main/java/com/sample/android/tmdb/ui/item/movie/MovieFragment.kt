@@ -13,11 +13,12 @@ abstract class MovieFragment : BaseItemFragment<Movie>() {
     @Inject
     lateinit var api: MovieApi
 
-    override val viewModel
-        get() = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+    override val viewModel by lazy {
+        ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return MovieViewModel(api, sortType, requireNotNull(activity).application) as T
             }
         })[MovieViewModel::class.java]
+    }
 }
