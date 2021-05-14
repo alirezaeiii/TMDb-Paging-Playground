@@ -1,26 +1,24 @@
 package com.sample.android.tmdb.ui
 
 import android.app.ActivityOptions
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.Intent.ACTION_SEARCH
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.item.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.item.movie.PopularMoviesFragment
 import com.sample.android.tmdb.ui.item.movie.UpcomingMoviesFragment
-import com.sample.android.tmdb.ui.search.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.ui.search.SearchActivity
 import com.sample.android.tmdb.ui.item.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.item.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.item.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.ui.search.EXTRA_NAV_TYPE
+import com.sample.android.tmdb.ui.search.SearchActivity
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -76,7 +74,7 @@ class MainActivity : DaggerAppCompatActivity() {
         toggle.syncState()
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.headline.observe(this, Observer {
+        viewModel.headline.observe(this, {
             title = it
         })
     }
@@ -143,26 +141,25 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-        var fragment: Fragment
         bottom_navigation.apply {
             setOnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
+                val fragment = when (item.itemId) {
                     R.id.action_popular -> {
-                        fragment = when (navType) {
+                        when (navType) {
                             NavType.MOVIES -> popularMoviesFragment
                             NavType.TV_SERIES -> popularTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_highest_rate -> {
-                        fragment = when (navType) {
+                        when (navType) {
                             NavType.MOVIES -> highRateMoviesFragment
                             NavType.TV_SERIES -> highRateTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
                         }
                     }
                     R.id.action_upcoming -> {
-                        fragment = when (navType) {
+                        when (navType) {
                             NavType.MOVIES -> upcomingMoviesFragment
                             NavType.TV_SERIES -> latestTVShowFragment
                             else -> throw RuntimeException("Unknown navType")
