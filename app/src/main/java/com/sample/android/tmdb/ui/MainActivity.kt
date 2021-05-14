@@ -59,12 +59,70 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        // Add popular movieFragment if this is first creation
         if (savedInstanceState == null) {
+            // Add popular movieFragment if this is first creation
             addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
         }
 
+        setupNavigationView()
+        setupBottomNavigation()
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawer_layout, toolbar,
+            R.string.open_nav_drawer, R.string.close_nav_drawer
+        )
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel.headline.observe(this, Observer {
+            title = it
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_search -> {
+                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
+                val options = ActivityOptions.makeSceneTransitionAnimation(
+                    this,
+                    searchMenuView, getString(R.string.transition_search_back)
+                ).toBundle()
+
+                val intent = Intent(
+                    this,
+                    SearchActivity::class.java
+                ).apply {
+                    action = ACTION_SEARCH
+                    putExtras(Bundle().apply {
+                        putParcelable(EXTRA_NAV_TYPE, navType)
+                    })
+                }
+                startActivity(intent, options)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    // ============================================================================================
+    //  Private setup methods
+    // ============================================================================================
+
+    private fun setupNavigationView() {
         nav_view.setNavigationItemSelectedListener { item ->
             drawer_layout.closeDrawer(GravityCompat.START)
             bottom_navigation.selectedItemId = R.id.action_popular
@@ -82,20 +140,12 @@ class MainActivity : DaggerAppCompatActivity() {
             replaceFragmentInActivity(fragment, R.id.fragment_container)
             true
         }
+    }
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar,
-                R.string.open_nav_drawer, R.string.close_nav_drawer
-        )
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
+    private fun setupBottomNavigation() {
         var fragment: Fragment
-
         bottom_navigation.apply {
-
             setOnNavigationItemSelectedListener { item ->
-
                 when (item.itemId) {
                     R.id.action_popular -> {
                         fragment = when (navType) {
@@ -123,44 +173,6 @@ class MainActivity : DaggerAppCompatActivity() {
                 replaceFragmentInActivity(fragment, R.id.fragment_container)
                 true
             }
-        }
-
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.headline.observe(this, Observer {
-            title = it
-        })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.search_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_search -> {
-                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
-                val options = ActivityOptions.makeSceneTransitionAnimation(this,
-                        searchMenuView, getString(R.string.transition_search_back)).toBundle()
-
-                val intent = Intent(this,
-                        SearchActivity::class.java).apply {
-                    action = ACTION_SEARCH
-                    putExtras(Bundle().apply {
-                        putParcelable(EXTRA_NAV_TYPE, navType)
-                    })
-                }
-                startActivity(intent, options)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
         }
     }
 }
