@@ -9,15 +9,17 @@ import com.sample.android.tmdb.ui.item.SortType
 import java.util.concurrent.Executor
 
 class MoviesDataSourceFactory(
-        private val api: MovieApi,
-        private val sortType: SortType,
-        private val retryExecutor: Executor,
-        private val context: Context
+    api: MovieApi,
+    sortType: SortType,
+    retryExecutor: Executor,
+    context: Context
 ) : BaseDataSourceFactory<Movie>() {
 
-    override fun getDataSource(): BasePageKeyedDataSource<Movie> =
-            MoviePageKeyedDataSource(api = api,
-                    sortType = sortType,
-                    retryExecutor = retryExecutor,
-                    context = context)
+    override val dataSource: BasePageKeyedDataSource<Movie> =
+        MoviePageKeyedDataSource(
+            api = api,
+            sortType = sortType,
+            retryExecutor = retryExecutor,
+            context = context
+        )
 }

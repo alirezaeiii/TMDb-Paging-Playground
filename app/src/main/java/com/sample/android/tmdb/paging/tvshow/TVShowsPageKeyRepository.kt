@@ -9,15 +9,17 @@ import com.sample.android.tmdb.ui.item.SortType
 import java.util.concurrent.Executor
 
 class TVShowsPageKeyRepository(
-        private val api: TVShowApi,
-        private val sortType: SortType,
-        private val retryExecutor : Executor,
-        private val context: Context)
-    : BasePageKeyRepository<TVShow>(retryExecutor) {
+    api: TVShowApi,
+    sortType: SortType,
+    retryExecutor: Executor,
+    context: Context
+) : BasePageKeyRepository<TVShow>(retryExecutor) {
 
-    override fun getSourceFactory(): BaseDataSourceFactory<TVShow> =
-            TVShowsDataSourceFactory(api = api,
-                    sortType = sortType,
-                    retryExecutor = retryExecutor,
-                    context = context)
+    override val sourceFactory: BaseDataSourceFactory<TVShow> =
+        TVShowsDataSourceFactory(
+            api = api,
+            sortType = sortType,
+            retryExecutor = retryExecutor,
+            context = context
+        )
 }

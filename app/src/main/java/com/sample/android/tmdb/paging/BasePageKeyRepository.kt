@@ -7,21 +7,19 @@ import com.sample.android.tmdb.domain.TmdbItem
 import java.util.concurrent.Executor
 
 abstract class BasePageKeyRepository<T : TmdbItem>(
-        private val networkExecutor: Executor
+    private val networkExecutor: Executor
 ) : PageKeyRepository<T> {
 
-    protected abstract fun getSourceFactory(): BaseDataSourceFactory<T>
+    protected abstract val sourceFactory: BaseDataSourceFactory<T>
 
     @MainThread
     override fun getItems(): Listing<T> {
 
-        val sourceFactory = getSourceFactory()
-
         val livePagedList = LivePagedListBuilder(sourceFactory, PAGE_SIZE)
-                // provide custom executor for network requests, otherwise it will default to
-                // Arch Components' IO pool which is also used for disk access
-                .setFetchExecutor(networkExecutor)
-                .build()
+            // provide custom executor for network requests, otherwise it will default to
+            // Arch Components' IO pool which is also used for disk access
+            .setFetchExecutor(networkExecutor)
+            .build()
 
         val refreshState = Transformations.switchMap(sourceFactory.sourceLiveDataBase) {
             it.initialLoad
@@ -32,15 +30,15 @@ abstract class BasePageKeyRepository<T : TmdbItem>(
         }
 
         return Listing(
-                pagedList = livePagedList,
-                networkState = networkState,
-                refresh = {
-                    sourceFactory.sourceLiveDataBase.value?.invalidate()
-                },
-                refreshState = refreshState,
-                retry = {
-                    sourceFactory.sourceLiveDataBase.value?.retryAllFailed()
-                }
+            pagedList = livePagedList,
+            networkState = networkState,
+            refresh = {
+                sourceFactory.sourceLiveDataBase.value?.invalidate()
+            },
+            refreshState = refreshState,
+            retry = {
+                sourceFactory.sourceLiveDataBase.value?.retryAllFailed()
+            }
         )
     }
 
