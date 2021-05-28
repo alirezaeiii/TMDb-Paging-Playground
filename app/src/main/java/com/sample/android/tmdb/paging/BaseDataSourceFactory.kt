@@ -8,7 +8,7 @@ import com.sample.android.tmdb.domain.TmdbItem
 abstract class BaseDataSourceFactory<T : TmdbItem> : DataSource.Factory<Int, T>() {
 
     private val _sourceLiveData = MutableLiveData<BasePageKeyedDataSource<T>>()
-    val sourceLiveDataBase: LiveData<BasePageKeyedDataSource<T>>
+    val sourceLiveData: LiveData<BasePageKeyedDataSource<T>>
         get() = _sourceLiveData
 
     protected abstract val dataSource: BasePageKeyedDataSource<T>

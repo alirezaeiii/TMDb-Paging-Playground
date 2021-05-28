@@ -21,11 +21,11 @@ abstract class BasePageKeyRepository<T : TmdbItem>(
             .setFetchExecutor(networkExecutor)
             .build()
 
-        val refreshState = Transformations.switchMap(sourceFactory.sourceLiveDataBase) {
+        val refreshState = Transformations.switchMap(sourceFactory.sourceLiveData) {
             it.initialLoad
         }
 
-        val networkState = Transformations.switchMap(sourceFactory.sourceLiveDataBase) {
+        val networkState = Transformations.switchMap(sourceFactory.sourceLiveData) {
             it.networkState
         }
 
@@ -33,11 +33,11 @@ abstract class BasePageKeyRepository<T : TmdbItem>(
             pagedList = livePagedList,
             networkState = networkState,
             refresh = {
-                sourceFactory.sourceLiveDataBase.value?.invalidate()
+                sourceFactory.sourceLiveData.value?.invalidate()
             },
             refreshState = refreshState,
             retry = {
-                sourceFactory.sourceLiveDataBase.value?.retryAllFailed()
+                sourceFactory.sourceLiveData.value?.retryAllFailed()
             }
         )
     }
