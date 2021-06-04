@@ -63,7 +63,7 @@ class SearchActivity : DaggerAppCompatActivity() {
                 if (hasQuery) {
                     fragment.search(query)
                 } else {
-                    fragment.observeNetworkState()
+                    fragment.observeRefreshState()
                 }
                 return true
             }

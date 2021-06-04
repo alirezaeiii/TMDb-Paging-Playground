@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.search
 
-import androidx.lifecycle.Observer
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseFragment
@@ -30,8 +29,8 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
         }
     }
 
-    fun observeNetworkState() {
-        searchViewModel.refreshState.observe(this, Observer {
+    fun observeRefreshState() {
+        searchViewModel.refreshState.observe(this, {
             recyclerView.toVisibility(it.status != RUNNING)
         })
     }
