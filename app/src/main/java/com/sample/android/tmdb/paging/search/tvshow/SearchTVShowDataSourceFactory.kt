@@ -8,13 +8,13 @@ import com.sample.android.tmdb.paging.BasePageKeyedDataSource
 import java.util.concurrent.Executor
 
 class SearchTVShowDataSourceFactory(
-    api: TVShowApi,
-    query: String,
-    retryExecutor: Executor,
-    context: Context
+    private val api: TVShowApi,
+    private val query: String,
+    private val retryExecutor: Executor,
+    private val context: Context
 ) : BaseDataSourceFactory<TVShow>() {
 
-    override val dataSource: BasePageKeyedDataSource<TVShow> =
+    override fun getDataSource(): BasePageKeyedDataSource<TVShow> =
         SearchTVShowPageKeyedDataSource(
             api = api,
             query = query,

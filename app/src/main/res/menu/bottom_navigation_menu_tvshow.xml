@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_popular"
+        android:id="@+id/action_tvShow_popular"
         android:icon="@drawable/ic_tv"
         android:title="@string/text_popular"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_highest_rate"
+        android:id="@+id/action_tvShow_highest_rate"
         android:icon="@drawable/ic_hd"
         android:title="@string/text_highest_rate"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_upcoming"
+        android:id="@+id/action_tvShow_latest"
         android:icon="@drawable/ic_star"
-        android:title="@string/text_upcoming"
+        android:title="@string/text_latest"
         app:showAsAction="ifRoom" />
 </menu>

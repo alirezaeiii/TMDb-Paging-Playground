@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.item.movie.HighRateMoviesFragment
@@ -48,6 +49,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
+    private var movieFragment: Lazy<Fragment> = lazy { popularMoviesFragment }
+    private var tvShowFragment: Lazy<Fragment> = lazy { popularTVShowFragment }
+    private var movieItemId: Int = R.id.action_movie_popular
+    private var tvShowItemId: Int = R.id.action_tvShow_popular
+
     val navType: NavType?
         get() = viewModel.currentType.value
 
@@ -59,7 +65,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         if (savedInstanceState == null) {
             // Add popular movieFragment if this is first creation
-            addFragmentToActivity(popularMoviesFragment, R.id.fragment_container)
+            addFragmentToActivity(movieFragment.value, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
         }
 
@@ -120,19 +126,22 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun setupNavigationView() {
         nav_view.setNavigationItemSelectedListener { item ->
             drawer_layout.closeDrawer(GravityCompat.START)
-            bottom_navigation.selectedItemId = R.id.action_popular
             val fragment = when (item.itemId) {
                 R.id.action_movies -> {
                     viewModel.setType(R.string.menu_movies, NavType.MOVIES)
-                    popularMoviesFragment
+                    inflateMenu(R.menu.bottom_navigation_menu_movie)
+                    bottom_navigation.selectedItemId = movieItemId
+                    movieFragment
                 }
                 R.id.action_tv_series -> {
                     viewModel.setType(R.string.menu_tv_series, NavType.TV_SERIES)
-                    popularTVShowFragment
+                    inflateMenu(R.menu.bottom_navigation_menu_tvshow)
+                    bottom_navigation.selectedItemId = tvShowItemId
+                    tvShowFragment
                 }
                 else -> throw RuntimeException("Unknown navType to replace fragment")
             }
-            replaceFragmentInActivity(fragment, R.id.fragment_container)
+            replaceFragmentInActivity(fragment.value, R.id.fragment_container)
             true
         }
     }
@@ -141,32 +150,52 @@ class MainActivity : DaggerAppCompatActivity() {
         bottom_navigation.apply {
             setOnNavigationItemSelectedListener { item ->
                 val fragment = when (item.itemId) {
-                    R.id.action_popular -> {
-                        when (navType) {
-                            NavType.MOVIES -> popularMoviesFragment
-                            NavType.TV_SERIES -> popularTVShowFragment
-                            else -> throw RuntimeException("Unknown navType")
-                        }
-                    }
-                    R.id.action_highest_rate -> {
-                        when (navType) {
-                            NavType.MOVIES -> highRateMoviesFragment
-                            NavType.TV_SERIES -> highRateTVShowFragment
-                            else -> throw RuntimeException("Unknown navType")
-                        }
-                    }
-                    R.id.action_upcoming -> {
-                        when (navType) {
-                            NavType.MOVIES -> upcomingMoviesFragment
-                            NavType.TV_SERIES -> latestTVShowFragment
-                            else -> throw RuntimeException("Unknown navType")
-                        }
-                    }
+                    R.id.action_movie_popular -> getMovieFragment(
+                        popularMoviesFragment,
+                        R.id.action_movie_popular
+                    )
+                    R.id.action_movie_highest_rate -> getMovieFragment(
+                        highRateMoviesFragment,
+                        R.id.action_movie_highest_rate
+                    )
+                    R.id.action_movie_upcoming -> getMovieFragment(
+                        upcomingMoviesFragment,
+                        R.id.action_movie_upcoming
+                    )
+                    R.id.action_tvShow_popular -> getTvShowFragment(
+                        popularTVShowFragment,
+                        R.id.action_tvShow_popular
+                    )
+                    R.id.action_tvShow_highest_rate -> getTvShowFragment(
+                        highRateTVShowFragment,
+                        R.id.action_tvShow_highest_rate
+                    )
+                    R.id.action_tvShow_latest -> getTvShowFragment(
+                        latestTVShowFragment,
+                        R.id.action_tvShow_latest
+                    )
                     else -> throw RuntimeException("Unknown sortType to replace fragment")
                 }
                 replaceFragmentInActivity(fragment, R.id.fragment_container)
                 true
             }
         }
+    }
+
+    private fun inflateMenu(menuId: Int) {
+        bottom_navigation.menu.clear()
+        bottom_navigation.inflateMenu(menuId)
+    }
+
+    private fun getMovieFragment(fragment: Fragment, itemId: Int): Fragment {
+        movieItemId = itemId
+        movieFragment = lazy { fragment }
+        return fragment
+    }
+
+    private fun getTvShowFragment(fragment: Fragment, itemId: Int): Fragment {
+        tvShowItemId = itemId
+        tvShowFragment = lazy { fragment }
+        return fragment
     }
 }
