@@ -150,32 +150,19 @@ class MainActivity : DaggerAppCompatActivity() {
         bottom_navigation.apply {
             setOnNavigationItemSelectedListener { item ->
                 val fragment = when (item.itemId) {
-                    R.id.action_movie_popular -> getMovieFragment(
-                        popularMoviesFragment,
-                        R.id.action_movie_popular
-                    )
-                    R.id.action_movie_highest_rate -> getMovieFragment(
-                        highRateMoviesFragment,
-                        R.id.action_movie_highest_rate
-                    )
-                    R.id.action_movie_upcoming -> getMovieFragment(
-                        upcomingMoviesFragment,
-                        R.id.action_movie_upcoming
-                    )
-                    R.id.action_tvShow_popular -> getTvShowFragment(
-                        popularTVShowFragment,
-                        R.id.action_tvShow_popular
-                    )
-                    R.id.action_tvShow_highest_rate -> getTvShowFragment(
-                        highRateTVShowFragment,
-                        R.id.action_tvShow_highest_rate
-                    )
-                    R.id.action_tvShow_latest -> getTvShowFragment(
-                        latestTVShowFragment,
-                        R.id.action_tvShow_latest
-                    )
+                    R.id.action_movie_popular -> getMovieFragment(popularMoviesFragment)
+                    R.id.action_movie_highest_rate -> getMovieFragment(highRateMoviesFragment)
+                    R.id.action_movie_upcoming -> getMovieFragment(upcomingMoviesFragment)
+                    R.id.action_tvShow_popular -> getTvShowFragment(popularTVShowFragment)
+                    R.id.action_tvShow_highest_rate -> getTvShowFragment(highRateTVShowFragment)
+                    R.id.action_tvShow_latest -> getTvShowFragment(latestTVShowFragment)
                     else -> throw RuntimeException("Unknown sortType to replace fragment")
                 }
+                when (navType) {
+                    NavType.MOVIES -> movieItemId = item.itemId
+                    NavType.TV_SERIES -> tvShowItemId = item.itemId
+                }
+
                 replaceFragmentInActivity(fragment, R.id.fragment_container)
                 true
             }
@@ -187,14 +174,12 @@ class MainActivity : DaggerAppCompatActivity() {
         bottom_navigation.inflateMenu(menuId)
     }
 
-    private fun getMovieFragment(fragment: Fragment, itemId: Int): Fragment {
-        movieItemId = itemId
+    private fun getMovieFragment(fragment: Fragment): Fragment {
         movieFragment = lazy { fragment }
         return fragment
     }
 
-    private fun getTvShowFragment(fragment: Fragment, itemId: Int): Fragment {
-        tvShowItemId = itemId
+    private fun getTvShowFragment(fragment: Fragment): Fragment {
         tvShowFragment = lazy { fragment }
         return fragment
     }
