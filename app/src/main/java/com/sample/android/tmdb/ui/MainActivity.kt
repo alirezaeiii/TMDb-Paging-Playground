@@ -93,10 +93,7 @@ class MainActivity : DaggerAppCompatActivity() {
                     searchMenuView, getString(R.string.transition_search_back)
                 ).toBundle()
 
-                val intent = Intent(
-                    this,
-                    SearchActivity::class.java
-                ).apply {
+                val intent = Intent(this, SearchActivity::class.java).apply {
                     action = ACTION_SEARCH
                     putExtras(Bundle().apply {
                         putParcelable(EXTRA_NAV_TYPE, navType)
