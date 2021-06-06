@@ -49,8 +49,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
-    private var movieFragment: Lazy<Fragment> = lazy { popularMoviesFragment }
-    private var tvShowFragment: Lazy<Fragment> = lazy { popularTVShowFragment }
+    private lateinit var movieFragment: Fragment
+    private lateinit var tvShowFragment: Fragment
     private var movieItemId: Int = R.id.action_movie_popular
     private var tvShowItemId: Int = R.id.action_tvShow_popular
 
@@ -64,8 +64,10 @@ class MainActivity : DaggerAppCompatActivity() {
         setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
+            movieFragment = popularMoviesFragment
+            tvShowFragment = popularTVShowFragment
             // Add popular movieFragment if this is first creation
-            addFragmentToActivity(movieFragment.value, R.id.fragment_container)
+            addFragmentToActivity(movieFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
         }
 
@@ -141,7 +143,7 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
                 else -> throw RuntimeException("Unknown navType to replace fragment")
             }
-            replaceFragmentInActivity(fragment.value, R.id.fragment_container)
+            replaceFragmentInActivity(fragment, R.id.fragment_container)
             true
         }
     }
@@ -175,12 +177,12 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun getMovieFragment(fragment: Fragment): Fragment {
-        movieFragment = lazy { fragment }
+        movieFragment = fragment
         return fragment
     }
 
     private fun getTvShowFragment(fragment: Fragment): Fragment {
-        tvShowFragment = lazy { fragment }
+        tvShowFragment = fragment
         return fragment
     }
 }
