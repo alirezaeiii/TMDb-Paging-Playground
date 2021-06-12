@@ -70,8 +70,7 @@
             android:layout_height="0dp"
             android:ellipsize="end"
             android:text="@{tmdbItem.name}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:transitionName="@string/view_name_header_title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/details_toolbar"

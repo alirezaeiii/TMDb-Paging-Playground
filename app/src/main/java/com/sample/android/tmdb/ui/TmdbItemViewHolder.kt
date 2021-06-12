@@ -15,7 +15,6 @@ class TmdbItemViewHolder(val binding: TmdbItemBinding)
                     parent, false)
             with(binding) {
                 poster = itemPoster
-                name = itemName
                 callback = tmdbClickCallback
             }
             return TmdbItemViewHolder(binding)
