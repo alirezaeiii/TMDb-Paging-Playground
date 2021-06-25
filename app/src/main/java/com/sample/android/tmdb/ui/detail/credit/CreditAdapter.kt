@@ -37,6 +37,6 @@ class CreditAdapter<T : Credit>(
         }
     }
 
-    class CreditViewHolder(internal val binding: CreditItemBinding) :
+    class CreditViewHolder(val binding: CreditItemBinding) :
             RecyclerView.ViewHolder(binding.root)
 }
