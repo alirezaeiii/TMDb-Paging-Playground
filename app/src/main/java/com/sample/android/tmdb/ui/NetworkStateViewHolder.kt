@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.ui
 
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,7 +79,9 @@ class NetworkStateViewHolder(
         retry.toVisibility(networkState?.status == FAILED)
         errorMsg.toVisibility(networkState?.msg != null)
         errorMsg.text = networkState?.msg
-        errorIcon.toVisibility(networkState?.status == FAILED && position == 0)
+        val orientation = root.context.resources.configuration.orientation
+        errorIcon.toVisibility(networkState?.status == FAILED && position == 0 &&
+                orientation == Configuration.ORIENTATION_PORTRAIT)
     }
 
     companion object {
