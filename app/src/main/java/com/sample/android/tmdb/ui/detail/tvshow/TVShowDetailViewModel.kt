@@ -12,6 +12,10 @@ class TVShowDetailViewModel(
         item: TmdbItem
 ) : DetailViewModel(api.tvTrailers(item.id), api.tvCredit(item.id)) {
 
+    init {
+        sendRequest()
+    }
+
     class Factory @Inject constructor(
             private val api: TVShowApi,
             private val item: TmdbItem

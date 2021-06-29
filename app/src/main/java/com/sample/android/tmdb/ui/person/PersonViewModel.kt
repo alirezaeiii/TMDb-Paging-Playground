@@ -12,6 +12,10 @@ class PersonViewModel(
         personId: Any
 ) : BaseViewModel<Person>(api.getPerson(personId)) {
 
+    init {
+        sendRequest()
+    }
+
     /**
      * Factory for constructing PersonViewModel with parameter
      */

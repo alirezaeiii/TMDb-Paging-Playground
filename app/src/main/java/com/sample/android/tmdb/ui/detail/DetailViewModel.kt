@@ -6,18 +6,23 @@ import com.sample.android.tmdb.domain.VideoWrapper
 import com.sample.android.tmdb.ui.BaseViewModel
 import com.sample.android.tmdb.ui.detail.DetailViewModel.DetailWrapper
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 
 open class DetailViewModel(
-        trailers: Single<VideoWrapper>,
-        credits: Single<CreditWrapper>
-) : BaseViewModel<DetailWrapper>(Single.zip(trailers.map { it.videos }, credits,
-        BiFunction<List<Video>, CreditWrapper, DetailWrapper> { videos, creditWrapper ->
+    trailers: Single<VideoWrapper>,
+    credits: Single<CreditWrapper>
+) : BaseViewModel<DetailWrapper>(
+    Single.zip(trailers.map { it.videos }, credits,
+        { videos, creditWrapper ->
             DetailWrapper(videos, creditWrapper)
-        })) {
+        })
+) {
+
+    init {
+        sendRequest()
+    }
 
     class DetailWrapper(
-            val videos: List<Video>,
-            val creditWrapper: CreditWrapper
+        val videos: List<Video>,
+        val creditWrapper: CreditWrapper
     )
 }

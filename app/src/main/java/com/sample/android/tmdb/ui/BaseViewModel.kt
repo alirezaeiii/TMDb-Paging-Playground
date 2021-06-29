@@ -18,11 +18,7 @@ open class BaseViewModel<T>(private val requestObservable: Single<T>) : ViewMode
     val liveData: LiveData<T>
         get() = _liveData
 
-    init {
-        sendRequest()
-    }
-
-    private fun sendRequest() {
+    protected fun sendRequest() {
         composeSingle { requestObservable }.subscribe({
             _liveData.postValue(it)
         }) {
