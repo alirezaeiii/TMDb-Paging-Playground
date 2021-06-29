@@ -17,10 +17,6 @@ open class DetailViewModel(
         })
 ) {
 
-    init {
-        sendRequest()
-    }
-
     class DetailWrapper(
         val videos: List<Video>,
         val creditWrapper: CreditWrapper
