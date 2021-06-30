@@ -10,7 +10,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.search.movie.SearchMovieFragment
 import com.sample.android.tmdb.ui.search.tvshow.SearchTVShowFragment
-import com.sample.android.tmdb.util.addFragmentToActivity
+import com.sample.android.tmdb.util.replaceFragmentInActivity
 import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
@@ -48,8 +48,8 @@ class SearchActivity : DaggerAppCompatActivity() {
             NavType.TV_SERIES -> Pair(searchTVShowFragment, getString(R.string.search_hint_tv_shows))
         }
         val fragment = pair.first
-        addFragmentToActivity(fragment, R.id.fragment_container)
         search_view.queryHint = pair.second
+        replaceFragmentInActivity(fragment, R.id.fragment_container)
 
         search_view.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
