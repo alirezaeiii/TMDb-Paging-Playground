@@ -16,7 +16,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="96dp"
         android:layout_height="215dp"
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"

@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.lifecycle.Observer
-import com.google.android.material.tabs.TabLayoutMediator
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sample.android.tmdb.BR
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.detail.credit.CreditFragment
-import com.sample.android.tmdb.ui.detail.credit.CreditViewPagerAdapter
-import com.sample.android.tmdb.ui.detail.credit.PagerItem
+import com.sample.android.tmdb.ui.detail.credit.*
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerFragment
@@ -42,26 +39,21 @@ abstract class DetailFragment : DaggerFragment() {
         }
 
         with(root) {
-
-            viewModel.liveData.observe(viewLifecycleOwner, Observer { detailWrapper ->
-                val adapter = CreditViewPagerAdapter(childFragmentManager, lifecycle)
-
-                if (detailWrapper.creditWrapper.cast.isNotEmpty()) {
-                    val castPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            detailWrapper.creditWrapper.cast), R.string.cast)
-                    adapter.addFragment(castPagerItem)
+            viewModel.liveData.observe(viewLifecycleOwner, { detailWrapper ->
+                cast_list.apply {
+                    layoutManager = GridLayoutManager(activity, 1,
+                        GridLayoutManager.HORIZONTAL, false)
+                    setHasFixedSize(true)
+                    adapter = CreditAdapter(detailWrapper.creditWrapper.cast,
+                        CreditClickListener(context, tmdbItem))
                 }
-
-                if (detailWrapper.creditWrapper.crew.isNotEmpty()) {
-                    val crewPagerItem = PagerItem(CreditFragment.newInstance(tmdbItem,
-                            detailWrapper.creditWrapper.crew), R.string.crew)
-                    adapter.addFragment(crewPagerItem)
+                crew_list.apply {
+                    layoutManager = GridLayoutManager(activity, 1,
+                        GridLayoutManager.HORIZONTAL, false)
+                    setHasFixedSize(true)
+                    adapter = CreditAdapter(detailWrapper.creditWrapper.crew,
+                        CreditClickListener(context, tmdbItem))
                 }
-
-                pager.adapter = adapter
-                TabLayoutMediator(tab_layout, pager) { tab, position ->
-                    tab.text = getString(adapter.creditFragments[position].title)
-                }.attach()
             })
 
             with(activity as AppCompatActivity) {

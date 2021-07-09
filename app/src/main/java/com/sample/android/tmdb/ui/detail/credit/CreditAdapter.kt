@@ -9,7 +9,7 @@ import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.util.layoutInflater
 
 class CreditAdapter<T : Credit>(
-        credits: ArrayList<T>,
+        credits: List<T>,
         private val creditClickCallback: CreditClickCallback<T>)
     : RecyclerView.Adapter<CreditAdapter.CreditViewHolder>() {
 

@@ -105,4 +105,9 @@ fun View.toVisibility(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }
 
+@BindingAdapter("visibility")
+fun <T> toVisibility(view: View, list: List<T>?) {
+    view.visibility = if (list == null || list.isEmpty()) View.GONE else View.VISIBLE
+}
+
 private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"

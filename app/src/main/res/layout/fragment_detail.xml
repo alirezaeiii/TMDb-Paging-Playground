@@ -132,17 +132,33 @@
                     app:vm="@{vm}"
                     tools:ignore="RtlHardcoded" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/TmdbMargin.Title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:tabSelectedTextColor="@color/colorAccent"
-                    app:tabTextColor="@android:color/white" />
+                    android:text="@string/cast"
+                    app:visibility="@{vm.liveData.creditWrapper.cast}" />
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cast_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    app:visibility="@{vm.liveData.creditWrapper.cast}" />
+
+                <TextView
+                    style="@style/TmdbMargin.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crew"
+                    app:visibility="@{vm.liveData.creditWrapper.crew}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/crew_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    app:visibility="@{vm.liveData.creditWrapper.crew}" />
 
             </LinearLayout>
 
