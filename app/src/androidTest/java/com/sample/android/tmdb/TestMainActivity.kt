@@ -16,9 +16,7 @@ import com.sample.android.tmdb.network.OkHttpProvider
 import com.sample.android.tmdb.ui.MainActivity
 import com.sample.android.tmdb.ui.TmdbItemViewHolder
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
-import com.sample.android.tmdb.utils.TestRecyclerViewUtils.nestedScrollTo
-import com.sample.android.tmdb.utils.matchCurrentTabTitle
-import com.sample.android.tmdb.utils.matchTabTitleAtPosition
+import com.sample.android.tmdb.utils.TestRecyclerViewUtils
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -74,36 +72,40 @@ class TestMainActivity {
     }
 
     @Test
-    fun shouldBeAbleToDisplayCastTab() {
+    fun shouldBeAbleToDisplayCastLabel() {
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
-        onView(withId(R.id.tab_layout)).check(matches(matchCurrentTabTitle("Cast")))
+                .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
+        onView(withId(R.id.cast_list)).perform(TestRecyclerViewUtils.customScrollTo)
+        onView(withText(R.string.cast)).check(matches(isDisplayed()))
 
     }
 
     @Test
-    fun shouldBeAbleToDisplayCrewTab() {
+    fun shouldBeAbleToDisplayCrewLabel() {
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
-        onView(withId(R.id.tab_layout)).check(matches(matchTabTitleAtPosition("Crew", 1)))
+        onView(withId(R.id.crew_list)).perform(TestRecyclerViewUtils.customScrollTo)
+        onView(withText(R.string.crew)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun shouldBeAbleToDisplayPersonDetail() {
+    fun shouldBeAbleToDisplayCastDetail() {
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
-        onView(withId(R.id.pager)).perform(nestedScrollTo()).check(matches(isDisplayed()))
-        onView(withId(R.id.credit_list)).perform(RecyclerViewActions
+        onView(withId(R.id.cast_list)).perform(TestRecyclerViewUtils.customScrollTo)
+        onView(withId(R.id.cast_list)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(2, click()))
         onView(withText(R.string.biography)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun shouldBeAbleToChangeTabAndViewDetails() {
-        onView(withId(R.id.action_upcoming)).perform(click())
+    fun shouldBeAbleToDisplayCrewDetail() {
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
-                .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
-        onView(withText(R.string.summary)).check(matches(isDisplayed()))
+            .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
+        onView(withId(R.id.crew_list)).perform(TestRecyclerViewUtils.customScrollTo)
+        onView(withId(R.id.crew_list)).perform(RecyclerViewActions
+            .actionOnItemAtPosition<CreditAdapter.CreditViewHolder>(0, click()))
+        onView(withText(R.string.biography)).check(matches(isDisplayed()))
     }
 
     @Test

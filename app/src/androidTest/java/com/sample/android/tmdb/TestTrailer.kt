@@ -9,6 +9,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.ui.MainActivity
@@ -51,10 +52,10 @@ class TestTrailer {
 
     @Test
     fun shouldBeAbleToDisplayTrailer() {
-        onView(ViewMatchers.withId(R.id.recyclerView)).perform(RecyclerViewActions
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(0, click()))
 
-        onView(ViewMatchers.withId(R.id.trailer_scroll_view)).perform(customScrollTo, click())
+        onView(withId(R.id.trailer_scroll_view)).perform(customScrollTo, click())
 
         intended(allOf(hasAction(Intent.ACTION_VIEW)))
     }
