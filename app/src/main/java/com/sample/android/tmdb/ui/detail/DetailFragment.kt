@@ -8,66 +8,47 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import com.sample.android.tmdb.BR
+import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
+import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.ui.detail.credit.*
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import javax.inject.Inject
 
-abstract class DetailFragment : DaggerFragment() {
+abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDetailBinding>
+    (R.layout.fragment_detail) {
 
     @Inject
     lateinit var tmdbItem: TmdbItem
 
-    protected abstract val viewModel: DetailViewModel
-
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
 
-        val root = inflater.inflate(R.layout.fragment_detail, container, false)
-        FragmentDetailBinding.bind(root).apply {
-            setVariable(BR.vm, viewModel)
-            lifecycleOwner = viewLifecycleOwner
+        with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem
-        }
-
-        with(root) {
             viewModel.liveData.observe(viewLifecycleOwner, { detailWrapper ->
-                cast_list.apply {
-                    layoutManager = GridLayoutManager(activity, 1,
-                        GridLayoutManager.HORIZONTAL, false)
-                    setHasFixedSize(true)
-                    adapter = CreditAdapter(detailWrapper.creditWrapper.cast,
-                        CreditClickListener(context, tmdbItem))
-                }
-                crew_list.apply {
-                    layoutManager = GridLayoutManager(activity, 1,
-                        GridLayoutManager.HORIZONTAL, false)
-                    setHasFixedSize(true)
-                    adapter = CreditAdapter(detailWrapper.creditWrapper.crew,
-                        CreditClickListener(context, tmdbItem))
-                }
+                setupAdapter(castList, detailWrapper.creditWrapper.cast)
+                setupAdapter(crewList, detailWrapper.creditWrapper.crew)
             })
-
             with(activity as AppCompatActivity) {
-                setupActionBar(details_toolbar) {
+                setupActionBar(detailsToolbar) {
                     setDisplayShowTitleEnabled(false)
                     setDisplayHomeAsUpEnabled(true)
                     setDisplayShowHomeEnabled(true)
                 }
             }
 
-            summary_label.toVisibility(tmdbItem.overview.trim().isNotEmpty())
+            summaryLabel.toVisibility(this@DetailFragment.tmdbItem.overview.trim().isNotEmpty())
 
             // Make the MotionLayout draw behind the status bar
-            details_motion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+            detailsMotion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
             summary.setOnClickListener {
@@ -75,8 +56,7 @@ abstract class DetailFragment : DaggerFragment() {
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE
             }
         }
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,7 +67,12 @@ abstract class DetailFragment : DaggerFragment() {
 
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
 
-            override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
+            override fun onTransitionChange(
+                motionLayout: MotionLayout,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
                 view.details_appbar_background.cutProgress = 1f - progress
                 view.details_poster.visibility = View.VISIBLE
             }
@@ -106,5 +91,16 @@ abstract class DetailFragment : DaggerFragment() {
                 }
             }
         })
+    }
+
+    private fun <T : Credit> setupAdapter(recyclerView: RecyclerView, items: List<T>) {
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(
+                activity, 1,
+                GridLayoutManager.HORIZONTAL, false
+            )
+            setHasFixedSize(true)
+            adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem))
+        }
     }
 }
