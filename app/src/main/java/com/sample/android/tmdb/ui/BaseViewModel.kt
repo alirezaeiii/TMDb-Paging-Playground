@@ -1,49 +1,33 @@
 package com.sample.android.tmdb.ui
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.sample.android.tmdb.util.EspressoIdlingResource
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import androidx.lifecycle.Transformations.switchMap
+import androidx.paging.PagedList
+import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.paging.Listing
+import com.sample.android.tmdb.paging.NetworkState
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-open class BaseViewModel<T>(private val requestObservable: Single<T>) : ViewModel() {
+abstract class BaseViewModel<T : TmdbItem>(
+        // thread pool used for network requests
+        protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5),
+        app: Application)
+    : AndroidViewModel(app) {
 
-    private val compositeDisposable = CompositeDisposable()
+    protected abstract val repoResult: LiveData<Listing<T>>
 
-    private val _liveData = MutableLiveData<T>()
-    val liveData: LiveData<T>
-        get() = _liveData
+    val items: LiveData<PagedList<T>> by lazy { switchMap(repoResult) { it.pagedList } }
+    val networkState: LiveData<NetworkState> by lazy { switchMap(repoResult) { it.networkState } }
+    val refreshState: LiveData<NetworkState> by lazy { switchMap(repoResult) { it.refreshState } }
 
-    protected fun sendRequest() {
-        composeSingle { requestObservable }.subscribe({
-            _liveData.postValue(it)
-        }) {
-            Timber.e(it)
-        }.also { compositeDisposable.add(it) }
+    fun refresh() {
+        repoResult.value?.refresh?.invoke()
     }
 
-    private inline fun <T> composeSingle(task: () -> Single<T>): Single<T> = task()
-            .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
-            }
-
-    /**
-     * Called when the ViewModel is dismantled.
-     * At this point, we want to cancel all disposables;
-     * otherwise we end up with processes that have nowhere to return to
-     * using memory and resources.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.clear()
+    fun retry() {
+        repoResult.value?.retry?.invoke()
     }
 }

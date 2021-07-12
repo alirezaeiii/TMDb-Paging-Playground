@@ -7,16 +7,18 @@ import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.util.DisposableManager
+import com.sample.android.tmdb.util.NetworkException
 import com.sample.android.tmdb.util.isNetworkAvailable
-import retrofit2.Call
-import retrofit2.Response
-import java.io.IOException
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executor
 
 abstract class BasePageKeyedDataSource<T : TmdbItem>(
-        private val retryExecutor: Executor,
-        private val context: Context)
-    : PageKeyedDataSource<Int, T>() {
+    private val retryExecutor: Executor,
+    private val context: Context
+) : PageKeyedDataSource<Int, T>() {
 
     // keep a function reference for the retry event
     private var retry: (() -> Any)? = null
@@ -43,7 +45,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         }
     }
 
-    protected abstract fun fetchItems(page: Int): Call<ItemWrapper<T>>
+    protected abstract fun fetchItems(page: Int): Observable<ItemWrapper<T>>
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         // ignored, since we only ever append to our initial load
@@ -51,75 +53,55 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         _networkState.postValue(NetworkState.LOADING)
-        if (context.isNetworkAvailable()) {
-            fetchItems(params.key).enqueue(object : retrofit2.Callback<ItemWrapper<T>> {
-
-                override fun onFailure(call: Call<ItemWrapper<T>>, t: Throwable) {
-                    // keep a lambda for future retry
-                    retry = {
-                        loadAfter(params, callback)
-                    }
-                    _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
-                }
-
-                override fun onResponse(call: Call<ItemWrapper<T>>, response: Response<ItemWrapper<T>>) {
-                    if (response.isSuccessful) {
-                        // clear retry since last request succeeded
-                        retry = null
-                        callback.onResult(response.body()?.items ?: emptyList(), params.key + 1)
-                        _networkState.postValue(NetworkState.LOADED)
-                    } else {
-                        retry = {
-                            loadAfter(params, callback)
-                        }
-                        _networkState.postValue(NetworkState.error(context.getString(R.string.failed_loading_msg)))
-                    }
-                }
-            })
-        } else {
+        fetchObservableItems(params.key).subscribe({
+            _networkState.postValue(NetworkState.LOADED)
+            retry = null
+            callback.onResult(it.items, params.key + 1)
+        }) {
             retry = {
                 loadAfter(params, callback)
             }
-            _networkState.postValue(NetworkState.error(context.getString(R.string.failed_network_msg)))
-        }
+            setErrorMsg(_networkState, it)
+        }.also { DisposableManager.add(it) }
     }
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
+    override fun loadInitial(
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, T>
+    ) {
         _networkState.postValue(NetworkState.LOADING)
         _initialLoad.postValue(NetworkState.LOADING)
-
-        if (context.isNetworkAvailable()) {
-            // triggered by a refresh, we better execute sync
-            try {
-                val response = fetchItems(1).execute()
-                if (response.isSuccessful) {
-                    retry = null
-                    _networkState.postValue(NetworkState.LOADED)
-                    _initialLoad.postValue(NetworkState.LOADED)
-                    callback.onResult(response.body()?.items ?: emptyList(), null, 2)
-                } else {
-                    retry = {
-                        loadInitial(params, callback)
-                    }
-                    val error = NetworkState.error(context.getString(R.string.failed_loading_msg))
-                    _networkState.postValue(error)
-                    _initialLoad.postValue(error)
-                }
-            } catch (ioException: IOException) {
-                retry = {
-                    loadInitial(params, callback)
-                }
-                val error = NetworkState.error(context.getString(R.string.failed_loading_msg))
-                _networkState.postValue(error)
-                _initialLoad.postValue(error)
-            }
-        } else {
+        fetchObservableItems(1).subscribe({
+            _networkState.postValue(NetworkState.LOADED)
+            _initialLoad.postValue(NetworkState.LOADED)
+            callback.onResult(it.items, null, 2)
+        }) {
             retry = {
                 loadInitial(params, callback)
             }
-            val error = NetworkState.error(context.getString(R.string.failed_network_msg))
-            _networkState.postValue(error)
-            _initialLoad.postValue(error)
-        }
+            setErrorMsg(_networkState, it)
+            setErrorMsg(_initialLoad, it)
+        }.also { DisposableManager.add(it) }
     }
+
+    private fun fetchObservableItems(page: Int): Observable<ItemWrapper<T>> =
+        Observable.fromCallable { context.isNetworkAvailable() }.flatMap {
+            return@flatMap if (it) composeObservable { fetchItems(page) }
+            else Observable.error(NetworkException())
+        }
+
+    private fun setErrorMsg(networkState: MutableLiveData<NetworkState>, throwable: Throwable) {
+        networkState.postValue(
+            NetworkState.error(
+                context.getString(
+                    if (throwable is NetworkException) R.string.failed_network_msg
+                    else R.string.failed_loading_msg
+                )
+            )
+        )
+    }
+
+    private inline fun <T> composeObservable(task: () -> Observable<T>): Observable<T> = task()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 }

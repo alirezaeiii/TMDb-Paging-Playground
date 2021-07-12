@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<T> {
 
-    protected abstract val viewModel: TmdbViewModel<T>
+    protected abstract val viewModel: BaseViewModel<T>
 
     protected abstract val navType: NavType?
 
