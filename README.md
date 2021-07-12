@@ -13,7 +13,7 @@ tmdb_api_key=YOUR_API_KEY
 ```
 
 ## Testing
-Local unit testing is done for Movie and TVShow [DetailViewModels](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/detail/DetailViewModel.kt) as well as [PersonViewModel](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/person/PersonViewModel.kt).
+Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/paging/BasePageKeyRepository.kt), Movie and TVShow [DetailViewModels](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/detail/DetailViewModel.kt) as well as [PersonViewModel](https://github.com/Ali-Rezaei/TMDb-Paging/blob/master/app/src/main/java/com/sample/android/tmdb/ui/person/PersonViewModel.kt).
 
 ## Libraries
 * [Android Jetpack](https://developer.android.com/jetpack)
