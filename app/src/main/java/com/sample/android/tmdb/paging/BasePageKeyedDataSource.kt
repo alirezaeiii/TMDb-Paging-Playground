@@ -11,8 +11,6 @@ import com.sample.android.tmdb.util.DisposableManager
 import com.sample.android.tmdb.util.NetworkException
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executor
 
 abstract class BasePageKeyedDataSource<T : TmdbItem>(
@@ -53,7 +51,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         _networkState.postValue(NetworkState.LOADING)
-        fetchObservableItems(params.key).subscribe({
+        getItems(params.key).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             retry = null
             callback.onResult(it.items, params.key + 1)
@@ -71,7 +69,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
     ) {
         _networkState.postValue(NetworkState.LOADING)
         _initialLoad.postValue(NetworkState.LOADING)
-        fetchObservableItems(1).subscribe({
+        getItems(1).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             _initialLoad.postValue(NetworkState.LOADED)
             callback.onResult(it.items, null, 2)
@@ -84,9 +82,9 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         }.also { DisposableManager.add(it) }
     }
 
-    private fun fetchObservableItems(page: Int): Observable<ItemWrapper<T>> =
+    private fun getItems(page: Int): Observable<ItemWrapper<T>> =
         Observable.fromCallable { context.isNetworkAvailable() }.flatMap {
-            return@flatMap if (it) composeObservable { fetchItems(page) }
+            return@flatMap if (it) this.fetchItems(page)
             else Observable.error(NetworkException())
         }
 
@@ -100,8 +98,4 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
             )
         )
     }
-
-    private inline fun <T> composeObservable(task: () -> Observable<T>): Observable<T> = task()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
 }

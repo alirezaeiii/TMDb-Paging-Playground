@@ -11,11 +11,11 @@ import com.sample.android.tmdb.paging.NetworkState
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-abstract class BaseViewModel<T : TmdbItem>(
-        // thread pool used for network requests
-        protected val NETWORK_IO: ExecutorService = Executors.newFixedThreadPool(5),
-        app: Application)
+abstract class BaseViewModel<T : TmdbItem>(app: Application)
     : AndroidViewModel(app) {
+
+    // thread pool used for network requests
+    protected val networkIo: ExecutorService = Executors.newFixedThreadPool(5)
 
     protected abstract val repoResult: LiveData<Listing<T>>
 
