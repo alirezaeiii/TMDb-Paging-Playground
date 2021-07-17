@@ -13,7 +13,6 @@
         android:layout_height="150dp"
         android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginEnd="@dimen/padding_normal"
-        android:layout_marginBottom="@dimen/padding_normal"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
 </FrameLayout>
