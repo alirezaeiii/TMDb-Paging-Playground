@@ -33,9 +33,6 @@ class MoviePageKeyRepositoryTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
-    @get:Rule
-    var rxJavaRule: TestRule = TestRxJavaRule()
-
     @Mock
     private lateinit var api: MovieApi
 
