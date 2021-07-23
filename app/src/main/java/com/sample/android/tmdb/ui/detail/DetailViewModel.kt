@@ -10,12 +10,16 @@ import io.reactivex.Single
 open class DetailViewModel(
     trailers: Single<VideoWrapper>,
     credits: Single<CreditWrapper>
-) : BaseDetailViewModel<DetailWrapper>(
-    Single.zip(trailers.map { it.videos }, credits,
-        { videos, creditWrapper ->
-            DetailWrapper(videos, creditWrapper)
-        })
-) {
+) : BaseDetailViewModel<DetailWrapper>() {
+
+    init {
+        sendRequest(
+            Single.zip(trailers.map { it.videos }, credits,
+                { videos, creditWrapper ->
+                    DetailWrapper(videos, creditWrapper)
+                })
+        )
+    }
 
     class DetailWrapper(
         val videos: List<Video>,

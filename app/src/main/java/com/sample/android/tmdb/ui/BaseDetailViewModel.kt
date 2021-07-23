@@ -10,13 +10,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-open class BaseDetailViewModel<T>(private val requestObservable: Single<T>) : ViewModel() {
+open class BaseDetailViewModel<T> : ViewModel() {
 
     private val _liveData = MutableLiveData<T>()
     val liveData: LiveData<T>
         get() = _liveData
 
-    protected fun sendRequest() {
+    protected fun sendRequest(requestObservable: Single<T>) {
         composeSingle { requestObservable }.subscribe({
             _liveData.postValue(it)
         }) {

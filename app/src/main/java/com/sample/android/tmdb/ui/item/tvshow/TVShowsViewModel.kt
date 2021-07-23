@@ -16,6 +16,6 @@ class TVShowsViewModel(
 
     override val baseRepoResult: BasePageKeyRepository<TVShow> = TVShowsPageKeyRepository(api = api,
             sortType = sortType,
-            retryExecutor = networkIo,
+            retryExecutor = networkIO,
             context = app.applicationContext)
 }

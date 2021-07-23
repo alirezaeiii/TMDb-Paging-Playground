@@ -10,10 +10,10 @@ import javax.inject.Inject
 class PersonViewModel(
         api: PersonApi,
         personId: Any
-) : BaseDetailViewModel<Person>(api.getPerson(personId)) {
+) : BaseDetailViewModel<Person>() {
 
     init {
-        sendRequest()
+        sendRequest(api.getPerson(personId))
     }
 
     /**

@@ -12,10 +12,6 @@ class MovieDetailViewModel(
         item: TmdbItem
 ) : DetailViewModel(api.movieTrailers(item.id), api.movieCredit(item.id)) {
 
-    init {
-        sendRequest()
-    }
-
     class Factory @Inject constructor(
             private val api : MovieApi,
             private val item: TmdbItem

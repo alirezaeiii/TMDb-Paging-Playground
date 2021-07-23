@@ -8,6 +8,7 @@ import androidx.paging.PagedList
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Listing
 import com.sample.android.tmdb.paging.NetworkState
+import com.sample.android.tmdb.util.DisposableManager
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -15,7 +16,7 @@ abstract class BaseViewModel<T : TmdbItem>(app: Application)
     : AndroidViewModel(app) {
 
     // thread pool used for network requests
-    protected val networkIo: ExecutorService = Executors.newFixedThreadPool(5)
+    protected val networkIO: ExecutorService = Executors.newFixedThreadPool(5)
 
     protected abstract val repoResult: LiveData<Listing<T>>
 
@@ -29,5 +30,10 @@ abstract class BaseViewModel<T : TmdbItem>(app: Application)
 
     fun retry() {
         repoResult.value?.retry?.invoke()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        DisposableManager.clear()
     }
 }
