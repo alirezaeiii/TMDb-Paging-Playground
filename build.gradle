@@ -52,7 +52,7 @@ ext {
     lifecycleVersion = '2.2.0'
     gsonVersion = '2.8.5'
     timberVersion = '4.7.1'
-    constraintLayoutVersion = '2.0.4'
+    constraintLayoutVersion = '2.1.0-rc01'
     okhttpVersion = '3.12.0'
     circleimageviewVersion = '2.2.0'
     viewPagerVersion = '1.0.0'
