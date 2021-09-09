@@ -47,7 +47,8 @@
                 android:gravity="center"
                 android:text="@{creditItem.name}"
                 android:textColor="@color/md_black_1000"
-                android:textSize="14sp" />
+                android:textSize="14dp"
+                tools:ignore="SpUsage" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,8 +59,8 @@
                 android:gravity="center"
                 android:text="@{creditItem.credit}"
                 android:textColor="@color/md_grey_600"
-                android:textSize="10sp"
-                tools:ignore="SmallSp" />
+                android:textSize="10dp"
+                tools:ignore="SpUsage" />
 
         </RelativeLayout>
 
