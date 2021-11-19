@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>maximum_version_for_immediate_update</key>
+        <value>2.4.21</value>
+    </entry>
+</defaultsMap>

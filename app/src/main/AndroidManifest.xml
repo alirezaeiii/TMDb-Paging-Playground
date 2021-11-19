@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.Tmdb"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.Tmdb.Main">
+            android:name=".ui.start.StartActivity"
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.Tmdb.Main" />
         <activity
             android:name=".ui.search.SearchActivity"
             android:parentActivityName=".ui.MainActivity"
