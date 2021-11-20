@@ -45,7 +45,11 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
                 }
             }
 
-            summaryLabel.toVisibility(this@DetailFragment.tmdbItem.overview.trim().isNotEmpty())
+
+            this@DetailFragment.tmdbItem.overview.trim().isNotEmpty().also {
+                summaryLabel.toVisibility(it)
+                summary.toVisibility(it)
+            }
 
             // Make the MotionLayout draw behind the status bar
             detailsMotion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or

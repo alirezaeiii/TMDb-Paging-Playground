@@ -4,27 +4,27 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.sample.android.tmdb.ui.detail.DetailViewModel" />
     </data>
 
     <LinearLayout
+        android:id="@+id/trailer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:goneIfNull="@{vm.liveData}">
+        android:visibility="@{(vm.liveData == null || vm.liveData.videos.empty) ? View.GONE : View.VISIBLE}">
 
         <TextView
-            android:id="@+id/trailers_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trailers"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:toVisibility="@{!vm.liveData.videos.empty}" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <HorizontalScrollView
-            android:id="@+id/trailer_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
