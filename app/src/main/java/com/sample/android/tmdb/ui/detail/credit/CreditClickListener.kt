@@ -8,13 +8,17 @@ import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
+import com.sample.android.tmdb.util.Firebase
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_PERSON
 
 class CreditClickListener<T : Credit>(
     private val context: Context,
-    private val tmdbItem: TmdbItem
+    private val tmdbItem: TmdbItem,
+    private val firebase: Firebase
 ) : CreditClickCallback<T> {
 
     override fun onClick(credit: T) {
+        firebase.logEventScreenView(ANALYTICS_PERSON, credit::class.java.simpleName)
         val intent = Intent(context, PersonActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(

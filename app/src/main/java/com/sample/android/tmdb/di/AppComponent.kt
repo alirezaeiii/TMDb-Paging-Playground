@@ -14,8 +14,9 @@ import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
 @Component(modules = [ActivityBindingModule::class,
-    AndroidSupportInjectionModule::class,
-    NetworkModule::class])
+        AndroidSupportInjectionModule::class,
+        NetworkModule::class,
+        FirebaseModule::class])
 interface AppComponent : AndroidInjector<TmdbApp> {
 
     @Component.Builder

@@ -6,6 +6,8 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
+import com.sample.android.tmdb.util.Firebase
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_DETAIL
 import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -21,9 +23,13 @@ class DetailActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var navType: NavType
 
+    @Inject
+    lateinit var firebase: Firebase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        firebase.logEventScreenView(ANALYTICS_DETAIL, navType.name.lowercase())
 
         if (savedInstanceState == null) {
             val fragment = when (navType) {

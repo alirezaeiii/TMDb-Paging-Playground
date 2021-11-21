@@ -18,11 +18,16 @@ import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.detail.EXTRA_TMDB_ITEM
+import com.sample.android.tmdb.util.Firebase
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import javax.inject.Inject
 
 abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<T> {
+
+    @Inject
+    lateinit var firebase: Firebase
 
     protected abstract val viewModel: BaseViewModel<T>
 

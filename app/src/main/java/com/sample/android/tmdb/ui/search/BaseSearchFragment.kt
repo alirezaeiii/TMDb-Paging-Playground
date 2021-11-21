@@ -1,10 +1,12 @@
 package com.sample.android.tmdb.ui.search
 
+import android.os.Bundle
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.TmdbAdapter
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_SEARCH
 import com.sample.android.tmdb.util.toVisibility
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -19,6 +21,11 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
     override fun refresh() {
         super.refresh()
         searchViewModel.refreshState.removeObservers(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebase.logEventScreenView(navType.name.lowercase(), ANALYTICS_SEARCH)
     }
 
     fun search(query: String) {
