@@ -19,6 +19,7 @@ import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.detail.EXTRA_TMDB_ITEM
 import com.sample.android.tmdb.util.Firebase
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_DETAIL_SCREEN
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
@@ -88,6 +89,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
     }
 
     override fun onClick(t: T, poster: ImageView) {
+        firebase.logEventScreenView("${ANALYTICS_DETAIL_SCREEN}_${navType!!.name.lowercase()}")
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(EXTRA_TMDB_ITEM, t)

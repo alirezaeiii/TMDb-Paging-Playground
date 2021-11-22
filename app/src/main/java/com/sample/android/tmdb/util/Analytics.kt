@@ -1,29 +1,24 @@
 package com.sample.android.tmdb.util
 
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 import javax.inject.Singleton
 
 interface Analytics {
-    fun logEventScreenView(name: String, sortTpe: String)
+    fun logEventScreenView(name: String)
 }
 
 @Singleton
 class Firebase @Inject constructor() : Analytics {
 
-    override fun logEventScreenView(name: String, sortTpe: String) {
-        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
-            param(FirebaseAnalytics.Param.SCREEN_NAME, name)
-            param(FirebaseAnalytics.Param.CONTENT_TYPE, sortTpe)
-        }
+    override fun logEventScreenView(name: String) {
+        Firebase.analytics.logEvent(name, null)
     }
 
     companion object {
-        const val ANALYTICS_SEARCH = "search"
-        const val ANALYTICS_DETAIL = "detail"
-        const val ANALYTICS_PERSON = "person"
+        const val ANALYTICS_SEARCH_ACTION = "search"
+        const val ANALYTICS_DETAIL_SCREEN = "detail"
+        const val ANALYTICS_PERSON_SCREEN = "person"
     }
 }

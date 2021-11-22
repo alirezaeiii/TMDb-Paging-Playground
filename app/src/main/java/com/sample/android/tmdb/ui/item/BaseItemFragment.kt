@@ -15,7 +15,7 @@ abstract class BaseItemFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebase.logEventScreenView(navType!!.name.lowercase(), sortType.name)
+        firebase.logEventScreenView("${navType!!.name.lowercase()}_${sortType.name.lowercase()}")
     }
 }
 

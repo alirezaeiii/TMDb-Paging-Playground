@@ -9,7 +9,7 @@ import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.Firebase
-import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_PERSON
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_PERSON_SCREEN
 
 class CreditClickListener<T : Credit>(
     private val context: Context,
@@ -18,7 +18,7 @@ class CreditClickListener<T : Credit>(
 ) : CreditClickCallback<T> {
 
     override fun onClick(credit: T) {
-        firebase.logEventScreenView(ANALYTICS_PERSON, credit::class.java.simpleName)
+        firebase.logEventScreenView("${ANALYTICS_PERSON_SCREEN}_${credit::class.java.simpleName}")
         val intent = Intent(context, PersonActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(

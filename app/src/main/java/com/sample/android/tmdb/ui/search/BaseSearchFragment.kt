@@ -6,7 +6,7 @@ import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseFragment
 import com.sample.android.tmdb.ui.NavType
 import com.sample.android.tmdb.ui.TmdbAdapter
-import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_SEARCH
+import com.sample.android.tmdb.util.Firebase.Companion.ANALYTICS_SEARCH_ACTION
 import com.sample.android.tmdb.util.toVisibility
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -25,7 +25,7 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebase.logEventScreenView(navType.name.lowercase(), ANALYTICS_SEARCH)
+        firebase.logEventScreenView("${navType.name.lowercase()}_$ANALYTICS_SEARCH_ACTION")
     }
 
     fun search(query: String) {

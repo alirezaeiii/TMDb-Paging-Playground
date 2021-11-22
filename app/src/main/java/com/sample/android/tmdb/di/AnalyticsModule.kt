@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class FirebaseModule {
+abstract class AnalyticsModule {
 
     @Binds
     abstract fun bindFirebase(firebase: Firebase): Analytics
