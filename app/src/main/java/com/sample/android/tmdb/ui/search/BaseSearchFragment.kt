@@ -25,7 +25,7 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebase.logEventScreenView("${navType.name.lowercase()}_$ANALYTICS_SEARCH_ACTION")
+        firebase.logEventScreenView("${navType.name}_$ANALYTICS_SEARCH_ACTION")
     }
 
     fun search(query: String) {

@@ -6,14 +6,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 interface Analytics {
-    fun logEventScreenView(name: String)
+    fun logEventScreenView(screenName: String)
 }
 
 @Singleton
 class Firebase @Inject constructor() : Analytics {
 
-    override fun logEventScreenView(name: String) {
-        Firebase.analytics.logEvent(name, null)
+    override fun logEventScreenView(screenName: String) {
+        Firebase.analytics.logEvent(screenName.lowercase(), null)
     }
 
     companion object {

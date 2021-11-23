@@ -89,7 +89,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
     }
 
     override fun onClick(t: T, poster: ImageView) {
-        firebase.logEventScreenView("${ANALYTICS_DETAIL_SCREEN}_${navType!!.name.lowercase()}")
+        firebase.logEventScreenView("${ANALYTICS_DETAIL_SCREEN}_${navType!!.name}")
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(EXTRA_TMDB_ITEM, t)
