@@ -15,7 +15,6 @@ import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.ui.detail.credit.*
-import com.sample.android.tmdb.util.Firebase
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
 import kotlinx.android.synthetic.main.fragment_detail.view.*
@@ -26,9 +25,6 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
 
     @Inject
     lateinit var tmdbItem: TmdbItem
-
-    @Inject
-    lateinit var firebase: Firebase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -108,7 +104,7 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
                 GridLayoutManager.HORIZONTAL, false
             )
             setHasFixedSize(true)
-            adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem, firebase))
+            adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem))
         }
     }
 }
