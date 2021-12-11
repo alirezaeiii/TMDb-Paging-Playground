@@ -14,8 +14,8 @@ class SearchTVShowDataSourceFactory(
     private val context: Context
 ) : BaseDataSourceFactory<TVShow>() {
 
-    override fun getDataSource(): BasePageKeyedDataSource<TVShow> =
-        SearchTVShowPageKeyedDataSource(
+    override val dataSource: BasePageKeyedDataSource<TVShow>
+        get() = SearchTVShowPageKeyedDataSource(
             api = api,
             query = query,
             retryExecutor = retryExecutor,

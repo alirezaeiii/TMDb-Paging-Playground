@@ -11,12 +11,11 @@ abstract class BaseDataSourceFactory<T : TmdbItem> : DataSource.Factory<Int, T>(
     val sourceLiveData: LiveData<BasePageKeyedDataSource<T>>
         get() = _sourceLiveData
 
-    protected abstract fun getDataSource(): BasePageKeyedDataSource<T>
+    protected abstract val dataSource: BasePageKeyedDataSource<T>
 
     override fun create(): DataSource<Int, T> {
-        val dataSource = getDataSource()
+        val dataSource = this.dataSource
         _sourceLiveData.postValue(dataSource)
         return dataSource
-
     }
 }

@@ -14,8 +14,8 @@ class SearchMovieDataSourceFactory(
     private val context: Context
 ) : BaseDataSourceFactory<Movie>() {
 
-    override fun getDataSource(): BasePageKeyedDataSource<Movie> =
-        SearchMoviePageKeyedDataSource(
+    override val dataSource: BasePageKeyedDataSource<Movie>
+        get() = SearchMoviePageKeyedDataSource(
             api = api,
             query = query,
             retryExecutor = retryExecutor,
