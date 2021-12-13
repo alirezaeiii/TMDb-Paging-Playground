@@ -18,7 +18,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-abstract class FeedActivity : DaggerAppCompatActivity() {
+class FeedActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var feedMovieFragment: FeedMovieFragment
@@ -41,6 +41,9 @@ abstract class FeedActivity : DaggerAppCompatActivity() {
             title = it
         })
         addFragmentToActivity(feedMovieFragment, R.id.fragment_container)
+        if(savedInstanceState == null) {
+            nav_view.setCheckedItem(R.id.action_movies)
+        }
         setupNavigationView()
 
         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,

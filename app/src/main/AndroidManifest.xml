@@ -24,9 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.feed.FeedActivity"
-            android:theme="@style/Theme.Tmdb.Main" />
+        <activity android:name=".ui.feed.FeedActivity"
+            android:theme="@style/Theme.Tmdb.Feed" />
 
         <activity android:name=".ui.paging.main.MainActivity" />
 

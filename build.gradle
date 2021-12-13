@@ -31,8 +31,8 @@ task clean(type: Delete) {
 // Define versions in a single place
 ext {
     minSdkVersion = 21
-    targetSdkVersion = 30
-    compileSdkVersion = 30
+    targetSdkVersion = 31
+    compileSdkVersion = 31
 
     // App dependencies
     supportLibraryVersion = '1.0.0'

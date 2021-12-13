@@ -43,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:headerLayout="@layout/main_nav_header"
             app:itemBackground="@drawable/drawer_list_selector"
             app:itemIconTint="@drawable/navigation_colors"
             app:itemTextColor="@drawable/navigation_colors"
