@@ -4,14 +4,14 @@ import android.content.Context
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.BasePageKeyedDataSource
-import com.sample.android.tmdb.ui.item.SortType
+import com.sample.android.tmdb.ui.paging.main.SortType
 import java.util.concurrent.Executor
 
 class TVShowsPageKeyedDataSource(
-        private val api: TVShowApi,
-        private val sortType: SortType,
-        retryExecutor: Executor,
-        context: Context)
+    private val api: TVShowApi,
+    private val sortType: SortType,
+    retryExecutor: Executor,
+    context: Context)
     : BasePageKeyedDataSource<TVShow>(retryExecutor, context) {
 
     override fun fetchItems(page: Int) = when (sortType) {

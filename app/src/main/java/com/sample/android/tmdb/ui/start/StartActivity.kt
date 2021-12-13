@@ -4,11 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.MainActivity
+import com.sample.android.tmdb.ui.feed.FeedActivity
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
-
 
 class StartActivity : DaggerAppCompatActivity() {
 
@@ -40,7 +39,7 @@ class StartActivity : DaggerAppCompatActivity() {
     }
 
     private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, FeedActivity::class.java)
         startActivity(intent)
         finish()
     }

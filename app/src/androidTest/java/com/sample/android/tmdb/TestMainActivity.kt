@@ -13,8 +13,7 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.sample.android.tmdb.network.OkHttpProvider
-import com.sample.android.tmdb.ui.MainActivity
-import com.sample.android.tmdb.ui.TmdbItemViewHolder
+import com.sample.android.tmdb.ui.paging.TmdbItemViewHolder
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
 import com.sample.android.tmdb.utils.TestRecyclerViewUtils
 import org.junit.After

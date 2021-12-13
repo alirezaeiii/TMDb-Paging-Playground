@@ -8,7 +8,7 @@ import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository
-import com.sample.android.tmdb.ui.item.SortType.*
+import com.sample.android.tmdb.ui.paging.main.SortType.*
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic

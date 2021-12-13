@@ -12,6 +12,15 @@ import retrofit2.http.Query
 
 interface TVShowApi {
 
+    @GET("3/tv/popular")
+    suspend fun popularTVSeries(): ItemWrapper<TVShow>
+
+    @GET("3/tv/on_the_air")
+    suspend fun latestTVSeries(): ItemWrapper<TVShow>
+
+    @GET("3/tv/top_rated")
+    suspend fun topRatedTVSeries(): ItemWrapper<TVShow>
+
     @GET("3/tv/popular?language=en")
     fun popularItems(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
 

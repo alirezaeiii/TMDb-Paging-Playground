@@ -36,13 +36,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
-        debug {
-            applicationIdSuffix ".debug"
-        }
     }
 
     dataBinding {
         enabled = true
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose
+        kotlinCompilerVersion kotlin_version
     }
 }
 
@@ -60,12 +65,24 @@ dependencies {
     implementation "androidx.palette:palette:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.guava:guava:$guavaVersion"
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
 
     // Architecture components
     implementation "androidx.paging:paging-runtime:$pagingVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    // Compose
+    implementation "androidx.compose.ui:ui:$compose"
+    implementation "androidx.compose.material:material:$compose"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose"
+    implementation "androidx.activity:activity-compose:$activity_compose"
+
+    // Accompanist
+    implementation 'com.google.accompanist:accompanist-insets:0.20.0'
 
     // Gson
     implementation "com.google.code.gson:gson:$gsonVersion"

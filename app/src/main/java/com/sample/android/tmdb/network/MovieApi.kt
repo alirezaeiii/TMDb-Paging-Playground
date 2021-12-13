@@ -12,6 +12,15 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
+    @GET("3/movie/popular")
+    suspend fun popularMovies(): ItemWrapper<Movie>
+
+    @GET("3/movie/upcoming")
+    suspend fun latestMovies(): ItemWrapper<Movie>
+
+    @GET("3/movie/top_rated")
+    suspend fun topRatedMovies(): ItemWrapper<Movie>
+
     @GET("3/discover/movie?language=en&sort_by=popularity.desc")
     fun popularItems(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 

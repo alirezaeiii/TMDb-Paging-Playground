@@ -13,7 +13,6 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.ui.detail.credit.*
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility

@@ -3,7 +3,6 @@ package com.sample.android.tmdb.ui.detail
 import com.sample.android.tmdb.domain.CreditWrapper
 import com.sample.android.tmdb.domain.Video
 import com.sample.android.tmdb.domain.VideoWrapper
-import com.sample.android.tmdb.ui.BaseDetailViewModel
 import com.sample.android.tmdb.ui.detail.DetailViewModel.DetailWrapper
 import io.reactivex.Single
 

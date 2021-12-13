@@ -25,11 +25,14 @@
         </activity>
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Main" />
+
+        <activity android:name=".ui.paging.main.MainActivity" />
+
         <activity
-            android:name=".ui.search.SearchActivity"
-            android:parentActivityName=".ui.MainActivity"
+            android:name=".ui.paging.search.SearchActivity"
+            android:parentActivityName=".ui.paging.main.MainActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
