@@ -40,8 +40,8 @@ class FeedActivity : DaggerAppCompatActivity() {
         viewModel.headline.observe(this, {
             title = it
         })
-        addFragmentToActivity(feedMovieFragment, R.id.fragment_container)
         if(savedInstanceState == null) {
+            addFragmentToActivity(feedMovieFragment, R.id.fragment_container)
             nav_view.setCheckedItem(R.id.action_movies)
         }
         setupNavigationView()

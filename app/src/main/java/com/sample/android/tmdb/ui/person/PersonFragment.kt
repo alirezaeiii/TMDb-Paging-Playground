@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
 import com.sample.android.tmdb.ui.detail.BaseDetailFragment
@@ -22,7 +22,7 @@ constructor() // Required empty public constructor
     lateinit var personWrapper: PersonWrapper
 
     override val viewModel: PersonViewModel by lazy {
-        ViewModelProviders.of(this, factory).get(PersonViewModel::class.java)
+        ViewModelProvider(this, factory).get(PersonViewModel::class.java)
     }
 
     override fun onCreateView(
