@@ -56,16 +56,15 @@ dependencies {
 
     // Support libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshVersion"
-    implementation "androidx.palette:palette:$supportLibraryVersion"
+    implementation "androidx.palette:palette-ktx:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.guava:guava:$guavaVersion"
-    implementation "androidx.fragment:fragment-ktx:1.4.0"
 
     // Architecture components
     implementation "androidx.paging:paging-runtime:$pagingVersion"

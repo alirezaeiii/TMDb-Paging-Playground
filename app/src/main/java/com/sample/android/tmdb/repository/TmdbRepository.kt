@@ -27,25 +27,24 @@ abstract class TmdbRepository<T : TmdbItem>(
             emit(ViewState.Error(context.getString(R.string.failed_network_msg)))
             return@flow
         }
-        coroutineScope {
-            val popularItems = async { popular() }
-            val latestItems = async { latest() }
-            val topRatedItems = async { topRated() }
-            try {
-                val popularResponse = popularItems.await().items
-                val latestResponse = latestItems.await().items
-                val topRatedResponse = topRatedItems.await().items
+        try {
+            coroutineScope {
+                val popularItems = async { popular() }
+                val latestItems = async { latest() }
+                val topRatedItems = async { topRated() }
 
                 emit(
                     ViewState.Success(
                         Items(
-                            popularResponse, latestResponse, topRatedResponse
+                            popularItems.await().items,
+                            latestItems.await().items,
+                            topRatedItems.await().items
                         )
                     )
                 )
-            } catch (t: Throwable) {
-                emit(ViewState.Error(context.getString(R.string.failed_loading_msg)))
             }
+        } catch (t: Throwable) {
+            emit(ViewState.Error(context.getString(R.string.failed_loading_msg)))
         }
     }
 }
