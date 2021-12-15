@@ -5,9 +5,11 @@
     <string name="search_hint_movies">Search for movies</string>
     <string name="search_hint_tv_shows">Search for TV shows</string>
     <string name="text_popular">Popular</string>
-    <string name="text_highest_rate">Highest rate</string>
+    <string name="text_highest_rate">Top Rated</string>
     <string name="text_upcoming">Upcoming</string>
-    <string name="text_latest">Latest</string>
+    <string name="popular">Popular %s</string>
+    <string name="highest_rate">Top Rated %s</string>
+    <string name="upcoming">Upcoming %s</string>
     <string name="summary">Summary</string>
     <string name="trailers">Trailers</string>
     <string name="cast">Cast</string>
@@ -18,7 +20,7 @@
     <string name="born">Born on %s</string>
     <string name="from">From %s</string>
     <string name="death">Death in %s</string>
-    <string name="known_as">Also known as %1$s</string>
+    <string name="known_as">Also known as %s</string>
     <string name="transition_search_back" translatable="false">transition_search_back</string>
 
     // View name of the header image. Used for activity scene transitions

@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.paging.main.MainActivity
 import com.sample.android.tmdb.ui.paging.main.SortType
@@ -21,13 +22,13 @@ fun <T : TmdbItem> FeedCollectionList(
     collection: List<List<T>>,
     onFeedClick: OnFeedClickListener
 ) {
-    LazyColumn(modifier = Modifier.padding(bottom = 64.dp)) {
+    LazyColumn {
 
         itemsIndexed(collection) { index, feedCollection ->
             val pair = when (index) {
-                0 -> Pair("Popular", SortType.MOST_POPULAR)
-                1 -> Pair("Upcoming", SortType.UPCOMING)
-                2 -> Pair("Top Rated", SortType.HIGHEST_RATED)
+                0 -> Pair(R.string.text_popular, SortType.MOST_POPULAR)
+                1 -> Pair(R.string.text_upcoming, SortType.UPCOMING)
+                2 -> Pair(R.string.text_highest_rate, SortType.HIGHEST_RATED)
                 else -> throw RuntimeException("Invalid index for collection")
             }
             FeedCollection(

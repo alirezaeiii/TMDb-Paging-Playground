@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.databinding.ActivityMainBinding
+import com.sample.android.tmdb.databinding.ActivityFeedBinding
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import com.sample.android.tmdb.ui.paging.search.SearchActivity
@@ -31,13 +31,13 @@ class FeedActivity : DaggerAppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private var _binding: ActivityMainBinding? = null
+    private var _binding: ActivityFeedBinding? = null
 
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         viewModel.headline.observe(this, {
@@ -45,14 +45,14 @@ class FeedActivity : DaggerAppCompatActivity() {
         })
         if(savedInstanceState == null) {
             addFragmentToActivity(feedMovieFragment, R.id.fragment_container)
-            nav_view.setCheckedItem(R.id.action_movies)
+            binding.navView.setCheckedItem(R.id.action_movies)
         }
         setupNavigationView()
 
-        val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,
+        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar,
             R.string.open_nav_drawer, R.string.close_nav_drawer
         )
-        drawer_layout.addDrawerListener(toggle)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
     }
 
@@ -89,7 +89,7 @@ class FeedActivity : DaggerAppCompatActivity() {
 
     private fun setupNavigationView() {
         binding.navView.setNavigationItemSelectedListener { item ->
-            drawer_layout.closeDrawer(GravityCompat.START)
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
             val fragment = when (item.itemId) {
                 R.id.action_movies -> {
                     viewModel.setType(R.string.menu_movies, NavType.MOVIES)

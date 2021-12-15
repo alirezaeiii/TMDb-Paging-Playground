@@ -81,9 +81,6 @@ dependencies {
     implementation "androidx.activity:activity-compose:$activity_compose"
     implementation 'io.coil-kt:coil-compose:1.4.0'
 
-    // Accompanist
-    implementation 'com.google.accompanist:accompanist-insets:0.20.0'
-
     // Gson
     implementation "com.google.code.gson:gson:$gsonVersion"
 
