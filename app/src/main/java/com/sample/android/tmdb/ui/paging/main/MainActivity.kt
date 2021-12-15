@@ -1,6 +1,7 @@
 package com.sample.android.tmdb.ui.paging.main
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
 import com.sample.android.tmdb.ui.feed.NavType
@@ -49,6 +50,7 @@ class MainActivity: DaggerAppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val fragment = when (navType) {
             NavType.MOVIES -> {
                 when(sortType) {
@@ -84,6 +86,16 @@ class MainActivity: DaggerAppCompatActivity() {
             }
         }
         addFragmentToActivity(fragment, R.id.fragment_container)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

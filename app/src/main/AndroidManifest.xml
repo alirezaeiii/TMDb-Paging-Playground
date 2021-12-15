@@ -24,14 +24,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.feed.FeedActivity"
+        <activity
+            android:name=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Feed" />
 
-        <activity android:name=".ui.paging.main.MainActivity" />
+        <activity
+            android:name=".ui.paging.main.MainActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
             android:name=".ui.paging.search.SearchActivity"
-            android:parentActivityName=".ui.paging.main.MainActivity"
+            android:parentActivityName=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
