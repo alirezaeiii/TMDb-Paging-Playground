@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.di
 
-import com.sample.android.tmdb.ui.feed.FeedMovieFragment
-import com.sample.android.tmdb.ui.feed.FeedTVShowFragment
+import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
+import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

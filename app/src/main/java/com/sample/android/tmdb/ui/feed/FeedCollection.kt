@@ -29,7 +29,7 @@ import com.sample.android.tmdb.ui.TmdbTheme
 @Composable
 fun <T : TmdbItem> FeedCollection(
     feedCollection: List<T>,
-    name: String,
+    sortType: String,
     onMoreClick: () -> Unit,
     onFeedClick: OnFeedClickListener,
     modifier: Modifier = Modifier,
@@ -42,9 +42,8 @@ fun <T : TmdbItem> FeedCollection(
                 .padding(start = 12.dp)
         ) {
             Text(
-                text = name,
+                text = sortType,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colors.onSurface,
                 modifier = Modifier
                     .weight(1f)
@@ -88,7 +87,7 @@ fun TmdbItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .clickable(onClick = { onFeedClick.onClick(tmdbItem) })
-            .padding(8.dp)
+            .padding(6.dp)
     ) {
         Image(
             painter = rememberImagePainter(tmdbItem.posterPath?.let { url ->
@@ -102,11 +101,12 @@ fun TmdbItem(
         )
         Text(
             text = tmdbItem.name,
-            fontSize = 12.sp,
+            fontSize = 11.sp,
             color = MaterialTheme.colors.onSurface,
             textAlign = TextAlign.Center,
+            overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .size(width = 120.dp, height = 48.dp)
+                .size(width = 120.dp, height = 56.dp)
                 .padding(top = 6.dp)
         )
     }

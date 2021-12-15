@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.TmdbTheme
 import com.sample.android.tmdb.ui.common.ErrorView
@@ -46,7 +49,10 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
             modifier = Modifier.fillMaxSize()
         ) {
             when (viewState) {
-                is ViewState.Loading -> CircularProgressIndicator()
+                is ViewState.Loading -> CircularProgressIndicator(
+                    color = Color(0xFF4CAF50),
+                    modifier = Modifier.padding(bottom = 56.dp)
+                )
                 is ViewState.Success -> {
                     FeedCollectionList(
                         requireContext(),

@@ -21,7 +21,7 @@ fun <T : TmdbItem> FeedCollectionList(
     collection: List<List<T>>,
     onFeedClick: OnFeedClickListener
 ) {
-    LazyColumn(modifier = Modifier.padding(bottom = 48.dp)) {
+    LazyColumn(modifier = Modifier.padding(bottom = 64.dp)) {
 
         itemsIndexed(collection) { index, feedCollection ->
             val pair = when (index) {
@@ -32,7 +32,7 @@ fun <T : TmdbItem> FeedCollectionList(
             }
             FeedCollection(
                 feedCollection = feedCollection,
-                name = pair.first,
+                sortType = pair.first,
                 onMoreClick = {
                     val intent = Intent(context, MainActivity::class.java).apply {
                         putExtras(Bundle().apply {

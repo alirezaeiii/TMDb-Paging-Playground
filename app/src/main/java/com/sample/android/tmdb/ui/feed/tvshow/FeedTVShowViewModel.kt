@@ -1,9 +1,10 @@
-package com.sample.android.tmdb.ui.feed
+package com.sample.android.tmdb.ui.feed.tvshow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.repository.TmdbRepository
+import com.sample.android.tmdb.ui.feed.FeedViewModel
 import javax.inject.Inject
 
 class FeedTVShowViewModel(repository: TmdbRepository<TVShow>) :

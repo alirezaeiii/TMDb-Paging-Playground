@@ -1,7 +1,9 @@
-package com.sample.android.tmdb.ui.feed
+package com.sample.android.tmdb.ui.feed.movie
 
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.ui.feed.FeedFragment
+import com.sample.android.tmdb.ui.feed.NavType
 import javax.inject.Inject
 
 class FeedMovieFragment @Inject

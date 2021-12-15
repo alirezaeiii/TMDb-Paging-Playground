@@ -11,6 +11,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
+import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
+import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import com.sample.android.tmdb.ui.paging.search.SearchActivity
 import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.addFragmentToActivity
