@@ -55,7 +55,7 @@ fun <T : TmdbItem> FeedCollection(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .clickable { onMoreClick.invoke() }
-                    .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 6.dp)
+                    .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 10.dp)
             )
         }
         Feeds(feedCollection, onFeedClick)
@@ -114,7 +114,7 @@ fun TmdbItem(
 
 @Preview("default")
 @Composable
-fun SnackCardPreview() {
+fun FeedCardPreview() {
     TmdbTheme {
         val movie = Movie(1, "", null, null, null, "Movie", 1.0)
         TmdbItem(
