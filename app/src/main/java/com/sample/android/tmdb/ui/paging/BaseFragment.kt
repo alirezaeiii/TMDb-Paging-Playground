@@ -16,9 +16,9 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.ui.detail.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.ui.detail.EXTRA_TMDB_ITEM
 import com.sample.android.tmdb.ui.feed.NavType
+import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
+import com.sample.android.tmdb.util.Constants.EXTRA_TMDB_ITEM
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*

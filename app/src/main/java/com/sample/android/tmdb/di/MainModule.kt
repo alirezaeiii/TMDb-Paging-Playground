@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.di
 
-import com.sample.android.tmdb.ui.feed.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.MainActivity
 import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesFragment
@@ -9,6 +8,7 @@ import com.sample.android.tmdb.ui.paging.main.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

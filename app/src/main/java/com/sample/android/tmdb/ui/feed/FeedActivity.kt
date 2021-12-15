@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
 import com.sample.android.tmdb.ui.paging.search.SearchActivity
+import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -104,5 +105,3 @@ class FeedActivity : DaggerAppCompatActivity() {
         }
     }
 }
-
-const val EXTRA_NAV_TYPE = "nav_type"

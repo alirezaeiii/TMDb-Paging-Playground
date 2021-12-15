@@ -5,9 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.person.PERSON_WRAPPER
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
+import com.sample.android.tmdb.util.Constants.PERSON_WRAPPER
 
 class CreditClickListener<T : Credit>(
     private val context: Context,

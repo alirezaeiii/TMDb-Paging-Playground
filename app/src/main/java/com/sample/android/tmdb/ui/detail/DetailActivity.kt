@@ -44,6 +44,3 @@ class DetailActivity : DaggerAppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
-
-const val EXTRA_TMDB_ITEM = "tmdbItem"
-const val EXTRA_NAV_TYPE = "nav_type"

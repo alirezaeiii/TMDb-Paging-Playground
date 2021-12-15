@@ -2,6 +2,7 @@ package com.sample.android.tmdb.ui.common
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +18,10 @@ fun ErrorView(message: String, refresh: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(message)
+        Text(
+            text = message,
+            color = MaterialTheme.colors.onSurface
+        )
         Spacer(Modifier.height(16.dp))
         Button(onClick = refresh) {
             Text(text = stringResource(id = R.string.retry))

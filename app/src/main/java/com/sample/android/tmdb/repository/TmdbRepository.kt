@@ -3,7 +3,6 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.Items
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -33,15 +32,12 @@ abstract class TmdbRepository<T : TmdbItem>(
                 val latestItems = async { latest() }
                 val topRatedItems = async { topRated() }
 
-                emit(
-                    ViewState.Success(
-                        Items(
-                            popularItems.await().items,
-                            latestItems.await().items,
-                            topRatedItems.await().items
-                        )
-                    )
-                )
+                val items = mutableListOf<List<T>>()
+                items.add(popularItems.await().items)
+                items.add(latestItems.await().items)
+                items.add(topRatedItems.await().items)
+
+                emit(ViewState.Success(items))
             }
         } catch (t: Throwable) {
             emit(ViewState.Error(context.getString(R.string.failed_loading_msg)))
