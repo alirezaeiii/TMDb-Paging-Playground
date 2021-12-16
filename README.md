@@ -1,5 +1,5 @@
 # TMDb-Paging
-A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Retrofit, DataBinding, MotionLayout, Espresso and Unit test.
+A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Jetpack Compose, Retrofit, DataBinding, MotionLayout, Espresso and Unit test.
 
 <a href="https://play.google.com/store/apps/details?id=com.sample.android.tmdb"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=70px /></a>
 
@@ -20,6 +20,7 @@ Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](ht
 ## Libraries
 * [Android Jetpack](https://developer.android.com/jetpack)
    * [Paging](https://developer.android.com/topic/libraries/architecture/paging) Library helps you load and display small chunks of data at a time. Loading partial data on demand reduces usage of network bandwidth and system resources.
+   * [Compose](https://developer.android.com/jetpack/compose) Android’s modern toolkit for building native UI.
    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) ViewModel is designed to store and manage UI-related data in a lifecycle conscious way. This allows data to survive configuration changes such as screen rotations.
    * [DataBinding](https://developer.android.com/topic/libraries/data-binding/) is a Library in the support library that allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) is lifecycle-aware, meaning it respects the lifecycle of other app components updating app component observers that are in an active lifecycle state.
