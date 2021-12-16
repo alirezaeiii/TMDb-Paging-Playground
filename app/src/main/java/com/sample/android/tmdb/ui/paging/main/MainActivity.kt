@@ -15,7 +15,7 @@ import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity: DaggerAppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var popularMoviesFragment: PopularMoviesFragment
@@ -53,7 +53,7 @@ class MainActivity: DaggerAppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val fragment = when (navType) {
             NavType.MOVIES -> {
-                when(sortType) {
+                when (sortType) {
                     SortType.MOST_POPULAR -> {
                         title = getString(R.string.popular, getString(R.string.menu_movies))
                         popularMoviesFragment
@@ -69,7 +69,7 @@ class MainActivity: DaggerAppCompatActivity() {
                 }
             }
             NavType.TV_SERIES -> {
-                when(sortType) {
+                when (sortType) {
                     SortType.MOST_POPULAR -> {
                         title = getString(R.string.popular, getString(R.string.menu_tv_series))
                         popularTvShowFragment
@@ -85,7 +85,9 @@ class MainActivity: DaggerAppCompatActivity() {
                 }
             }
         }
-        addFragmentToActivity(fragment, R.id.fragment_container)
+        if (savedInstanceState == null) {
+            addFragmentToActivity(fragment, R.id.fragment_container)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
