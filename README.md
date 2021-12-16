@@ -1,5 +1,5 @@
 # TMDb-Paging
-A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Jetpack Compose, Retrofit, DataBinding, MotionLayout, Espresso and Unit test.
+A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Coroutines, Jetpack Compose, Retrofit, DataBinding, MotionLayout, Espresso and Unit test.
 
 <a href="https://play.google.com/store/apps/details?id=com.sample.android.tmdb"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=70px /></a>
 
@@ -29,6 +29,8 @@ Local unit testing is done for Movie, TVShow and Search [PageKeyRepositories](ht
 * [RxJava](https://github.com/ReactiveX/RxJava) is a library for composing asynchronous code using observable sequences.
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) is a module that adds the minimum classes to RxJava to make writing reactive components in Android.
 * [Kotlin coroutines](https://developer.android.com/kotlin/coroutines) Executing code asynchronously.
+* [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow) is a state-holder observable flow that emits the current and new state updates to its collectors.
+* [Coil-compose](https://coil-kt.github.io/coil/compose/) An image loading library for Android backed by Kotlin Coroutines.
 * [Retrofit](https://square.github.io/retrofit/) is a Type-safe HTTP client for Android, Java and Kotlin by Square.
 * [Gson](https://github.com/google/gson) is a serialization/deserialization library to convert objects into JSON and back.
 * [OkHttp interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor) Logs HTTP requests and responses.
