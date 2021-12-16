@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.feed
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.compose.foundation.Image
@@ -25,12 +24,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.TmdbTheme
+import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.MainActivity
 import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.util.Constants

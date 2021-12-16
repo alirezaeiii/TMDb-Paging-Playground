@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.TmdbGreen
 
 @Composable
 fun ErrorView(message: String, refresh: () -> Unit) {

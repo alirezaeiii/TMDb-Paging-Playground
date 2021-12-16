@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.common
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors

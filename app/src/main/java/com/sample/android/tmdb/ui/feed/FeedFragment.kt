@@ -15,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.TmdbGreen
-import com.sample.android.tmdb.ui.TmdbTheme
+import com.sample.android.tmdb.ui.common.TmdbGreen
+import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.ErrorView
 import com.sample.android.tmdb.ui.common.composeView
 import com.sample.android.tmdb.ui.detail.DetailActivity
