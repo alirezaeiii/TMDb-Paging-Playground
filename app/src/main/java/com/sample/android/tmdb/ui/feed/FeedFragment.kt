@@ -13,9 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.TmdbGreen
 import com.sample.android.tmdb.ui.TmdbTheme
 import com.sample.android.tmdb.ui.common.ErrorView
 import com.sample.android.tmdb.ui.common.composeView
@@ -50,12 +50,11 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
         ) {
             when (viewState) {
                 is ViewState.Loading -> CircularProgressIndicator(
-                    color = Color(0xFF4CAF50),
+                    color = TmdbGreen,
                     modifier = Modifier.padding(bottom = 56.dp)
                 )
                 is ViewState.Success -> {
                     FeedCollectionList(
-                        requireContext(),
                         navType,
                         viewState.data,
                         OnFeedClickListener { tmdbItem ->

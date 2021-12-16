@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +37,6 @@ import com.sample.android.tmdb.util.Constants
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
-    context: Context,
     navType: NavType,
     collection: List<List<T>>,
     onFeedClick: OnFeedClickListener
@@ -50,6 +50,7 @@ fun <T : TmdbItem> FeedCollectionList(
                 2 -> Pair(R.string.text_highest_rate, SortType.HIGHEST_RATED)
                 else -> throw RuntimeException("Invalid index for collection")
             }
+            val context = LocalContext.current
             FeedCollection(
                 feedCollection = feedCollection,
                 sortType = pair.first,
@@ -143,7 +144,7 @@ private fun TmdbItem(
         )
         Text(
             text = tmdbItem.name,
-            fontSize = 11.sp,
+            fontSize = TmdbTheme.fontSizes.sp_11,
             color = MaterialTheme.colors.onSurface,
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,

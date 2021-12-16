@@ -8,10 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.ui.TmdbGreen
 
 @Composable
 fun ErrorView(message: String, refresh: () -> Unit) {
@@ -27,7 +27,7 @@ fun ErrorView(message: String, refresh: () -> Unit) {
         Spacer(Modifier.height(16.dp))
         Button(
             onClick = refresh,
-            colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50))
+            colors = ButtonDefaults.buttonColors(TmdbGreen)
         ) {
             Text(
                 text = stringResource(id = R.string.retry),
