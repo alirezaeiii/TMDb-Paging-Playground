@@ -12,6 +12,7 @@ import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
+import com.sample.android.tmdb.util.setupActionBar
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -49,8 +50,9 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupActionBar(binding.toolbar) {
+            setDisplayHomeAsUpEnabled(true)
+        }
         val fragment = when (navType) {
             NavType.MOVIES -> {
                 when (sortType) {

@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui.detail
+package com.sample.android.tmdb.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

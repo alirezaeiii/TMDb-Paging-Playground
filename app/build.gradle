@@ -68,10 +68,10 @@ dependencies {
 
     // Architecture components
     implementation "androidx.paging:paging-runtime:$pagingVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
 
     // Compose
     implementation "androidx.compose.ui:ui:$compose"
@@ -110,9 +110,10 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-    // coroutines
+    // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
+    // Firebase
     implementation 'com.google.android.play:core:1.10.2'
     implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-config-ktx'
