@@ -32,12 +32,9 @@ abstract class TmdbRepository<T : TmdbItem>(
                 val latestItems = async { latest() }
                 val topRatedItems = async { topRated() }
 
-                val items = mutableListOf<List<T>>()
-                items.add(popularItems.await().items)
-                items.add(latestItems.await().items)
-                items.add(topRatedItems.await().items)
-
-                emit(ViewState.Success(items))
+                emit(ViewState.Success(listOf(popularItems.await().items,
+                    latestItems.await().items,
+                    topRatedItems.await().items)))
             }
         } catch (t: Throwable) {
             emit(ViewState.Error(context.getString(R.string.failed_loading_msg)))
