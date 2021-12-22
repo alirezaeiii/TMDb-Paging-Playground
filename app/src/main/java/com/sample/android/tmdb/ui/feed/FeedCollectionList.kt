@@ -36,7 +36,7 @@ import com.sample.android.tmdb.util.Constants
 fun <T : TmdbItem> FeedCollectionList(
     navType: NavType,
     collection: List<FeedWrapper<T>>,
-    onFeedClick: OnFeedClickListener
+    onFeedClick: OnFeedClickListener<T>
 ) {
     LazyColumn {
 
@@ -63,7 +63,7 @@ fun <T : TmdbItem> FeedCollectionList(
 private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
     onMoreClick: () -> Unit,
-    onFeedClick: OnFeedClickListener,
+    onFeedClick: OnFeedClickListener<T>,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -97,7 +97,7 @@ private fun <T : TmdbItem> FeedCollection(
 @Composable
 private fun <T : TmdbItem> Feeds(
     feeds: List<T>,
-    onFeedClick: OnFeedClickListener,
+    onFeedClick: OnFeedClickListener<T>,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -111,9 +111,9 @@ private fun <T : TmdbItem> Feeds(
 }
 
 @Composable
-private fun TmdbItem(
-    tmdbItem: TmdbItem,
-    onFeedClick: OnFeedClickListener
+private fun <T : TmdbItem> TmdbItem(
+    tmdbItem: T,
+    onFeedClick: OnFeedClickListener<T>
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
