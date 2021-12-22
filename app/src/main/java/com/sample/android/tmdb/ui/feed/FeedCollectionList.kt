@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -26,36 +25,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.MainActivity
-import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.util.Constants
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
     navType: NavType,
-    collection: List<List<T>>,
+    collection: List<FeedWrapper<T>>,
     onFeedClick: OnFeedClickListener
 ) {
     LazyColumn {
 
-        itemsIndexed(collection) { index, feedCollection ->
-            val pair = when (index) {
-                0 -> Pair(R.string.text_popular, SortType.MOST_POPULAR)
-                1 -> Pair(R.string.text_upcoming, SortType.UPCOMING)
-                2 -> Pair(R.string.text_highest_rate, SortType.HIGHEST_RATED)
-                else -> throw RuntimeException("Invalid index for collection")
-            }
+        items(collection) { feedCollection ->
             val context = LocalContext.current
             FeedCollection(
                 feedCollection = feedCollection,
-                sortType = pair.first,
                 onMoreClick = {
                     val intent = Intent(context, MainActivity::class.java).apply {
                         putExtras(Bundle().apply {
-                            putParcelable(Constants.EXTRA_SORT_TYPE, pair.second)
+                            putParcelable(Constants.EXTRA_SORT_TYPE, feedCollection.sortType)
                             putParcelable(Constants.EXTRA_NAV_TYPE, navType)
                         })
                     }
@@ -69,8 +61,7 @@ fun <T : TmdbItem> FeedCollectionList(
 
 @Composable
 private fun <T : TmdbItem> FeedCollection(
-    feedCollection: List<T>,
-    sortType: Int,
+    feedCollection: FeedWrapper<T>,
     onMoreClick: () -> Unit,
     onFeedClick: OnFeedClickListener,
     modifier: Modifier = Modifier,
@@ -83,7 +74,7 @@ private fun <T : TmdbItem> FeedCollection(
                 .padding(start = 12.dp)
         ) {
             Text(
-                text = stringResource(id = sortType),
+                text = stringResource(id = feedCollection.sortTypeResourceId),
                 maxLines = 1,
                 color = MaterialTheme.colors.onSurface,
                 modifier = Modifier
@@ -91,7 +82,7 @@ private fun <T : TmdbItem> FeedCollection(
                     .wrapContentWidth(Alignment.Start)
             )
             Text(
-                text = "More",
+                text = stringResource(R.string.more_item),
                 color = MaterialTheme.colors.onSurface,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -99,7 +90,7 @@ private fun <T : TmdbItem> FeedCollection(
                     .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 10.dp)
             )
         }
-        Feeds(feedCollection, onFeedClick)
+        Feeds(feedCollection.feeds, onFeedClick)
     }
 }
 

@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.common.TmdbGreen
 import com.sample.android.tmdb.ui.common.TmdbTheme
@@ -43,7 +44,7 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
     }
 
     @Composable
-    private fun Content(viewState: ViewState<List<List<T>>>) {
+    private fun Content(viewState: ViewState<List<FeedWrapper<T>>>) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
