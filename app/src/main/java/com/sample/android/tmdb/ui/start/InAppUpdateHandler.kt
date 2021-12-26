@@ -3,17 +3,15 @@ package com.sample.android.tmdb.ui.start
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.sample.android.tmdb.util.await
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withTimeout
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.math.max
 
 class InAppUpdateHandler @Inject constructor(
     private val activity: Activity
@@ -73,7 +71,11 @@ class InAppUpdateHandler @Inject constructor(
             if (immediate) {
                 CompletionResult.OK
             } else {
-                downloadAndInstall()
+                try {
+                    appUpdateManager.completeUpdate().await()
+                } catch (throwable: Throwable) {
+                    Timber.w(throwable, "Failed to install update.")
+                }
                 CompletionResult.OK
             }
         } else {
@@ -86,32 +88,10 @@ class InAppUpdateHandler @Inject constructor(
         }
     }
 
-    private suspend fun downloadAndInstall() {
-        val installed = CompletableDeferred<Unit>()
-        val listener = InstallStateUpdatedListener {
-            when (it.installStatus()) {
-                InstallStatus.FAILED -> installed.completeExceptionally(
-                    IllegalStateException("Failed to download update.")
-                )
-                InstallStatus.DOWNLOADED -> installed.complete(Unit)
-            }
-        }
-        appUpdateManager.registerListener(listener)
-        try {
-            installed.await()
-        } finally {
-            appUpdateManager.unregisterListener(listener)
-        }
-        try {
-            appUpdateManager.completeUpdate().await()
-        } catch (throwable: Throwable) {
-            Timber.w(throwable, "Failed to install update.")
-        }
-    }
-
     private fun isImmediateUpdate(): Boolean {
         val remoteConfig = FirebaseRemoteConfig.getInstance()
-        val maximumVersionForImmediateUpdate = remoteConfig.getString ("maximum_version_for_immediate_update")
+        val maximumVersionForImmediateUpdate =
+            remoteConfig.getString("maximum_version_for_immediate_update")
         if (maximumVersionForImmediateUpdate.isNotEmpty()) {
             val currentVersion =
                 (activity.packageManager.getPackageInfo(activity.packageName, 0).versionName)
@@ -143,7 +123,7 @@ class InAppUpdateHandler @Inject constructor(
         private fun compareSemanticVersions(a: String, b: String): Int {
             val aList = a.split('.')
             val bList = b.split('.')
-            for (i in 0 until Math.max(aList.size, bList.size)) {
+            for (i in 0 until max(aList.size, bList.size)) {
                 if (aList.size < i + 1) {
                     return -1
                 }
