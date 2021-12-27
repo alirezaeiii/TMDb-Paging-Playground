@@ -27,7 +27,7 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
     protected abstract val viewModel: BaseViewModel<T>
 
-    protected abstract val navType: NavType?
+    protected abstract val navType: NavType
 
     protected open fun refresh() {
         viewModel.refresh()
