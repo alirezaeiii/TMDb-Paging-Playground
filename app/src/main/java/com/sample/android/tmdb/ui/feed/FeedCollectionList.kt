@@ -128,7 +128,7 @@ private fun <T : TmdbItem> TmdbItem(
             contentDescription = null,
             modifier = Modifier
                 .size(width = 120.dp, height = 180.dp)
-                .border(.3.dp, Color(0xFFFFFFFF), RectangleShape),
+                .border(.3.dp, Color.White, RectangleShape),
             contentScale = ContentScale.Crop,
         )
         Text(

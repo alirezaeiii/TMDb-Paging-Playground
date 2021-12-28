@@ -51,8 +51,7 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
         ) {
             when (viewState) {
                 is ViewState.Loading -> CircularProgressIndicator(
-                    color = MaterialTheme.colors.secondary,
-                    modifier = Modifier.padding(bottom = 56.dp)
+                    color = MaterialTheme.colors.secondary
                 )
                 is ViewState.Success -> {
                     FeedCollectionList(
