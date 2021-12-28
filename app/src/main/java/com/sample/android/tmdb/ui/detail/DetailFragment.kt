@@ -34,8 +34,8 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
         with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem
             viewModel.liveData.observe(viewLifecycleOwner, { detailWrapper ->
-                setupAdapter(castList, detailWrapper.creditWrapper.cast)
-                setupAdapter(crewList, detailWrapper.creditWrapper.crew)
+                castList.setupAdapter(detailWrapper.creditWrapper.cast)
+                crewList.setupAdapter(detailWrapper.creditWrapper.crew)
             })
             with(activity as AppCompatActivity) {
                 setupActionBar(detailsToolbar) {
@@ -97,14 +97,12 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
         })
     }
 
-    private fun <T : Credit> setupAdapter(recyclerView: RecyclerView, items: List<T>) {
-        recyclerView.apply {
-            layoutManager = GridLayoutManager(
-                activity, 1,
-                GridLayoutManager.HORIZONTAL, false
-            )
-            setHasFixedSize(true)
-            adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem))
-        }
+    private fun <T : Credit> RecyclerView.setupAdapter(items: List<T>) {
+        layoutManager = GridLayoutManager(
+            activity, 1,
+            GridLayoutManager.HORIZONTAL, false
+        )
+        setHasFixedSize(true)
+        adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem))
     }
 }
