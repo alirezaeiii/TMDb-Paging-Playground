@@ -81,7 +81,7 @@ fun bindProfileImage(imageView: ImageView, url: String?) {
             .error(R.drawable.ic_error_outline_black_36dp)
 
     Glide.with(imageView.context)
-            .load("$IMAGE_LOW_RES_BASE_URL$url")
+            .load(IMAGE_LOW_RES_BASE_URL.plus(url))
             .apply(options)
             .into(imageView)
 }
@@ -89,7 +89,7 @@ fun bindProfileImage(imageView: ImageView, url: String?) {
 @BindingAdapter("profileUrl")
 fun bindProfileImage(imageView: CircleImageView, url: String?) {
     Glide.with(imageView.context)
-            .load("$IMAGE_LOW_RES_BASE_URL$url")
+            .load(IMAGE_LOW_RES_BASE_URL.plus(url))
             .apply(RequestOptions()
                     .error(R.drawable.ic_error_outline_white_96dp))
             .into(imageView)
