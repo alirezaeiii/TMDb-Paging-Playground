@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -16,9 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.common.TmdbGreen
-import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.ErrorView
+import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
 import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
@@ -51,7 +51,7 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
         ) {
             when (viewState) {
                 is ViewState.Loading -> CircularProgressIndicator(
-                    color = TmdbGreen,
+                    color = MaterialTheme.colors.secondary,
                     modifier = Modifier.padding(bottom = 56.dp)
                 )
                 is ViewState.Success -> {

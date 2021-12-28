@@ -26,11 +26,13 @@ fun ErrorView(message: String, refresh: () -> Unit) {
         Spacer(Modifier.height(16.dp))
         Button(
             onClick = refresh,
-            colors = ButtonDefaults.buttonColors(TmdbGreen)
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = MaterialTheme.colors.secondary,
+                contentColor = MaterialTheme.colors.onSurface
+            )
         ) {
             Text(
-                text = stringResource(id = R.string.retry),
-                color = MaterialTheme.colors.onSurface
+                text = stringResource(id = R.string.retry)
             )
         }
     }
