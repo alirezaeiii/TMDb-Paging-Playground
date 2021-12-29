@@ -41,18 +41,9 @@ fun <T : TmdbItem> FeedCollectionList(
     LazyColumn {
 
         items(collection) { feedCollection ->
-            val context = LocalContext.current
             FeedCollection(
                 feedCollection = feedCollection,
-                onMoreClick = {
-                    val intent = Intent(context, MainActivity::class.java).apply {
-                        putExtras(Bundle().apply {
-                            putParcelable(Constants.EXTRA_SORT_TYPE, feedCollection.sortType)
-                            putParcelable(Constants.EXTRA_NAV_TYPE, navType)
-                        })
-                    }
-                    context.startActivity(intent)
-                },
+                navType = navType,
                 onFeedClick = onFeedClick
             )
         }
@@ -62,10 +53,11 @@ fun <T : TmdbItem> FeedCollectionList(
 @Composable
 private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
-    onMoreClick: () -> Unit,
+    navType: NavType,
     onFeedClick: (TmdbItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
     Column(modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -86,7 +78,15 @@ private fun <T : TmdbItem> FeedCollection(
                 color = MaterialTheme.colors.onSurface,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .clickable { onMoreClick.invoke() }
+                    .clickable {
+                        val intent = Intent(context, MainActivity::class.java).apply {
+                            putExtras(Bundle().apply {
+                                putParcelable(Constants.EXTRA_SORT_TYPE, feedCollection.sortType)
+                                putParcelable(Constants.EXTRA_NAV_TYPE, navType)
+                            })
+                        }
+                        context.startActivity(intent)
+                    }
                     .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 10.dp)
             )
         }
