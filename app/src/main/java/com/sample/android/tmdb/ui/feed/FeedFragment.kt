@@ -43,16 +43,16 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
             is ViewState.Success -> {
                 FeedCollectionList(
                     navType,
-                    viewState.data,
-                    OnFeedClickListener { tmdbItem ->
-                        val intent = Intent(context, DetailActivity::class.java).apply {
-                            putExtras(Bundle().apply {
-                                putParcelable(EXTRA_TMDB_ITEM, tmdbItem)
-                                putParcelable(EXTRA_NAV_TYPE, navType)
-                            })
-                        }
-                        startActivity(intent)
-                    })
+                    viewState.data
+                ) { tmdbItem ->
+                    val intent = Intent(context, DetailActivity::class.java).apply {
+                        putExtras(Bundle().apply {
+                            putParcelable(EXTRA_TMDB_ITEM, tmdbItem)
+                            putParcelable(EXTRA_NAV_TYPE, navType)
+                        })
+                    }
+                    startActivity(intent)
+                }
             }
             is ViewState.Error ->
                 ErrorScreen(message = viewState.message, viewModel::refresh)

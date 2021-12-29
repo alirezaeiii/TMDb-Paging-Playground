@@ -36,7 +36,7 @@ import com.sample.android.tmdb.util.Constants
 fun <T : TmdbItem> FeedCollectionList(
     navType: NavType,
     collection: List<FeedWrapper<T>>,
-    onFeedClick: OnFeedClickListener<T>
+    onFeedClick: (TmdbItem) -> Unit
 ) {
     LazyColumn {
 
@@ -63,7 +63,7 @@ fun <T : TmdbItem> FeedCollectionList(
 private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
     onMoreClick: () -> Unit,
-    onFeedClick: OnFeedClickListener<T>,
+    onFeedClick: (TmdbItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -97,7 +97,7 @@ private fun <T : TmdbItem> FeedCollection(
 @Composable
 private fun <T : TmdbItem> Feeds(
     feeds: List<T>,
-    onFeedClick: OnFeedClickListener<T>,
+    onFeedClick: (TmdbItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -113,12 +113,12 @@ private fun <T : TmdbItem> Feeds(
 @Composable
 private fun <T : TmdbItem> TmdbItem(
     tmdbItem: T,
-    onFeedClick: OnFeedClickListener<T>
+    onFeedClick: (TmdbItem) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .clickable(onClick = { onFeedClick.onClick(tmdbItem) })
+            .clickable(onClick = { onFeedClick(tmdbItem) })
             .padding(6.dp)
     ) {
         Image(
@@ -151,7 +151,7 @@ fun FeedCardPreview() {
         val movie = Movie(1, "", null, null, null, "Movie", 1.0)
         TmdbItem(
             tmdbItem = movie,
-            onFeedClick = OnFeedClickListener {},
+            onFeedClick = {},
         )
     }
 }
