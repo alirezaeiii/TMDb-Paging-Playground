@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.sample.android.tmdb.R
 
 @Composable
-fun ErrorView(message: String, refresh: () -> Unit) {
+fun ErrorScreen(message: String, refresh: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
