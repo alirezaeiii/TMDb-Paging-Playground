@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ScrollToAction
@@ -18,8 +16,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
-import com.jakewharton.espresso.OkHttp3IdlingResource
-import com.sample.android.tmdb.network.OkHttpProvider
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.TmdbItemViewHolder
@@ -30,21 +26,16 @@ import com.sample.android.tmdb.util.Constants.EXTRA_SORT_TYPE
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-abstract class BaseMainActivity {
+abstract class BaseMainActivity: BaseIdlingResource() {
 
     protected abstract val sortType: SortType
 
     protected abstract val navType: NavType
 
     protected abstract val title: String
-
-    private val resource: IdlingResource =
-        OkHttp3IdlingResource.create("OkHttp", OkHttpProvider.instance)
 
     @Rule
     @JvmField
@@ -79,19 +70,6 @@ abstract class BaseMainActivity {
         override fun getDescription(): String? {
             return null
         }
-    }
-
-    @Before
-    fun registerIdlingResource() {
-        IdlingRegistry.getInstance().register(resource)
-    }
-
-    /**
-     * Unregister your Idling Resource so it can be garbage collected and does not leak any memory.
-     */
-    @After
-    fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(resource)
     }
 
     @Test

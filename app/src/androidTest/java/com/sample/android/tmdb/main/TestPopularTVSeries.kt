@@ -1,7 +1,8 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.main
 
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
+import com.sample.android.tmdb.BaseMainActivity
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.SortType
 import org.junit.runner.RunWith
