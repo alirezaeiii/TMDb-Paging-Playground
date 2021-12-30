@@ -4,17 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ScrollToAction
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.sample.android.tmdb.network.OkHttpProvider
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
@@ -22,23 +25,23 @@ import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.TmdbItemViewHolder
 import com.sample.android.tmdb.ui.paging.main.MainActivity
 import com.sample.android.tmdb.ui.paging.main.SortType
-import com.sample.android.tmdb.util.Constants
+import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
+import com.sample.android.tmdb.util.Constants.EXTRA_SORT_TYPE
+import org.hamcrest.CoreMatchers.*
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import androidx.test.espresso.matcher.ViewMatchers.withParent
-import android.widget.TextView
-import androidx.test.espresso.*
-import org.hamcrest.CoreMatchers.*
 
+abstract class BaseMainActivity {
 
-@RunWith(AndroidJUnit4::class)
-@LargeTest
-class TestMainActivity {
+    protected abstract val sortType: SortType
+
+    protected abstract val navType: NavType
+
+    protected abstract val title: String
 
     private val resource: IdlingResource =
         OkHttp3IdlingResource.create("OkHttp", OkHttpProvider.instance)
@@ -52,8 +55,8 @@ class TestMainActivity {
             val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
             val intent = Intent(targetContext, MainActivity::class.java).apply {
                 putExtras(Bundle().apply {
-                    putParcelable(Constants.EXTRA_SORT_TYPE, SortType.MOST_POPULAR)
-                    putParcelable(Constants.EXTRA_NAV_TYPE, NavType.MOVIES)
+                    putParcelable(EXTRA_SORT_TYPE, sortType)
+                    putParcelable(EXTRA_NAV_TYPE, navType)
                 })
             }
             return intent
@@ -99,16 +102,16 @@ class TestMainActivity {
     @Test
     fun shouldBeAbleToDisplayToolbarTitle() {
         onView(allOf(instanceOf(TextView::class.java), withParent(withId(R.id.toolbar))))
-            .check(matches(withText("Popular Movies")))
+            .check(matches(withText(title)))
     }
 
     @Test
-    fun shouldBeAbleToLoadMovies() {
+    fun shouldBeAbleToLoadItems() {
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun shouldBeAbleToScrollViewMovieDetails() {
+    fun shouldBeAbleToDisplayDetails() {
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions
                 .actionOnItemAtPosition<TmdbItemViewHolder>(10, click()))
         onView(withText(R.string.summary)).check(matches(isDisplayed()))
