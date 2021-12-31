@@ -10,13 +10,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-open class BaseDetailViewModel<T> : ViewModel() {
+open class BaseDetailViewModel<T>(
+    requestObservable: Single<T>
+) : ViewModel() {
 
     private val _liveData = MutableLiveData<T>()
     val liveData: LiveData<T>
         get() = _liveData
 
-    protected fun sendRequest(requestObservable: Single<T>) {
+    init {
         composeSingle { requestObservable }.subscribe({
             _liveData.postValue(it)
         }) {
@@ -25,14 +27,14 @@ open class BaseDetailViewModel<T> : ViewModel() {
     }
 
     private inline fun <T> composeSingle(task: () -> Single<T>): Single<T> = task()
-            .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doFinally {
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
-                    EspressoIdlingResource.decrement() // Set app as idle.
-                }
+        .doOnSubscribe { EspressoIdlingResource.increment() } // App is busy until further notice
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doFinally {
+            if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                EspressoIdlingResource.decrement() // Set app as idle.
             }
+        }
 
     /**
      * Called when the ViewModel is dismantled.

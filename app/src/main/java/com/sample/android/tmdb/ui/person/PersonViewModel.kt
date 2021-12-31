@@ -8,20 +8,16 @@ import com.sample.android.tmdb.ui.BaseDetailViewModel
 import javax.inject.Inject
 
 class PersonViewModel(
-        api: PersonApi,
-        personId: Any
-) : BaseDetailViewModel<Person>() {
-
-    init {
-        sendRequest(api.getPerson(personId))
-    }
+    api: PersonApi,
+    personId: Any
+) : BaseDetailViewModel<Person>(api.getPerson(personId)) {
 
     /**
      * Factory for constructing PersonViewModel with parameter
      */
     class Factory @Inject constructor(
-            private val api: PersonApi,
-            private val person: PersonWrapper
+        private val api: PersonApi,
+        private val person: PersonWrapper
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PersonViewModel::class.java)) {
