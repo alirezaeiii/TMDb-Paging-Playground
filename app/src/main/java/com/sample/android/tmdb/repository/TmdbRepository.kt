@@ -22,6 +22,8 @@ abstract class TmdbRepository<T : TmdbItem>(
 
     protected abstract suspend fun topRated(): ItemWrapper<T>
 
+    protected abstract suspend fun trending(): ItemWrapper<T>
+
     val result = flow {
         emit(ViewState.Loading)
         if (!context.isNetworkAvailable()) {
@@ -30,6 +32,7 @@ abstract class TmdbRepository<T : TmdbItem>(
         }
         try {
             coroutineScope {
+                val trendingItems = async { trending() }
                 val popularItems = async { popular() }
                 val latestItems = async { latest() }
                 val topRatedItems = async { topRated() }
@@ -37,6 +40,11 @@ abstract class TmdbRepository<T : TmdbItem>(
                 emit(
                     ViewState.Success(
                         listOf(
+                            FeedWrapper(
+                                trendingItems.await().items,
+                                R.string.text_trending,
+                                SortType.TRENDING
+                            ),
                             FeedWrapper(
                                 popularItems.await().items,
                                 R.string.text_popular,

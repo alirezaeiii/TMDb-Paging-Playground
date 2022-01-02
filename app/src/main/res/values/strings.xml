@@ -7,9 +7,11 @@
     <string name="text_popular">Popular</string>
     <string name="text_highest_rate">Top Rated</string>
     <string name="text_upcoming">Upcoming</string>
+    <string name="text_trending">Trending</string>
     <string name="more_item">More</string>
     <string name="popular">Popular %s</string>
     <string name="highest_rate">Top Rated %s</string>
+    <string name="trending">Trending %s</string>
     <string name="upcoming">Upcoming %s</string>
     <string name="summary">Summary</string>
     <string name="trailers">Trailers</string>

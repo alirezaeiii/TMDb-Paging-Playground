@@ -12,6 +12,9 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
+    @GET("3/trending/movie/day")
+    suspend fun trendingMovies(): ItemWrapper<Movie>
+
     @GET("3/movie/popular")
     suspend fun popularMovies(): ItemWrapper<Movie>
 
@@ -21,14 +24,17 @@ interface MovieApi {
     @GET("3/movie/top_rated")
     suspend fun topRatedMovies(): ItemWrapper<Movie>
 
+    @GET("3/trending/movie/day")
+    fun trendingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+
     @GET("3/discover/movie?language=en&sort_by=popularity.desc")
-    fun popularItems(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun popularMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
     @GET("3/discover/movie?vote_count.gte=500&language=en&sort_by=vote_average.desc")
-    fun topRatedItems(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun topRatedMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
     @GET("3/movie/upcoming?language=en")
-    fun latestItems(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun latestMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
     @GET("3/search/movie?language=en")
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<Movie>>

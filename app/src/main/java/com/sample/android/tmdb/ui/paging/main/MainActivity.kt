@@ -9,10 +9,12 @@ import com.sample.android.tmdb.databinding.ActivityMainBinding
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.paging.main.movie.TrendingMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.setupActionBar
 import dagger.android.support.DaggerAppCompatActivity
@@ -30,6 +32,9 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var upcomingMoviesFragment: UpcomingMoviesFragment
 
     @Inject
+    lateinit var trendingMoviesFragment: TrendingMoviesFragment
+
+    @Inject
     lateinit var popularTvShowFragment: PopularTVShowFragment
 
     @Inject
@@ -37,6 +42,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var latestTvShowFragment: LatestTVShowFragment
+
+    @Inject
+    lateinit var trendingTVShowFragment: TrendingTVShowFragment
 
     @Inject
     lateinit var navType: NavType
@@ -75,6 +83,10 @@ class MainActivity : DaggerAppCompatActivity() {
                         title = getString(R.string.highest_rate, getString(R.string.menu_movies))
                         highRateMoviesFragment
                     }
+                    SortType.TRENDING -> {
+                        title = getString(R.string.trending, getString(R.string.menu_movies))
+                        trendingMoviesFragment
+                    }
                 }
             }
             NavType.TV_SERIES -> {
@@ -90,6 +102,10 @@ class MainActivity : DaggerAppCompatActivity() {
                     SortType.HIGHEST_RATED -> {
                         title = getString(R.string.highest_rate, getString(R.string.menu_tv_series))
                         highRateTvShowFragment
+                    }
+                    SortType.TRENDING -> {
+                        title = getString(R.string.trending, getString(R.string.menu_tv_series))
+                        trendingTVShowFragment
                     }
                 }
             }

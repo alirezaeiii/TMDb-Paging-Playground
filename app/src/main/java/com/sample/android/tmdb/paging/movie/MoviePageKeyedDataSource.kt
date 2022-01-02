@@ -15,8 +15,9 @@ class MoviePageKeyedDataSource(
     : BasePageKeyedDataSource<Movie>(retryExecutor, context) {
 
     override fun fetchItems(page: Int) = when (sortType) {
-        SortType.MOST_POPULAR -> api.popularItems(page)
-        SortType.HIGHEST_RATED -> api.topRatedItems(page)
-        SortType.UPCOMING -> api.latestItems(page)
+        SortType.MOST_POPULAR -> api.popularMovies(page)
+        SortType.HIGHEST_RATED -> api.topRatedMovies(page)
+        SortType.UPCOMING -> api.latestMovies(page)
+        SortType.TRENDING -> api.trendingMovies(page)
     }
 }

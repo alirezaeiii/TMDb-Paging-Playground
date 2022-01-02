@@ -18,4 +18,6 @@ class TVShowRepository @Inject constructor(
     override suspend fun latest(): ItemWrapper<TVShow> = tvShowApi.latestTVSeries()
 
     override suspend fun topRated(): ItemWrapper<TVShow> = tvShowApi.topRatedTVSeries()
+
+    override suspend fun trending(): ItemWrapper<TVShow> = tvShowApi.trendingTVSeries()
 }

@@ -16,6 +16,7 @@ abstract class BaseItemFragment<T : TmdbItem> : BaseFragment<T>() {
 
 @Parcelize
 enum class SortType : Parcelable {
+    TRENDING,
     MOST_POPULAR,
     HIGHEST_RATED,
     UPCOMING

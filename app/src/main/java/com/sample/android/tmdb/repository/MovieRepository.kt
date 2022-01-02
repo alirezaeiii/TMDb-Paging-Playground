@@ -18,4 +18,6 @@ class MovieRepository @Inject constructor(
     override suspend fun latest(): ItemWrapper<Movie> = movieApi.latestMovies()
 
     override suspend fun topRated(): ItemWrapper<Movie> = movieApi.topRatedMovies()
+
+    override suspend fun trending(): ItemWrapper<Movie> = movieApi.trendingMovies()
 }

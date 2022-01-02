@@ -5,10 +5,12 @@ import com.sample.android.tmdb.ui.paging.main.MainActivity
 import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.movie.PopularMoviesFragment
+import com.sample.android.tmdb.ui.paging.main.movie.TrendingMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.movie.UpcomingMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowFragment
+import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowFragment
 import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
 import com.sample.android.tmdb.util.Constants.EXTRA_SORT_TYPE
 import dagger.Module
@@ -28,6 +30,9 @@ abstract class MainModule {
     internal abstract fun upcomingMoviesFragment(): UpcomingMoviesFragment
 
     @ContributesAndroidInjector
+    internal abstract fun trendingMoviesFragment(): TrendingMoviesFragment
+
+    @ContributesAndroidInjector
     internal abstract fun popularTVShowFragment(): PopularTVShowFragment
 
     @ContributesAndroidInjector
@@ -35,6 +40,9 @@ abstract class MainModule {
 
     @ContributesAndroidInjector
     internal abstract fun latestTVShowFragment(): LatestTVShowFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun trendingTVShowFragment(): TrendingTVShowFragment
 
     @Module
     companion object {
