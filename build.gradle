@@ -59,7 +59,7 @@ ext {
     okhttpVersion = '4.9.3'
     circleimageviewVersion = '2.2.0'
     viewPagerVersion = '1.0.0'
-    materialVersion = '1.2.0-alpha06'
+    materialVersion = '1.5.0-rc01'
     swiperefreshVersion = '1.1.0'
     coroutinesVersion = '1.5.2'
     mockkVersion = '1.10.0'

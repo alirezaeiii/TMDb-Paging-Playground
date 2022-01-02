@@ -3,9 +3,9 @@ package com.sample.android.tmdb.ui.detail
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.Window
-import com.google.android.material.transition.MaterialArcMotion
-import com.google.android.material.transition.MaterialContainerTransform
-import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback
+import com.google.android.material.transition.platform.MaterialArcMotion
+import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
@@ -33,8 +33,8 @@ class DetailActivity : DaggerAppCompatActivity() {
         setEnterSharedElementCallback(
             MaterialContainerTransformSharedElementCallback()
         )
-        window.sharedElementEnterTransition = getContentTransform()
-        window.sharedElementReturnTransition = getContentTransform()
+        window.sharedElementEnterTransition = getMaterialContainerTransform()
+        window.sharedElementReturnTransition = getMaterialContainerTransform()
 
         setContentView(R.layout.activity_detail)
 
@@ -58,7 +58,7 @@ class DetailActivity : DaggerAppCompatActivity() {
     }
 
     /** get a material container arc transform. */
-    private fun getContentTransform(): MaterialContainerTransform {
+    private fun getMaterialContainerTransform(): MaterialContainerTransform {
         return MaterialContainerTransform().apply {
             addTarget(R.id.details_poster)
             duration = 450
