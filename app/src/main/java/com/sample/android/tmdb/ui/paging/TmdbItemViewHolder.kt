@@ -14,7 +14,7 @@ class TmdbItemViewHolder(val binding: TmdbItemBinding)
             val binding: TmdbItemBinding = TmdbItemBinding.inflate(parent.context.layoutInflater,
                     parent, false)
             with(binding) {
-                poster = itemPoster
+                poster = cardPoster
                 callback = tmdbClickCallback
             }
             return TmdbItemViewHolder(binding)

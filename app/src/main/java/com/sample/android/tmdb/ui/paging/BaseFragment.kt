@@ -1,16 +1,12 @@
 package com.sample.android.tmdb.ui.paging
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
-import androidx.core.util.Pair
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
@@ -34,8 +30,8 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
@@ -46,9 +42,9 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
             swipe_refresh.apply {
                 setColorSchemeColors(
-                        ContextCompat.getColor(context, R.color.colorPrimary),
-                        ContextCompat.getColor(context, R.color.colorAccent),
-                        ContextCompat.getColor(context, R.color.colorPrimaryDark)
+                    ContextCompat.getColor(context, R.color.colorPrimary),
+                    ContextCompat.getColor(context, R.color.colorAccent),
+                    ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 )
 
                 viewModel.refreshState.observe(viewLifecycleOwner, {
@@ -83,21 +79,17 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
         return root
     }
 
-    override fun onClick(t: T, poster: ImageView) {
+    override fun onClick(t: T, poster: View) {
         val intent = Intent(activity, DetailActivity::class.java).apply {
             putExtras(Bundle().apply {
                 putParcelable(EXTRA_TMDB_ITEM, t)
                 putParcelable(EXTRA_NAV_TYPE, navType)
             })
         }
-        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                requireActivity(),
-
-                // Now we provide a list of Pair items which contain the view we can transitioning
-                // from, and the name of the view it is transitioning to, in the launched activity
-                Pair(poster, ViewCompat.getTransitionName(poster)))
-
-        // Now we can start the Activity, providing the activity options as a bundle
-        ActivityCompat.startActivity(requireContext(), intent, activityOptions.toBundle())
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+            activity,
+            poster, t.name
+        )
+        startActivity(intent, options.toBundle())
     }
 }

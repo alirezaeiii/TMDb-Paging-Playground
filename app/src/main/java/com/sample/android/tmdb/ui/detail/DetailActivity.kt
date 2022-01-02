@@ -2,6 +2,10 @@ package com.sample.android.tmdb.ui.detail
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.Window
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
 import com.sample.android.tmdb.ui.detail.tvshow.TVShowDetailFragment
@@ -23,6 +27,15 @@ class DetailActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // set up shared element transition
+        setEnterSharedElementCallback(
+            MaterialContainerTransformSharedElementCallback()
+        )
+        window.sharedElementEnterTransition = getContentTransform()
+        window.sharedElementReturnTransition = getContentTransform()
+
         setContentView(R.layout.activity_detail)
 
         if (savedInstanceState == null) {
@@ -42,5 +55,14 @@ class DetailActivity : DaggerAppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    /** get a material container arc transform. */
+    private fun getContentTransform(): MaterialContainerTransform {
+        return MaterialContainerTransform().apply {
+            addTarget(R.id.details_poster)
+            duration = 450
+            pathMotion = MaterialArcMotion()
+        }
     }
 }

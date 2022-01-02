@@ -14,10 +14,11 @@
 
         <variable
             name="poster"
-            type="android.widget.ImageView" />
+            type="androidx.cardview.widget.CardView" />
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_poster"
         android:layout_width="match_parent"
         android:layout_height="@dimen/column_height"
         android:clickable="true"
@@ -33,7 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:transitionName="@string/view_name_header_image"
             tools:ignore="contentDescription" />
 
         <View

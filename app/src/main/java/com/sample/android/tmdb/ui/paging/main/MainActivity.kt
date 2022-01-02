@@ -2,6 +2,8 @@ package com.sample.android.tmdb.ui.paging.main
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.Window
+import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
 import com.sample.android.tmdb.ui.feed.NavType
@@ -48,6 +50,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        setExitSharedElementCallback(
+            MaterialContainerTransformSharedElementCallback()
+        )
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupActionBar(binding.toolbar) {

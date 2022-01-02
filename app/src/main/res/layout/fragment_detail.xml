@@ -45,7 +45,6 @@
             android:scaleType="centerCrop"
             android:transformPivotX="0px"
             android:transformPivotY="0px"
-            android:transitionName="@string/view_name_header_image"
             app:imageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
