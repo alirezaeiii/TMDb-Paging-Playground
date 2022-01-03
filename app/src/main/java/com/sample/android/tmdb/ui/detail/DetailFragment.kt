@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
@@ -31,7 +30,6 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        ViewCompat.setTransitionName(binding.detailsPoster, tmdbItem.name)
         with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem
             viewModel.liveData.observe(viewLifecycleOwner, { detailWrapper ->

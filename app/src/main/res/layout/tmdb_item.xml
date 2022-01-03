@@ -12,19 +12,15 @@
             name="callback"
             type="com.sample.android.tmdb.ui.paging.TmdbClickCallback" />
 
-        <variable
-            name="poster"
-            type="androidx.cardview.widget.CardView" />
     </data>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_poster"
         android:layout_width="match_parent"
         android:layout_height="@dimen/column_height"
         android:clickable="true"
         android:elevation="@dimen/z_app_bar"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{() -> callback.onClick(tmdbItem, poster)}"
+        android:onClick="@{() -> callback.onClick(tmdbItem)}"
         app:cardElevation="@dimen/z_app_bar"
         app:ImageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}"
         tools:ignore="KeyboardInaccessibleWidget">

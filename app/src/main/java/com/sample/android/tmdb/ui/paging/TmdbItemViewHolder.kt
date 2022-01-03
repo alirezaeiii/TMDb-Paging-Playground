@@ -13,10 +13,7 @@ class TmdbItemViewHolder(val binding: TmdbItemBinding)
         fun <T : TmdbItem> create(parent: ViewGroup, tmdbClickCallback: TmdbClickCallback<T>): TmdbItemViewHolder {
             val binding: TmdbItemBinding = TmdbItemBinding.inflate(parent.context.layoutInflater,
                     parent, false)
-            with(binding) {
-                poster = cardPoster
-                callback = tmdbClickCallback
-            }
+            binding.callback = tmdbClickCallback
             return TmdbItemViewHolder(binding)
         }
     }

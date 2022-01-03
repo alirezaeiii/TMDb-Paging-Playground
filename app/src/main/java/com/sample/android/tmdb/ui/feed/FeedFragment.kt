@@ -1,6 +1,5 @@
 package com.sample.android.tmdb.ui.feed
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,8 @@ import com.sample.android.tmdb.ui.common.ErrorScreen
 import com.sample.android.tmdb.ui.common.ProgressScreen
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
-import com.sample.android.tmdb.ui.detail.DetailActivity
-import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.util.Constants.EXTRA_TMDB_ITEM
 import com.sample.android.tmdb.util.ViewState
+import com.sample.android.tmdb.util.startDetailActivity
 import dagger.android.support.DaggerFragment
 
 abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
@@ -45,13 +42,7 @@ abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
                     navType,
                     viewState.data
                 ) { tmdbItem ->
-                    val intent = Intent(context, DetailActivity::class.java).apply {
-                        putExtras(Bundle().apply {
-                            putParcelable(EXTRA_TMDB_ITEM, tmdbItem)
-                            putParcelable(EXTRA_NAV_TYPE, navType)
-                        })
-                    }
-                    startActivity(intent)
+                    context?.startDetailActivity(tmdbItem, navType)
                 }
             }
             is ViewState.Error ->

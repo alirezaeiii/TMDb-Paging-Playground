@@ -1,7 +1,5 @@
 package com.sample.android.tmdb.ui.paging
 
-import android.app.ActivityOptions
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +9,13 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
-import com.sample.android.tmdb.ui.detail.DetailActivity
 import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.util.Constants.EXTRA_TMDB_ITEM
+import com.sample.android.tmdb.util.startDetailActivity
 import com.sample.android.tmdb.widget.MarginDecoration
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<T> {
+abstract class BaseFragment<T : TmdbItem> : DaggerFragment() {
 
     protected abstract val viewModel: BaseViewModel<T>
 
@@ -36,7 +32,11 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
 
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val tmdbAdapter = TmdbAdapter({ viewModel.retry() }, this)
+        val tmdbAdapter = TmdbAdapter(viewModel::retry, object : TmdbClickCallback<T> {
+            override fun onClick(t: T) {
+                context?.startDetailActivity(t, navType)
+            }
+        })
 
         with(root) {
 
@@ -77,19 +77,5 @@ abstract class BaseFragment<T : TmdbItem> : DaggerFragment(), TmdbClickCallback<
         })
 
         return root
-    }
-
-    override fun onClick(t: T, poster: View) {
-        val intent = Intent(activity, DetailActivity::class.java).apply {
-            putExtras(Bundle().apply {
-                putParcelable(EXTRA_TMDB_ITEM, t)
-                putParcelable(EXTRA_NAV_TYPE, navType)
-            })
-        }
-        val options = ActivityOptions.makeSceneTransitionAnimation(
-            activity,
-            poster, t.name
-        )
-        startActivity(intent, options.toBundle())
     }
 }
