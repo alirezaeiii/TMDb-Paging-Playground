@@ -13,11 +13,11 @@ class MovieRepository @Inject constructor(
     private val movieApi: MovieApi,
 ): TmdbRepository<Movie>(context) {
 
-    override suspend fun popular(): ItemWrapper<Movie> = movieApi.popularMovies()
+    override suspend fun popularItems(): ItemWrapper<Movie> = movieApi.popularMovies()
 
-    override suspend fun latest(): ItemWrapper<Movie> = movieApi.latestMovies()
+    override suspend fun latestItems(): ItemWrapper<Movie> = movieApi.latestMovies()
 
-    override suspend fun topRated(): ItemWrapper<Movie> = movieApi.topRatedMovies()
+    override suspend fun topRatedItems(): ItemWrapper<Movie> = movieApi.topRatedMovies()
 
-    override suspend fun trending(): ItemWrapper<Movie> = movieApi.trendingMovies()
+    override suspend fun trendingItems(): ItemWrapper<Movie> = movieApi.trendingMovies()
 }

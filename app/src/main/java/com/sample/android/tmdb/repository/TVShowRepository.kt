@@ -13,11 +13,11 @@ class TVShowRepository @Inject constructor(
     private val tvShowApi: TVShowApi,
 ) : TmdbRepository<TVShow>(context) {
 
-    override suspend fun popular(): ItemWrapper<TVShow> = tvShowApi.popularTVSeries()
+    override suspend fun popularItems(): ItemWrapper<TVShow> = tvShowApi.popularTVSeries()
 
-    override suspend fun latest(): ItemWrapper<TVShow> = tvShowApi.latestTVSeries()
+    override suspend fun latestItems(): ItemWrapper<TVShow> = tvShowApi.latestTVSeries()
 
-    override suspend fun topRated(): ItemWrapper<TVShow> = tvShowApi.topRatedTVSeries()
+    override suspend fun topRatedItems(): ItemWrapper<TVShow> = tvShowApi.topRatedTVSeries()
 
-    override suspend fun trending(): ItemWrapper<TVShow> = tvShowApi.trendingTVSeries()
+    override suspend fun trendingItems(): ItemWrapper<TVShow> = tvShowApi.trendingTVSeries()
 }
