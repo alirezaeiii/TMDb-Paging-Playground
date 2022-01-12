@@ -10,9 +10,9 @@ import com.sample.android.tmdb.paging.BasePageKeyRepository
 
 abstract class BaseItemViewModel<T : TmdbItem>(app: Application) : BaseViewModel<T>(app) {
 
-    protected abstract val baseRepoResult : BasePageKeyRepository<T>
+    protected abstract val mainRepoResult : BasePageKeyRepository<T>
 
     override val repoResult: LiveData<Listing<T>> = liveData {
-        emit(baseRepoResult.getItems())
+        emit(mainRepoResult.getItems())
     }
 }

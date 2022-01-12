@@ -13,10 +13,10 @@ abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : BaseViewMod
 
     private val query = MutableLiveData<String>()
 
-    protected abstract fun getRepoResult(query : String) : BasePageKeyRepository<T>
+    protected abstract fun searchRepoResult(query : String) : BasePageKeyRepository<T>
 
     override val repoResult: LiveData<Listing<T>> = Transformations.map(query) {
-        getRepoResult(it).getItems()
+        searchRepoResult(it).getItems()
     }
 
     fun showQuery(query: String): Boolean {

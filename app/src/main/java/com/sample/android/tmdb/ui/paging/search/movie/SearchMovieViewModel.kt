@@ -15,7 +15,7 @@ class SearchMovieViewModel(
         private val app: Application
 ) : BaseSearchViewModel<Movie>(app = app) {
 
-    override fun getRepoResult(query: String): BasePageKeyRepository<Movie> =
+    override fun searchRepoResult(query: String): BasePageKeyRepository<Movie> =
             SearchMoviePageKeyRepository(api, query, networkIO, app.applicationContext)
 
     class Factory @Inject constructor(

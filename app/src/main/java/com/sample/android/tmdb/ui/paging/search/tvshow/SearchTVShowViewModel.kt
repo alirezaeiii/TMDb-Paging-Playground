@@ -15,7 +15,7 @@ class SearchTVShowViewModel(
         private val app: Application
 ) : BaseSearchViewModel<TVShow>(app = app) {
 
-    override fun getRepoResult(query: String): BasePageKeyRepository<TVShow> =
+    override fun searchRepoResult(query: String): BasePageKeyRepository<TVShow> =
             SearchTVShowPageKeyRepository(api, query, networkIO, app.applicationContext)
 
     class Factory @Inject constructor(
