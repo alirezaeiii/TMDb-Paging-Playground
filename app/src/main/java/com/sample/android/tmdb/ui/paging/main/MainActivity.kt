@@ -2,8 +2,10 @@ package com.sample.android.tmdb.ui.paging.main
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
+import com.sample.android.tmdb.ui.BaseActivity
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesFragment
 import com.sample.android.tmdb.ui.paging.main.movie.PopularMoviesFragment
@@ -15,10 +17,9 @@ import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowFragment
 import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.setupActionBar
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var popularMoviesFragment: PopularMoviesFragment
@@ -45,14 +46,17 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var trendingTVShowFragment: TrendingTVShowFragment
 
     @Inject
-    lateinit var navType: NavType
+    lateinit var sortType: SortType
 
     @Inject
-    lateinit var sortType: SortType
+    override lateinit var navType: NavType
 
     private var _binding: ActivityMainBinding? = null
 
     private val binding get() = _binding!!
+
+    override val toolbar: Toolbar
+        get() = binding.toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

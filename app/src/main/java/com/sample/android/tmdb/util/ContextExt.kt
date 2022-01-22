@@ -36,7 +36,7 @@ fun Context.isNetworkAvailable(): Boolean {
     }
 }
 
-fun Context.startDetailActivity(tmdbItem: TmdbItem, navType: NavType) {
+fun Context.startDetailActivity(tmdbItem: TmdbItem, navType: NavType?) {
     val intent = Intent(this, DetailActivity::class.java).apply {
         putExtras(Bundle().apply {
             putParcelable(Constants.EXTRA_TMDB_ITEM, tmdbItem)
