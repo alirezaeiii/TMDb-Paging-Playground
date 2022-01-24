@@ -40,10 +40,6 @@
         <item name="android:submitBackground">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.Tmdb.Immerse">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
     <style name="TmdbMargin">
         <item name="android:layout_marginStart">@dimen/padding_normal</item>
         <item name="android:layout_marginEnd">@dimen/padding_normal</item>
