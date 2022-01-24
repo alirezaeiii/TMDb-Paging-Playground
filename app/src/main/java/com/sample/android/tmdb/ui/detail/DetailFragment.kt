@@ -50,10 +50,6 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
                 summary.toVisibility(it)
             }
 
-            // Make the MotionLayout draw behind the status bar
-            detailsMotion.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-
             summary.setOnClickListener {
                 val maxLine = resources.getInteger(R.integer.max_lines)
                 summary.maxLines = if (summary.maxLines > maxLine) maxLine else Int.MAX_VALUE

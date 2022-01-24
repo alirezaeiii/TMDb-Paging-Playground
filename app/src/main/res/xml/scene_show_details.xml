@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor">
+            app:layout_constraintTop_toTopOf="parent">
 
         </Constraint>
 
@@ -151,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/z_app_bar"
-            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor">
+            app:layout_constraintTop_toTopOf="parent">
 
         </Constraint>
 
@@ -162,7 +162,7 @@
             android:elevation="@dimen/z_app_bar"
             app:layout_constraintEnd_toEndOf="@id/details_rv"
             app:layout_constraintStart_toStartOf="@id/details_rv"
-            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@id/details_title"
@@ -183,7 +183,7 @@
             android:elevation="@dimen/details_poster_not_elevation"
             app:layout_constraintDimensionRatio="h,1:1.5"
             app:layout_constraintStart_toStartOf="@id/details_title"
-            app:layout_constraintTop_toBottomOf="@id/details_status_bar_anchor" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </ConstraintSet>
 
