@@ -9,9 +9,11 @@ import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.isNetworkAvailable
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 abstract class TmdbRepository<T : TmdbItem>(
     private val context: Context
@@ -68,5 +70,5 @@ abstract class TmdbRepository<T : TmdbItem>(
         } else {
             emit(ViewState.Error(context.getString(R.string.failed_network_msg)))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }
