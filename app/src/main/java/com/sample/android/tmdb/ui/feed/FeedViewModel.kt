@@ -6,13 +6,11 @@ import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.repository.TmdbRepository
 import com.sample.android.tmdb.util.ViewState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 open class FeedViewModel<T : TmdbItem>(
     private val repository: TmdbRepository<T>
@@ -28,10 +26,8 @@ open class FeedViewModel<T : TmdbItem>(
 
     fun refresh() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                repository.result.collect {
-                    _stateFlow.tryEmit(it)
-                }
+            repository.result.collect {
+                _stateFlow.tryEmit(it)
             }
         }
     }
