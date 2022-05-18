@@ -51,7 +51,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         _networkState.postValue(NetworkState.LOADING)
-        getItems(params.key).subscribe({
+        loadItems(params.key).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             retry = null
             callback.onResult(it.items, params.key + 1)
@@ -69,7 +69,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
     ) {
         _networkState.postValue(NetworkState.LOADING)
         _initialLoad.postValue(NetworkState.LOADING)
-        getItems(1).subscribe({
+        loadItems(1).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             _initialLoad.postValue(NetworkState.LOADED)
             callback.onResult(it.items, null, 2)
@@ -82,7 +82,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         }.also { DisposableManager.add(it) }
     }
 
-    private fun getItems(page: Int): Observable<ItemWrapper<T>> =
+    private fun loadItems(page: Int): Observable<ItemWrapper<T>> =
         Observable.fromCallable { context.isNetworkAvailable() }.flatMap {
             return@flatMap if (it) this.fetchItems(page)
             else Observable.error(NetworkException())
