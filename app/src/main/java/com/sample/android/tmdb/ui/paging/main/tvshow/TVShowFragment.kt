@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.BaseItemFragment
 import javax.inject.Inject
 
@@ -20,4 +21,7 @@ abstract class TVShowFragment : BaseItemFragment<TVShow>() {
             }
         })[TVShowsViewModel::class.java]
     }
+
+    override val navType: NavType
+        get() = NavType.TV_SERIES
 }

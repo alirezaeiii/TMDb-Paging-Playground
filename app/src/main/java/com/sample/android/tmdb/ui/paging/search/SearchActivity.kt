@@ -7,25 +7,17 @@ import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.ui.paging.search.movie.SearchMovieFragment
-import com.sample.android.tmdb.ui.paging.search.tvshow.SearchTVShowFragment
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import com.sample.android.tmdb.util.toVisibility
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
-import javax.inject.Inject
 
-class SearchActivity : DaggerAppCompatActivity() {
+abstract class SearchActivity<T: TmdbItem> : DaggerAppCompatActivity() {
 
-    @Inject
-    lateinit var searchMovieFragment: SearchMovieFragment
+    protected abstract val fragment: BaseSearchFragment<T>
 
-    @Inject
-    lateinit var searchTVShowFragment: SearchTVShowFragment
-
-    @Inject
-    lateinit var navType: NavType
+    protected abstract val hintId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +35,7 @@ class SearchActivity : DaggerAppCompatActivity() {
             finishAfterTransition()
         }
 
-        val pair = when (navType) {
-            NavType.MOVIES -> Pair(searchMovieFragment, getString(R.string.search_hint_movies))
-            NavType.TV_SERIES -> Pair(searchTVShowFragment, getString(R.string.search_hint_tv_shows))
-        }
-        val fragment = pair.first
-        search_view.queryHint = pair.second
+        search_view.queryHint = getString(hintId)
         replaceFragmentInActivity(fragment, R.id.fragment_container)
 
         search_view.setOnQueryTextListener(object : OnQueryTextListener {

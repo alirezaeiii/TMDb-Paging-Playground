@@ -1,0 +1,17 @@
+package com.sample.android.tmdb.ui.paging.main.tvshow
+
+import com.sample.android.tmdb.R
+import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.ui.feed.NavType
+import com.sample.android.tmdb.ui.paging.main.MainActivity
+
+abstract class TVShowActivity: MainActivity<TVShow>() {
+
+    protected abstract val titleId: Int
+
+    override val screenTitle: String
+        get() = getString(titleId, getString(R.string.menu_tv_series))
+
+    override val navType: NavType?
+        get() = NavType.TV_SERIES
+}

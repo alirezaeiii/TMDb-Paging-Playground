@@ -8,7 +8,8 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.ui.detail.DetailActivity
+import com.sample.android.tmdb.ui.detail.movie.DetailMovieActivity
+import com.sample.android.tmdb.ui.detail.tvshow.DetailTVShowActivity
 import com.sample.android.tmdb.ui.feed.NavType
 
 val Context.layoutInflater: LayoutInflater get() = LayoutInflater.from(this)
@@ -37,10 +38,14 @@ fun Context.isNetworkAvailable(): Boolean {
 }
 
 fun Context.startDetailActivity(tmdbItem: TmdbItem, navType: NavType?) {
-    val intent = Intent(this, DetailActivity::class.java).apply {
+    val activity = when (navType) {
+        NavType.MOVIES -> DetailMovieActivity::class.java
+        NavType.TV_SERIES -> DetailTVShowActivity::class.java
+        else -> throw RuntimeException("Unknown navigation type")
+    }
+    val intent = Intent(this, activity).apply {
         putExtras(Bundle().apply {
             putParcelable(Constants.EXTRA_TMDB_ITEM, tmdbItem)
-            putParcelable(Constants.EXTRA_NAV_TYPE, navType)
         })
     }
     startActivity(intent)

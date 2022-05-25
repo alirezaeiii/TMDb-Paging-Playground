@@ -1,7 +1,6 @@
 package com.sample.android.tmdb.ui.feed
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -29,8 +28,15 @@ import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.common.TmdbTheme
-import com.sample.android.tmdb.ui.paging.main.MainActivity
-import com.sample.android.tmdb.util.Constants
+import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesActivity
+import com.sample.android.tmdb.ui.paging.main.movie.PopularMoviesActivity
+import com.sample.android.tmdb.ui.paging.main.movie.TrendingMoviesActivity
+import com.sample.android.tmdb.ui.paging.main.movie.UpcomingMoviesActivity
+import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowActivity
+import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowActivity
+import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowActivity
+import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowActivity
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
@@ -79,12 +85,41 @@ private fun <T : TmdbItem> FeedCollection(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .clickable {
-                        val intent = Intent(context, MainActivity::class.java).apply {
-                            putExtras(Bundle().apply {
-                                putParcelable(Constants.EXTRA_SORT_TYPE, feedCollection.sortType)
-                                putParcelable(Constants.EXTRA_NAV_TYPE, navType)
-                            })
+                        val activity = when (navType) {
+                            NavType.MOVIES -> {
+                                when (feedCollection.sortType) {
+                                    SortType.TRENDING -> {
+                                        TrendingMoviesActivity::class.java
+                                    }
+                                    SortType.MOST_POPULAR -> {
+                                        PopularMoviesActivity::class.java
+                                    }
+                                    SortType.UPCOMING -> {
+                                        UpcomingMoviesActivity::class.java
+                                    }
+                                    SortType.HIGHEST_RATED -> {
+                                        HighRateMoviesActivity::class.java
+                                    }
+                                }
+                            }
+                            NavType.TV_SERIES -> {
+                                when (feedCollection.sortType) {
+                                    SortType.TRENDING -> {
+                                        TrendingTVShowActivity::class.java
+                                    }
+                                    SortType.MOST_POPULAR -> {
+                                        PopularTVShowActivity::class.java
+                                    }
+                                    SortType.UPCOMING -> {
+                                        LatestTVShowActivity::class.java
+                                    }
+                                    SortType.HIGHEST_RATED -> {
+                                        HighRateTVShowActivity::class.java
+                                    }
+                                }
+                            }
                         }
+                        val intent = Intent(context, activity)
                         context.startActivity(intent)
                     }
                     .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 10.dp)

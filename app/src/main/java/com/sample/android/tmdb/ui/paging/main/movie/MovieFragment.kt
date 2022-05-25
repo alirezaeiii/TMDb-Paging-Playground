@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.BaseItemFragment
 import javax.inject.Inject
 
@@ -20,4 +21,7 @@ abstract class MovieFragment : BaseItemFragment<Movie>() {
             }
         })[MovieViewModel::class.java]
     }
+
+    override val navType: NavType
+        get() = NavType.MOVIES
 }

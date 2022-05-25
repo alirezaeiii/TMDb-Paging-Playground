@@ -29,16 +29,52 @@
             android:theme="@style/Theme.Tmdb.Feed" />
 
         <activity
-            android:name=".ui.paging.main.MainActivity"
+            android:name=".ui.paging.main.movie.TrendingMoviesActivity"
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
-            android:name=".ui.paging.search.SearchActivity"
+            android:name=".ui.paging.main.movie.PopularMoviesActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.movie.UpcomingMoviesActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.movie.HighRateMoviesActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.tvshow.TrendingTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.tvshow.PopularTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.tvshow.LatestTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.main.tvshow.HighRateTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
+            android:name=".ui.paging.search.movie.SearchMovieActivity"
             android:parentActivityName=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
-            android:name=".ui.detail.DetailActivity" />
+            android:name=".ui.paging.search.tvshow.SearchTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity"
+            android:theme="@style/Theme.Tmdb.Search" />
+
+        <activity
+            android:name=".ui.detail.movie.DetailMovieActivity" />
+
+        <activity
+            android:name=".ui.detail.tvshow.DetailTVShowActivity" />
 
         <activity android:name=".ui.person.PersonActivity" />
 
