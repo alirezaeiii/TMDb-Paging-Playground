@@ -1,21 +1,32 @@
 package com.sample.android.tmdb.main
 
+import android.content.Context
+import android.content.Intent
+import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.sample.android.tmdb.BaseMainActivity
-import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowActivity
+import org.junit.Rule
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class TestTrendingTVSeries: BaseMainActivity() {
+class TestTrendingTVSeries : BaseMainActivity() {
 
-    override val sortType: SortType
-        get() = SortType.TRENDING
-
-    override val navType: NavType
-        get() = NavType.TV_SERIES
+    @Rule
+    @JvmField
+    val activityTestRule: ActivityTestRule<TrendingTVShowActivity> =
+        object : ActivityTestRule<TrendingTVShowActivity>(
+            TrendingTVShowActivity::class.java
+        ) {
+            override fun getActivityIntent(): Intent {
+                val targetContext: Context =
+                    InstrumentationRegistry.getInstrumentation().targetContext
+                return Intent(targetContext, TrendingTVShowActivity::class.java)
+            }
+        }
 
     override val title: String
         get() = "Trending TV Series"

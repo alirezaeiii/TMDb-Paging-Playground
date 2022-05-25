@@ -1,12 +1,8 @@
 package com.sample.android.tmdb
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
-import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
@@ -15,44 +11,16 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.rule.ActivityTestRule
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
-import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.TmdbItemViewHolder
-import com.sample.android.tmdb.ui.paging.main.MainActivity
-import com.sample.android.tmdb.ui.paging.main.SortType
-import com.sample.android.tmdb.util.Constants.EXTRA_NAV_TYPE
-import com.sample.android.tmdb.util.Constants.EXTRA_SORT_TYPE
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
-import org.junit.Rule
 import org.junit.Test
 
 abstract class BaseMainActivity: BaseIdlingResource() {
 
-    protected abstract val sortType: SortType
-
-    protected abstract val navType: NavType
-
     protected abstract val title: String
-
-    @Rule
-    @JvmField
-    val activityTestRule: ActivityTestRule<MainActivity> = object : ActivityTestRule<MainActivity>(
-        MainActivity::class.java
-    ) {
-        override fun getActivityIntent(): Intent {
-            val targetContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
-            val intent = Intent(targetContext, MainActivity::class.java).apply {
-                putExtras(Bundle().apply {
-                    putParcelable(EXTRA_SORT_TYPE, sortType)
-                    putParcelable(EXTRA_NAV_TYPE, navType)
-                })
-            }
-            return intent
-        }
-    }
 
     private val scrollNestedScrollView: ViewAction = object : ViewAction {
         override fun getConstraints(): Matcher<View> {
