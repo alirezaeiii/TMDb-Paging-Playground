@@ -1,16 +1,16 @@
-package com.sample.android.tmdb.ui.detail.movie
+package com.sample.android.tmdb.ui.detail.tvshow
 
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.ui.detail.DetailFragment
 import javax.inject.Inject
 
-class MovieDetailFragment @Inject
+class DetailTVShowFragment @Inject
 constructor() // Required empty public constructor
     : DetailFragment() {
 
     @Inject
-    lateinit var factory: MovieDetailViewModel.Factory
+    lateinit var factory: DetailTVShowViewModel.Factory
 
     override val viewModel
-        get() = ViewModelProvider(this, factory).get(MovieDetailViewModel::class.java)
+        get() = ViewModelProvider(this, factory).get(DetailTVShowViewModel::class.java)
 }

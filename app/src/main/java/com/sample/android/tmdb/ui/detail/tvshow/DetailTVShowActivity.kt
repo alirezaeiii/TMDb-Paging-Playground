@@ -7,8 +7,8 @@ import javax.inject.Inject
 class DetailTVShowActivity: DetailActivity()  {
 
     @Inject
-    lateinit var tvShowDetailFragment: TVShowDetailFragment
+    lateinit var detailTVShowFragment: DetailTVShowFragment
 
     override val fragment: DetailFragment
-        get() = tvShowDetailFragment
+        get() = detailTVShowFragment
 }

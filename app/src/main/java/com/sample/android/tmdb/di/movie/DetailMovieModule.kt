@@ -2,8 +2,7 @@ package com.sample.android.tmdb.di.movie
 
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.movie.DetailMovieActivity
-import com.sample.android.tmdb.ui.detail.movie.MovieDetailFragment
-import com.sample.android.tmdb.util.Constants
+import com.sample.android.tmdb.ui.detail.movie.DetailMovieFragment
 import com.sample.android.tmdb.util.Constants.EXTRA_TMDB_ITEM
 import dagger.Module
 import dagger.Provides
@@ -13,7 +12,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class DetailMovieModule {
 
     @ContributesAndroidInjector
-    internal abstract fun movieDetailFragment(): MovieDetailFragment
+    internal abstract fun detailMovieFragment(): DetailMovieFragment
 
     @Module
     companion object {

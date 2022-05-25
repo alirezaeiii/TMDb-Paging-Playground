@@ -1,25 +1,25 @@
-package com.sample.android.tmdb.ui.detail.tvshow
+package com.sample.android.tmdb.ui.detail.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.ui.detail.DetailViewModel
 import javax.inject.Inject
 
-class TVShowDetailViewModel(
-        api: TVShowApi,
+class DetailMovieViewModel(
+        api: MovieApi,
         item: TmdbItem
-) : DetailViewModel(api.tvTrailers(item.id), api.tvCredit(item.id)) {
+) : DetailViewModel(api.movieTrailers(item.id), api.movieCredit(item.id)) {
 
     class Factory @Inject constructor(
-            private val api: TVShowApi,
+            private val api : MovieApi,
             private val item: TmdbItem
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(TVShowDetailViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(DetailMovieViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return TVShowDetailViewModel(api, item) as T
+                return DetailMovieViewModel(api, item) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

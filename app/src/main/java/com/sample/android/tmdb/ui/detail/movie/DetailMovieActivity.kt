@@ -7,8 +7,8 @@ import javax.inject.Inject
 class DetailMovieActivity: DetailActivity() {
 
     @Inject
-    lateinit var movieDetailFragment: MovieDetailFragment
+    lateinit var detailMovieFragment: DetailMovieFragment
 
     override val fragment: DetailFragment
-        get() = movieDetailFragment
+        get() = detailMovieFragment
 }
