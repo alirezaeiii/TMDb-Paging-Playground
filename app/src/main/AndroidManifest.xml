@@ -62,12 +62,10 @@
 
         <activity
             android:name=".ui.paging.search.movie.SearchMovieActivity"
-            android:parentActivityName=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
             android:name=".ui.paging.search.tvshow.SearchTVShowActivity"
-            android:parentActivityName=".ui.feed.FeedActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
         <activity
