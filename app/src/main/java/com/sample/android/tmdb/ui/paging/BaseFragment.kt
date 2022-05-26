@@ -9,17 +9,14 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
-import com.sample.android.tmdb.ui.feed.NavType
+import com.sample.android.tmdb.ui.BaseNavTypeFragment
 import com.sample.android.tmdb.util.startDetailActivity
 import com.sample.android.tmdb.widget.MarginDecoration
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-abstract class BaseFragment<T : TmdbItem> : DaggerFragment() {
+abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
     protected abstract val viewModel: BaseViewModel<T>
-
-    protected abstract val navType: NavType
 
     protected open fun refresh() {
         viewModel.refresh()

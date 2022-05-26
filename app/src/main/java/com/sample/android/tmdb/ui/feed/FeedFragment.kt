@@ -8,19 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.BaseNavTypeFragment
 import com.sample.android.tmdb.ui.common.ErrorScreen
 import com.sample.android.tmdb.ui.common.ProgressScreen
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.startDetailActivity
-import dagger.android.support.DaggerFragment
 
-abstract class FeedFragment<T : TmdbItem> : DaggerFragment() {
+abstract class FeedFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
     protected abstract val viewModel: FeedViewModel<T>
-
-    protected abstract val navType: NavType
 
     override fun onCreateView(
         inflater: LayoutInflater,
