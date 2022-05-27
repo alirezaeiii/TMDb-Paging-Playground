@@ -6,11 +6,11 @@ import javax.inject.Inject
 class HighRateTVShowActivity: TVShowActivity() {
 
     @Inject
-    lateinit var highRateTvShowFragment: HighRateTVShowFragment
+    lateinit var highRateTVShowFragment: HighRateTVShowFragment
 
     override val titleId: Int
         get() = R.string.highest_rate
 
     override val fragment: TVShowFragment
-        get() = highRateTvShowFragment
+        get() = highRateTVShowFragment
 }
