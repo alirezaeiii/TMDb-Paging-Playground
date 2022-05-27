@@ -3,15 +3,15 @@ package com.sample.android.tmdb.ui.feed.tvshow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.repository.TmdbRepository
+import com.sample.android.tmdb.repository.TVShowRepository
 import com.sample.android.tmdb.ui.feed.FeedViewModel
 import javax.inject.Inject
 
-class FeedTVShowViewModel(repository: TmdbRepository<TVShow>) :
+class FeedTVShowViewModel(repository: TVShowRepository) :
     FeedViewModel<TVShow>(repository) {
 
     class Factory @Inject constructor(
-        private val repository: TmdbRepository<TVShow>
+        private val repository: TVShowRepository
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(FeedTVShowViewModel::class.java)) {
