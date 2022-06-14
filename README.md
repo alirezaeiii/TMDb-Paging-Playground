@@ -3,6 +3,14 @@ A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Coroutines, Jetpack C
 
 <a href="https://play.google.com/store/apps/details?id=com.sample.android.tmdb"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=70px /></a>
 
+## Screenshots
+<p float="left">
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot1.gif" width="249" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot2.gif" width="249" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot3.gif" width="249" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot4.gif" width="249" />
+</p>
+
 ## Features
 * MVVM Architecture.
 * Jetpack Libraries and Architecture Components.
