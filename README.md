@@ -5,10 +5,11 @@ A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Coroutines, Jetpack C
 
 ## Screenshots
 <p float="left">
-  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot1.gif" width="249" />
-  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot2.gif" width="249" />
-  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot3.gif" width="249" />
-  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot4.gif" width="249" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot1.gif" width="250" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot2.gif" width="250" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot3.gif" width="250" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot4.gif" width="250" />
+  <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot5.gif" width="250" />
 </p>
 
 ## Features
