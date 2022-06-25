@@ -1,20 +1,22 @@
 package com.sample.android.tmdb.ui.feed
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityFeedBinding
-import com.sample.android.tmdb.ui.BaseActivity
+import com.sample.android.tmdb.ui.BaseNavTypeActivity
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import javax.inject.Inject
 
-class FeedActivity : BaseActivity() {
+class FeedActivity : BaseNavTypeActivity() {
 
     @Inject
     lateinit var feedMovieFragment: FeedMovieFragment
@@ -34,14 +36,20 @@ class FeedActivity : BaseActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
+
+    override val textViewNetworkStatus: TextView
+        get() = binding.textViewNetworkStatus
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        viewModel.headline.observe(this, {
+        viewModel.headline.observe(this) {
             title = it
-        })
+        }
         if (savedInstanceState == null) {
             addFragmentToActivity(feedMovieFragment, R.id.fragment_container)
             binding.navView.setCheckedItem(R.id.action_movies)

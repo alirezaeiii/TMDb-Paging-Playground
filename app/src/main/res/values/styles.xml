@@ -66,4 +66,15 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
     </style>
 
+    <style name="StatusTextView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="StatusView">
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/padding_medium</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>

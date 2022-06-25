@@ -11,4 +11,7 @@
 
     <color name="md_black_1000">#000000</color>
     <color name="md_grey_600">#757575</color>
+
+    <color name="colorStatusConnected">#43A047</color>
+    <color name="colorStatusNotConnected">#D32F2F</color>
 </resources>

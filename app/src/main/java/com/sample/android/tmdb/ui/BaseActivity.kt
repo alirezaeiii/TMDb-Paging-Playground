@@ -1,48 +1,60 @@
 package com.sample.android.tmdb.ui
 
-import android.app.ActivityOptions
-import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.ui.paging.search.movie.SearchMovieActivity
-import com.sample.android.tmdb.ui.paging.search.tvshow.SearchTVShowActivity
+import com.sample.android.tmdb.util.NetworkUtils
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity: DaggerAppCompatActivity() {
 
-    protected abstract val toolbar: Toolbar
+    @Inject
+    lateinit var networkUtils: NetworkUtils
 
-    protected abstract val navType: NavType?
+    protected abstract val networkStatusLayout: View
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.search_menu, menu)
-        return true
+    protected abstract val textViewNetworkStatus: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        handleNetwork()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_search -> {
-                val searchMenuView: View = toolbar.findViewById(R.id.action_search)
-                val options = ActivityOptions.makeSceneTransitionAnimation(
-                    this,
-                    searchMenuView, getString(R.string.transition_search_back)
-                ).toBundle()
-
-                val activity = when (navType) {
-                    NavType.MOVIES -> SearchMovieActivity::class.java
-                    NavType.TV_SERIES -> SearchTVShowActivity::class.java
-                    else -> throw RuntimeException("Unknown search navigation type")
-                }
-                val intent = Intent(this, activity).apply {
-                    action = Intent.ACTION_SEARCH
-                }
-                startActivity(intent, options)
+    private fun handleNetwork() {
+        networkUtils.getNetworkLiveData().observe(this) { isConnected: Boolean ->
+            if (!isConnected) {
+                    textViewNetworkStatus.text = getString(R.string.failed_network_msg)
+                    networkStatusLayout.visibility = View.VISIBLE
+                    networkStatusLayout.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.colorStatusNotConnected, null
+                        )
+                    )
+            } else {
+                    textViewNetworkStatus.text = getString(R.string.text_connectivity)
+                    networkStatusLayout.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources, R.color.colorStatusConnected, null
+                        )
+                    )
+                    networkStatusLayout.animate().alpha(1f)
+                        .setStartDelay(ANIMATION_DURATION.toLong())
+                        .setDuration(ANIMATION_DURATION.toLong())
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
+                                super.onAnimationEnd(animation)
+                                networkStatusLayout.visibility = View.GONE
+                            }
+                        })
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 }
+
+private const val ANIMATION_DURATION = 1000
