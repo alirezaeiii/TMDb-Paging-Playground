@@ -42,4 +42,9 @@ abstract class DetailActivity : BaseActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

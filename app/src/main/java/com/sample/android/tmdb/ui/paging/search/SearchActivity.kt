@@ -71,4 +71,9 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
             })
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
