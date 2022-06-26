@@ -41,7 +41,6 @@
                     android:layout_height="0dp"
                     android:animateLayoutChanges="true"
                     android:background="@color/colorStatusNotConnected"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
