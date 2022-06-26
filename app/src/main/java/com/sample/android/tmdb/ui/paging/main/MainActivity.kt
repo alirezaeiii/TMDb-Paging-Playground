@@ -25,8 +25,8 @@ abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
-    override val networkStatusLayout: View
-        get() = binding.networkStatusLayout
+    override val networkStatusLayout: View?
+        get() = _binding?.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
