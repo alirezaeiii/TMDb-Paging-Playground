@@ -1,64 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.paging.search.SearchActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".ui.paging.search.SearchActivity">
 
-        <FrameLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
-            android:elevation="@dimen/z_app_bar"
-            android:outlineProvider="bounds"
-            android:theme="@style/SearchViewTheme"
-            android:transitionGroup="false"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/colorPrimary" />
-
-            <SearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/padding_normal"
-                android:iconifiedByDefault="false"
-                android:transitionGroup="true" />
+            android:layout_height="wrap_content">
 
             <FrameLayout
-                android:layout_width="96dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:paddingStart="@dimen/padding_micro"
-                tools:ignore="RtlSymmetry">
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:elevation="@dimen/z_app_bar"
+                android:outlineProvider="bounds"
+                android:theme="@style/SearchViewTheme"
+                android:transitionGroup="false"
+                app:layout_scrollFlags="scroll|enterAlways">
 
-                <ImageButton
-                    android:id="@+id/search_back"
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="?android:selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_arrow_back_padded"
-                    android:transitionName="@string/transition_search_back"
-                    tools:ignore="contentDescription" />
+                    android:background="?attr/colorPrimary" />
+
+                <SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/padding_normal"
+                    android:iconifiedByDefault="false"
+                    android:transitionGroup="true" />
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/padding_micro"
+                    tools:ignore="RtlSymmetry">
+
+                    <ImageButton
+                        android:id="@+id/search_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_arrow_back_padded"
+                        android:transitionName="@string/transition_search_back"
+                        tools:ignore="contentDescription" />
+
+                </FrameLayout>
 
             </FrameLayout>
 
-        </FrameLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <LinearLayout
+                android:id="@+id/networkStatusLayout"
+                style="@style/StatusView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/colorStatusNotConnected"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewNetworkStatus"
+                    style="@style/StatusTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/failed_network_msg"
+                    tools:text="@string/failed_network_msg" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/networkStatusLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
