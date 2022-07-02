@@ -12,7 +12,7 @@ import javax.inject.Inject
 class PersonActivity : BaseActivity() {
 
     @Inject
-    lateinit var personFragment: PersonFragment
+    lateinit var fragment: PersonFragment
 
     private var _binding: ActivityDetailBinding? = null
 
@@ -30,11 +30,7 @@ class PersonActivity : BaseActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-
-            supportFragmentManager.findFragmentById(R.id.fragment_container)
-                    as PersonFragment? ?: personFragment.also {
-                addFragmentToActivity(it, R.id.fragment_container)
-            }
+            addFragmentToActivity(fragment, R.id.fragment_container)
         }
     }
 
