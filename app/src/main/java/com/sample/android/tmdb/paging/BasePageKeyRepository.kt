@@ -43,6 +43,6 @@ abstract class BasePageKeyRepository<T : TmdbItem>(
     }
 
     companion object {
-        private const val PAGE_SIZE = 20
+        private const val PAGE_SIZE = 10
     }
 }
