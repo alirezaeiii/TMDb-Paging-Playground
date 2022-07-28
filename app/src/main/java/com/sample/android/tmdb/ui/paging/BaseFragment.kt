@@ -7,15 +7,19 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.databinding.FragmentMainBinding
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseNavTypeFragment
 import com.sample.android.tmdb.widget.MarginDecoration
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
     protected abstract val viewModel: BaseViewModel<T>
+
+    private var _binding: FragmentMainBinding? = null
+
+    private val binding get() = _binding!!
 
     protected open fun refresh() {
         viewModel.refresh()
@@ -26,7 +30,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
+        _binding = FragmentMainBinding.inflate(inflater)
 
         val tmdbAdapter = TmdbAdapter(viewModel::retry, object : TmdbClickCallback<T> {
             override fun onClick(t: T) {
@@ -34,9 +38,9 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
             }
         })
 
-        with(root) {
+        with(binding) {
 
-            swipe_refresh.apply {
+            swipeRefresh.apply {
                 setColorSchemeColors(
                     ContextCompat.getColor(context, R.color.colorPrimary),
                     ContextCompat.getColor(context, R.color.colorAccent),
@@ -72,6 +76,11 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
             tmdbAdapter.setNetworkState(it)
         }
 
-        return root
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
