@@ -10,7 +10,6 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.BaseNavTypeFragment
-import com.sample.android.tmdb.util.startDetailActivity
 import com.sample.android.tmdb.widget.MarginDecoration
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
@@ -31,7 +30,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
         val tmdbAdapter = TmdbAdapter(viewModel::retry, object : TmdbClickCallback<T> {
             override fun onClick(t: T) {
-                context?.startDetailActivity(t, navType)
+                startDetailActivity(t)
             }
         })
 
@@ -44,10 +43,10 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
                     ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 )
 
-                viewModel.refreshState.observe(viewLifecycleOwner, {
+                viewModel.refreshState.observe(viewLifecycleOwner) {
                     isRefreshing = it.status == RUNNING
                     tmdbAdapter.setRefreshState(it)
-                })
+                }
 
                 setOnRefreshListener { refresh() }
             }
@@ -65,13 +64,13 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
             }
         }
 
-        viewModel.items.observe(viewLifecycleOwner, {
+        viewModel.items.observe(viewLifecycleOwner) {
             tmdbAdapter.submitList(it)
-        })
+        }
 
-        viewModel.networkState.observe(viewLifecycleOwner, {
+        viewModel.networkState.observe(viewLifecycleOwner) {
             tmdbAdapter.setNetworkState(it)
-        })
+        }
 
         return root
     }

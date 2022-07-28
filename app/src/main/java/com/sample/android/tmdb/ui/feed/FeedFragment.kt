@@ -14,7 +14,6 @@ import com.sample.android.tmdb.ui.common.ProgressScreen
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
 import com.sample.android.tmdb.util.ViewState
-import com.sample.android.tmdb.util.startDetailActivity
 
 abstract class FeedFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
@@ -40,7 +39,7 @@ abstract class FeedFragment<T : TmdbItem> : BaseNavTypeFragment() {
                     navType,
                     viewState.data
                 ) { tmdbItem ->
-                    context?.startDetailActivity(tmdbItem, navType)
+                    startDetailActivity(tmdbItem)
                 }
             }
             is ViewState.Error ->
