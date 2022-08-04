@@ -21,19 +21,17 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
 
     protected abstract val hintId: Int
 
-    private var _binding: ActivitySearchBinding? = null
+    private lateinit var binding: ActivitySearchBinding
 
-    private val binding get() = _binding!!
-
-    override val networkStatusLayout: View?
-        get() = _binding?.networkStatusLayout
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivitySearchBinding.inflate(layoutInflater)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -70,10 +68,5 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
                 }
             })
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

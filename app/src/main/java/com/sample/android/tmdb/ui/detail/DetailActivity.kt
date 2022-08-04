@@ -13,19 +13,17 @@ abstract class DetailActivity : BaseActivity() {
 
     protected abstract val fragment: DetailFragment
 
-    private var _binding: ActivityDetailBinding? = null
+    private lateinit var binding: ActivityDetailBinding
 
-    private val binding get() = _binding!!
-
-    override val networkStatusLayout: View?
-        get() = _binding?.networkStatusLayout
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
@@ -41,10 +39,5 @@ abstract class DetailActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

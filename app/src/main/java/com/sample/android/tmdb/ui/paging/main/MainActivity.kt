@@ -14,9 +14,7 @@ import com.sample.android.tmdb.util.setupActionBar
 
 abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityMainBinding
 
     protected abstract val fragment: BaseItemFragment<T>
 
@@ -25,15 +23,15 @@ abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
-    override val networkStatusLayout: View?
-        get() = _binding?.networkStatusLayout
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupActionBar(binding.toolbar) {
             setDisplayHomeAsUpEnabled(true)
@@ -52,10 +50,5 @@ abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

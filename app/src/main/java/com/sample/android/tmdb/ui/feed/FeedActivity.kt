@@ -26,9 +26,7 @@ class FeedActivity : BaseNavTypeActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private var _binding: ActivityFeedBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityFeedBinding
 
     override val navType: NavType?
         get() = viewModel.currentType.value
@@ -36,15 +34,15 @@ class FeedActivity : BaseNavTypeActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
-    override val networkStatusLayout: View?
-        get() = _binding?.networkStatusLayout
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityFeedBinding.inflate(layoutInflater)
+        binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         viewModel.headline.observe(this) {
@@ -70,11 +68,6 @@ class FeedActivity : BaseNavTypeActivity() {
         } else {
             super.onBackPressed()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     private fun setupNavigationView() {

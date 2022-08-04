@@ -14,28 +14,21 @@ class PersonActivity : BaseActivity() {
     @Inject
     lateinit var fragment: PersonFragment
 
-    private var _binding: ActivityDetailBinding? = null
+    private lateinit var binding: ActivityDetailBinding
 
-    private val binding get() = _binding!!
-
-    override val networkStatusLayout: View?
-        get() = _binding?.networkStatusLayout
+    override val networkStatusLayout: View
+        get() = binding.networkStatusLayout
 
     override val textViewNetworkStatus: TextView
         get() = binding.textViewNetworkStatus
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
             addFragmentToActivity(fragment, R.id.fragment_container)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

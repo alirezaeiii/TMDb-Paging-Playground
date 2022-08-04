@@ -16,7 +16,7 @@ abstract class BaseActivity: DaggerAppCompatActivity() {
     @Inject
     lateinit var networkUtils: NetworkUtils
 
-    protected abstract val networkStatusLayout: View?
+    protected abstract val networkStatusLayout: View
 
     protected abstract val textViewNetworkStatus: TextView
 
@@ -29,8 +29,8 @@ abstract class BaseActivity: DaggerAppCompatActivity() {
         networkUtils.getNetworkLiveData().observe(this) { isConnected: Boolean ->
             if (!isConnected) {
                     textViewNetworkStatus.text = getString(R.string.failed_network_msg)
-                    networkStatusLayout?.visibility = View.VISIBLE
-                    networkStatusLayout?.setBackgroundColor(
+                    networkStatusLayout.visibility = View.VISIBLE
+                    networkStatusLayout.setBackgroundColor(
                         ResourcesCompat.getColor(
                             resources,
                             R.color.colorStatusNotConnected, null
@@ -38,18 +38,18 @@ abstract class BaseActivity: DaggerAppCompatActivity() {
                     )
             } else {
                     textViewNetworkStatus.text = getString(R.string.text_connectivity)
-                    networkStatusLayout?.setBackgroundColor(
+                    networkStatusLayout.setBackgroundColor(
                         ResourcesCompat.getColor(
                             resources, R.color.colorStatusConnected, null
                         )
                     )
-                    networkStatusLayout?.animate()?.alpha(1f)
-                        ?.setStartDelay(ANIMATION_DURATION.toLong())
-                        ?.setDuration(ANIMATION_DURATION.toLong())
-                        ?.setListener(object : AnimatorListenerAdapter() {
+                    networkStatusLayout.animate().alpha(1f)
+                        .setStartDelay(ANIMATION_DURATION.toLong())
+                        .setDuration(ANIMATION_DURATION.toLong())
+                        .setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
-                                networkStatusLayout?.visibility = View.GONE
+                                networkStatusLayout.visibility = View.GONE
                             }
                         })
             }
