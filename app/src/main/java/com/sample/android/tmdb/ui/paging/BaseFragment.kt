@@ -21,6 +21,8 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
     protected val binding get() = _binding!!
 
+    protected lateinit var tmdbAdapter: TmdbAdapter<T>
+
     protected open fun refresh() {
         viewModel.refresh()
     }
@@ -32,7 +34,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
         _binding = FragmentMainBinding.inflate(inflater)
 
-        val tmdbAdapter = TmdbAdapter(viewModel::retry, object : TmdbClickCallback<T> {
+        tmdbAdapter = TmdbAdapter(viewModel::retry, object : TmdbClickCallback<T> {
             override fun onClick(t: T) {
                 startDetailActivity(t)
             }
