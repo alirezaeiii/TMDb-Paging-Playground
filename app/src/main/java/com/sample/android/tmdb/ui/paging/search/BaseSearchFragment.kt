@@ -5,7 +5,6 @@ import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.paging.BaseFragment
 import com.sample.android.tmdb.ui.paging.TmdbAdapter
 import com.sample.android.tmdb.util.toVisibility
-import kotlinx.android.synthetic.main.fragment_main.*
 
 abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
@@ -19,15 +18,15 @@ abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
 
     fun search(query: String) {
         if (searchViewModel.showQuery(query)) {
-            recyclerView.scrollToPosition(0)
+            binding.recyclerView.scrollToPosition(0)
             @Suppress("UNCHECKED_CAST")
-            (recyclerView.adapter as TmdbAdapter<T>).submitList(null)
+            (binding.recyclerView.adapter as TmdbAdapter<T>).submitList(null)
         }
     }
 
     fun observeRefreshState() {
-        searchViewModel.refreshState.observe(this, {
-            recyclerView.toVisibility(it.status != RUNNING)
-        })
+        searchViewModel.refreshState.observe(this) {
+            binding.recyclerView.toVisibility(it.status != RUNNING)
+        }
     }
 }

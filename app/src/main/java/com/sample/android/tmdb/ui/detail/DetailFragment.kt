@@ -17,7 +17,6 @@ import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.ui.detail.credit.*
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
-import kotlinx.android.synthetic.main.fragment_detail.view.*
 import javax.inject.Inject
 
 abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDetailBinding>
@@ -32,10 +31,10 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
         super.onCreateView(inflater, container, savedInstanceState)
         with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem
-            viewModel.liveData.observe(viewLifecycleOwner, { detailWrapper ->
+            viewModel.liveData.observe(viewLifecycleOwner) { detailWrapper ->
                 castList.setupAdapter(detailWrapper.creditWrapper.cast)
                 crewList.setupAdapter(detailWrapper.creditWrapper.crew)
-            })
+            }
             with(activity as AppCompatActivity) {
                 setupActionBar(detailsToolbar) {
                     setDisplayShowTitleEnabled(false)
@@ -61,7 +60,7 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.details_motion.setTransitionListener(object : MotionLayout.TransitionListener {
+        binding.detailsMotion.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
 
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
@@ -72,20 +71,20 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
                 endId: Int,
                 progress: Float
             ) {
-                view.details_appbar_background.cutProgress = 1f - progress
-                view.details_poster.visibility = View.VISIBLE
+                binding.detailsAppbarBackground.cutProgress = 1f - progress
+                binding.detailsPoster .visibility = View.VISIBLE
             }
 
             @SuppressLint("RestrictedApi")
             override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
                 when (currentId) {
                     R.id.end -> {
-                        view.details_appbar_background.cutProgress = 0f
-                        view.details_poster.visibility = View.GONE
+                        binding.detailsAppbarBackground.cutProgress = 0f
+                        binding.detailsPoster.visibility = View.GONE
                     }
                     R.id.start -> {
-                        view.details_appbar_background.cutProgress = 1f
-                        view.details_poster.visibility = View.VISIBLE
+                        binding.detailsAppbarBackground.cutProgress = 1f
+                        binding.detailsPoster.visibility = View.VISIBLE
                     }
                 }
             }

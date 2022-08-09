@@ -19,7 +19,7 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
     private var _binding: FragmentMainBinding? = null
 
-    private val binding get() = _binding!!
+    protected val binding get() = _binding!!
 
     protected open fun refresh() {
         viewModel.refresh()

@@ -1,12 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
-
-androidExtensions {
-    experimental = true
-}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
