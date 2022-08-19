@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.paging.search.tvshow
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -8,7 +8,6 @@ import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.paging.search.tvshow.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic

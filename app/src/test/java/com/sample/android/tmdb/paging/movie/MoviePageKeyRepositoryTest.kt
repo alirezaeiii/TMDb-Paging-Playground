@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.paging.movie
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -8,7 +8,6 @@ import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.paging.main.SortType.*
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
