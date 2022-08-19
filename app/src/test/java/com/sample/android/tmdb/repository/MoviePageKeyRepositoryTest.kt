@@ -1,13 +1,14 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.repository
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
+import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.network.TVShowApi
-import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository
+import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.paging.main.SortType.*
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
@@ -28,20 +29,20 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.util.concurrent.Executor
 
 @RunWith(MockitoJUnitRunner::class)
-class TVShowPageKeyRepositoryTest {
+class MoviePageKeyRepositoryTest {
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var api: TVShowApi
+    private lateinit var api: MovieApi
 
     @Mock
     private lateinit var context: Context
 
     private val networkExecutor = Executor { command -> command.run() }
 
-    private lateinit var tvShow: TVShow
+    private lateinit var movie: Movie
 
     @Before
     fun setup() {
@@ -49,14 +50,14 @@ class TVShowPageKeyRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
-        tvShow = TVShow(1, "overview", "date",
+        movie = Movie(1, "overview", "date",
                 null, null, "title", 6.5)
     }
 
     @Test
-    fun loadTrendingTVShows() {
-        val repository = TVShowsPageKeyRepository(api, TRENDING, networkExecutor, context)
-        `when`(api.trendingTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+    fun loadTrendingMovies() {
+        val repository = MoviePageKeyRepository(api, TRENDING, networkExecutor, context)
+        `when`(api.trendingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -65,9 +66,9 @@ class TVShowPageKeyRepositoryTest {
     }
 
     @Test
-    fun loadMostPopularTVShows() {
-        val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
-        `when`(api.popularTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+    fun loadMostPopularMovies() {
+        val repository = MoviePageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
+        `when`(api.popularMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -76,9 +77,9 @@ class TVShowPageKeyRepositoryTest {
     }
 
     @Test
-    fun loadHighRatedTVShows() {
-        val repository = TVShowsPageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
-        `when`(api.topRatedTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+    fun loadHighRatedMovies() {
+        val repository = MoviePageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
+        `when`(api.topRatedMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -87,9 +88,9 @@ class TVShowPageKeyRepositoryTest {
     }
 
     @Test
-    fun loadUpcomingTVShows() {
-        val repository = TVShowsPageKeyRepository(api, UPCOMING, networkExecutor, context)
-        `when`(api.latestTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+    fun loadUpcomingMovies() {
+        val repository = MoviePageKeyRepository(api, UPCOMING, networkExecutor, context)
+        `when`(api.latestMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -97,9 +98,9 @@ class TVShowPageKeyRepositoryTest {
         }
     }
 
-    private fun getObserver(repository: TVShowsPageKeyRepository): LoggingObserver<PagedList<TVShow>> {
+    private fun getObserver(repository: MoviePageKeyRepository): LoggingObserver<PagedList<Movie>> {
         val listing = repository.getItems()
-        val observer = LoggingObserver<PagedList<TVShow>>()
+        val observer = LoggingObserver<PagedList<Movie>>()
         listing.pagedList.observeForever(observer)
         return observer
     }
