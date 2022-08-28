@@ -10,8 +10,8 @@ android {
         applicationId "com.sample.android.tmdb"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 68
-        versionName "2.5.11"
+        versionCode 69
+        versionName "2.5.12"
         buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
         buildConfigField "String", "TMDB_BASE_URL", "\"http://api.themoviedb.org/\""
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

@@ -3,4 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.start.StartActivity"/>
+    tools:context=".ui.start.StartActivity">
+
+    <ImageView
+        android:layout_width="192dp"
+        android:layout_height="192dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:src="@drawable/ic_tv_series"/>
+
+</FrameLayout>
