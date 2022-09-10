@@ -41,8 +41,8 @@ class PersonRepositoryTest {
 
         val repository = PersonRepositoryImpl(personApi)
 
-        val expectedTrailers = Single.just(person).blockingGet()
-        assertThat(repository.getPerson(anyInt()).blockingGet(), `is`(expectedTrailers))
+        val expectedPerson = Single.just(person).blockingGet()
+        assertThat(repository.getPerson(anyInt()).blockingGet(), `is`(expectedPerson))
     }
 
     @Test
