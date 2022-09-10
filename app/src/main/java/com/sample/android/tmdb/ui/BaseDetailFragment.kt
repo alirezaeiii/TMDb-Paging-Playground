@@ -11,13 +11,13 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModel
 import dagger.android.support.DaggerFragment
 
-abstract class BaseDetailFragment<VM: ViewModel, T: ViewDataBinding>(
+abstract class BaseDetailFragment<VM: ViewModel, VB: ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ): DaggerFragment() {
 
     protected abstract val viewModel: VM
 
-    private var _binding: T? = null
+    private var _binding: VB? = null
 
     protected val binding get() = _binding!!
 

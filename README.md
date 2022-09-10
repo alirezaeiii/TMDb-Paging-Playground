@@ -13,7 +13,7 @@ A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Coroutines, Jetpack C
 </p>
 
 ## Features
-* MVVM Architecture.
+* MVVM Architecture + Repository design Pattern.
 * Jetpack Libraries and Architecture Components.
 
 ## Prerequisites
