@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.detail.tvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
 import com.sample.android.tmdb.domain.*
-import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.repository.TVShowDetailRepository
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
@@ -29,7 +29,7 @@ class DetailTVShowViewModelTest {
     var rxJavaRule: TestRule = TestRxJavaRule()
 
     @Mock
-    private lateinit var api: TVShowApi
+    private lateinit var repository: TVShowDetailRepository
 
     private lateinit var tvShow: TVShow
 
@@ -42,10 +42,10 @@ class DetailTVShowViewModelTest {
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.tvTrailers(anyInt())).thenReturn(Single.just(trailers))
-        `when`(api.tvCredit(anyInt())).thenReturn(Single.just(creditWrapper))
+        `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(repository.getTVShowCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
-        val viewModel = DetailTVShowViewModel(api, tvShow)
+        val viewModel = DetailTVShowViewModel(repository, tvShow)
 
         viewModel.liveData.value?.let {
             assertTrue(it.videos.size == 1)
@@ -59,10 +59,10 @@ class DetailTVShowViewModelTest {
     @Test
     fun errorLoadTrailers() {
         val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
-        `when`(api.tvTrailers(anyInt())).thenReturn(Single.error(Exception()))
-        `when`(api.tvCredit(anyInt())).thenReturn(Single.just(creditWrapper))
+        `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(repository.getTVShowCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
-        val viewModel = DetailTVShowViewModel(api, tvShow)
+        val viewModel = DetailTVShowViewModel(repository, tvShow)
 
         with(viewModel.liveData.value) {
             assertThat(this, `is`(nullValue()))
@@ -72,10 +72,10 @@ class DetailTVShowViewModelTest {
     @Test
     fun errorLoadCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        `when`(api.tvTrailers(anyInt())).thenReturn(Single.just(trailers))
-        `when`(api.tvCredit(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.just(trailers))
+        `when`(repository.getTVShowCredit(anyInt())).thenReturn(Single.error(Exception()))
 
-        val viewModel = DetailTVShowViewModel(api, tvShow)
+        val viewModel = DetailTVShowViewModel(repository, tvShow)
 
         with(viewModel.liveData.value) {
             assertThat(this, `is`(nullValue()))
