@@ -13,12 +13,15 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
-@Component(modules = [ActivityBindingModule::class,
+@Component(
+    modules = [ActivityBindingModule::class,
         AndroidSupportInjectionModule::class,
         NetworkModule::class,
         RepositoryModule::class,
         ContextModule::class,
-        AppUtilsModule::class])
+        AppUtilsModule::class,
+        DispatcherModule::class]
+)
 interface AppComponent : AndroidInjector<TmdbApp> {
 
     @Component.Builder

@@ -121,6 +121,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
     // mock extension function
     testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"
