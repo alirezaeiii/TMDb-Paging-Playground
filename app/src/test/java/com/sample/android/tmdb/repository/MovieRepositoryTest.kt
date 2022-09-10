@@ -3,6 +3,7 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
+import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -46,6 +47,27 @@ class MovieRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
+    }
+
+    @Test
+    fun `test Api Succeeds`() {
+        testCoroutineRule.runBlockingTest {
+            `when`(movieApi.trendingMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.popularMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.latestMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.topRatedMovies()).thenReturn(ItemWrapper(emptyList()))
+
+            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+
+            assertThat(repository.result.first(), `is`(ViewState.Loading))
+
+            val result = (repository.result.last() as ViewState.Success).data
+
+            assertThat(result[0].feeds, `is`(emptyList()))
+            assertThat(result[1].feeds, `is`(emptyList()))
+            assertThat(result[2].feeds, `is`(emptyList()))
+            assertThat(result[3].feeds, `is`(emptyList()))
+        }
     }
 
     @Test

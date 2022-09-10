@@ -3,6 +3,7 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
+import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -46,6 +47,27 @@ class TVShowRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
+    }
+
+    @Test
+    fun `test Api Succeeds`() {
+        testCoroutineRule.runBlockingTest {
+            `when`(tvShowApi.trendingTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.popularTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.latestTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.topRatedTVSeries()).thenReturn(ItemWrapper(emptyList()))
+
+            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+
+            assertThat(repository.result.first(), `is`(ViewState.Loading))
+
+            val result = (repository.result.last() as ViewState.Success).data
+
+            assertThat(result[0].feeds, `is`(emptyList()))
+            assertThat(result[1].feeds, `is`(emptyList()))
+            assertThat(result[2].feeds, `is`(emptyList()))
+            assertThat(result[3].feeds, `is`(emptyList()))
+        }
     }
 
     @Test
