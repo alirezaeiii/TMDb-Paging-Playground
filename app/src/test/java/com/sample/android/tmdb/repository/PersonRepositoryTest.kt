@@ -40,9 +40,7 @@ class PersonRepositoryTest {
         `when`(personApi.getPerson(anyInt())).thenReturn(Single.just(person))
 
         val repository = PersonRepositoryImpl(personApi)
-
-        val expectedPerson = Single.just(person).blockingGet()
-        assertThat(repository.getPerson(anyInt()).blockingGet(), `is`(expectedPerson))
+        assertThat(repository.getPerson(anyInt()).blockingGet(), `is`(person))
     }
 
     @Test

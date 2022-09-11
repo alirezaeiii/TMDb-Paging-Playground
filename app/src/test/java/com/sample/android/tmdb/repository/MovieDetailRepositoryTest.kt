@@ -40,11 +40,8 @@ class MovieDetailRepositoryTest {
 
         val repository = MovieDetailRepositoryImpl(movieApi)
 
-        val expectedTrailers = Single.just(trailers).blockingGet()
-        assertThat(repository.getMovieTrailers(anyInt()).blockingGet(), `is`(expectedTrailers))
-
-        val expectedCredit = Single.just(creditWrapper).blockingGet()
-        assertThat(repository.getMovieCredit(anyInt()).blockingGet(), `is`(expectedCredit))
+        assertThat(repository.getMovieTrailers(anyInt()).blockingGet(), `is`(trailers))
+        assertThat(repository.getMovieCredit(anyInt()).blockingGet(), `is`(creditWrapper))
     }
 
     @Test

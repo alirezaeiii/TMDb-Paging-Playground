@@ -40,16 +40,8 @@ class TVShowDetailRepositoryTest {
 
         val repository = TVShowDetailRepositoryImpl(tvShowApi)
 
-        val expectedTrailers = Single.just(trailers).blockingGet()
-        Assert.assertThat(
-            repository.getTVShowTrailers(anyInt()).blockingGet(),
-            `is`(expectedTrailers)
-        )
-
-        val expectedCredit = Single.just(creditWrapper).blockingGet()
-        Assert.assertThat(
-            repository.getTVShowCredit(anyInt()).blockingGet(), `is`(expectedCredit)
-        )
+        Assert.assertThat(repository.getTVShowTrailers(anyInt()).blockingGet(), `is`(trailers))
+        Assert.assertThat(repository.getTVShowCredit(anyInt()).blockingGet(), `is`(creditWrapper))
     }
 
     @Test
