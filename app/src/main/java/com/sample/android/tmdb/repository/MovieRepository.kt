@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 class MovieRepository @Inject constructor(
     context: Context,
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    @IoDispatcher ioDispatcher: CoroutineDispatcher,
     private val movieApi: MovieApi,
 ): TmdbRepository<Movie>(context, ioDispatcher) {
 

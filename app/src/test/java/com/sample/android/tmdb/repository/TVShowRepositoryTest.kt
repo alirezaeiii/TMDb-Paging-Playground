@@ -71,7 +71,7 @@ class TVShowRepositoryTest {
     }
 
     @Test
-    fun `test Fetch trending movies Fails`() {
+    fun `test Fetch trending tvShows Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
@@ -87,7 +87,7 @@ class TVShowRepositoryTest {
     }
 
     @Test
-    fun `test Fetch popular movies Fails`() {
+    fun `test Fetch popular tvShows Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
@@ -102,7 +102,7 @@ class TVShowRepositoryTest {
     }
 
     @Test
-    fun `test Fetch latest movies Fails`() {
+    fun `test Fetch latest tvShows Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
@@ -117,7 +117,7 @@ class TVShowRepositoryTest {
     }
 
     @Test
-    fun `test Fetch topRated movies Fails`() {
+    fun `test Fetch topRated tvShows Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
