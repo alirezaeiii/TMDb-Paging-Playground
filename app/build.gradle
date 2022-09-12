@@ -45,6 +45,10 @@ android {
         kotlinCompilerExtensionVersion compose
         kotlinCompilerVersion kotlin_version
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
 }
 
 dependencies {
