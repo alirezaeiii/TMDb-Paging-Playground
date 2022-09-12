@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.repository
 
+import com.sample.android.tmdb.domain.repo.MovieDetailRepository
 import com.sample.android.tmdb.network.MovieApi
 import javax.inject.Inject
 

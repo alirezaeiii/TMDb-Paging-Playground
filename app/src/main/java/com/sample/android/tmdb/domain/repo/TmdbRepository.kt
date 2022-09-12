@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.domain.repo
 
 import android.content.Context
 import com.sample.android.tmdb.R
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.flowOn
 
 abstract class TmdbRepository<T : TmdbItem>(
     private val context: Context,
-    private val ioDispatcher: CoroutineDispatcher
+    ioDispatcher: CoroutineDispatcher
 ) {
 
     protected abstract suspend fun popularItems(): ItemWrapper<T>

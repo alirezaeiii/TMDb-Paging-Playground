@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.person
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.Person
-import com.sample.android.tmdb.repository.PersonRepository
+import com.sample.android.tmdb.domain.repo.PersonRepository
 import com.sample.android.tmdb.ui.BaseDetailViewModel
 import javax.inject.Inject
 

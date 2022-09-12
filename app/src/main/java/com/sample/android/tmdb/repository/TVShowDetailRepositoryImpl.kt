@@ -1,5 +1,6 @@
 package com.sample.android.tmdb.repository
 
+import com.sample.android.tmdb.domain.repo.TVShowDetailRepository
 import com.sample.android.tmdb.network.TVShowApi
 import javax.inject.Inject
 

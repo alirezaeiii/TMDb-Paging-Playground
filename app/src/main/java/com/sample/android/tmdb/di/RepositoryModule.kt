@@ -2,6 +2,10 @@ package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.repo.MovieDetailRepository
+import com.sample.android.tmdb.domain.repo.PersonRepository
+import com.sample.android.tmdb.domain.repo.TVShowDetailRepository
+import com.sample.android.tmdb.domain.repo.TmdbRepository
 import com.sample.android.tmdb.repository.*
 import dagger.Binds
 import dagger.Module
