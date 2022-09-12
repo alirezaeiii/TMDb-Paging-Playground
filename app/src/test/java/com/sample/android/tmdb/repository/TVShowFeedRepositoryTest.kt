@@ -27,7 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
-class TVShowRepositoryTest {
+class TVShowFeedRepositoryTest {
 
     @get:Rule
     val rule: TestRule = InstantTaskExecutorRule()
@@ -57,7 +57,7 @@ class TVShowRepositoryTest {
             `when`(tvShowApi.latestTVSeries()).thenReturn(ItemWrapper(emptyList()))
             `when`(tvShowApi.topRatedTVSeries()).thenReturn(ItemWrapper(emptyList()))
 
-            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
 
@@ -79,7 +79,7 @@ class TVShowRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(tvShowApi.trendingTVSeries()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -94,7 +94,7 @@ class TVShowRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(tvShowApi.popularTVSeries()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -109,7 +109,7 @@ class TVShowRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(tvShowApi.latestTVSeries()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -124,7 +124,7 @@ class TVShowRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(tvShowApi.topRatedTVSeries()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = TVShowRepository(context, Dispatchers.Main, tvShowApi)
+            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))

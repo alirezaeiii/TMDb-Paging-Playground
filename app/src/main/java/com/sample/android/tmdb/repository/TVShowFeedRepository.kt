@@ -4,18 +4,18 @@ import android.content.Context
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
-import com.sample.android.tmdb.domain.repo.TmdbRepository
+import com.sample.android.tmdb.domain.repo.BaseFeedRepository
 import com.sample.android.tmdb.network.TVShowApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TVShowRepository @Inject constructor(
+class TVShowFeedRepository @Inject constructor(
     context: Context,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
     private val tvShowApi: TVShowApi,
-) : TmdbRepository<TVShow>(context, ioDispatcher) {
+) : BaseFeedRepository<TVShow>(context, ioDispatcher) {
 
     override suspend fun popularItems(): ItemWrapper<TVShow> = tvShowApi.popularTVSeries()
 

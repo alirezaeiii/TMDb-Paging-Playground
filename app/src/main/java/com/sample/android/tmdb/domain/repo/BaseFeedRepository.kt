@@ -15,7 +15,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-abstract class TmdbRepository<T : TmdbItem>(
+abstract class BaseFeedRepository<T : TmdbItem>(
     private val context: Context,
     ioDispatcher: CoroutineDispatcher
 ) {

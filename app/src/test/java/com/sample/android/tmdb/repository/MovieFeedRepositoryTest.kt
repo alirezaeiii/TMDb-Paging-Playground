@@ -27,7 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
-class MovieRepositoryTest {
+class MovieFeedRepositoryTest {
 
     @get:Rule
     val rule: TestRule = InstantTaskExecutorRule()
@@ -57,7 +57,7 @@ class MovieRepositoryTest {
             `when`(movieApi.latestMovies()).thenReturn(ItemWrapper(emptyList()))
             `when`(movieApi.topRatedMovies()).thenReturn(ItemWrapper(emptyList()))
 
-            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
 
@@ -79,7 +79,7 @@ class MovieRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(movieApi.trendingMovies()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -95,7 +95,7 @@ class MovieRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(movieApi.popularMovies()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -111,7 +111,7 @@ class MovieRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(movieApi.latestMovies()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
@@ -126,7 +126,7 @@ class MovieRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(movieApi.topRatedMovies()).thenThrow(RuntimeException(errorMsg))
 
-            val repository = MovieRepository(context, Dispatchers.Main, movieApi)
+            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
             assertThat(repository.result.first(), `is`(ViewState.Loading))
             assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))

@@ -5,7 +5,7 @@ import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.domain.repo.MovieDetailRepository
 import com.sample.android.tmdb.domain.repo.PersonRepository
 import com.sample.android.tmdb.domain.repo.TVShowDetailRepository
-import com.sample.android.tmdb.domain.repo.TmdbRepository
+import com.sample.android.tmdb.domain.repo.BaseFeedRepository
 import com.sample.android.tmdb.repository.*
 import dagger.Binds
 import dagger.Module
@@ -16,11 +16,11 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    internal abstract fun bindMovieRepository(movieRepository: MovieRepository): TmdbRepository<Movie>
+    internal abstract fun bindMovieRepository(movieFeedRepository: MovieFeedRepository): BaseFeedRepository<Movie>
 
     @Singleton
     @Binds
-    internal abstract fun bindTVShowRepository(tvShowRepository: TVShowRepository): TmdbRepository<TVShow>
+    internal abstract fun bindTVShowRepository(tvShowFeedRepository: TVShowFeedRepository): BaseFeedRepository<TVShow>
 
     @Singleton
     @Binds

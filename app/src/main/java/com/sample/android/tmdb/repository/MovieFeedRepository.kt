@@ -4,18 +4,18 @@ import android.content.Context
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.domain.repo.TmdbRepository
+import com.sample.android.tmdb.domain.repo.BaseFeedRepository
 import com.sample.android.tmdb.network.MovieApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MovieRepository @Inject constructor(
+class MovieFeedRepository @Inject constructor(
     context: Context,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
     private val movieApi: MovieApi,
-): TmdbRepository<Movie>(context, ioDispatcher) {
+): BaseFeedRepository<Movie>(context, ioDispatcher) {
 
     override suspend fun popularItems(): ItemWrapper<Movie> = movieApi.popularMovies()
 

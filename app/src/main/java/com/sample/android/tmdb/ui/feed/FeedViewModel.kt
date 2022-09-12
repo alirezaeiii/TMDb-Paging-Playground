@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.TmdbItem
-import com.sample.android.tmdb.domain.repo.TmdbRepository
+import com.sample.android.tmdb.domain.repo.BaseFeedRepository
 import com.sample.android.tmdb.util.ViewState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 open class FeedViewModel<T : TmdbItem>(
-    private val repository: TmdbRepository<T>
+    private val repository: BaseFeedRepository<T>
 ) : ViewModel() {
 
     private val _stateFlow = MutableStateFlow<ViewState<List<FeedWrapper<T>>>>(ViewState.Loading)
