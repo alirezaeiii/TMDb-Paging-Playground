@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.start.StartActivity">
 
-    <ImageView
-        android:layout_width="192dp"
-        android:layout_height="192dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="165dp"
+        android:layout_height="165dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/padding_large"
-        android:src="@drawable/ic_tv_series"/>
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:src="@drawable/ic_launcher" />
 
 </FrameLayout>
