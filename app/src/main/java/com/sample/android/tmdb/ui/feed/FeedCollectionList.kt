@@ -27,6 +27,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.FeedWrapper
 import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesActivity
@@ -68,8 +69,8 @@ private fun <T : TmdbItem> FeedCollection(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .heightIn(min = 36.dp)
-                .padding(start = 12.dp)
+                .heightIn(min = Dimens.rowHeight)
+                .padding(start = Dimens.PaddingMedium)
         ) {
             Text(
                 text = stringResource(id = feedCollection.sortTypeResourceId),
@@ -122,7 +123,12 @@ private fun <T : TmdbItem> FeedCollection(
                         val intent = Intent(context, activity)
                         context.startActivity(intent)
                     }
-                    .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 10.dp)
+                    .padding(
+                        start = Dimens.PaddingMedium,
+                        end = Dimens.PaddingMedium,
+                        top = Dimens.PaddingMedium,
+                        bottom = Dimens.paddingBottom
+                    )
             )
         }
         Feeds(feedCollection.feeds, onFeedClick)
@@ -137,7 +143,7 @@ private fun <T : TmdbItem> Feeds(
 ) {
     LazyRow(
         modifier = modifier,
-        contentPadding = PaddingValues(start = 2.dp, end = 2.dp)
+        contentPadding = PaddingValues(start = Dimens.paddingMicro, end = Dimens.paddingMicro)
     ) {
         items(feeds) { feed ->
             TmdbItem(feed, onFeedClick)
@@ -154,7 +160,7 @@ private fun <T : TmdbItem> TmdbItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .clickable(onClick = { onFeedClick(tmdbItem) })
-            .padding(6.dp)
+            .padding(Dimens.PaddingSmall)
     ) {
         Image(
             painter = rememberImagePainter(tmdbItem.posterPath?.let { url ->
@@ -174,7 +180,7 @@ private fun <T : TmdbItem> TmdbItem(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .size(width = 120.dp, height = 56.dp)
-                .padding(top = 6.dp)
+                .padding(top = Dimens.PaddingSmall)
         )
     }
 }
