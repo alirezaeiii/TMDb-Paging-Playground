@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.main
+package com.sample.android.tmdb.ui.paging.tvshow
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,7 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.BaseMainActivity
+import com.sample.android.tmdb.ui.BaseMainActivity
 import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowActivity
 import org.junit.Rule
 import org.junit.runner.RunWith

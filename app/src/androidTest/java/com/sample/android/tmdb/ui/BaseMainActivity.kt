@@ -1,4 +1,4 @@
-package com.sample.android.tmdb
+package com.sample.android.tmdb.ui
 
 import android.view.View
 import android.widget.TextView
@@ -11,6 +11,8 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.sample.android.tmdb.BaseIdlingResource
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
 import com.sample.android.tmdb.ui.paging.TmdbItemViewHolder
 import org.hamcrest.CoreMatchers.*

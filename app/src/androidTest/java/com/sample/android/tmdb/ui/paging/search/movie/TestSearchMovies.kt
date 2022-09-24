@@ -1,12 +1,11 @@
-package com.sample.android.tmdb.search
+package com.sample.android.tmdb.ui.paging.search.movie
 
 import android.content.Context
 import android.content.Intent
 import androidx.test.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.sample.android.tmdb.BaseSearchActivity
-import com.sample.android.tmdb.ui.paging.search.movie.SearchMovieActivity
+import com.sample.android.tmdb.ui.paging.search.BaseSearchActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
 
