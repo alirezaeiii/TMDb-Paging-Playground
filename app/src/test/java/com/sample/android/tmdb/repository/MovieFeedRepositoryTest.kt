@@ -54,8 +54,9 @@ class MovieFeedRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(movieApi.trendingMovies()).thenReturn(ItemWrapper(emptyList()))
             `when`(movieApi.popularMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.latestMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.upcomingMovies()).thenReturn(ItemWrapper(emptyList()))
             `when`(movieApi.topRatedMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.nowPlayingMovies()).thenReturn(ItemWrapper(emptyList()))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
@@ -67,6 +68,7 @@ class MovieFeedRepositoryTest {
             assertThat(result[1].feeds, `is`(emptyList()))
             assertThat(result[2].feeds, `is`(emptyList()))
             assertThat(result[3].feeds, `is`(emptyList()))
+            assertThat(result[4].feeds, `is`(emptyList()))
         }
     }
 
@@ -109,7 +111,7 @@ class MovieFeedRepositoryTest {
 
 
         testCoroutineRule.runBlockingTest {
-            `when`(movieApi.latestMovies()).thenThrow(RuntimeException(errorMsg))
+            `when`(movieApi.upcomingMovies()).thenThrow(RuntimeException(errorMsg))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 

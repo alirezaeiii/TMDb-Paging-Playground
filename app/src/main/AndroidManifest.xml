@@ -33,6 +33,10 @@
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
+            android:name=".ui.paging.main.movie.NowPlayingMoviesActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
             android:name=".ui.paging.main.movie.PopularMoviesActivity"
             android:parentActivityName=".ui.feed.FeedActivity" />
 
@@ -49,11 +53,15 @@
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
+            android:name=".ui.paging.main.tvshow.AiringTodayTVShowActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
             android:name=".ui.paging.main.tvshow.PopularTVShowActivity"
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
-            android:name=".ui.paging.main.tvshow.LatestTVShowActivity"
+            android:name=".ui.paging.main.tvshow.OnTheAirTVShowActivity"
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity

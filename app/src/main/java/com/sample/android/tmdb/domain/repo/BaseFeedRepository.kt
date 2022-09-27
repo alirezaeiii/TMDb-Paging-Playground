@@ -22,11 +22,17 @@ abstract class BaseFeedRepository<T : TmdbItem>(
 
     protected abstract suspend fun popularItems(): ItemWrapper<T>
 
+    protected abstract suspend fun nowPlayingItems(): ItemWrapper<T>
+
     protected abstract suspend fun latestItems(): ItemWrapper<T>
 
     protected abstract suspend fun topRatedItems(): ItemWrapper<T>
 
     protected abstract suspend fun trendingItems(): ItemWrapper<T>
+
+    protected abstract fun getNowPlayingResId(): Int
+
+    protected abstract fun getLatestResId(): Int
 
     val result = flow {
         emit(ViewState.Loading)
@@ -34,6 +40,7 @@ abstract class BaseFeedRepository<T : TmdbItem>(
             try {
                 coroutineScope {
                     val trendingDeferred: Deferred<ItemWrapper<T>> = async { trendingItems() }
+                    val nowPlayingDeferred: Deferred<ItemWrapper<T>> = async { nowPlayingItems() }
                     val popularDeferred: Deferred<ItemWrapper<T>> = async { popularItems() }
                     val latestDeferred: Deferred<ItemWrapper<T>> = async { latestItems() }
                     val topRatedDeferred: Deferred<ItemWrapper<T>> = async { topRatedItems() }
@@ -47,13 +54,18 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                                     SortType.TRENDING
                                 ),
                                 FeedWrapper(
+                                    nowPlayingDeferred.await().items,
+                                    getNowPlayingResId(),
+                                    SortType.NOW_PLAYING
+                                ),
+                                FeedWrapper(
                                     popularDeferred.await().items,
                                     R.string.text_popular,
                                     SortType.MOST_POPULAR
                                 ),
                                 FeedWrapper(
                                     latestDeferred.await().items,
-                                    R.string.text_upcoming,
+                                    getLatestResId(),
                                     SortType.UPCOMING
                                 ),
                                 FeedWrapper(

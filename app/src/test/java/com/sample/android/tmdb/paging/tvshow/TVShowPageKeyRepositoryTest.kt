@@ -65,6 +65,17 @@ class TVShowPageKeyRepositoryTest {
     }
 
     @Test
+    fun loadAiringTodayTVShows() {
+        val repository = TVShowsPageKeyRepository(api, NOW_PLAYING, networkExecutor, context)
+        `when`(api.airingTodayTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+
+        with(getObserver(repository).value) {
+            assertThat(this, `is`(notNullValue()))
+            assertThat(this?.size, `is`(1))
+        }
+    }
+
+    @Test
     fun loadMostPopularTVShows() {
         val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
         `when`(api.popularTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
@@ -87,9 +98,9 @@ class TVShowPageKeyRepositoryTest {
     }
 
     @Test
-    fun loadUpcomingTVShows() {
+    fun loadOnTheAirTVShows() {
         val repository = TVShowsPageKeyRepository(api, UPCOMING, networkExecutor, context)
-        `when`(api.latestTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.onTheAirTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))

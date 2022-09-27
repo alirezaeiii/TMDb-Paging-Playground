@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,14 +31,8 @@ import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.SortType
-import com.sample.android.tmdb.ui.paging.main.movie.HighRateMoviesActivity
-import com.sample.android.tmdb.ui.paging.main.movie.PopularMoviesActivity
-import com.sample.android.tmdb.ui.paging.main.movie.TrendingMoviesActivity
-import com.sample.android.tmdb.ui.paging.main.movie.UpcomingMoviesActivity
-import com.sample.android.tmdb.ui.paging.main.tvshow.HighRateTVShowActivity
-import com.sample.android.tmdb.ui.paging.main.tvshow.LatestTVShowActivity
-import com.sample.android.tmdb.ui.paging.main.tvshow.PopularTVShowActivity
-import com.sample.android.tmdb.ui.paging.main.tvshow.TrendingTVShowActivity
+import com.sample.android.tmdb.ui.paging.main.movie.*
+import com.sample.android.tmdb.ui.paging.main.tvshow.*
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
@@ -47,11 +42,12 @@ fun <T : TmdbItem> FeedCollectionList(
 ) {
     LazyColumn {
 
-        items(collection) { feedCollection ->
+        itemsIndexed(collection) { index, feedCollection ->
             FeedCollection(
                 feedCollection = feedCollection,
                 navType = navType,
-                onFeedClick = onFeedClick
+                onFeedClick = onFeedClick,
+                isFirstItem = index == 0
             )
         }
     }
@@ -62,6 +58,7 @@ private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
     navType: NavType,
     onFeedClick: (TmdbItem) -> Unit,
+    isFirstItem: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -101,6 +98,9 @@ private fun <T : TmdbItem> FeedCollection(
                                     SortType.HIGHEST_RATED -> {
                                         HighRateMoviesActivity::class.java
                                     }
+                                    SortType.NOW_PLAYING -> {
+                                        NowPlayingMoviesActivity::class.java
+                                    }
                                 }
                             }
                             NavType.TV_SERIES -> {
@@ -112,10 +112,13 @@ private fun <T : TmdbItem> FeedCollection(
                                         PopularTVShowActivity::class.java
                                     }
                                     SortType.UPCOMING -> {
-                                        LatestTVShowActivity::class.java
+                                        OnTheAirTVShowActivity::class.java
                                     }
                                     SortType.HIGHEST_RATED -> {
                                         HighRateTVShowActivity::class.java
+                                    }
+                                    SortType.NOW_PLAYING -> {
+                                        AiringTodayTVShowActivity::class.java
                                     }
                                 }
                             }
@@ -131,7 +134,7 @@ private fun <T : TmdbItem> FeedCollection(
                     )
             )
         }
-        Feeds(feedCollection.feeds, onFeedClick)
+        Feeds(feedCollection.feeds, onFeedClick, isFirstItem)
     }
 }
 
@@ -139,6 +142,7 @@ private fun <T : TmdbItem> FeedCollection(
 private fun <T : TmdbItem> Feeds(
     feeds: List<T>,
     onFeedClick: (TmdbItem) -> Unit,
+    isFirstItem: Boolean,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -146,7 +150,7 @@ private fun <T : TmdbItem> Feeds(
         contentPadding = PaddingValues(start = Dimens.paddingMicro, end = Dimens.paddingMicro)
     ) {
         items(feeds) { feed ->
-            TmdbItem(feed, onFeedClick)
+            TmdbItem(feed, onFeedClick, isFirstItem)
         }
     }
 }
@@ -154,7 +158,8 @@ private fun <T : TmdbItem> Feeds(
 @Composable
 private fun <T : TmdbItem> TmdbItem(
     tmdbItem: T,
-    onFeedClick: (TmdbItem) -> Unit
+    onFeedClick: (TmdbItem) -> Unit,
+    isFirstItem: Boolean
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -168,7 +173,7 @@ private fun <T : TmdbItem> TmdbItem(
             }),
             contentDescription = null,
             modifier = Modifier
-                .size(width = 120.dp, height = 180.dp)
+                .size(width = if(isFirstItem) 220.dp else 120.dp, height = 180.dp)
                 .border(.3.dp, Color.White, RectangleShape),
             contentScale = ContentScale.Crop,
         )
@@ -179,7 +184,7 @@ private fun <T : TmdbItem> TmdbItem(
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .size(width = 120.dp, height = 56.dp)
+                .size(width = if(isFirstItem) 220.dp else 120.dp, height = 56.dp)
                 .padding(top = Dimens.PaddingSmall)
         )
     }
@@ -193,6 +198,7 @@ fun FeedCardPreview() {
         TmdbItem(
             tmdbItem = movie,
             onFeedClick = {},
+            isFirstItem = true
         )
     }
 }

@@ -65,6 +65,17 @@ class MoviePageKeyRepositoryTest {
     }
 
     @Test
+    fun loadNowPlayingMovies() {
+        val repository = MoviePageKeyRepository(api, NOW_PLAYING, networkExecutor, context)
+        `when`(api.nowPlayingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+
+        with(getObserver(repository).value) {
+            assertThat(this, `is`(notNullValue()))
+            assertThat(this?.size, `is`(1))
+        }
+    }
+
+    @Test
     fun loadMostPopularMovies() {
         val repository = MoviePageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
         `when`(api.popularMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
@@ -89,7 +100,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadUpcomingMovies() {
         val repository = MoviePageKeyRepository(api, UPCOMING, networkExecutor, context)
-        `when`(api.latestMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.upcomingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))

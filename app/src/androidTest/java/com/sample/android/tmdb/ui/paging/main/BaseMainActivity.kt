@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.paging.main
 
 import android.view.View
 import android.widget.TextView

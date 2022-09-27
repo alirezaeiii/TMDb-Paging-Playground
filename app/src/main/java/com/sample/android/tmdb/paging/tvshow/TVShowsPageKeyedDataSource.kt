@@ -17,7 +17,8 @@ class TVShowsPageKeyedDataSource(
     override fun fetchItems(page: Int) = when (sortType) {
         SortType.MOST_POPULAR -> api.popularTVSeries(page)
         SortType.HIGHEST_RATED -> api.topRatedTVSeries(page)
-        SortType.UPCOMING -> api.latestTVSeries(page)
+        SortType.UPCOMING -> api.onTheAirTVSeries(page)
         SortType.TRENDING -> api.trendingTVSeries(page)
+        SortType.NOW_PLAYING -> api.airingTodayTVSeries(page)
     }
 }

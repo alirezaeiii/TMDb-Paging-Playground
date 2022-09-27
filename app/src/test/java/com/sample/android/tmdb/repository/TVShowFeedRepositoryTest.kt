@@ -54,8 +54,9 @@ class TVShowFeedRepositoryTest {
         testCoroutineRule.runBlockingTest {
             `when`(tvShowApi.trendingTVSeries()).thenReturn(ItemWrapper(emptyList()))
             `when`(tvShowApi.popularTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.latestTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.onTheAirTVSeries()).thenReturn(ItemWrapper(emptyList()))
             `when`(tvShowApi.topRatedTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.airingTodayTVSeries()).thenReturn(ItemWrapper(emptyList()))
 
             val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
@@ -67,6 +68,7 @@ class TVShowFeedRepositoryTest {
             assertThat(result[1].feeds, `is`(emptyList()))
             assertThat(result[2].feeds, `is`(emptyList()))
             assertThat(result[3].feeds, `is`(emptyList()))
+            assertThat(result[4].feeds, `is`(emptyList()))
         }
     }
 
@@ -107,7 +109,7 @@ class TVShowFeedRepositoryTest {
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
         testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.latestTVSeries()).thenThrow(RuntimeException(errorMsg))
+            `when`(tvShowApi.onTheAirTVSeries()).thenThrow(RuntimeException(errorMsg))
 
             val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 

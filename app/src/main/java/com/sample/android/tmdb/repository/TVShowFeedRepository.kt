@@ -1,6 +1,7 @@
 package com.sample.android.tmdb.repository
 
 import android.content.Context
+import com.sample.android.tmdb.R
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.ItemWrapper
 import com.sample.android.tmdb.domain.TVShow
@@ -19,9 +20,15 @@ class TVShowFeedRepository @Inject constructor(
 
     override suspend fun popularItems(): ItemWrapper<TVShow> = tvShowApi.popularTVSeries()
 
-    override suspend fun latestItems(): ItemWrapper<TVShow> = tvShowApi.latestTVSeries()
+    override suspend fun latestItems(): ItemWrapper<TVShow> = tvShowApi.onTheAirTVSeries()
 
     override suspend fun topRatedItems(): ItemWrapper<TVShow> = tvShowApi.topRatedTVSeries()
 
     override suspend fun trendingItems(): ItemWrapper<TVShow> = tvShowApi.trendingTVSeries()
+
+    override suspend fun nowPlayingItems(): ItemWrapper<TVShow> = tvShowApi.airingTodayTVSeries()
+
+    override fun getNowPlayingResId(): Int = R.string.text_airing_today
+
+    override fun getLatestResId(): Int = R.string.text_on_the_air
 }

@@ -17,7 +17,8 @@ class MoviePageKeyedDataSource(
     override fun fetchItems(page: Int) = when (sortType) {
         SortType.MOST_POPULAR -> api.popularMovies(page)
         SortType.HIGHEST_RATED -> api.topRatedMovies(page)
-        SortType.UPCOMING -> api.latestMovies(page)
+        SortType.UPCOMING -> api.upcomingMovies(page)
         SortType.TRENDING -> api.trendingMovies(page)
+        SortType.NOW_PLAYING -> api.nowPlayingMovies(page)
     }
 }

@@ -3,14 +3,14 @@ package com.sample.android.tmdb.ui.paging.main.tvshow
 import com.sample.android.tmdb.R
 import javax.inject.Inject
 
-class LatestTVShowActivity: TVShowActivity() {
+class OnTheAirTVShowActivity: TVShowActivity() {
 
     @Inject
-    lateinit var latestTVShowFragment: LatestTVShowFragment
+    lateinit var onTheAirTVShowFragment: OnTheAirTVShowFragment
 
     override val titleId: Int
-        get() = R.string.upcoming
+        get() = R.string.on_the_air
 
     override val fragment: TVShowFragment
-        get() = latestTVShowFragment
+        get() = onTheAirTVShowFragment
 }

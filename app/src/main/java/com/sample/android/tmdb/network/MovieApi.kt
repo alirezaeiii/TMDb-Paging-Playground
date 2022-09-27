@@ -15,11 +15,14 @@ interface MovieApi {
     @GET("3/trending/movie/day")
     suspend fun trendingMovies(): ItemWrapper<Movie>
 
+    @GET("3/movie/now_playing")
+    suspend fun nowPlayingMovies(): ItemWrapper<Movie>
+
     @GET("3/movie/popular")
     suspend fun popularMovies(): ItemWrapper<Movie>
 
     @GET("3/movie/upcoming")
-    suspend fun latestMovies(): ItemWrapper<Movie>
+    suspend fun upcomingMovies(): ItemWrapper<Movie>
 
     @GET("3/movie/top_rated")
     suspend fun topRatedMovies(): ItemWrapper<Movie>
@@ -27,16 +30,19 @@ interface MovieApi {
     @GET("3/trending/movie/day")
     fun trendingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
-    @GET("3/discover/movie?language=en&sort_by=popularity.desc")
+    @GET("3/movie/now_playing")
+    fun nowPlayingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+
+    @GET("3/movie/popular")
     fun popularMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
-    @GET("3/discover/movie?vote_count.gte=500&language=en&sort_by=vote_average.desc")
+    @GET("3/movie/top_rated")
     fun topRatedMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
-    @GET("3/movie/upcoming?language=en")
-    fun latestMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    @GET("3/movie/upcoming")
+    fun upcomingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
 
-    @GET("3/search/movie?language=en")
+    @GET("3/search/movie")
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<Movie>>
 
     @GET("3/movie/{movieId}/videos")

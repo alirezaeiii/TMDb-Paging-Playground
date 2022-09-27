@@ -15,11 +15,14 @@ interface TVShowApi {
     @GET("3/trending/tv/day")
     suspend fun trendingTVSeries(): ItemWrapper<TVShow>
 
+    @GET("3/tv/airing_today")
+    suspend fun airingTodayTVSeries(): ItemWrapper<TVShow>
+
     @GET("3/tv/popular")
     suspend fun popularTVSeries(): ItemWrapper<TVShow>
 
     @GET("3/tv/on_the_air")
-    suspend fun latestTVSeries(): ItemWrapper<TVShow>
+    suspend fun onTheAirTVSeries(): ItemWrapper<TVShow>
 
     @GET("3/tv/top_rated")
     suspend fun topRatedTVSeries(): ItemWrapper<TVShow>
@@ -27,16 +30,19 @@ interface TVShowApi {
     @GET("3/trending/tv/day")
     fun trendingTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
 
-    @GET("3/tv/popular?language=en")
+    @GET("3/tv/airing_today")
+    fun airingTodayTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+
+    @GET("3/tv/popular")
     fun popularTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
 
-    @GET("3/tv/top_rated?language=en")
+    @GET("3/tv/top_rated")
     fun topRatedTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
 
-    @GET("3/tv/on_the_air?language=en")
-    fun latestTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    @GET("3/tv/on_the_air")
+    fun onTheAirTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
 
-    @GET("3/search/tv?language=en")
+    @GET("3/search/tv")
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<TVShow>>
 
     @GET("3/tv/{tvId}/videos")
