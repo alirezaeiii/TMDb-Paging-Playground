@@ -161,6 +161,7 @@ private fun <T : TmdbItem> TmdbItem(
     onFeedClick: (TmdbItem) -> Unit,
     isFirstItem: Boolean
 ) {
+    val width = if(isFirstItem) 220.dp else 120.dp
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -173,7 +174,7 @@ private fun <T : TmdbItem> TmdbItem(
             }),
             contentDescription = null,
             modifier = Modifier
-                .size(width = if(isFirstItem) 220.dp else 120.dp, height = 180.dp)
+                .size(width = width, height = 180.dp)
                 .border(.3.dp, Color.White, RectangleShape),
             contentScale = ContentScale.Crop,
         )
@@ -184,7 +185,7 @@ private fun <T : TmdbItem> TmdbItem(
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .size(width = if(isFirstItem) 220.dp else 120.dp, height = 56.dp)
+                .size(width =width, height = 56.dp)
                 .padding(top = Dimens.PaddingSmall)
         )
     }
