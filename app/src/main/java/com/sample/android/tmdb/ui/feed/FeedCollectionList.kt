@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.sample.android.tmdb.R
@@ -47,7 +48,7 @@ fun <T : TmdbItem> FeedCollectionList(
                 feedCollection = feedCollection,
                 navType = navType,
                 onFeedClick = onFeedClick,
-                isFirstItem = index == 0
+                tmdbItemWidth = if (index == 0) 220.dp else 120.dp
             )
         }
     }
@@ -58,7 +59,7 @@ private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
     navType: NavType,
     onFeedClick: (TmdbItem) -> Unit,
-    isFirstItem: Boolean,
+    tmdbItemWidth: Dp,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -134,7 +135,7 @@ private fun <T : TmdbItem> FeedCollection(
                     )
             )
         }
-        Feeds(feedCollection.feeds, onFeedClick, isFirstItem)
+        Feeds(feedCollection.feeds, onFeedClick, tmdbItemWidth)
     }
 }
 
@@ -142,7 +143,7 @@ private fun <T : TmdbItem> FeedCollection(
 private fun <T : TmdbItem> Feeds(
     feeds: List<T>,
     onFeedClick: (TmdbItem) -> Unit,
-    isFirstItem: Boolean,
+    tmdbItemWidth: Dp,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -150,7 +151,7 @@ private fun <T : TmdbItem> Feeds(
         contentPadding = PaddingValues(start = Dimens.paddingMicro, end = Dimens.paddingMicro)
     ) {
         items(feeds) { feed ->
-            TmdbItem(feed, onFeedClick, isFirstItem)
+            TmdbItem(feed, onFeedClick, tmdbItemWidth)
         }
     }
 }
@@ -159,9 +160,8 @@ private fun <T : TmdbItem> Feeds(
 private fun <T : TmdbItem> TmdbItem(
     tmdbItem: T,
     onFeedClick: (TmdbItem) -> Unit,
-    isFirstItem: Boolean
+    tmdbItemWidth: Dp
 ) {
-    val width = if(isFirstItem) 220.dp else 120.dp
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -174,7 +174,7 @@ private fun <T : TmdbItem> TmdbItem(
             }),
             contentDescription = null,
             modifier = Modifier
-                .size(width = width, height = 180.dp)
+                .size(width = tmdbItemWidth, height = 180.dp)
                 .border(.3.dp, Color.White, RectangleShape),
             contentScale = ContentScale.Crop,
         )
@@ -185,7 +185,7 @@ private fun <T : TmdbItem> TmdbItem(
             textAlign = TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .size(width =width, height = 56.dp)
+                .size(width = tmdbItemWidth, height = 56.dp)
                 .padding(top = Dimens.PaddingSmall)
         )
     }
@@ -199,7 +199,7 @@ fun FeedCardPreview() {
         TmdbItem(
             tmdbItem = movie,
             onFeedClick = {},
-            isFirstItem = true
+            120.dp
         )
     }
 }
