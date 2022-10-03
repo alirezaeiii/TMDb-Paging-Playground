@@ -54,14 +54,14 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                                     SortType.TRENDING
                                 ),
                                 FeedWrapper(
-                                    nowPlayingDeferred.await().items,
-                                    getNowPlayingResId(),
-                                    SortType.NOW_PLAYING
-                                ),
-                                FeedWrapper(
                                     popularDeferred.await().items,
                                     R.string.text_popular,
                                     SortType.MOST_POPULAR
+                                ),
+                                FeedWrapper(
+                                    nowPlayingDeferred.await().items,
+                                    getNowPlayingResId(),
+                                    SortType.NOW_PLAYING
                                 ),
                                 FeedWrapper(
                                     latestDeferred.await().items,
