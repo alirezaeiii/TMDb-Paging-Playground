@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.domain
+package com.sample.android.tmdb.data
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

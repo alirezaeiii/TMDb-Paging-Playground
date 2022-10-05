@@ -5,8 +5,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.data.ItemWrapper
+import com.sample.android.tmdb.data.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every

@@ -1,7 +1,7 @@
-package com.sample.android.tmdb.domain.repo
+package com.sample.android.tmdb.domain
 
-import com.sample.android.tmdb.domain.CreditWrapper
-import com.sample.android.tmdb.domain.VideoWrapper
+import com.sample.android.tmdb.data.CreditWrapper
+import com.sample.android.tmdb.data.VideoWrapper
 import io.reactivex.Single
 
 interface TVShowDetailRepository {

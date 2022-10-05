@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.repository
 
-import com.sample.android.tmdb.domain.repo.PersonRepository
+import com.sample.android.tmdb.domain.PersonRepository
 import com.sample.android.tmdb.network.PersonApi
 import javax.inject.Inject
 

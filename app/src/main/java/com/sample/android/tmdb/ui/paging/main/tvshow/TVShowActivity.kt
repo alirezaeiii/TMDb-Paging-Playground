@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.paging.main.tvshow
 
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.data.TVShow
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.MainActivity
 

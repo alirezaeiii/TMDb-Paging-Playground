@@ -2,8 +2,8 @@ package com.sample.android.tmdb.ui.detail.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.domain.*
-import com.sample.android.tmdb.domain.repo.MovieDetailRepository
+import com.sample.android.tmdb.data.*
+import com.sample.android.tmdb.domain.MovieDetailRepository
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue

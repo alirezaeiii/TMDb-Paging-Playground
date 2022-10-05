@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.network
 
-import com.sample.android.tmdb.domain.CreditWrapper
-import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.domain.VideoWrapper
+import com.sample.android.tmdb.data.CreditWrapper
+import com.sample.android.tmdb.data.ItemWrapper
+import com.sample.android.tmdb.data.Movie
+import com.sample.android.tmdb.data.VideoWrapper
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET

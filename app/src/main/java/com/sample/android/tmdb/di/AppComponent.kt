@@ -1,8 +1,6 @@
 package com.sample.android.tmdb.di
 
-import android.app.Application
-
-import com.sample.android.tmdb.TmdbApp
+import com.sample.android.tmdb.Application
 import com.sample.android.tmdb.network.NetworkModule
 
 import javax.inject.Singleton
@@ -22,13 +20,13 @@ import dagger.android.support.AndroidSupportInjectionModule
         AppUtilsModule::class,
         DispatcherModule::class]
 )
-interface AppComponent : AndroidInjector<TmdbApp> {
+interface AppComponent : AndroidInjector<Application> {
 
     @Component.Builder
     interface Builder {
 
         @BindsInstance
-        fun application(application: Application): Builder
+        fun application(application: android.app.Application): Builder
 
         fun build(): AppComponent
     }

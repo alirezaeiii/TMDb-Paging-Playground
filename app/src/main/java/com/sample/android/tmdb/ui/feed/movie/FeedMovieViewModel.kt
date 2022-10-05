@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.feed.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.data.Movie
 import com.sample.android.tmdb.repository.MovieFeedRepository
 import com.sample.android.tmdb.ui.feed.FeedViewModel
 import javax.inject.Inject

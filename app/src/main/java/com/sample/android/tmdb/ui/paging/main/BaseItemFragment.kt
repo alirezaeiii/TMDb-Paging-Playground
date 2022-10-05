@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.paging.main
 
 import android.os.Parcelable
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.data.TmdbItem
 import com.sample.android.tmdb.ui.paging.BaseFragment
 import kotlinx.android.parcel.Parcelize
 

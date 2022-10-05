@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.paging.search.movie
 
 import android.content.Context
-import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.data.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.paging.BaseDataSourceFactory
 import com.sample.android.tmdb.paging.BasePageKeyRepository

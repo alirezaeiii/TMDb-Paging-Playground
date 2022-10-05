@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.network
 
-import com.sample.android.tmdb.domain.Person
+import com.sample.android.tmdb.data.Person
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

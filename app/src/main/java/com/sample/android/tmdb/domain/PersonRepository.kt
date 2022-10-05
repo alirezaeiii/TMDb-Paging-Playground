@@ -1,6 +1,6 @@
-package com.sample.android.tmdb.domain.repo
+package com.sample.android.tmdb.domain
 
-import com.sample.android.tmdb.domain.Person
+import com.sample.android.tmdb.data.Person
 import io.reactivex.Single
 
 interface PersonRepository {

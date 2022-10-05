@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.PagedList
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.data.TmdbItem
 import com.sample.android.tmdb.paging.Listing
 import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.util.DisposableManager

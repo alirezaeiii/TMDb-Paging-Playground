@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.domain
+package com.sample.android.tmdb.data
 
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.ui.paging.main.SortType

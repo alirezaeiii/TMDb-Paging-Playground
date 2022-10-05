@@ -2,10 +2,10 @@ package com.sample.android.tmdb.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.domain.Cast
-import com.sample.android.tmdb.domain.CreditWrapper
-import com.sample.android.tmdb.domain.Video
-import com.sample.android.tmdb.domain.VideoWrapper
+import com.sample.android.tmdb.data.Cast
+import com.sample.android.tmdb.data.CreditWrapper
+import com.sample.android.tmdb.data.Video
+import com.sample.android.tmdb.data.VideoWrapper
 import com.sample.android.tmdb.network.MovieApi
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`

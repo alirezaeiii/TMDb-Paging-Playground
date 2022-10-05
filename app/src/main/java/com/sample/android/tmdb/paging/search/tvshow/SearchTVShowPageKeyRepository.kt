@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.paging.search.tvshow
 
 import android.content.Context
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.data.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.BaseDataSourceFactory
 import com.sample.android.tmdb.paging.BasePageKeyRepository

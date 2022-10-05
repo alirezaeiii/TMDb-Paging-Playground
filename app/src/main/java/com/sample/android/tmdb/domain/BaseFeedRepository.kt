@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.domain.repo
+package com.sample.android.tmdb.domain
 
 import android.content.Context
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.domain.FeedWrapper
-import com.sample.android.tmdb.domain.ItemWrapper
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.data.FeedWrapper
+import com.sample.android.tmdb.data.ItemWrapper
+import com.sample.android.tmdb.data.TmdbItem
 import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.util.ViewState
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -40,8 +40,8 @@ abstract class BaseFeedRepository<T : TmdbItem>(
             try {
                 coroutineScope {
                     val trendingDeferred: Deferred<ItemWrapper<T>> = async { trendingItems() }
-                    val nowPlayingDeferred: Deferred<ItemWrapper<T>> = async { nowPlayingItems() }
                     val popularDeferred: Deferred<ItemWrapper<T>> = async { popularItems() }
+                    val nowPlayingDeferred: Deferred<ItemWrapper<T>> = async { nowPlayingItems() }
                     val latestDeferred: Deferred<ItemWrapper<T>> = async { latestItems() }
                     val topRatedDeferred: Deferred<ItemWrapper<T>> = async { topRatedItems() }
 

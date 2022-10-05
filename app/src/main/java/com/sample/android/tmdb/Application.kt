@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
 
-class TmdbApp : DaggerApplication() {
+class Application : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
