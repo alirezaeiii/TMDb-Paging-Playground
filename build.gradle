@@ -35,7 +35,6 @@ ext {
     compileSdkVersion = 32
 
     // App dependencies
-    supportLibraryVersion = '1.0.0'
     compose = '1.1.1'
     activity_compose = '1.3.1'
     guavaVersion = '27.0.1-android'
@@ -58,9 +57,9 @@ ext {
     constraintLayoutVersion = '2.1.0-rc01'
     okhttpVersion = '4.9.3'
     circleimageviewVersion = '2.2.0'
-    viewPagerVersion = '1.0.0'
-    materialVersion = '1.5.0-rc01'
+    materialVersion = '1.6.1'
     swiperefreshVersion = '1.1.0'
+    paletteVersion = '1.0.0'
     coroutinesVersion = '1.5.2'
     mockkVersion = '1.10.0'
 }

@@ -56,12 +56,9 @@ dependencies {
 
     // Support libraries
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
-    implementation "androidx.cardview:cardview:$supportLibraryVersion"
-    implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshVersion"
-    implementation "androidx.palette:palette-ktx:$supportLibraryVersion"
+    implementation "androidx.palette:palette-ktx:$paletteVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.guava:guava:$guavaVersion"
 
