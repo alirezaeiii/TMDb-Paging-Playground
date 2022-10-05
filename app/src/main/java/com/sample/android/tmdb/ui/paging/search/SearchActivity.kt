@@ -9,11 +9,10 @@ import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.databinding.ActivitySearchBinding
 import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.databinding.ActivitySearchBinding
 import com.sample.android.tmdb.ui.BaseActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
-import com.sample.android.tmdb.util.toVisibility
 
 abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
 
@@ -57,12 +56,13 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
                 }
 
                 override fun onQueryTextChange(query: String): Boolean {
-                    val hasQuery = query.isNotEmpty()
-                    fragmentContainer.toVisibility(hasQuery)
-                    ivEmptySearch.toVisibility(!hasQuery)
-                    if (hasQuery) {
+                    if (query.isNotEmpty()) {
+                        fragmentContainer.visibility = View.VISIBLE
+                        ivEmptySearch.visibility = View.GONE
                         fragment.search(query)
                     } else {
+                        fragmentContainer.visibility = View.GONE
+                        ivEmptySearch.visibility = View.VISIBLE
                         fragment.observeRefreshState()
                     }
                     return true
