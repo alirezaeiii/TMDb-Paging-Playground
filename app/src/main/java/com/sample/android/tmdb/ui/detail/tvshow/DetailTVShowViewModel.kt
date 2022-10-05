@@ -19,7 +19,7 @@ class DetailTVShowViewModel(
         private val repository: TVShowDetailRepository,
         private val item: TmdbItem
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DetailTVShowViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return DetailTVShowViewModel(repository, item) as T

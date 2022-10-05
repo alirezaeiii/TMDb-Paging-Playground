@@ -19,7 +19,7 @@ class DetailMovieViewModel(
         private val repository: MovieDetailRepository,
         private val item: TmdbItem
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DetailMovieViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return DetailMovieViewModel(repository, item) as T

@@ -55,7 +55,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Support libraries
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
@@ -67,10 +67,8 @@ dependencies {
 
     // Architecture components
     implementation "androidx.paging:paging-runtime:$pagingVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
 
     // Compose
     implementation "androidx.compose.ui:ui:$compose"
@@ -137,6 +135,12 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation "com.jakewharton.espresso:okhttp3-idling-resource:$okhttpIdlingResourceVersion"
     implementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += ["-Xjvm-default=all",]
+        }
+    }
 }
 
 def getProperty(String filename, String propName) {

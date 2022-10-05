@@ -22,7 +22,7 @@ class SearchTVShowViewModel(
             private val api: TVShowApi,
             private val app: Application
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(SearchTVShowViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return SearchTVShowViewModel(api, app) as T

@@ -19,7 +19,7 @@ class PersonViewModel(
         private val repository: PersonRepository,
         private val person: PersonWrapper
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PersonViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return PersonViewModel(repository, person.credit.id) as T

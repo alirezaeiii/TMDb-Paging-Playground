@@ -15,7 +15,7 @@ abstract class MovieFragment : BaseItemFragment<Movie>() {
 
     override val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return MovieViewModel(api, sortType, requireNotNull(activity).application) as T
             }

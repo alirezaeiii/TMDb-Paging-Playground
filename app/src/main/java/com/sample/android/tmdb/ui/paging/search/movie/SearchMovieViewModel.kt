@@ -22,7 +22,7 @@ class SearchMovieViewModel(
             private val api: MovieApi,
             private val app: Application
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(SearchMovieViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return SearchMovieViewModel(api, app) as T

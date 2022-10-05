@@ -13,7 +13,7 @@ class FeedTVShowViewModel(repository: TVShowFeedRepository) :
     class Factory @Inject constructor(
         private val repository: TVShowFeedRepository
     ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(FeedTVShowViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return FeedTVShowViewModel(repository) as T
