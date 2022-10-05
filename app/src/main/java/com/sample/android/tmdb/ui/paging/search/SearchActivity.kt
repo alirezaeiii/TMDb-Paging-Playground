@@ -59,6 +59,7 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
                 override fun onQueryTextChange(query: String): Boolean {
                     val hasQuery = query.isNotEmpty()
                     fragmentContainer.toVisibility(hasQuery)
+                    ivEmptySearch.toVisibility(!hasQuery)
                     if (hasQuery) {
                         fragment.search(query)
                     } else {
