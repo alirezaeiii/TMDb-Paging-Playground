@@ -47,7 +47,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn", "-Xjvm-default=all"]
     }
 }
 
@@ -132,12 +132,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation "com.jakewharton.espresso:okhttp3-idling-resource:$okhttpIdlingResourceVersion"
     implementation "com.android.support.test.espresso:espresso-idling-resource:$espressoVersion"
-
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
-            freeCompilerArgs += ["-Xjvm-default=all",]
-        }
-    }
 }
 
 def getProperty(String filename, String propName) {
