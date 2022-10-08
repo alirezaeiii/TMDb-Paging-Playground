@@ -37,7 +37,8 @@ abstract class BaseNavTypeActivity : BaseActivity() {
                     else -> throw RuntimeException("Unknown search navigation type")
                 }
                 val intent = Intent(this, activity)
-                //Bundle introduce an unexpected result in destination Activity. See https://issuetracker.google.com/issues/251812970 -->
+                // Bundle introduce an unexpected result in destination Activity.
+                // See https://issuetracker.google.com/issues/251812970
                 startActivity(intent, options.toBundle())
             }
         }
