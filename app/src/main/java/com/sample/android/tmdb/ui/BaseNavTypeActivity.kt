@@ -29,17 +29,16 @@ abstract class BaseNavTypeActivity : BaseActivity() {
                 val options = ActivityOptions.makeSceneTransitionAnimation(
                     this,
                     searchMenuView, getString(R.string.transition_search_back)
-                ).toBundle()
+                )
 
                 val activity = when (navType) {
                     NavType.MOVIES -> SearchMovieActivity::class.java
                     NavType.TV_SERIES -> SearchTVShowActivity::class.java
                     else -> throw RuntimeException("Unknown search navigation type")
                 }
-                val intent = Intent(this, activity).apply {
-                    action = Intent.ACTION_SEARCH
-                }
-                startActivity(intent, options)
+                val intent = Intent(this, activity)
+                //Bundle introduce an unexpected result in destination Activity. See https://issuetracker.google.com/issues/251812970 -->
+                startActivity(intent, options.toBundle())
             }
         }
         return super.onOptionsItemSelected(item)
