@@ -2,15 +2,15 @@ package com.sample.android.tmdb.util
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import androidx.databinding.BindingAdapter
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.core.content.ContextCompat
-import androidx.cardview.widget.CardView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -91,7 +91,7 @@ fun bindProfileImage(imageView: ImageView, url: String?) {
         .error(R.drawable.ic_error_outline_black_36dp)
 
     Glide.with(imageView.context)
-        .load(IMAGE_LOW_RES_BASE_URL.plus(url))
+        .load(imageView.context.getString(R.string.base_poster_path, url))
         .apply(options)
         .into(imageView)
 }
@@ -99,7 +99,7 @@ fun bindProfileImage(imageView: ImageView, url: String?) {
 @BindingAdapter("profileUrl")
 fun bindProfileImage(imageView: CircleImageView, url: String?) {
     Glide.with(imageView.context)
-        .load(IMAGE_LOW_RES_BASE_URL.plus(url))
+        .load(imageView.context.getString(R.string.base_poster_path, url))
         .apply(
             RequestOptions()
                 .error(R.drawable.ic_error_outline_white_96dp)
@@ -121,5 +121,3 @@ fun View.toVisibility(visible: Boolean) {
 fun <T> toVisibility(view: View, list: List<T>?) {
     view.visibility = if (list == null || list.isEmpty()) View.GONE else View.VISIBLE
 }
-
-private const val IMAGE_LOW_RES_BASE_URL = "https://image.tmdb.org/t/p/w500"
