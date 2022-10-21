@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            app:imageUrl="@{@string/base_backdrop_path(tmdbItem.backdropPath)}"
+            app:backdropUrl="@{tmdbItem.backdropPath}"
             tools:ignore="ContentDescription" />
 
         <View
@@ -45,7 +45,7 @@
             android:scaleType="centerCrop"
             android:transformPivotX="0px"
             android:transformPivotY="0px"
-            app:imageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}" />
+            app:imageUrl="@{tmdbItem.posterPath}" />
 
         <!-- Needed to fill a rounding error gap in MotionLayout. See https://issuetracker.google.com/112728689 -->
         <View

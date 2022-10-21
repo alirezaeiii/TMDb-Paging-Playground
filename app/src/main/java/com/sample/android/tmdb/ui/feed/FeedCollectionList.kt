@@ -34,6 +34,7 @@ import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.SortType
 import com.sample.android.tmdb.ui.paging.main.movie.*
 import com.sample.android.tmdb.ui.paging.main.tvshow.*
+import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
@@ -169,8 +170,8 @@ private fun <T : TmdbItem> TmdbItem(
             .padding(Dimens.PaddingSmall)
     ) {
         Image(
-            painter = rememberImagePainter(tmdbItem.posterPath?.let { url ->
-                stringResource(R.string.base_poster_path, url)
+            painter = rememberImagePainter(tmdbItem.posterPath?.let { path ->
+                 String.format(BASE_POSTER_PATH, path)
             }),
             contentDescription = null,
             modifier = Modifier

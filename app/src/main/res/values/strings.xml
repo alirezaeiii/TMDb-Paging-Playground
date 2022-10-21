@@ -37,9 +37,6 @@
     <string name="open_nav_drawer">Open navigation drawer</string>
     <string name="close_nav_drawer">Close navigation drawer</string>
 
-    <string name="base_poster_path">http://image.tmdb.org/t/p/w342%s</string>
-    <string name="base_backdrop_path">http://image.tmdb.org/t/p/w780%s</string>
-
     <string name="failed_loading_msg">Something went wrong</string>
     <string name="failed_network_msg">No internet connection</string>
     <string name="text_connectivity">Connected</string>

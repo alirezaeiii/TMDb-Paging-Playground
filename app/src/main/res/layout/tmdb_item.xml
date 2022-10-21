@@ -22,7 +22,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{() -> callback.onClick(tmdbItem)}"
         app:cardElevation="@dimen/z_app_bar"
-        app:ImageUrl="@{@string/base_poster_path(tmdbItem.posterPath)}"
+        app:ImageUrl="@{tmdbItem.posterPath}"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

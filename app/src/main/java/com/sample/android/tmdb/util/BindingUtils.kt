@@ -18,6 +18,8 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.data.Video
+import com.sample.android.tmdb.util.Constants.BASE_BACKDROP_PATH
+import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 import de.hdodenhof.circleimageview.CircleImageView
 
 @BindingAdapter("ImageUrl")
@@ -44,8 +46,13 @@ fun bindImageItem(cardView: CardView, url: String?) {
 }
 
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, url: String?) {
-    Glide.with(imageView.context).load(url).into(imageView)
+fun bindImage(imageView: ImageView, path: String?) {
+    Glide.with(imageView.context).load(String.format(BASE_POSTER_PATH, path)).into(imageView)
+}
+
+@BindingAdapter("backdropUrl")
+fun bindBackdropImage(imageView: ImageView, path: String?) {
+    Glide.with(imageView.context).load(String.format(BASE_BACKDROP_PATH, path)).into(imageView)
 }
 
 @BindingAdapter("items")
@@ -85,21 +92,21 @@ fun addItems(linearLayout: LinearLayout, trailers: List<Video>?) {
 }
 
 @BindingAdapter("profileUrl")
-fun bindProfileImage(imageView: ImageView, url: String?) {
+fun bindProfileImage(imageView: ImageView, path: String?) {
     val options = RequestOptions()
         .centerCrop()
         .error(R.drawable.ic_error_outline_black_36dp)
 
     Glide.with(imageView.context)
-        .load(imageView.context.getString(R.string.base_poster_path, url))
+        .load(String.format(BASE_POSTER_PATH, path))
         .apply(options)
         .into(imageView)
 }
 
 @BindingAdapter("profileUrl")
-fun bindProfileImage(imageView: CircleImageView, url: String?) {
+fun bindProfileImage(imageView: CircleImageView, path: String?) {
     Glide.with(imageView.context)
-        .load(imageView.context.getString(R.string.base_poster_path, url))
+        .load(String.format(BASE_POSTER_PATH, path))
         .apply(
             RequestOptions()
                 .error(R.drawable.ic_error_outline_white_96dp)
