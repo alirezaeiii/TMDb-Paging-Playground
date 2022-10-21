@@ -23,10 +23,10 @@ import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 import de.hdodenhof.circleimageview.CircleImageView
 
 @BindingAdapter("ImageUrl")
-fun bindCard(cardView: CardView, url: String?) {
+fun bindCard(cardView: CardView, path: String?) {
     Glide.with(cardView.context)
         .asBitmap()
-        .load(url)
+        .load(String.format(BASE_POSTER_PATH, path))
         .apply(RequestOptions().centerCrop())
         .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.item_poster)) {
             override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
