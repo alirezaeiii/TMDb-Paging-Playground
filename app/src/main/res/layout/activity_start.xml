@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.start.StartActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="165dp"
-        android:layout_height="165dp"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_the_movie_database" />
 
 </FrameLayout>

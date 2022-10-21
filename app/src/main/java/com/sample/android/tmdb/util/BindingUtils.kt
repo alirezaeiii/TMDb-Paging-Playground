@@ -23,7 +23,7 @@ import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 import de.hdodenhof.circleimageview.CircleImageView
 
 @BindingAdapter("ImageUrl")
-fun bindImageItem(cardView: CardView, url: String?) {
+fun bindCard(cardView: CardView, url: String?) {
     Glide.with(cardView.context)
         .asBitmap()
         .load(url)
