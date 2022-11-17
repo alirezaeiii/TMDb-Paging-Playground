@@ -16,11 +16,11 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    internal abstract fun bindMovieRepository(movieFeedRepository: MovieFeedRepository): BaseFeedRepository<Movie>
+    internal abstract fun bindMovieFeedRepository(movieFeedRepository: MovieFeedRepository): BaseFeedRepository<Movie>
 
     @Singleton
     @Binds
-    internal abstract fun bindTVShowRepository(tvShowFeedRepository: TVShowFeedRepository): BaseFeedRepository<TVShow>
+    internal abstract fun bindTVShowFeedRepository(tvShowFeedRepository: TVShowFeedRepository): BaseFeedRepository<TVShow>
 
     @Singleton
     @Binds

@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
 import com.sample.android.tmdb.data.ItemWrapper
 import com.sample.android.tmdb.network.MovieApi
-import com.sample.android.tmdb.util.ViewState
+import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -60,9 +60,9 @@ class MovieFeedRepositoryTest {
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
-            assertThat(repository.result.first(), `is`(ViewState.Loading))
+            assertThat(repository.result.first(), `is`(Resource.Loading))
 
-            val result = (repository.result.last() as ViewState.Success).data
+            val result = (repository.result.last() as Resource.Success).data
 
             assertThat(result[0].feeds, `is`(emptyList()))
             assertThat(result[1].feeds, `is`(emptyList()))
@@ -83,8 +83,8 @@ class MovieFeedRepositoryTest {
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
-            assertThat(repository.result.first(), `is`(ViewState.Loading))
-            assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
+            assertThat(repository.result.first(), `is`(Resource.Loading))
+            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
         }
     }
 
@@ -99,8 +99,8 @@ class MovieFeedRepositoryTest {
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
-            assertThat(repository.result.first(), `is`(ViewState.Loading))
-            assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
+            assertThat(repository.result.first(), `is`(Resource.Loading))
+            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
         }
     }
 
@@ -115,8 +115,8 @@ class MovieFeedRepositoryTest {
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
-            assertThat(repository.result.first(), `is`(ViewState.Loading))
-            assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
+            assertThat(repository.result.first(), `is`(Resource.Loading))
+            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
         }
     }
 
@@ -130,8 +130,8 @@ class MovieFeedRepositoryTest {
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
-            assertThat(repository.result.first(), `is`(ViewState.Loading))
-            assertThat(repository.result.last(), `is`(ViewState.Error(errorMsg)))
+            assertThat(repository.result.first(), `is`(Resource.Loading))
+            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
         }
     }
 }

@@ -13,7 +13,7 @@ import com.sample.android.tmdb.ui.common.ErrorScreen
 import com.sample.android.tmdb.ui.common.ProgressScreen
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
-import com.sample.android.tmdb.util.ViewState
+import com.sample.android.tmdb.util.Resource
 
 abstract class FeedFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
@@ -25,25 +25,25 @@ abstract class FeedFragment<T : TmdbItem> : BaseNavTypeFragment() {
         savedInstanceState: Bundle?
     ): View = composeView {
         TmdbTheme {
-            val viewState = viewModel.stateFlow.collectAsState().value
-            Content(viewState = viewState)
+            val resource = viewModel.stateFlow.collectAsState().value
+            Content(resource = resource)
         }
     }
 
     @Composable
-    private fun Content(viewState: ViewState<List<FeedWrapper<T>>>) {
-        when (viewState) {
-            is ViewState.Loading -> ProgressScreen()
-            is ViewState.Success -> {
+    private fun Content(resource: Resource<List<FeedWrapper<T>>>) {
+        when (resource) {
+            is Resource.Loading -> ProgressScreen()
+            is Resource.Success -> {
                 FeedCollectionList(
                     navType,
-                    viewState.data
+                    resource.data
                 ) { tmdbItem ->
                     startDetailActivity(tmdbItem)
                 }
             }
-            is ViewState.Error ->
-                ErrorScreen(message = viewState.message, viewModel::refresh)
+            is Resource.Error ->
+                ErrorScreen(message = resource.message, viewModel::refresh)
         }
     }
 }

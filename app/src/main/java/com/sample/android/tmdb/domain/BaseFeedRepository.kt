@@ -6,7 +6,7 @@ import com.sample.android.tmdb.data.FeedWrapper
 import com.sample.android.tmdb.data.ItemWrapper
 import com.sample.android.tmdb.data.TmdbItem
 import com.sample.android.tmdb.ui.paging.main.SortType
-import com.sample.android.tmdb.util.ViewState
+import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Deferred
@@ -35,7 +35,7 @@ abstract class BaseFeedRepository<T : TmdbItem>(
     protected abstract fun getLatestResId(): Int
 
     val result = flow {
-        emit(ViewState.Loading)
+        emit(Resource.Loading)
         if (context.isNetworkAvailable()) {
             try {
                 coroutineScope {
@@ -46,7 +46,7 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                     val topRatedDeferred: Deferred<ItemWrapper<T>> = async { topRatedItems() }
 
                     emit(
-                        ViewState.Success(
+                        Resource.Success(
                             listOf(
                                 FeedWrapper(
                                     trendingDeferred.await().items,
@@ -78,10 +78,10 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                     )
                 }
             } catch (t: Throwable) {
-                emit(ViewState.Error(context.getString(R.string.failed_loading_msg)))
+                emit(Resource.Error(context.getString(R.string.failed_loading_msg)))
             }
         } else {
-            emit(ViewState.Error(context.getString(R.string.failed_network_msg)))
+            emit(Resource.Error(context.getString(R.string.failed_network_msg)))
         }
     }.flowOn(ioDispatcher)
 }
