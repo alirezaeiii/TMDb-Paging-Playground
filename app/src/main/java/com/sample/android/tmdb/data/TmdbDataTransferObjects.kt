@@ -14,10 +14,6 @@ interface NetworkTmdbItem {
     val voteAverage: Double
 }
 
-private const val POSTER_PATH = "poster_path"
-private const val BACKDROP_PATH = "backdrop_path"
-private const val VOTE_AVERAGE = "vote_average"
-
 class NetworkMovie(
     override val id: Int,
     override val overview: String,
@@ -50,3 +46,7 @@ fun List<NetworkMovie>.asMovieDomainModel() : List<Movie> =
 
 fun List<NetworkTVShow>.asTVShowDomainModel() : List<TVShow> =
     map { TVShow(it.id, it.overview, it.releaseDate, it.posterPath, it.backdropPath, it.name, it.voteAverage) }
+
+private const val POSTER_PATH = "poster_path"
+private const val BACKDROP_PATH = "backdrop_path"
+private const val VOTE_AVERAGE = "vote_average"

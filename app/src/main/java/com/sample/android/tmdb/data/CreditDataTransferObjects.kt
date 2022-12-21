@@ -11,8 +11,6 @@ interface NetworkCredit {
     val profilePath: String?
 }
 
-private const val PROFILE_PATH = "profile_path"
-
 class NetworkCast(
     @SerializedName("character")
     override val credit: String,
@@ -38,3 +36,5 @@ fun List<NetworkCast>.asCastDomainModel(): List<Cast> = map {
 fun List<NetworkCrew>.asCrewDomainModel(): List<Crew> = map {
     Crew(it.credit, it.name, it.profilePath, it.id)
 }
+
+private const val PROFILE_PATH = "profile_path"
