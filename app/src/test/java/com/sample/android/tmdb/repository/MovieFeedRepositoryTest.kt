@@ -79,7 +79,6 @@ class MovieFeedRepositoryTest {
 
 
         testCoroutineRule.runBlockingTest {
-            `when`(movieApi.trendingMovies()).thenThrow(RuntimeException(errorMsg))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
@@ -89,44 +88,12 @@ class MovieFeedRepositoryTest {
     }
 
     @Test
-    fun `test Fetch popular movies Fails`() {
+    fun `test Fetch movies Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
 
         testCoroutineRule.runBlockingTest {
-            `when`(movieApi.popularMovies()).thenThrow(RuntimeException(errorMsg))
-
-            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
-    fun `test Fetch latest movies Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-
-        testCoroutineRule.runBlockingTest {
-            `when`(movieApi.upcomingMovies()).thenThrow(RuntimeException(errorMsg))
-
-            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
-    fun `test Fetch topRated movies Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-        testCoroutineRule.runBlockingTest {
-            `when`(movieApi.topRatedMovies()).thenThrow(RuntimeException(errorMsg))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 

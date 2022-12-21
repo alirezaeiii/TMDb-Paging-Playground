@@ -2,10 +2,10 @@ package com.sample.android.tmdb.repository
 
 import android.content.Context
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.data.asTVShowDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.TVShow
 import com.sample.android.tmdb.domain.BaseFeedRepository
+import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -18,15 +18,15 @@ class TVShowFeedRepository @Inject constructor(
     private val tvShowApi: TVShowApi,
 ) : BaseFeedRepository<TVShow>(context, ioDispatcher) {
 
-    override suspend fun popularItems(): ItemWrapper<TVShow> = tvShowApi.popularTVSeries()
+    override suspend fun popularItems(): List<TVShow> = tvShowApi.popularTVSeries().items.asTVShowDomainModel()
 
-    override suspend fun latestItems(): ItemWrapper<TVShow> = tvShowApi.onTheAirTVSeries()
+    override suspend fun latestItems(): List<TVShow> = tvShowApi.onTheAirTVSeries().items.asTVShowDomainModel()
 
-    override suspend fun topRatedItems(): ItemWrapper<TVShow> = tvShowApi.topRatedTVSeries()
+    override suspend fun topRatedItems(): List<TVShow> = tvShowApi.topRatedTVSeries().items.asTVShowDomainModel()
 
-    override suspend fun trendingItems(): ItemWrapper<TVShow> = tvShowApi.trendingTVSeries()
+    override suspend fun trendingItems(): List<TVShow> = tvShowApi.trendingTVSeries().items.asTVShowDomainModel()
 
-    override suspend fun nowPlayingItems(): ItemWrapper<TVShow> = tvShowApi.airingTodayTVSeries()
+    override suspend fun nowPlayingItems(): List<TVShow> = tvShowApi.airingTodayTVSeries().items.asTVShowDomainModel()
 
     override fun getNowPlayingResId(): Int = R.string.text_airing_today
 

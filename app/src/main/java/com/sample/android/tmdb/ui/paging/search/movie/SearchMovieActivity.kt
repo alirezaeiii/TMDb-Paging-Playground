@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.paging.search.movie
 
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.Movie
+import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.ui.paging.search.SearchActivity
 import javax.inject.Inject
 

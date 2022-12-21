@@ -2,7 +2,7 @@ package com.sample.android.tmdb.network
 
 import com.sample.android.tmdb.data.CreditWrapper
 import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.Movie
+import com.sample.android.tmdb.data.NetworkMovie
 import com.sample.android.tmdb.data.VideoWrapper
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -13,37 +13,37 @@ import retrofit2.http.Query
 interface MovieApi {
 
     @GET("3/trending/movie/day")
-    suspend fun trendingMovies(): ItemWrapper<Movie>
+    suspend fun trendingMovies(): ItemWrapper<NetworkMovie>
 
     @GET("3/movie/now_playing")
-    suspend fun nowPlayingMovies(): ItemWrapper<Movie>
+    suspend fun nowPlayingMovies(): ItemWrapper<NetworkMovie>
 
     @GET("3/movie/popular")
-    suspend fun popularMovies(): ItemWrapper<Movie>
+    suspend fun popularMovies(): ItemWrapper<NetworkMovie>
 
     @GET("3/movie/upcoming")
-    suspend fun upcomingMovies(): ItemWrapper<Movie>
+    suspend fun upcomingMovies(): ItemWrapper<NetworkMovie>
 
     @GET("3/movie/top_rated")
-    suspend fun topRatedMovies(): ItemWrapper<Movie>
+    suspend fun topRatedMovies(): ItemWrapper<NetworkMovie>
 
     @GET("3/trending/movie/day")
-    fun trendingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun trendingMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/movie/now_playing")
-    fun nowPlayingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun nowPlayingMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/movie/popular")
-    fun popularMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun popularMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/movie/top_rated")
-    fun topRatedMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun topRatedMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/movie/upcoming")
-    fun upcomingMovies(@Query("page") page: Int): Observable<ItemWrapper<Movie>>
+    fun upcomingMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/search/movie")
-    fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<Movie>>
+    fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/movie/{movieId}/videos")
     fun movieTrailers(@Path("movieId") movieId: Int): Single<VideoWrapper>

@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.di
 
-import com.sample.android.tmdb.data.Movie
-import com.sample.android.tmdb.data.TVShow
+import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.domain.MovieDetailRepository
 import com.sample.android.tmdb.domain.PersonRepository
 import com.sample.android.tmdb.domain.TVShowDetailRepository

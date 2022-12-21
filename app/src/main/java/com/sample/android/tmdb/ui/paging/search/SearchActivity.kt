@@ -9,7 +9,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.databinding.ActivitySearchBinding
 import com.sample.android.tmdb.ui.BaseActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity

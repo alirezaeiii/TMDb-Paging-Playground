@@ -3,6 +3,7 @@ package com.sample.android.tmdb.ui.detail.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
 import com.sample.android.tmdb.data.*
+import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.MovieDetailRepository
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
@@ -41,7 +42,7 @@ class DetailMovieViewModelTest {
     @Test
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(repository.getMovieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
@@ -58,7 +59,7 @@ class DetailMovieViewModelTest {
 
     @Test
     fun errorLoadTrailers() {
-        val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.error(Exception()))
         `when`(repository.getMovieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 

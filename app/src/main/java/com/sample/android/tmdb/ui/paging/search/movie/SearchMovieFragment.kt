@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.paging.search.movie
 
 import androidx.lifecycle.ViewModelProvider
-import com.sample.android.tmdb.data.Movie
+import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.search.BaseSearchFragment
 import javax.inject.Inject
@@ -14,7 +14,7 @@ constructor() // Required empty public constructor
     lateinit var factory: SearchMovieViewModel.Factory
 
     override val viewModel
-        get() = ViewModelProvider(this, factory).get(SearchMovieViewModel::class.java)
+        get() = ViewModelProvider(this, factory)[SearchMovieViewModel::class.java]
 
     override val navType: NavType
         get() = NavType.MOVIES

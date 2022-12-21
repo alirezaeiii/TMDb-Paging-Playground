@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import com.sample.android.tmdb.data.FeedWrapper
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.FeedWrapper
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.BaseNavTypeFragment
 import com.sample.android.tmdb.ui.common.ErrorScreen
 import com.sample.android.tmdb.ui.common.ProgressScreen

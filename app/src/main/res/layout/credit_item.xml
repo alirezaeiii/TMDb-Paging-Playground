@@ -7,7 +7,7 @@
 
         <variable
             name="creditItem"
-            type="com.sample.android.tmdb.data.Credit" />
+            type="com.sample.android.tmdb.domain.Credit" />
 
         <variable
             name="callback"

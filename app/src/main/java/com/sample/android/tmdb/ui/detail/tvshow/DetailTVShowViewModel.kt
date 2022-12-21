@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.detail.tvshow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import com.sample.android.tmdb.ui.detail.DetailViewModel
 import javax.inject.Inject

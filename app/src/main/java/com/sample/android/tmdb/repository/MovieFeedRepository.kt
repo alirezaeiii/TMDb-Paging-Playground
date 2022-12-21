@@ -2,10 +2,10 @@ package com.sample.android.tmdb.repository
 
 import android.content.Context
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.data.asMovieDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.Movie
 import com.sample.android.tmdb.domain.BaseFeedRepository
+import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -18,15 +18,15 @@ class MovieFeedRepository @Inject constructor(
     private val movieApi: MovieApi,
 ): BaseFeedRepository<Movie>(context, ioDispatcher) {
 
-    override suspend fun popularItems(): ItemWrapper<Movie> = movieApi.popularMovies()
+    override suspend fun popularItems(): List<Movie> = movieApi.popularMovies().items.asMovieDomainModel()
 
-    override suspend fun latestItems(): ItemWrapper<Movie> = movieApi.upcomingMovies()
+    override suspend fun latestItems(): List<Movie> = movieApi.upcomingMovies().items.asMovieDomainModel()
 
-    override suspend fun topRatedItems(): ItemWrapper<Movie> = movieApi.topRatedMovies()
+    override suspend fun topRatedItems(): List<Movie> = movieApi.topRatedMovies().items.asMovieDomainModel()
 
-    override suspend fun trendingItems(): ItemWrapper<Movie> = movieApi.trendingMovies()
+    override suspend fun trendingItems(): List<Movie> = movieApi.trendingMovies().items.asMovieDomainModel()
 
-    override suspend fun nowPlayingItems(): ItemWrapper<Movie> = movieApi.nowPlayingMovies()
+    override suspend fun nowPlayingItems(): List<Movie> = movieApi.nowPlayingMovies().items.asMovieDomainModel()
 
     override fun getNowPlayingResId(): Int = R.string.text_now_playing
 

@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.FeedWrapper
-import com.sample.android.tmdb.data.Movie
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.FeedWrapper
+import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.SortType

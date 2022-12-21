@@ -6,7 +6,8 @@ import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.Movie
+import com.sample.android.tmdb.data.NetworkMovie
+import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
@@ -39,7 +40,7 @@ class SearchMoviePageKeyRepositoryTest {
 
     private val networkExecutor = Executor { command -> command.run() }
 
-    private lateinit var movie: Movie
+    private lateinit var movie: NetworkMovie
 
     @Before
     fun setup() {
@@ -47,7 +48,7 @@ class SearchMoviePageKeyRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
-        movie = Movie(1, "overview", "date",
+        movie = NetworkMovie(1, "overview", "date",
                 null, null, "title", 6.5)
     }
 

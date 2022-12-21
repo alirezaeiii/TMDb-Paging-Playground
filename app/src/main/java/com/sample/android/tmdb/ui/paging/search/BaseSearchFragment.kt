@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.paging.search
 
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.paging.Status.RUNNING
 import com.sample.android.tmdb.ui.paging.BaseFragment
 import com.sample.android.tmdb.util.toVisibility

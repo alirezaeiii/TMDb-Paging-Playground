@@ -3,8 +3,8 @@ package com.sample.android.tmdb.ui.detail.credit
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.sample.android.tmdb.data.Credit
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.Credit
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.person.PersonActivity
 import com.sample.android.tmdb.ui.person.PersonWrapper
 import com.sample.android.tmdb.util.Constants.PERSON_WRAPPER

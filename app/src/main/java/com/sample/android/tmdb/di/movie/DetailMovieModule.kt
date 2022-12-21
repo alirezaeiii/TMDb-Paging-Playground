@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.di.movie
 
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.ui.detail.movie.DetailMovieActivity
 import com.sample.android.tmdb.ui.detail.movie.DetailMovieFragment
 import com.sample.android.tmdb.util.Constants.EXTRA_TMDB_ITEM

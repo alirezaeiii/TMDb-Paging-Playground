@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.paging.main.tvshow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sample.android.tmdb.data.TVShow
+import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.BaseItemFragment

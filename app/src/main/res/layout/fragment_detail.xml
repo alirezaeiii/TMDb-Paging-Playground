@@ -7,7 +7,7 @@
 
         <variable
             name="tmdbItem"
-            type="com.sample.android.tmdb.data.TmdbItem" />
+            type="com.sample.android.tmdb.domain.TmdbItem" />
 
         <variable
             name="vm"

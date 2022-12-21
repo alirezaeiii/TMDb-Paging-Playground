@@ -1,9 +1,8 @@
 package com.sample.android.tmdb.data
 
 import com.google.gson.annotations.SerializedName
-import com.sample.android.tmdb.ui.paging.main.SortType
 
-class ItemWrapper<T : TmdbItem>(
+class ItemWrapper<T : NetworkTmdbItem>(
     @SerializedName("results")
     val items: List<T>
 )
@@ -14,12 +13,6 @@ class VideoWrapper(
 )
 
 class CreditWrapper(
-    val cast: List<Cast>,
-    val crew: List<Crew>
-)
-
-class FeedWrapper<T : TmdbItem>(
-    val feeds: List<T>,
-    val sortTypeResourceId: Int,
-    val sortType: SortType
+    val cast: List<NetworkCast>,
+    val crew: List<NetworkCrew>
 )

@@ -6,7 +6,8 @@ import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.TVShow
+import com.sample.android.tmdb.data.NetworkTVShow
+import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
@@ -41,7 +42,7 @@ class SearchTVShowPageKeyRepositoryTest {
 
     private val networkExecutor = Executor { command -> command.run() }
 
-    private lateinit var tvShow: TVShow
+    private lateinit var tvShow: NetworkTVShow
 
     @Before
     fun setup() {
@@ -49,7 +50,7 @@ class SearchTVShowPageKeyRepositoryTest {
         every {
             context.isNetworkAvailable()
         } returns true
-        tvShow = TVShow(1, "overview", "date",
+        tvShow = NetworkTVShow(1, "overview", "date",
                 null, null, "title", 6.5)
     }
 

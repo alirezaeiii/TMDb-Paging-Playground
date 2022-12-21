@@ -73,58 +73,11 @@ class TVShowFeedRepositoryTest {
     }
 
     @Test
-    fun `test Fetch trending tvShows Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-
-        testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.trendingTVSeries()).thenThrow(RuntimeException(errorMsg))
-
-            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
-    fun `test Fetch popular tvShows Fails`() {
+    fun `test Fetch tvShows Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
 
         testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.popularTVSeries()).thenThrow(RuntimeException(errorMsg))
-
-            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
-    fun `test Fetch latest tvShows Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-        testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.onTheAirTVSeries()).thenThrow(RuntimeException(errorMsg))
-
-            val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
-    fun `test Fetch topRated tvShows Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-        testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.topRatedTVSeries()).thenThrow(RuntimeException(errorMsg))
 
             val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 

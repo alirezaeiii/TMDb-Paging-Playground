@@ -5,8 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.TmdbItem
+import com.sample.android.tmdb.domain.TmdbItem
 import com.sample.android.tmdb.util.DisposableManager
 import com.sample.android.tmdb.util.NetworkException
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -43,7 +42,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         }
     }
 
-    protected abstract fun fetchItems(page: Int): Observable<ItemWrapper<T>>
+    protected abstract fun fetchItems(page: Int): Observable<List<T>>
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         // ignored, since we only ever append to our initial load
@@ -54,7 +53,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         loadItems(params.key).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             retry = null
-            callback.onResult(it.items, params.key + 1)
+            callback.onResult(it, params.key + 1)
         }) {
             retry = {
                 loadAfter(params, callback)
@@ -72,7 +71,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         loadItems(1).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             _initialLoad.postValue(NetworkState.LOADED)
-            callback.onResult(it.items, null, 2)
+            callback.onResult(it, null, 2)
         }) {
             retry = {
                 loadInitial(params, callback)
@@ -82,7 +81,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         }.also { DisposableManager.add(it) }
     }
 
-    private fun loadItems(page: Int): Observable<ItemWrapper<T>> =
+    private fun loadItems(page: Int): Observable<List<T>> =
         Observable.fromCallable { context.isNetworkAvailable() }.flatMap {
             return@flatMap if (it) this.fetchItems(page)
             else Observable.error(NetworkException())

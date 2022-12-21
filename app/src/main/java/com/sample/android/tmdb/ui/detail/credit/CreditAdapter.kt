@@ -5,7 +5,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.CreditItemBinding
-import com.sample.android.tmdb.data.Credit
+import com.sample.android.tmdb.domain.Credit
 import com.sample.android.tmdb.util.layoutInflater
 
 class CreditAdapter<T : Credit>(

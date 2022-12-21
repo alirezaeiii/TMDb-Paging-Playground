@@ -2,7 +2,7 @@ package com.sample.android.tmdb.network
 
 import com.sample.android.tmdb.data.CreditWrapper
 import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.TVShow
+import com.sample.android.tmdb.data.NetworkTVShow
 import com.sample.android.tmdb.data.VideoWrapper
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -13,37 +13,37 @@ import retrofit2.http.Query
 interface TVShowApi {
 
     @GET("3/trending/tv/day")
-    suspend fun trendingTVSeries(): ItemWrapper<TVShow>
+    suspend fun trendingTVSeries(): ItemWrapper<NetworkTVShow>
 
     @GET("3/tv/airing_today")
-    suspend fun airingTodayTVSeries(): ItemWrapper<TVShow>
+    suspend fun airingTodayTVSeries(): ItemWrapper<NetworkTVShow>
 
     @GET("3/tv/popular")
-    suspend fun popularTVSeries(): ItemWrapper<TVShow>
+    suspend fun popularTVSeries(): ItemWrapper<NetworkTVShow>
 
     @GET("3/tv/on_the_air")
-    suspend fun onTheAirTVSeries(): ItemWrapper<TVShow>
+    suspend fun onTheAirTVSeries(): ItemWrapper<NetworkTVShow>
 
     @GET("3/tv/top_rated")
-    suspend fun topRatedTVSeries(): ItemWrapper<TVShow>
+    suspend fun topRatedTVSeries(): ItemWrapper<NetworkTVShow>
 
     @GET("3/trending/tv/day")
-    fun trendingTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    fun trendingTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/tv/airing_today")
-    fun airingTodayTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    fun airingTodayTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/tv/popular")
-    fun popularTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    fun popularTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/tv/top_rated")
-    fun topRatedTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    fun topRatedTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/tv/on_the_air")
-    fun onTheAirTVSeries(@Query("page") page: Int): Observable<ItemWrapper<TVShow>>
+    fun onTheAirTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/search/tv")
-    fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<TVShow>>
+    fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/tv/{tvId}/videos")
     fun tvTrailers(@Path("tvId") tvId: Int): Single<VideoWrapper>

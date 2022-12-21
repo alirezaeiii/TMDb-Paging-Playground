@@ -2,7 +2,11 @@ package com.sample.android.tmdb.ui.detail.tvshow
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.*
+import com.sample.android.tmdb.data.CreditWrapper
+import com.sample.android.tmdb.data.NetworkCast
+import com.sample.android.tmdb.data.Video
+import com.sample.android.tmdb.data.VideoWrapper
+import com.sample.android.tmdb.domain.TVShow
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
@@ -41,7 +45,7 @@ class DetailTVShowViewModelTest {
     @Test
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(repository.getTVShowCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
@@ -58,7 +62,7 @@ class DetailTVShowViewModelTest {
 
     @Test
     fun errorLoadTrailers() {
-        val creditWrapper = CreditWrapper(listOf(Cast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.error(Exception()))
         `when`(repository.getTVShowCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 

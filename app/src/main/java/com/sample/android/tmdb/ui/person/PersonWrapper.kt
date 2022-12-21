@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.person
 
 import android.os.Parcelable
-import com.sample.android.tmdb.data.Credit
+import com.sample.android.tmdb.domain.Credit
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
