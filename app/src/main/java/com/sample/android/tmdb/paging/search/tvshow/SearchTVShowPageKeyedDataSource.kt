@@ -16,5 +16,5 @@ class SearchTVShowPageKeyedDataSource(
 ) : BasePageKeyedDataSource<TVShow>(retryExecutor, context) {
 
     override fun fetchItems(page: Int): Observable<List<TVShow>> =
-        api.searchItems(page, query).map { it.items.asTVShowDomainModel() }
+        api.searchItems(page, query).asTVShowDomainModel()
 }

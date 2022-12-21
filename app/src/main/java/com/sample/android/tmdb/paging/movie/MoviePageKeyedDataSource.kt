@@ -17,10 +17,10 @@ class MoviePageKeyedDataSource(
     : BasePageKeyedDataSource<Movie>(retryExecutor, context) {
 
     override fun fetchItems(page: Int): Observable<List<Movie>> = when (sortType) {
-        SortType.MOST_POPULAR -> api.popularMovies(page).map { it.items.asMovieDomainModel() }
-        SortType.HIGHEST_RATED -> api.topRatedMovies(page).map { it.items.asMovieDomainModel() }
-        SortType.UPCOMING -> api.upcomingMovies(page).map { it.items.asMovieDomainModel() }
-        SortType.TRENDING -> api.trendingMovies(page).map { it.items.asMovieDomainModel() }
-        SortType.NOW_PLAYING -> api.nowPlayingMovies(page).map { it.items.asMovieDomainModel() }
+        SortType.MOST_POPULAR -> api.popularMovies(page).asMovieDomainModel()
+        SortType.HIGHEST_RATED -> api.topRatedMovies(page).asMovieDomainModel()
+        SortType.UPCOMING -> api.upcomingMovies(page).asMovieDomainModel()
+        SortType.TRENDING -> api.trendingMovies(page).asMovieDomainModel()
+        SortType.NOW_PLAYING -> api.nowPlayingMovies(page).asMovieDomainModel()
     }
 }

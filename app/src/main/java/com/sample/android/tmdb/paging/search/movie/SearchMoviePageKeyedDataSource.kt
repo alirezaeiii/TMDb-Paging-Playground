@@ -16,5 +16,5 @@ class SearchMoviePageKeyedDataSource(
 ) : BasePageKeyedDataSource<Movie>(retryExecutor, context) {
 
     override fun fetchItems(page: Int): Observable<List<Movie>> =
-        api.searchItems(page, query).map { it.items.asMovieDomainModel() }
+        api.searchItems(page, query).asMovieDomainModel()
 }

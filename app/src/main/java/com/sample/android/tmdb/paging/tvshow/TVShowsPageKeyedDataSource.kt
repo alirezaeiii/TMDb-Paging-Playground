@@ -17,10 +17,10 @@ class TVShowsPageKeyedDataSource(
     : BasePageKeyedDataSource<TVShow>(retryExecutor, context) {
 
     override fun fetchItems(page: Int): Observable<List<TVShow>> = when (sortType) {
-        SortType.MOST_POPULAR -> api.popularTVSeries(page).map { it.items.asTVShowDomainModel() }
-        SortType.HIGHEST_RATED -> api.topRatedTVSeries(page).map { it.items.asTVShowDomainModel() }
-        SortType.UPCOMING -> api.onTheAirTVSeries(page).map { it.items.asTVShowDomainModel() }
-        SortType.TRENDING -> api.trendingTVSeries(page).map { it.items.asTVShowDomainModel() }
-        SortType.NOW_PLAYING -> api.airingTodayTVSeries(page).map { it.items.asTVShowDomainModel() }
+        SortType.MOST_POPULAR -> api.popularTVSeries(page).asTVShowDomainModel()
+        SortType.HIGHEST_RATED -> api.topRatedTVSeries(page).asTVShowDomainModel()
+        SortType.UPCOMING -> api.onTheAirTVSeries(page).asTVShowDomainModel()
+        SortType.TRENDING -> api.trendingTVSeries(page).asTVShowDomainModel()
+        SortType.NOW_PLAYING -> api.airingTodayTVSeries(page).asTVShowDomainModel()
     }
 }
