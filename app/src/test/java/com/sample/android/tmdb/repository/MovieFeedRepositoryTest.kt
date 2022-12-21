@@ -73,21 +73,6 @@ class MovieFeedRepositoryTest {
     }
 
     @Test
-    fun `test Fetch trending movies Fails`() {
-        val errorMsg = "error message"
-        `when`(context.getString(anyInt())).thenReturn(errorMsg)
-
-
-        testCoroutineRule.runBlockingTest {
-
-            val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
-
-            assertThat(repository.result.first(), `is`(Resource.Loading))
-            assertThat(repository.result.last(), `is`(Resource.Error(errorMsg)))
-        }
-    }
-
-    @Test
     fun `test Fetch movies Fails`() {
         val errorMsg = "error message"
         `when`(context.getString(anyInt())).thenReturn(errorMsg)
