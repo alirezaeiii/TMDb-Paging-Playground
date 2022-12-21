@@ -5,7 +5,7 @@ import com.sample.android.tmdb.domain.Movie
 import com.sample.android.tmdb.domain.TVShow
 
 interface NetworkTmdbItem {
-    val id : Int
+    val id: Int
     val overview: String
     val releaseDate: String?
     val posterPath: String?
@@ -26,7 +26,8 @@ class NetworkMovie(
     @SerializedName("title")
     override val name: String,
     @SerializedName(VOTE_AVERAGE)
-    override val voteAverage: Double) : NetworkTmdbItem
+    override val voteAverage: Double
+) : NetworkTmdbItem
 
 class NetworkTVShow(
     override val id: Int,
@@ -39,13 +40,34 @@ class NetworkTVShow(
     override val backdropPath: String?,
     override val name: String,
     @SerializedName(VOTE_AVERAGE)
-    override val voteAverage: Double) : NetworkTmdbItem
+    override val voteAverage: Double
+) : NetworkTmdbItem
 
-fun List<NetworkMovie>.asMovieDomainModel() : List<Movie> =
-    map { Movie(it.id, it.overview, it.releaseDate, it.posterPath, it.backdropPath, it.name, it.voteAverage) }
+fun List<NetworkMovie>.asMovieDomainModel(): List<Movie> =
+    map {
+        Movie(
+            it.id,
+            it.overview,
+            it.releaseDate,
+            it.posterPath,
+            it.backdropPath,
+            it.name,
+            it.voteAverage
+        )
+    }
 
-fun List<NetworkTVShow>.asTVShowDomainModel() : List<TVShow> =
-    map { TVShow(it.id, it.overview, it.releaseDate, it.posterPath, it.backdropPath, it.name, it.voteAverage) }
+fun List<NetworkTVShow>.asTVShowDomainModel(): List<TVShow> =
+    map {
+        TVShow(
+            it.id,
+            it.overview,
+            it.releaseDate,
+            it.posterPath,
+            it.backdropPath,
+            it.name,
+            it.voteAverage
+        )
+    }
 
 private const val POSTER_PATH = "poster_path"
 private const val BACKDROP_PATH = "backdrop_path"

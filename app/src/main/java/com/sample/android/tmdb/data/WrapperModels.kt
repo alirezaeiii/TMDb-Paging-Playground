@@ -21,7 +21,7 @@ class CreditWrapper(
 )
 
 fun Observable<ItemWrapper<NetworkMovie>>.asMovieDomainModel(): Observable<List<Movie>> =
-    this.map { it.items.asMovieDomainModel() }
+    map { it.items.asMovieDomainModel() }
 
 fun Observable<ItemWrapper<NetworkTVShow>>.asTVShowDomainModel(): Observable<List<TVShow>> =
-    this.map { it.items.asTVShowDomainModel() }
+    map { it.items.asTVShowDomainModel() }

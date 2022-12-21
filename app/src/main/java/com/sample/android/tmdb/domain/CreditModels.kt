@@ -12,14 +12,16 @@ interface Credit : Parcelable {
 
 @Parcelize
 class Cast(
-        override val credit: String,
-        override val name: String,
-        override val profilePath: String?,
-        override val id: Int) : Credit
+    override val credit: String,
+    override val name: String,
+    override val profilePath: String?,
+    override val id: Int
+) : Credit
 
 @Parcelize
 class Crew(
-        override val credit: String,
-        override val name: String,
-        override val profilePath: String?,
-        override val id: String) : Credit
+    override val credit: String,
+    override val name: String,
+    override val profilePath: String?,
+    override val id: String
+) : Credit

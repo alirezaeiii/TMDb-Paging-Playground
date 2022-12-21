@@ -3,13 +3,13 @@ package com.sample.android.tmdb.data
 import com.google.gson.annotations.SerializedName
 
 class Video(
-        val id: String,
-        val name: String,
-        val site: String,
-        @SerializedName("key")
-        val videoId: String,
-        val type: String) {
-
+    val id: String,
+    val name: String,
+    val site: String,
+    @SerializedName("key")
+    val videoId: String,
+    val type: String
+) {
     companion object {
         private const val SITE_YOUTUBE = "YouTube"
         private const val YOUTUBE_VIDEO_URL = "http://www.youtube.com/watch?v=%1\$s"
