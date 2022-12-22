@@ -5,10 +5,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.NetworkTVShow
+import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.NetworkTVShow
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowApi
 import com.sample.android.tmdb.domain.model.SortType.*
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every

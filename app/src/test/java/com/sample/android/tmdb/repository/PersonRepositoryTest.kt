@@ -2,8 +2,8 @@ package com.sample.android.tmdb.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.Person
-import com.sample.android.tmdb.network.PersonApi
+import com.sample.android.tmdb.data.response.Person
+import com.sample.android.tmdb.data.network.PersonApi
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat

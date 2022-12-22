@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowApi
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.search.tvshow.SearchTVShowPageKeyRepository
 import com.sample.android.tmdb.ui.paging.search.BaseSearchViewModel

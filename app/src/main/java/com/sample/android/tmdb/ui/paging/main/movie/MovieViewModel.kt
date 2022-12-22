@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.paging.main.movie
 
 import android.app.Application
 import com.sample.android.tmdb.domain.model.Movie
-import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieApi
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.paging.main.BaseItemViewModel

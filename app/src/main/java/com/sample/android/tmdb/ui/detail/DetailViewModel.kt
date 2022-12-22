@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.detail
 
-import com.sample.android.tmdb.data.Video
-import com.sample.android.tmdb.data.VideoWrapper
+import com.sample.android.tmdb.data.response.Video
+import com.sample.android.tmdb.data.response.VideoWrapper
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Crew

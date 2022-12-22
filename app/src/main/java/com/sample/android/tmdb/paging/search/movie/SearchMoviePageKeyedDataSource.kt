@@ -1,9 +1,9 @@
 package com.sample.android.tmdb.paging.search.movie
 
 import android.content.Context
-import com.sample.android.tmdb.data.asMovieDomainModel
+import com.sample.android.tmdb.data.response.asMovieDomainModel
 import com.sample.android.tmdb.domain.model.Movie
-import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieApi
 import com.sample.android.tmdb.paging.BasePageKeyedDataSource
 import io.reactivex.Observable
 import java.util.concurrent.Executor

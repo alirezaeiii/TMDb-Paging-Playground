@@ -2,11 +2,11 @@ package com.sample.android.tmdb.repository
 
 import android.content.Context
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.asMovieDomainModel
+import com.sample.android.tmdb.data.response.asMovieDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.BaseFeedRepository
 import com.sample.android.tmdb.domain.model.Movie
-import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Singleton

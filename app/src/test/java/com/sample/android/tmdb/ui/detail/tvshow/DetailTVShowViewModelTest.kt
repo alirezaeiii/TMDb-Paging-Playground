@@ -2,8 +2,8 @@ package com.sample.android.tmdb.ui.detail.tvshow
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.Video
-import com.sample.android.tmdb.data.VideoWrapper
+import com.sample.android.tmdb.data.response.Video
+import com.sample.android.tmdb.data.response.VideoWrapper
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper

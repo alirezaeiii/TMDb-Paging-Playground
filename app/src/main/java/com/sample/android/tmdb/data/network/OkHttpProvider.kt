@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.network
+package com.sample.android.tmdb.data.network
 
 import com.sample.android.tmdb.BuildConfig
 import okhttp3.OkHttpClient

@@ -1,9 +1,9 @@
-package com.sample.android.tmdb.network
+package com.sample.android.tmdb.data.network
 
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.data.NetworkCreditWrapper
-import com.sample.android.tmdb.data.NetworkMovie
-import com.sample.android.tmdb.data.VideoWrapper
+import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.NetworkCreditWrapper
+import com.sample.android.tmdb.data.response.NetworkMovie
+import com.sample.android.tmdb.data.response.VideoWrapper
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET

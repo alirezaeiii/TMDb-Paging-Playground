@@ -3,8 +3,8 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
-import com.sample.android.tmdb.data.ItemWrapper
-import com.sample.android.tmdb.network.MovieApi
+import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.network.MovieApi
 import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every

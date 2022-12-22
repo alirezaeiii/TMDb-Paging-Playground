@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.data
+package com.sample.android.tmdb.data.response
 
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Movie

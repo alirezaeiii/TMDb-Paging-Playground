@@ -1,10 +1,10 @@
 package com.sample.android.tmdb.repository
 
-import com.sample.android.tmdb.data.asCastDomainModel
-import com.sample.android.tmdb.data.asCrewDomainModel
+import com.sample.android.tmdb.data.response.asCastDomainModel
+import com.sample.android.tmdb.data.response.asCrewDomainModel
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import com.sample.android.tmdb.domain.model.CreditWrapper
-import com.sample.android.tmdb.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowApi
 import javax.inject.Inject
 
 class TVShowDetailRepositoryImpl @Inject constructor(
