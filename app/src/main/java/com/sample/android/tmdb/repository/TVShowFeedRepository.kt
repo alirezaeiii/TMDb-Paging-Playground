@@ -5,7 +5,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.data.asTVShowDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.BaseFeedRepository
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject

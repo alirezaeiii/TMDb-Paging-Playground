@@ -6,7 +6,7 @@ import com.sample.android.tmdb.data.CreditWrapper
 import com.sample.android.tmdb.data.NetworkCast
 import com.sample.android.tmdb.data.Video
 import com.sample.android.tmdb.data.VideoWrapper
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`

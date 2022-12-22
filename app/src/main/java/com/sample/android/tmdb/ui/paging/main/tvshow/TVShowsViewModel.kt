@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.paging.main.tvshow
 
 import android.app.Application
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository

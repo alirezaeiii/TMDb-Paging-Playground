@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.domain
+package com.sample.android.tmdb.domain.model
 
 import android.os.Parcelable
 import com.sample.android.tmdb.ui.paging.main.SortType

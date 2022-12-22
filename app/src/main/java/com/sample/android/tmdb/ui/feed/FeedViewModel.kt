@@ -2,9 +2,9 @@ package com.sample.android.tmdb.ui.feed
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sample.android.tmdb.domain.FeedWrapper
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.domain.BaseFeedRepository
+import com.sample.android.tmdb.domain.model.FeedWrapper
 import com.sample.android.tmdb.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

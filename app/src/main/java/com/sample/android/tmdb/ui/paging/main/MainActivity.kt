@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.BaseNavTypeActivity
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.setupActionBar

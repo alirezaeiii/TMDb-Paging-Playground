@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.util.DisposableManager
 import com.sample.android.tmdb.util.NetworkException
 import com.sample.android.tmdb.util.isNetworkAvailable

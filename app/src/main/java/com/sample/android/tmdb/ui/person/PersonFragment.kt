@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
+import com.sample.android.tmdb.domain.model.PersonWrapper
 import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.util.toVisibility
 import javax.inject.Inject

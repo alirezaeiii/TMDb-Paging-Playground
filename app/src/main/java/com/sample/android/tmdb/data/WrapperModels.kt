@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.data
 
 import com.google.gson.annotations.SerializedName
-import com.sample.android.tmdb.domain.Movie
-import com.sample.android.tmdb.domain.TVShow
+import com.sample.android.tmdb.domain.model.Movie
+import com.sample.android.tmdb.domain.model.TVShow
 import io.reactivex.Observable
 
 class ItemWrapper<T : NetworkTmdbItem>(

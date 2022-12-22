@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui
 
 import android.content.Intent
 import android.os.Bundle
-import com.sample.android.tmdb.domain.TmdbItem
+import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.detail.movie.DetailMovieActivity
 import com.sample.android.tmdb.ui.detail.tvshow.DetailTVShowActivity
 import com.sample.android.tmdb.ui.feed.NavType

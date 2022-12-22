@@ -1,6 +1,7 @@
 package com.sample.android.tmdb.di
 
 import androidx.lifecycle.ViewModelProvider
+import com.sample.android.tmdb.domain.model.PersonWrapper
 import com.sample.android.tmdb.ui.person.*
 import com.sample.android.tmdb.util.Constants.PERSON_WRAPPER
 import dagger.Binds

@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.paging.search.movie
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.network.MovieApi
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.search.movie.SearchMoviePageKeyRepository

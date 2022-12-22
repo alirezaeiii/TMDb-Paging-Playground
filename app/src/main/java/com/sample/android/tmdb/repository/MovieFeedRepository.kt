@@ -5,7 +5,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.data.asMovieDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
 import com.sample.android.tmdb.domain.BaseFeedRepository
-import com.sample.android.tmdb.domain.Movie
+import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.network.MovieApi
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject

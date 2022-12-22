@@ -1,8 +1,8 @@
 package com.sample.android.tmdb.data
 
 import com.google.gson.annotations.SerializedName
-import com.sample.android.tmdb.domain.Cast
-import com.sample.android.tmdb.domain.Crew
+import com.sample.android.tmdb.domain.model.Cast
+import com.sample.android.tmdb.domain.model.Crew
 
 interface NetworkCredit {
     val id: Any
