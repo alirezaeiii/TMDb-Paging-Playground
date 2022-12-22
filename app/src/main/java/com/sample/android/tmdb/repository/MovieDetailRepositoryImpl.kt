@@ -5,7 +5,6 @@ import com.sample.android.tmdb.data.asCrewDomainModel
 import com.sample.android.tmdb.domain.MovieDetailRepository
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.network.MovieApi
-import io.reactivex.Single
 import javax.inject.Inject
 
 class MovieDetailRepositoryImpl @Inject constructor(
