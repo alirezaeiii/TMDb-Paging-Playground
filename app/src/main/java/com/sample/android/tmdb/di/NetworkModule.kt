@@ -1,6 +1,10 @@
-package com.sample.android.tmdb.data.network
+package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.BuildConfig
+import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.OkHttpProvider
+import com.sample.android.tmdb.data.network.PersonApi
+import com.sample.android.tmdb.data.network.TVShowApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
