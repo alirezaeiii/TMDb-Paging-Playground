@@ -4,7 +4,7 @@ import android.content.Context
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.model.FeedWrapper
 import com.sample.android.tmdb.domain.model.TmdbItem
-import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import kotlinx.coroutines.CoroutineDispatcher

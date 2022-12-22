@@ -31,7 +31,7 @@ import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
-import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.ui.paging.main.movie.*
 import com.sample.android.tmdb.ui.paging.main.tvshow.*
 import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH

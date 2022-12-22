@@ -1,7 +1,6 @@
 package com.sample.android.tmdb.domain.model
 
 import android.os.Parcelable
-import com.sample.android.tmdb.ui.paging.main.SortType
 import kotlinx.android.parcel.Parcelize
 
 interface TmdbItem : Parcelable {
@@ -35,9 +34,3 @@ data class TVShow(
     override val name: String,
     override val voteAverage: Double
 ) : TmdbItem
-
-class FeedWrapper<T : TmdbItem>(
-    val feeds: List<T>,
-    val sortTypeResourceId: Int,
-    val sortType: SortType
-)

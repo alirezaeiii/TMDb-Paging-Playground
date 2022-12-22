@@ -6,7 +6,7 @@ import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.paging.tvshow.TVShowsPageKeyRepository
 import com.sample.android.tmdb.ui.paging.main.BaseItemViewModel
-import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.domain.model.SortType
 
 class TVShowsViewModel(
         api: TVShowApi,

@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.paging.main.movie
 
-import com.sample.android.tmdb.ui.paging.main.SortType.HIGHEST_RATED
+import com.sample.android.tmdb.domain.model.SortType.HIGHEST_RATED
 import javax.inject.Inject
 
 class HighRateMoviesFragment @Inject

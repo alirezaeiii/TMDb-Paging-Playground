@@ -5,7 +5,7 @@ import com.sample.android.tmdb.data.asTVShowDomainModel
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.network.TVShowApi
 import com.sample.android.tmdb.paging.BasePageKeyedDataSource
-import com.sample.android.tmdb.ui.paging.main.SortType
+import com.sample.android.tmdb.domain.model.SortType
 import io.reactivex.Observable
 import java.util.concurrent.Executor
 
