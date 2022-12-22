@@ -5,6 +5,8 @@ import com.sample.android.tmdb.TestRxJavaRule
 import com.sample.android.tmdb.data.*
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.MovieDetailRepository
+import com.sample.android.tmdb.domain.model.Cast
+import com.sample.android.tmdb.domain.model.CreditWrapper
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
@@ -42,26 +44,28 @@ class DetailMovieViewModelTest {
     @Test
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
+            Single.just(listOf()))
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.just(trailers))
-        `when`(repository.getMovieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
+        `when`(repository.getMovieCredit(anyInt())).thenReturn(creditWrapper)
 
         val viewModel = DetailMovieViewModel(repository, movie)
 
         viewModel.liveData.value?.let {
             assertTrue(it.videos.size == 1)
-            assertTrue(it.creditWrapper.cast.size == 1)
-            assertTrue(it.creditWrapper.crew.isEmpty())
+            assertTrue(it.cast.size == 1)
+            assertTrue(it.crew.isEmpty())
             assertTrue(it.videos[0].id == "id")
-            assertTrue(it.creditWrapper.cast[0].id == 1)
+            assertTrue(it.cast[0].id == 1)
         }
     }
 
     @Test
     fun errorLoadTrailers() {
-        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
+        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
+            Single.just(listOf()))
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.error(Exception()))
-        `when`(repository.getMovieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
+        `when`(repository.getMovieCredit(anyInt())).thenReturn(creditWrapper)
 
         val viewModel = DetailMovieViewModel(repository, movie)
 
@@ -73,8 +77,10 @@ class DetailMovieViewModelTest {
     @Test
     fun errorLoadCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
+        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
+            Single.error(Exception()))
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.just(trailers))
-        `when`(repository.getMovieCredit(anyInt())).thenReturn(Single.error(Exception()))
+        `when`(repository.getMovieCredit(anyInt())).thenReturn(creditWrapper)
 
         val viewModel = DetailMovieViewModel(repository, movie)
 

@@ -2,7 +2,10 @@ package com.sample.android.tmdb.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.*
+import com.sample.android.tmdb.data.NetworkCast
+import com.sample.android.tmdb.data.NetworkCreditWrapper
+import com.sample.android.tmdb.data.Video
+import com.sample.android.tmdb.data.VideoWrapper
 import com.sample.android.tmdb.network.TVShowApi
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
@@ -31,14 +34,14 @@ class TVShowDetailRepositoryTest {
     @Test
     fun loadTrailersAndCredits() {
         val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
+        val creditWrapper = NetworkCreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(tvShowApi.tvTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(tvShowApi.tvCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val repository = TVShowDetailRepositoryImpl(tvShowApi)
 
         Assert.assertThat(repository.getTVShowTrailers(anyInt()).blockingGet(), `is`(trailers))
-        Assert.assertThat(repository.getTVShowCredit(anyInt()).blockingGet(), `is`(creditWrapper))
+        Assert.assertThat(repository.getTVShowCredit(anyInt()).cast.blockingGet().size, `is`(1))
     }
 
     @Test
@@ -56,6 +59,6 @@ class TVShowDetailRepositoryTest {
         `when`(tvShowApi.tvCredit(anyInt())).thenReturn(Single.error(Exception(error)))
 
         val repository = TVShowDetailRepositoryImpl(tvShowApi)
-        repository.getTVShowCredit(anyInt()).test().assertErrorMessage(error)
+        repository.getTVShowCredit(anyInt()).cast.test().assertErrorMessage(error)
     }
 }
