@@ -136,28 +136,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cast"
-                    app:visibility="@{vm.liveData.creditWrapper.cast}" />
+                    app:visibility="@{vm.liveData.cast}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cast_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    app:visibility="@{vm.liveData.creditWrapper.cast}" />
+                    app:visibility="@{vm.liveData.cast}" />
 
                 <TextView
                     style="@style/TmdbMargin.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/crew"
-                    app:visibility="@{vm.liveData.creditWrapper.crew}" />
+                    app:visibility="@{vm.liveData.crew}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/crew_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_normal"
-                    app:visibility="@{vm.liveData.creditWrapper.crew}" />
+                    app:visibility="@{vm.liveData.crew}" />
 
             </LinearLayout>
 

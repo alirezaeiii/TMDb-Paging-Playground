@@ -10,13 +10,12 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.asCastDomainModel
-import com.sample.android.tmdb.data.asCrewDomainModel
 import com.sample.android.tmdb.databinding.FragmentDetailBinding
 import com.sample.android.tmdb.domain.model.Credit
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.BaseDetailFragment
-import com.sample.android.tmdb.ui.detail.credit.*
+import com.sample.android.tmdb.ui.detail.credit.CreditAdapter
+import com.sample.android.tmdb.ui.detail.credit.CreditClickListener
 import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
 import javax.inject.Inject
@@ -34,8 +33,8 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
         with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem
             viewModel.liveData.observe(viewLifecycleOwner) { detailWrapper ->
-                castList.setupAdapter(detailWrapper.creditWrapper.cast.asCastDomainModel())
-                crewList.setupAdapter(detailWrapper.creditWrapper.crew.asCrewDomainModel())
+                castList.setupAdapter(detailWrapper.cast)
+                crewList.setupAdapter(detailWrapper.crew)
             }
             with(activity as AppCompatActivity) {
                 setupActionBar(detailsToolbar) {

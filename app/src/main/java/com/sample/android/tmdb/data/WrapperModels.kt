@@ -15,7 +15,7 @@ class VideoWrapper(
     val videos: List<Video>
 )
 
-class CreditWrapper(
+class NetworkCreditWrapper(
     val cast: List<NetworkCast>,
     val crew: List<NetworkCrew>
 )

@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.network
 
-import com.sample.android.tmdb.data.CreditWrapper
 import com.sample.android.tmdb.data.ItemWrapper
+import com.sample.android.tmdb.data.NetworkCreditWrapper
 import com.sample.android.tmdb.data.NetworkMovie
 import com.sample.android.tmdb.data.VideoWrapper
 import io.reactivex.Observable
@@ -49,5 +49,5 @@ interface MovieApi {
     fun movieTrailers(@Path("movieId") movieId: Int): Single<VideoWrapper>
 
     @GET("3/movie/{movieId}/credits")
-    fun movieCredit(@Path("movieId") movieId: Int): Single<CreditWrapper>
+    fun movieCredit(@Path("movieId") movieId: Int): Single<NetworkCreditWrapper>
 }
