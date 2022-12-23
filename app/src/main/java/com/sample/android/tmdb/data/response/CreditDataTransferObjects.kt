@@ -4,30 +4,23 @@ import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.Crew
 
-interface NetworkCredit {
-    val id: Any
-    val credit: String
-    val name: String
-    val profilePath: String?
-}
-
 class NetworkCast(
     @SerializedName("character")
-    override val credit: String,
-    override val name: String,
+    val credit: String,
+    val name: String,
     @SerializedName(PROFILE_PATH)
-    override val profilePath: String?,
-    override val id: Int
-) : NetworkCredit
+    val profilePath: String?,
+    val id: Int
+)
 
 class NetworkCrew(
     @SerializedName("job")
-    override val credit: String,
-    override val name: String,
+    val credit: String,
+    val name: String,
     @SerializedName(PROFILE_PATH)
-    override val profilePath: String?,
-    override val id: String
-) : NetworkCredit
+    val profilePath: String?,
+    val id: String
+)
 
 fun List<NetworkCast>.asCastDomainModel(): List<Cast> = map {
     Cast(it.credit, it.name, it.profilePath, it.id)
