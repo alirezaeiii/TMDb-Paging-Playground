@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
 import com.sample.android.tmdb.data.response.NetworkCast
 import com.sample.android.tmdb.data.response.NetworkCreditWrapper
-import com.sample.android.tmdb.data.response.Video
+import com.sample.android.tmdb.data.response.VideoDto
 import com.sample.android.tmdb.data.response.VideoWrapper
 import com.sample.android.tmdb.data.network.MovieApi
 import io.reactivex.Single
@@ -33,14 +33,14 @@ class MovieDetailRepositoryTest {
 
     @Test
     fun loadTrailersAndCredits() {
-        val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
+        val trailers = VideoWrapper(listOf(VideoDto("id", "", "", "", "")))
         val creditWrapper = NetworkCreditWrapper(listOf(NetworkCast("", "", null, 1)), listOf())
         `when`(movieApi.movieTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(movieApi.movieCredit(anyInt())).thenReturn(Single.just(creditWrapper))
 
         val repository = MovieDetailRepositoryImpl(movieApi)
 
-        assertThat(repository.getMovieTrailers(anyInt()).blockingGet(), `is`(trailers))
+        assertThat(repository.getMovieTrailers(anyInt()).blockingGet().size, `is`(1))
         assertThat(repository.getMovieCredit(anyInt()).cast.blockingGet().size, `is`(1))
     }
 

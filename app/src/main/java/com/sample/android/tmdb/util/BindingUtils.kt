@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.data.response.Video
+import com.sample.android.tmdb.domain.model.Video
 import com.sample.android.tmdb.util.Constants.BASE_BACKDROP_PATH
 import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 import de.hdodenhof.circleimageview.CircleImageView

@@ -1,12 +1,9 @@
-package com.sample.android.tmdb.data.response
-
-import com.google.gson.annotations.SerializedName
+package com.sample.android.tmdb.domain.model
 
 class Video(
     val id: String,
     val name: String,
     val site: String,
-    @SerializedName("key")
     val videoId: String,
     val type: String
 ) {

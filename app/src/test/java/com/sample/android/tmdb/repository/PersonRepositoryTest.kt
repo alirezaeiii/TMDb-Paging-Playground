@@ -2,7 +2,7 @@ package com.sample.android.tmdb.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.response.Person
+import com.sample.android.tmdb.data.response.PersonDto
 import com.sample.android.tmdb.data.network.PersonApi
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
@@ -33,14 +33,15 @@ class PersonRepositoryTest {
         val personId = 12
         val knownAs1 = "Ali"
         val knownAs2 = "Harry"
-        val person = Person(
+        val person = PersonDto(
             null, null, personId, arrayOf(knownAs1, knownAs2),
             "biography", "place"
         )
         `when`(personApi.getPerson(anyInt())).thenReturn(Single.just(person))
 
         val repository = PersonRepositoryImpl(personApi)
-        assertThat(repository.getPerson(anyInt()).blockingGet(), `is`(person))
+        assertThat(repository.getPerson(anyInt()).blockingGet().id, `is`(personId))
+        assertThat(repository.getPerson(anyInt()).blockingGet().alsoKnowAs, `is`(arrayOf(knownAs1, knownAs2)))
     }
 
     @Test

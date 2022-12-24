@@ -2,12 +2,11 @@ package com.sample.android.tmdb.ui.detail.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.response.Video
-import com.sample.android.tmdb.data.response.VideoWrapper
-import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.MovieDetailRepository
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper
+import com.sample.android.tmdb.domain.model.Movie
+import com.sample.android.tmdb.domain.model.Video
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
@@ -44,7 +43,7 @@ class DetailMovieViewModelTest {
 
     @Test
     fun loadTrailersAndCredits() {
-        val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
+        val trailers = listOf(Video("id", "", "", "", ""))
         val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
             Single.just(listOf()))
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.just(trailers))
@@ -77,7 +76,7 @@ class DetailMovieViewModelTest {
 
     @Test
     fun errorLoadCredits() {
-        val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
+        val trailers = listOf(Video("id", "", "", "", ""))
         val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
             Single.error(Exception()))
         `when`(repository.getMovieTrailers(anyInt())).thenReturn(Single.just(trailers))

@@ -2,12 +2,11 @@ package com.sample.android.tmdb.ui.detail.tvshow
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.response.Video
-import com.sample.android.tmdb.data.response.VideoWrapper
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.TVShow
+import com.sample.android.tmdb.domain.model.Video
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
@@ -44,9 +43,11 @@ class DetailTVShowViewModelTest {
 
     @Test
     fun loadTrailersAndCredits() {
-        val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
-            Single.just(listOf()))
+        val trailers = listOf(Video("id", "", "", "", ""))
+        val creditWrapper = CreditWrapper(
+            Single.just(listOf(Cast("", "", null, 1))),
+            Single.just(listOf())
+        )
         `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(repository.getTVShowCredit(anyInt())).thenReturn(creditWrapper)
 
@@ -63,8 +64,10 @@ class DetailTVShowViewModelTest {
 
     @Test
     fun errorLoadTrailers() {
-        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
-            Single.just(listOf()))
+        val creditWrapper = CreditWrapper(
+            Single.just(listOf(Cast("", "", null, 1))),
+            Single.just(listOf())
+        )
         `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.error(Exception()))
         `when`(repository.getTVShowCredit(anyInt())).thenReturn(creditWrapper)
 
@@ -77,9 +80,11 @@ class DetailTVShowViewModelTest {
 
     @Test
     fun errorLoadCredits() {
-        val trailers = VideoWrapper(listOf(Video("id", "", "", "", "")))
-        val creditWrapper = CreditWrapper(Single.just(listOf(Cast("", "", null, 1))),
-            Single.error(Exception()))
+        val trailers = listOf(Video("id", "", "", "", ""))
+        val creditWrapper = CreditWrapper(
+            Single.just(listOf(Cast("", "", null, 1))),
+            Single.error(Exception())
+        )
         `when`(repository.getTVShowTrailers(anyInt())).thenReturn(Single.just(trailers))
         `when`(repository.getTVShowCredit(anyInt())).thenReturn(creditWrapper)
 

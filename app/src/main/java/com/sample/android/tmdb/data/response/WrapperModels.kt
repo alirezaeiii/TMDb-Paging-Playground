@@ -12,7 +12,7 @@ class ItemWrapper<T : NetworkTmdbItem>(
 
 class VideoWrapper(
     @SerializedName("results")
-    val videos: List<Video>
+    val videos: List<VideoDto>
 )
 
 class NetworkCreditWrapper(

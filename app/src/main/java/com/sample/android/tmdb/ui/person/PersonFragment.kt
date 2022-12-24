@@ -23,7 +23,7 @@ constructor() // Required empty public constructor
     lateinit var personWrapper: PersonWrapper
 
     override val viewModel: PersonViewModel by lazy {
-        ViewModelProvider(this, factory).get(PersonViewModel::class.java)
+        ViewModelProvider(this, factory)[PersonViewModel::class.java]
     }
 
     override fun onCreateView(
