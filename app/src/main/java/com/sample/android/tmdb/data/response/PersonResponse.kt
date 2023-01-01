@@ -3,7 +3,7 @@ package com.sample.android.tmdb.data.response
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Person
 
-class PersonDto(
+class PersonResponse(
     @SerializedName("birthday")
     val birthDay: String?,
     @SerializedName("deathday")
@@ -16,5 +16,5 @@ class PersonDto(
     val placeOfBirth: String?
 )
 
-fun PersonDto.asDomainModel(): Person =
+fun PersonResponse.asDomainModel(): Person =
     Person(birthDay, deathDay, id, alsoKnowAs, biography, placeOfBirth)

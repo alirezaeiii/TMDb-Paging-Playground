@@ -3,7 +3,7 @@ package com.sample.android.tmdb.data.response
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Video
 
-class VideoDto(
+class VideoResponse(
     val id: String,
     val name: String,
     val site: String,
@@ -12,5 +12,5 @@ class VideoDto(
     val type: String
 )
 
-fun List<VideoDto>.asDomainModel(): List<Video> =
+fun List<VideoResponse>.asDomainModel(): List<Video> =
     map { Video(it.id, it.name, it.site, it.videoId, it.type) }

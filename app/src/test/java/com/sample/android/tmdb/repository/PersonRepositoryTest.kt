@@ -2,7 +2,7 @@ package com.sample.android.tmdb.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.data.response.PersonDto
+import com.sample.android.tmdb.data.response.PersonResponse
 import com.sample.android.tmdb.data.network.PersonApi
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
@@ -33,7 +33,7 @@ class PersonRepositoryTest {
         val personId = 12
         val knownAs1 = "Ali"
         val knownAs2 = "Harry"
-        val person = PersonDto(
+        val person = PersonResponse(
             null, null, personId, arrayOf(knownAs1, knownAs2),
             "biography", "place"
         )
