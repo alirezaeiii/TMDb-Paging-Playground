@@ -3,8 +3,8 @@ package com.sample.android.tmdb.data.response
 import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.util.Constants.BASE_BACKDROP_PATH
-import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
+import com.sample.android.tmdb.util.Constants.BASE_WIDTH_780_PATH
+import com.sample.android.tmdb.util.Constants.BASE_WIDTH_342_PATH
 
 interface NetworkTmdbItem {
     val id: Int
@@ -51,8 +51,18 @@ fun List<NetworkMovie>.asMovieDomainModel(): List<Movie> =
             it.id,
             it.overview,
             it.releaseDate,
-            String.format(BASE_POSTER_PATH, it.posterPath),
-            String.format(BASE_BACKDROP_PATH, it.backdropPath),
+            it.posterPath?.let { posterPath ->
+                String.format(
+                    BASE_WIDTH_342_PATH,
+                    posterPath
+                )
+            },
+            it.backdropPath?.let { backdropPath ->
+                String.format(
+                    BASE_WIDTH_780_PATH,
+                    backdropPath
+                )
+            },
             it.name,
             it.voteAverage
         )
@@ -64,8 +74,18 @@ fun List<NetworkTVShow>.asTVShowDomainModel(): List<TVShow> =
             it.id,
             it.overview,
             it.releaseDate,
-            String.format(BASE_POSTER_PATH, it.posterPath),
-            String.format(BASE_BACKDROP_PATH, it.backdropPath),
+            it.posterPath?.let { posterPath ->
+                String.format(
+                    BASE_WIDTH_342_PATH,
+                    posterPath
+                )
+            },
+            it.backdropPath?.let { backdropPath ->
+                String.format(
+                    BASE_WIDTH_780_PATH,
+                    backdropPath
+                )
+            },
             it.name,
             it.voteAverage
         )
