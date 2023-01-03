@@ -6,4 +6,4 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class PersonWrapper(
     val credit : Credit,
-    val backdropPath: String?) : Parcelable
+    val backdropUrl: String?) : Parcelable

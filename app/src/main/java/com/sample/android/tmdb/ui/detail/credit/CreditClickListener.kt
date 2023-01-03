@@ -19,7 +19,7 @@ class CreditClickListener<T : Credit>(
             putExtras(Bundle().apply {
                 putParcelable(
                     PERSON_WRAPPER,
-                    PersonWrapper(credit, tmdbItem.backdropPath)
+                    PersonWrapper(credit, tmdbItem.backdropUrl)
                 )
             })
         }

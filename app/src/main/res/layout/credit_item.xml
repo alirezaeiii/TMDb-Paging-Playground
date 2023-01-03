@@ -34,7 +34,7 @@
                 android:id="@+id/cast_item_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
-                app:profileUrl="@{creditItem.profilePath}"
+                app:profileUrl="@{creditItem.profileUrl}"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:gravity="center"
-                android:text="@{creditItem.credit}"
+                android:text="@{creditItem.role}"
                 android:textColor="@color/md_grey_600"
                 android:textSize="10dp"
                 tools:ignore="SpUsage" />

@@ -28,13 +28,12 @@ import coil.compose.rememberImagePainter
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.model.FeedWrapper
 import com.sample.android.tmdb.domain.model.Movie
+import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
-import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.ui.paging.main.movie.*
 import com.sample.android.tmdb.ui.paging.main.tvshow.*
-import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
@@ -170,9 +169,7 @@ private fun <T : TmdbItem> TmdbItem(
             .padding(Dimens.PaddingSmall)
     ) {
         Image(
-            painter = rememberImagePainter(tmdbItem.posterPath?.let { path ->
-                 String.format(BASE_POSTER_PATH, path)
-            }),
+            painter = rememberImagePainter(tmdbItem.posterUrl),
             contentDescription = null,
             modifier = Modifier
                 .size(width = tmdbItemWidth, height = 180.dp)

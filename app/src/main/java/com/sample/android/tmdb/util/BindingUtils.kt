@@ -18,15 +18,13 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.model.Video
-import com.sample.android.tmdb.util.Constants.BASE_BACKDROP_PATH
-import com.sample.android.tmdb.util.Constants.BASE_POSTER_PATH
 import de.hdodenhof.circleimageview.CircleImageView
 
 @BindingAdapter("ImageUrl")
-fun bindCard(cardView: CardView, path: String?) {
+fun bindCard(cardView: CardView, url: String?) {
     Glide.with(cardView.context)
         .asBitmap()
-        .load(String.format(BASE_POSTER_PATH, path))
+        .load(url)
         .apply(RequestOptions().centerCrop())
         .into(object : BitmapImageViewTarget(cardView.findViewById(R.id.item_poster)) {
             override fun onResourceReady(bitmap: Bitmap, transition: Transition<in Bitmap>?) {
@@ -46,13 +44,13 @@ fun bindCard(cardView: CardView, path: String?) {
 }
 
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, path: String?) {
-    Glide.with(imageView.context).load(String.format(BASE_POSTER_PATH, path)).into(imageView)
+fun bindImage(imageView: ImageView, url: String?) {
+    Glide.with(imageView.context).load(url).into(imageView)
 }
 
 @BindingAdapter("backdropUrl")
-fun bindBackdropImage(imageView: ImageView, path: String?) {
-    Glide.with(imageView.context).load(String.format(BASE_BACKDROP_PATH, path)).into(imageView)
+fun bindBackdropImage(imageView: ImageView, url: String?) {
+    Glide.with(imageView.context).load(url).into(imageView)
 }
 
 @BindingAdapter("items")
@@ -92,21 +90,21 @@ fun addItems(linearLayout: LinearLayout, trailers: List<Video>?) {
 }
 
 @BindingAdapter("profileUrl")
-fun bindProfileImage(imageView: ImageView, path: String?) {
+fun bindProfileImage(imageView: ImageView, url: String?) {
     val options = RequestOptions()
         .centerCrop()
         .error(R.drawable.ic_error_outline_black_36dp)
 
     Glide.with(imageView.context)
-        .load(String.format(BASE_POSTER_PATH, path))
+        .load(url)
         .apply(options)
         .into(imageView)
 }
 
 @BindingAdapter("profileUrl")
-fun bindProfileImage(imageView: CircleImageView, path: String?) {
+fun bindProfileImage(imageView: CircleImageView, url: String?) {
     Glide.with(imageView.context)
-        .load(String.format(BASE_POSTER_PATH, path))
+        .load(url)
         .apply(
             RequestOptions()
                 .error(R.drawable.ic_error_outline_white_96dp)
