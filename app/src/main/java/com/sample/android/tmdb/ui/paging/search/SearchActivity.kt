@@ -58,11 +58,9 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
                 override fun onQueryTextChange(query: String): Boolean {
                     if (query.isNotEmpty()) {
                         fragmentContainer.visibility = View.VISIBLE
-                        ivEmptySearch.visibility = View.GONE
                         fragment.search(query)
                     } else {
                         fragmentContainer.visibility = View.GONE
-                        ivEmptySearch.visibility = View.VISIBLE
                         fragment.observeRefreshState()
                     }
                     return true
