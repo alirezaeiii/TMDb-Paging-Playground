@@ -181,9 +181,10 @@ private fun <T : TmdbItem> TmdbItem(
             fontSize = TmdbTheme.fontSizes.sp_11,
             color = MaterialTheme.colors.onSurface,
             textAlign = TextAlign.Center,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .size(width = tmdbItemWidth, height = 56.dp)
+                .size(width = tmdbItemWidth, height = 32.dp)
                 .padding(top = Dimens.PaddingSmall)
         )
     }
