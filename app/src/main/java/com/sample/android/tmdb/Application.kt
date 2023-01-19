@@ -30,5 +30,13 @@ class Application : DaggerApplication() {
         }
         remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
         remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val updated = task.result
+                Timber.d("Remote Config params updated: $updated")
+            } else {
+                Timber.w("Remote Config fetch unsuccessful")
+            }
+        }
     }
 }
