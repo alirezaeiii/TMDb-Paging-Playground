@@ -68,10 +68,10 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
     ) {
         _networkState.postValue(NetworkState.LOADING)
         _initialLoad.postValue(NetworkState.LOADING)
-        loadItems(1).subscribe({
+        loadItems(STARTING_PAGE_INDEX).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             _initialLoad.postValue(NetworkState.LOADED)
-            callback.onResult(it, null, 2)
+            callback.onResult(it, null, STARTING_PAGE_INDEX + 1)
         }) {
             retry = {
                 loadInitial(params, callback)
@@ -96,5 +96,9 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
                 )
             )
         )
+    }
+
+    companion object {
+        private const val STARTING_PAGE_INDEX = 1
     }
 }
