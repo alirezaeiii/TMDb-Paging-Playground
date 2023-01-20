@@ -11,7 +11,6 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.paging.NetworkState
 import com.sample.android.tmdb.paging.Status.FAILED
 import com.sample.android.tmdb.paging.Status.RUNNING
-import com.sample.android.tmdb.util.TmdbScreenItemCount
 import com.sample.android.tmdb.util.toVisibility
 
 /**
@@ -37,51 +36,36 @@ class NetworkStateViewHolder(
 
     fun bindTo(
         position: Int,
-        networkState: NetworkState?,
-        refreshState: NetworkState?,
-        itemCount: Int
+        networkState: NetworkState?
     ) {
-        when (refreshState?.status) {
-            RUNNING -> {
-                progressBar.visibility = View.GONE
-            }
-            FAILED -> {
-                networkStateLayout.layoutParams = ViewGroup.LayoutParams(
-                    LayoutParams(
-                        LayoutParams.MATCH_PARENT,
-                        LayoutParams.MATCH_PARENT
-                    )
+        val padding = root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
+        if (position == 0) {
+            networkStateLayout.layoutParams = ViewGroup.LayoutParams(
+                LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    LayoutParams.MATCH_PARENT
                 )
-                networkStateLayout.setPadding(
-                    0, 0, 0,
-                    root.context.resources.getDimension(R.dimen.network_state_bottom_padding)
-                        .toInt()
+            )
+            networkStateLayout.setPadding(0, 0, 0, padding)
+            progressBar.visibility = View.GONE
+        } else {
+            networkStateLayout.layoutParams = ViewGroup.LayoutParams(
+                LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    LayoutParams.WRAP_CONTENT
                 )
-                progressBar.visibility = View.GONE
-            }
-            else -> {
-                if (itemCount <= TmdbScreenItemCount.getInstance(root.context).maxItemCount) {
-                    progressBar.visibility = View.GONE
-                } else {
-                    networkStateLayout.layoutParams = ViewGroup.LayoutParams(
-                        LayoutParams(
-                            LayoutParams.MATCH_PARENT,
-                            LayoutParams.WRAP_CONTENT
-                        )
-                    )
-                    val padding =
-                        root.context.resources.getDimension(R.dimen.network_state_padding).toInt()
-                    networkStateLayout.setPadding(padding, padding, padding, padding)
-                    progressBar.toVisibility(networkState?.status == RUNNING)
-                }
-            }
+            )
+            networkStateLayout.setPadding(padding, padding, padding, padding)
+            progressBar.toVisibility(networkState?.status == RUNNING)
         }
         retry.toVisibility(networkState?.status == FAILED)
         errorMsg.toVisibility(networkState?.msg != null)
         errorMsg.text = networkState?.msg
         val orientation = root.context.resources.configuration.orientation
-        errorIcon.toVisibility(networkState?.status == FAILED && position == 0 &&
-                orientation == Configuration.ORIENTATION_PORTRAIT)
+        errorIcon.toVisibility(
+            networkState?.status == FAILED && position == 0 &&
+                    orientation == Configuration.ORIENTATION_PORTRAIT
+        )
     }
 
     companion object {

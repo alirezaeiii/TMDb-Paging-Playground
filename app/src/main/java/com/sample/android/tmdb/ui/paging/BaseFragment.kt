@@ -51,7 +51,6 @@ abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
                 viewModel.refreshState.observe(viewLifecycleOwner) {
                     isRefreshing = it.status == RUNNING
-                    tmdbAdapter.setRefreshState(it)
                 }
 
                 setOnRefreshListener { refresh() }

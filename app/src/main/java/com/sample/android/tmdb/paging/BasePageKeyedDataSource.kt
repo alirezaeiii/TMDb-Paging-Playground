@@ -53,7 +53,7 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
         loadItems(params.key).subscribe({
             _networkState.postValue(NetworkState.LOADED)
             retry = null
-            callback.onResult(it, params.key + 1)
+            callback.onResult(it, if (it.isEmpty()) null else params.key + 1)
         }) {
             retry = {
                 loadAfter(params, callback)

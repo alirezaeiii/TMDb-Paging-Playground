@@ -21,7 +21,6 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
 }) {
 
     private var networkState: NetworkState? = null
-    private var refreshState: NetworkState? = null
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
@@ -32,7 +31,7 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
                 }
             }
             R.layout.network_state_item ->
-                (holder as NetworkStateViewHolder).bindTo(position, networkState, refreshState, itemCount)
+                (holder as NetworkStateViewHolder).bindTo(position, networkState)
         }
     }
 
@@ -70,9 +69,5 @@ class TmdbAdapter<T : TmdbItem>(private val retryCallback: () -> Unit,
         } else if (hasExtraRow && previousState != newNetworkState) {
             notifyItemChanged(itemCount - 1)
         }
-    }
-
-    fun setRefreshState(refreshState: NetworkState?) {
-        this.refreshState = refreshState
     }
 }
