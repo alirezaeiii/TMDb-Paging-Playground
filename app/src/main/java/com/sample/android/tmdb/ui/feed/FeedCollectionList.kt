@@ -48,7 +48,7 @@ fun <T : TmdbItem> FeedCollectionList(
                 feedCollection = feedCollection,
                 navType = navType,
                 onFeedClick = onFeedClick,
-                tmdbItemWidth = if (index == 0) 220.dp else 120.dp
+                index = index
             )
         }
     }
@@ -59,7 +59,7 @@ private fun <T : TmdbItem> FeedCollection(
     feedCollection: FeedWrapper<T>,
     navType: NavType,
     onFeedClick: (TmdbItem) -> Unit,
-    tmdbItemWidth: Dp,
+    index: Int,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -135,7 +135,7 @@ private fun <T : TmdbItem> FeedCollection(
                     )
             )
         }
-        Feeds(feedCollection.feeds, onFeedClick, tmdbItemWidth)
+        Feeds(feedCollection.feeds, onFeedClick, index)
     }
 }
 
@@ -143,7 +143,7 @@ private fun <T : TmdbItem> FeedCollection(
 private fun <T : TmdbItem> Feeds(
     feeds: List<T>,
     onFeedClick: (TmdbItem) -> Unit,
-    tmdbItemWidth: Dp,
+    index: Int,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
@@ -151,7 +151,7 @@ private fun <T : TmdbItem> Feeds(
         contentPadding = PaddingValues(start = Dimens.paddingMicro, end = Dimens.paddingMicro)
     ) {
         items(feeds) { feed ->
-            TmdbItem(feed, onFeedClick, tmdbItemWidth)
+            TmdbItem(feed, onFeedClick, index)
         }
     }
 }
@@ -160,8 +160,17 @@ private fun <T : TmdbItem> Feeds(
 private fun <T : TmdbItem> TmdbItem(
     tmdbItem: T,
     onFeedClick: (TmdbItem) -> Unit,
-    tmdbItemWidth: Dp
+    index: Int
 ) {
+    val tmdbItemWidth: Dp
+    val imageUrl: String?
+    if(index == 0) {
+        tmdbItemWidth = 220.dp
+        imageUrl = tmdbItem.backdropUrl
+    } else {
+        tmdbItemWidth = 120.dp
+        imageUrl = tmdbItem.posterUrl
+    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -169,7 +178,7 @@ private fun <T : TmdbItem> TmdbItem(
             .padding(Dimens.PaddingSmall)
     ) {
         Image(
-            painter = rememberImagePainter(tmdbItem.posterUrl),
+            painter = rememberImagePainter(imageUrl),
             contentDescription = null,
             modifier = Modifier
                 .size(width = tmdbItemWidth, height = 180.dp)
@@ -198,7 +207,7 @@ fun FeedCardPreview() {
         TmdbItem(
             tmdbItem = movie,
             onFeedClick = {},
-            120.dp
+            0
         )
     }
 }
