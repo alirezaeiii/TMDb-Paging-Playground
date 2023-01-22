@@ -67,7 +67,7 @@ private fun <T : TmdbItem> FeedCollection(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .heightIn(min = Dimens.rowHeight)
+                .heightIn(min = 36.dp)
                 .padding(start = Dimens.PaddingMedium)
         ) {
             Text(
@@ -131,7 +131,7 @@ private fun <T : TmdbItem> FeedCollection(
                         start = Dimens.PaddingMedium,
                         end = Dimens.PaddingMedium,
                         top = Dimens.PaddingMedium,
-                        bottom = Dimens.paddingBottom
+                        bottom = 10.dp
                     )
             )
         }

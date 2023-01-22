@@ -24,7 +24,7 @@ tmdb_api_key=YOUR_API_KEY
 ```
 
 ## Testing
-Local unit testing is done for Repository and ViewModel layers.
+Local unit testing is done for Repository and ViewModel layers. UI testing is done for screens with pagination using Espresso.
 
 ## Libraries
 * [Android Jetpack](https://developer.android.com/jetpack)
