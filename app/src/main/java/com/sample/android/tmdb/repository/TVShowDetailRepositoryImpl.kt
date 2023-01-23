@@ -1,8 +1,7 @@
 package com.sample.android.tmdb.repository
 
 import com.sample.android.tmdb.data.network.TVShowApi
-import com.sample.android.tmdb.data.response.asCastDomainModel
-import com.sample.android.tmdb.data.response.asCrewDomainModel
+import com.sample.android.tmdb.data.response.asCreditWrapper
 import com.sample.android.tmdb.data.response.asDomainModel
 import com.sample.android.tmdb.domain.TVShowDetailRepository
 import com.sample.android.tmdb.domain.model.CreditWrapper
@@ -17,10 +16,6 @@ class TVShowDetailRepositoryImpl @Inject constructor(
     override fun getTVShowTrailers(tvId: Int): Single<List<Video>> =
         tvShowApi.tvTrailers(tvId).map { it.videos.asDomainModel() }
 
-    override fun getTVShowCredit(tvId: Int): CreditWrapper {
-        val networkCreditWrapper = tvShowApi.tvCredit(tvId)
-        val cast = networkCreditWrapper.map { it.cast.asCastDomainModel() }
-        val crew = networkCreditWrapper.map { it.crew.asCrewDomainModel() }
-        return CreditWrapper(cast, crew)
-    }
+    override fun getTVShowCredit(tvId: Int): CreditWrapper =
+        tvShowApi.tvCredit(tvId).asCreditWrapper()
 }

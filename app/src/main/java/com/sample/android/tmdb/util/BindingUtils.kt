@@ -48,11 +48,6 @@ fun bindImage(imageView: ImageView, url: String?) {
     Glide.with(imageView.context).load(url).into(imageView)
 }
 
-@BindingAdapter("backdropUrl")
-fun bindBackdropImage(imageView: ImageView, url: String?) {
-    Glide.with(imageView.context).load(url).into(imageView)
-}
-
 @BindingAdapter("items")
 fun addItems(linearLayout: LinearLayout, trailers: List<Video>?) {
     linearLayout.removeAllViews()
