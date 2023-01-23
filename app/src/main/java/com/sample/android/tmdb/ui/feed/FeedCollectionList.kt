@@ -127,12 +127,7 @@ private fun <T : TmdbItem> FeedCollection(
                         val intent = Intent(context, activity)
                         context.startActivity(intent)
                     }
-                    .padding(
-                        start = Dimens.PaddingMedium,
-                        end = Dimens.PaddingMedium,
-                        top = Dimens.PaddingMedium,
-                        bottom = 10.dp
-                    )
+                    .padding(Dimens.PaddingMedium)
             )
         }
         Feeds(feedCollection.feeds, onFeedClick, index)
@@ -164,7 +159,7 @@ private fun <T : TmdbItem> TmdbItem(
 ) {
     val tmdbItemWidth: Dp
     val imageUrl: String?
-    if(index == 0) {
+    if (index == 0) {
         tmdbItemWidth = 220.dp
         imageUrl = tmdbItem.backdropUrl
     } else {
