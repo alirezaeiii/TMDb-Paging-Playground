@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2018 Google, Inc.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,8 +32,8 @@
             <KeyPosition
                 app:framePosition="20"
                 app:keyPositionType="deltaRelative"
-                app:percentY="0.51"
-                app:motionTarget="@id/details_poster" />
+                app:motionTarget="@id/details_poster"
+                app:percentY="0.51" />
 
             <!-- This looks weird. We need a quick change from elevated to not-so-elevated at 20% so we set 2 key
                  attributes, one at 20% and other at 25%. -->
@@ -168,8 +167,8 @@
             android:id="@id/details_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
             android:layout_marginStart="64dp"
+            android:layout_marginEnd="48dp"
             android:elevation="@dimen/z_app_bar"
             app:layout_constraintBottom_toBottomOf="@id/details_appbar_background"
             app:layout_constraintEnd_toEndOf="@id/details_appbar_background"
@@ -181,7 +180,6 @@
             android:layout_width="72dp"
             android:layout_height="0dp"
             android:elevation="@dimen/details_poster_not_elevation"
-            app:layout_constraintDimensionRatio="h,1:1.5"
             app:layout_constraintStart_toStartOf="@id/details_title"
             app:layout_constraintTop_toTopOf="parent" />
 
