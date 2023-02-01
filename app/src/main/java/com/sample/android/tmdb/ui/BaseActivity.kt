@@ -2,7 +2,6 @@ package com.sample.android.tmdb.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -20,9 +19,14 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     protected abstract val textViewNetworkStatus: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         handleNetwork()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        networkUtils.unRegister()
     }
 
     private fun handleNetwork() {
