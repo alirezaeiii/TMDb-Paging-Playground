@@ -10,14 +10,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 
-class NetworkUtils(context: Context) : ConnectivityManager.NetworkCallback() {
+class NetworkUtils(private val context: Context) : ConnectivityManager.NetworkCallback() {
 
     private val networkLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
-    private val connectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
     fun getNetworkLiveData(): LiveData<Boolean> {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             connectivityManager.registerDefaultNetworkCallback(this)
         } else {
