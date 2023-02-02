@@ -190,6 +190,8 @@ private fun <T : TmdbItem> TmdbItem(
             modifier = Modifier
                 .size(width = tmdbItemWidth, height = 36.dp)
                 .padding(top = Dimens.PaddingSmall)
+                .wrapContentHeight()
+
         )
     }
 }
