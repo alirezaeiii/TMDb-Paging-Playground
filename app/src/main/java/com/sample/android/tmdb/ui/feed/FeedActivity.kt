@@ -46,7 +46,7 @@ class FeedActivity : BaseNavTypeActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         viewModel.headline.observe(this) {
-            title = it
+            title = getString(it)
         }
         if (savedInstanceState == null) {
             addFragmentToActivity(feedMovieFragment, R.id.fragment_container)

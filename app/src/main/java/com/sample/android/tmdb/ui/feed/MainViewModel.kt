@@ -1,34 +1,33 @@
 package com.sample.android.tmdb.ui.feed
 
-import android.app.Application
 import android.os.Parcelable
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.sample.android.tmdb.R
 import kotlinx.android.parcel.Parcelize
 
 class MainViewModel(
-    app: Application,
     private val savedStateHandle: SavedStateHandle
-) : AndroidViewModel(app) {
+) : ViewModel() {
 
-    private val _headline = savedStateHandle.getLiveData<String>(HEAD_LINE)
-    val headline: LiveData<String>
+    private val _headline = savedStateHandle.getLiveData<Int>(HEAD_LINE)
+    val headline: LiveData<Int>
         get() = _headline
 
     private val _currentType = savedStateHandle.getLiveData<NavType>(NAV_TYPE)
     val currentType: LiveData<NavType>
         get() = _currentType
 
-    private val context = app
-
     init {
-        setType(R.string.menu_movies, NavType.MOVIES)
+        setType(
+            savedStateHandle[HEAD_LINE] ?: R.string.menu_movies,
+            savedStateHandle[NAV_TYPE] ?: NavType.MOVIES
+        )
     }
 
     fun setType(titleId: Int, navType: NavType) {
-        savedStateHandle[HEAD_LINE] = context.getString(titleId)
+        savedStateHandle[HEAD_LINE] = titleId
         savedStateHandle[NAV_TYPE] = navType
 
     }
