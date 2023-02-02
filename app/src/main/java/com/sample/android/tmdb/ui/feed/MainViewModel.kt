@@ -4,17 +4,20 @@ import android.app.Application
 import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.sample.android.tmdb.R
 import kotlinx.android.parcel.Parcelize
 
-class MainViewModel(app: Application) : AndroidViewModel(app) {
+class MainViewModel(
+    app: Application,
+    private val savedStateHandle: SavedStateHandle
+) : AndroidViewModel(app) {
 
-    private val _headline = MutableLiveData<String>()
+    private val _headline = savedStateHandle.getLiveData<String>(HEAD_LINE)
     val headline: LiveData<String>
         get() = _headline
 
-    private val _currentType = MutableLiveData<NavType>()
+    private val _currentType = savedStateHandle.getLiveData<NavType>(NAV_TYPE)
     val currentType: LiveData<NavType>
         get() = _currentType
 
@@ -25,8 +28,14 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun setType(titleId: Int, navType: NavType) {
-        _headline.value = context.getString(titleId)
-        _currentType.value = navType
+        savedStateHandle[HEAD_LINE] = context.getString(titleId)
+        savedStateHandle[NAV_TYPE] = navType
+
+    }
+
+    companion object {
+        private const val HEAD_LINE = "headline"
+        private const val NAV_TYPE = "navType"
     }
 }
 
