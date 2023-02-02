@@ -50,8 +50,4 @@ class NetworkUtils(context: Context) : ConnectivityManager.NetworkCallback() {
     override fun onLost(network: Network) {
         networkLiveData.postValue(false)
     }
-
-    fun unRegister() {
-        connectivityManager.unregisterNetworkCallback(this)
-    }
 }
