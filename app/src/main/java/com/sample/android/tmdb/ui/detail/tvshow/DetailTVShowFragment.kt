@@ -12,5 +12,5 @@ constructor() // Required empty public constructor
     lateinit var factory: DetailTVShowViewModel.Factory
 
     override val viewModel
-        get() = ViewModelProvider(this, factory).get(DetailTVShowViewModel::class.java)
+        get() = ViewModelProvider(this, factory)[DetailTVShowViewModel::class.java]
 }
