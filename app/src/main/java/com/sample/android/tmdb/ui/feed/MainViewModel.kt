@@ -11,25 +11,17 @@ class MainViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _headline = savedStateHandle.getLiveData<Int>(HEAD_LINE)
+    private val _headline = savedStateHandle.getLiveData(HEAD_LINE, R.string.menu_movies)
     val headline: LiveData<Int>
         get() = _headline
 
-    private val _currentType = savedStateHandle.getLiveData<NavType>(NAV_TYPE)
+    private val _currentType = savedStateHandle.getLiveData(NAV_TYPE, NavType.MOVIES)
     val currentType: LiveData<NavType>
         get() = _currentType
-
-    init {
-        setType(
-            savedStateHandle[HEAD_LINE] ?: R.string.menu_movies,
-            savedStateHandle[NAV_TYPE] ?: NavType.MOVIES
-        )
-    }
 
     fun setType(titleId: Int, navType: NavType) {
         savedStateHandle[HEAD_LINE] = titleId
         savedStateHandle[NAV_TYPE] = navType
-
     }
 
     companion object {
