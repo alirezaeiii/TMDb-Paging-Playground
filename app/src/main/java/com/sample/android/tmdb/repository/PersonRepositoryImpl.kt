@@ -6,7 +6,9 @@ import com.sample.android.tmdb.domain.PersonRepository
 import com.sample.android.tmdb.domain.model.Person
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PersonRepositoryImpl @Inject constructor(
     private val personApi: PersonApi
 ) : PersonRepository {

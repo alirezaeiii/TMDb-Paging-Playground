@@ -8,7 +8,9 @@ import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Video
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MovieDetailRepositoryImpl @Inject constructor(
     private val movieApi: MovieApi
 ) : MovieDetailRepository {
