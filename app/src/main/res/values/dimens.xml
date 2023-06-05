@@ -9,7 +9,7 @@
     <dimen name="padding_large">32dp</dimen>
 
     <dimen name="column_width">180dp</dimen>
-    <dimen name="column_height">220dp</dimen>
+    <dimen name="column_height">320dp</dimen>
     <dimen name="details_corner_cutout">64dp</dimen>
 
     <!-- Z-axis elevations -->
