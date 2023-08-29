@@ -98,6 +98,6 @@ abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDeta
             GridLayoutManager.HORIZONTAL, false
         )
         setHasFixedSize(true)
-        adapter = CreditAdapter(items, CreditClickListener(context, tmdbItem))
+        adapter = CreditAdapter(items, CreditClickListener(context))
     }
 }

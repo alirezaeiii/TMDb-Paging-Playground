@@ -30,8 +30,7 @@
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
                 motion:layout_constraintStart_toStartOf="parent"
-                motion:layout_constraintTop_toTopOf="parent"
-                motion:layout_constraintVertical_bias="0.38" />
+                motion:layout_constraintTop_toTopOf="parent"/>
 
             <Constraint
                 android:id="@id/icon_background"
@@ -49,22 +48,19 @@
                 motion:autoSizeTextType="uniform"
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintHorizontal_bias="0.5"
                 motion:layout_constraintStart_toStartOf="parent" />
 
             <Constraint
                 android:id="@id/icon_layout"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 motion:layout_constraintBottom_toTopOf="@+id/name"
                 motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintHorizontal_bias="0.5"
                 motion:layout_constraintStart_toStartOf="parent"
-                motion:layout_constraintVertical_bias="0.24000001"
                 motion:layout_constraintVertical_chainStyle="packed" />
 
             <Constraint
@@ -84,8 +80,7 @@
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
                 motion:layout_constraintStart_toStartOf="parent"
-                motion:layout_constraintTop_toTopOf="parent"
-                motion:layout_constraintVertical_bias="0.38" />
+                motion:layout_constraintTop_toTopOf="parent" />
 
             <Constraint
                 android:id="@id/icon_background"

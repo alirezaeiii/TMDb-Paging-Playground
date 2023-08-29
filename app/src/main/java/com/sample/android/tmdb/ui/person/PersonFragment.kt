@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
-import com.sample.android.tmdb.domain.model.PersonWrapper
+import com.sample.android.tmdb.domain.model.Credit
 import com.sample.android.tmdb.ui.BaseDetailFragment
 import com.sample.android.tmdb.util.toVisibility
 import javax.inject.Inject
@@ -20,7 +20,7 @@ constructor() // Required empty public constructor
     lateinit var factory: PersonViewModel.Factory
 
     @Inject
-    lateinit var personWrapper: PersonWrapper
+    lateinit var credit: Credit
 
     override val viewModel: PersonViewModel by lazy {
         ViewModelProvider(this, factory)[PersonViewModel::class.java]
@@ -31,7 +31,7 @@ constructor() // Required empty public constructor
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         with(binding) {
-            person = personWrapper
+            person = credit
             personHeader.backBtn.setOnClickListener {
                 activity?.finish()
             }

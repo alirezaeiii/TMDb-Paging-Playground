@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="com.sample.android.tmdb.domain.model.PersonWrapper" />
+            type="com.sample.android.tmdb.domain.model.Credit" />
 
     </data>
 
@@ -20,13 +20,11 @@
         tools:background="?attr/colorPrimary"
         tools:maxHeight="320dp">
 
-        <ImageView
+        <View
             android:id="@+id/image_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{person.backdropUrl}"
-            app:layout_constraintVertical_bias="0.38"
+            android:background="@drawable/gradient_color"
             tools:ignore="ContentDescription" />
 
         <View
@@ -71,7 +69,7 @@
             android:id="@+id/name"
             android:layout_width="162dp"
             android:layout_height="41dp"
-            android:text="@{person.credit.name}"
+            android:text="@{person.name}"
             app:autoSizeTextType="uniform"
             tools:text="Ali Rezaei" />
 
@@ -82,11 +80,11 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/icon"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
                 app:civ_border_color="@android:color/white"
                 app:civ_border_width="2dp"
-                app:profileUrl="@{person.credit.profileUrl}"
+                app:profileUrl="@{person.profileUrl}"
                 tools:src="@drawable/ic_error_outline_black_36dp" />
 
         </RelativeLayout>
@@ -96,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.67" />
+            app:layout_constraintGuide_percent="0.62" />
 
     </com.sample.android.tmdb.widget.CollapsibleToolbar>
 
