@@ -56,7 +56,7 @@ ext {
     gsonVersion = '2.8.5'
     timberVersion = '4.7.1'
     constraintLayoutVersion = '2.1.4'
-    okhttpVersion = '4.9.3'
+    okhttpVersion = '4.11.0'
     circleimageviewVersion = '2.2.0'
     materialVersion = '1.6.1'
     swiperefreshVersion = '1.1.0'

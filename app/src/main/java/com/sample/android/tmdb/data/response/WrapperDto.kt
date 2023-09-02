@@ -15,7 +15,9 @@ class VideoWrapper(
 )
 
 class NetworkCreditWrapper(
+    @SerializedName("cast")
     val cast: List<NetworkCast>,
+    @SerializedName("crew")
     val crew: List<NetworkCrew>
 )
 

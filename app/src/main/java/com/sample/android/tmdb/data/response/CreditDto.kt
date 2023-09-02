@@ -4,22 +4,28 @@ import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.Crew
 import com.sample.android.tmdb.util.Constants.BASE_WIDTH_342_PATH
+import com.sample.android.tmdb.util.Constants.ID
+import com.sample.android.tmdb.util.Constants.NAME
 
 class NetworkCast(
     @SerializedName("character")
     val role: String,
+    @SerializedName(NAME)
     val name: String,
     @SerializedName(PROFILE_PATH)
     val profilePath: String?,
+    @SerializedName(ID)
     val id: Int
 )
 
 class NetworkCrew(
     @SerializedName("job")
     val role: String,
+    @SerializedName(NAME)
     val name: String,
     @SerializedName(PROFILE_PATH)
     val profilePath: String?,
+    @SerializedName(ID)
     val id: String
 )
 
