@@ -34,6 +34,7 @@
 
     <string name="menu_movies">Movies</string>
     <string name="menu_tv_series">TV Series</string>
+    <string name="menu_setting">Setting</string>
     <string name="open_nav_drawer">Open navigation drawer</string>
     <string name="close_nav_drawer">Close navigation drawer</string>
 
@@ -41,4 +42,9 @@
     <string name="failed_network_msg">No internet connection</string>
     <string name="text_connectivity">Connected</string>
     <string name="application_not_found">No application that can handle this link found</string>
+
+    <string name="source_code_github">Source code on Github</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="version">Version</string>
+    <string name="forward">Forward</string>
 </resources>

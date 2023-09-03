@@ -33,5 +33,6 @@ class MainViewModel(
 @Parcelize
 enum class NavType : Parcelable {
     MOVIES,
-    TV_SERIES
+    TV_SERIES,
+    SETTING
 }

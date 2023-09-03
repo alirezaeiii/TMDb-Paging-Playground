@@ -123,6 +123,7 @@ private fun <T : TmdbItem> FeedCollection(
                                     }
                                 }
                             }
+                            else -> throw RuntimeException("Unknown item to start paging Activity")
                         }
                         val intent = Intent(context, activity)
                         context.startActivity(intent)
@@ -143,7 +144,7 @@ private fun <T : TmdbItem> Feeds(
 ) {
     LazyRow(
         modifier = modifier,
-        contentPadding = PaddingValues(start = Dimens.paddingMicro, end = Dimens.paddingMicro)
+        contentPadding = PaddingValues(start = Dimens.PaddingMicro, end = Dimens.PaddingMicro)
     ) {
         items(feeds) { feed ->
             TmdbItem(feed, onFeedClick, index)

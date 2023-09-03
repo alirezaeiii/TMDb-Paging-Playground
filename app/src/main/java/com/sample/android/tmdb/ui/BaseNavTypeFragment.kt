@@ -17,6 +17,7 @@ abstract class BaseNavTypeFragment : DaggerFragment()  {
         val activity = when (navType) {
             NavType.MOVIES -> DetailMovieActivity::class.java
             NavType.TV_SERIES -> DetailTVShowActivity::class.java
+            else -> throw RuntimeException("Unknown item to start detail Activity")
         }
         val intent = Intent(requireActivity(), activity).apply {
             putExtras(Bundle().apply {

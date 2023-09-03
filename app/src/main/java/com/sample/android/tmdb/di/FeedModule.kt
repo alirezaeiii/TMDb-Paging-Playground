@@ -2,6 +2,7 @@ package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
+import com.sample.android.tmdb.ui.setting.SettingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,4 +14,7 @@ abstract class FeedModule {
 
     @ContributesAndroidInjector
     internal abstract fun feedTVShowFragment(): FeedTVShowFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun settingFragment(): SettingFragment
 }

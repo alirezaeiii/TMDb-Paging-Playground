@@ -19,6 +19,9 @@ abstract class BaseNavTypeActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
+        if (navType == NavType.SETTING) {
+            menu.getItem(0).isVisible = false
+        }
         return true
     }
 

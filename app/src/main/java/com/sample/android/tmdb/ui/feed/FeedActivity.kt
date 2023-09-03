@@ -12,6 +12,7 @@ import com.sample.android.tmdb.databinding.ActivityFeedBinding
 import com.sample.android.tmdb.ui.BaseNavTypeActivity
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
+import com.sample.android.tmdb.ui.setting.SettingFragment
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import javax.inject.Inject
@@ -23,6 +24,9 @@ class FeedActivity : BaseNavTypeActivity() {
 
     @Inject
     lateinit var feedTVShowFragment: FeedTVShowFragment
+
+    @Inject
+    lateinit var settingFragment: SettingFragment
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -83,8 +87,14 @@ class FeedActivity : BaseNavTypeActivity() {
                     feedTVShowFragment
 
                 }
+                R.id.action_setting -> {
+                    viewModel.setType(R.string.menu_setting, NavType.SETTING)
+                    settingFragment
+
+                }
                 else -> throw RuntimeException("Unknown item to replace fragment")
             }
+            invalidateOptionsMenu()
             replaceFragmentInActivity(fragment, R.id.fragment_container)
             true
         }

@@ -12,6 +12,10 @@
             android:id="@+id/action_tv_series"
             android:icon="@drawable/ic_tv_series"
             android:title="@string/menu_tv_series" />
+        <item
+            android:id="@+id/action_setting"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/menu_setting" />
     </group>
 
 </menu>
