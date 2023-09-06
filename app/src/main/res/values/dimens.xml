@@ -2,11 +2,13 @@
 <resources>
 
     <!-- standard metrics -->
-    <dimen name="padding_micro">4dp</dimen>
+    <dimen name="padding_micro">2dp</dimen>
+    <dimen name="padding_extra_small">4dp</dimen>
     <dimen name="padding_small">6dp</dimen>
     <dimen name="padding_medium">8dp</dimen>
-    <dimen name="padding_normal">16dp</dimen>
-    <dimen name="padding_large">32dp</dimen>
+    <dimen name="padding_normal">12dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_extra_large">32dp</dimen>
 
     <dimen name="column_width">180dp</dimen>
     <dimen name="column_height">320dp</dimen>

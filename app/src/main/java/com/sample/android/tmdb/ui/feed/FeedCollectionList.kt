@@ -68,7 +68,7 @@ private fun <T : TmdbItem> FeedCollection(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .heightIn(min = 36.dp)
-                .padding(start = Dimens.PaddingMedium)
+                .padding(start = Dimens.PaddingNormal)
         ) {
             Text(
                 text = stringResource(id = feedCollection.sortTypeResourceId),
@@ -128,7 +128,7 @@ private fun <T : TmdbItem> FeedCollection(
                         val intent = Intent(context, activity)
                         context.startActivity(intent)
                     }
-                    .padding(Dimens.PaddingMedium)
+                    .padding(Dimens.PaddingNormal)
             )
         }
         Feeds(feedCollection.feeds, onFeedClick, index)

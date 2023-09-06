@@ -60,7 +60,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     Box {
         SettingsGroupItem(
             settings = aboutSettings, modifier = modifier
-                .padding(Dimens.PaddingNormal)
+                .padding(Dimens.PaddingLarge)
         )
     }
 }
@@ -107,14 +107,14 @@ private fun SettingsItem(
                     is Settings.Info -> Modifier
                 }
             )
-            .padding(Dimens.PaddingNormal)
+            .padding(Dimens.PaddingLarge)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(Dimens.PaddingMedium)
+            horizontalArrangement = Arrangement.spacedBy(Dimens.PaddingNormal)
         ) {
             IconBox(
                 iconResourceId = settings.iconResourceId,
