@@ -1,4 +1,4 @@
-name: Create release
+name: Create Release
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Build APK
-        run: ./gradlew bundleRelease
+        run: ./gradlew assembleRelease
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       - name: Extract version name
@@ -34,4 +34,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION }}
-          files: app/build/outputs/bundle/release/app-release.aab
+          files: app/build/outputs/apk/release/app-release.apk
