@@ -17,7 +17,7 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew bundleRelease
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       - name: Extract version name
@@ -27,7 +27,6 @@ jobs:
         uses: release-drafter/release-drafter@v5
         with:
           tag: ${{ env.VERSION }}
-          prerelease: true
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,4 +34,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION }}
-          files: app/build/outputs/apk/release/app-release.apk
+          files: app/build/outputs/bundle/release/app-release.aab
