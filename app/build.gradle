@@ -4,14 +4,23 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
+def appVersion = (new File(project.rootDir, 'version.txt')).text.trim()
+
+ext.generateVersionCode = { versionName ->
+    def (versionMajor, versionMinor, versionPatch) = versionName.tokenize(".")
+    Integer versionCode = versionMajor.toInteger() * 100000000 + versionMinor.toInteger() * 10000 + versionPatch.toInteger()
+    logger.info('Version code based on version {}: {}', versionName, versionCode)
+    return versionCode
+}
+
 android {
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.sample.android.tmdb"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 87
-        versionName "2.5.26"
+        versionCode generateVersionCode(appVersion)
+        versionName appVersion
         buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
         buildConfigField "String", "TMDB_BASE_URL", "\"http://api.themoviedb.org/\""
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
