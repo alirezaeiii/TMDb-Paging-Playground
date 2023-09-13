@@ -1,4 +1,4 @@
-name: Push
+name: Push and Pull request
 
 on:
   push:

@@ -29,6 +29,8 @@ jobs:
           tag: ${{ env.VERSION }}
           prerelease: true
           publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
