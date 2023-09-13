@@ -22,7 +22,7 @@ jobs:
       - name: Run Debug Tests
         run: ./gradlew testDebugUnitTest --continue
       - name: Upload Test Reports
-        if: ${{ always() }}
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: test-reports
