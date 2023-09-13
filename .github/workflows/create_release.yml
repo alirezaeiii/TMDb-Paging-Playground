@@ -34,6 +34,4 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.VERSION }}
-          files: |
-            app/build/outputs/bundle/release/release-${{ env.VERSION }}.apk
+          files: app/build/outputs/apk/release/app-release.apk
