@@ -13,6 +13,9 @@ object Dimens {
     val PaddingSmall: Dp
         @Composable get() = dimensionResource(R.dimen.padding_small)
 
+    val PaddingMedium: Dp
+        @Composable get() = dimensionResource(R.dimen.padding_medium)
+
     val PaddingNormal: Dp
         @Composable get() = dimensionResource(R.dimen.padding_normal)
 
