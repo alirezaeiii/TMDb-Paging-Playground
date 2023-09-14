@@ -18,6 +18,10 @@ jobs:
           java-version: 11
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
+      - name: Build APK
+        run: ./gradlew assembleRelease
+        env:
+          MDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       - name: Build Bundle
         run: ./gradlew bundleRelease
         env:
@@ -36,4 +40,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION }}
-          files: app/build/outputs/bundle/release/app-release.aab
+          files: |
+            app/build/outputs/apk/release/app-release.apk
+            app/build/outputs/bundle/release/app-release.aab
