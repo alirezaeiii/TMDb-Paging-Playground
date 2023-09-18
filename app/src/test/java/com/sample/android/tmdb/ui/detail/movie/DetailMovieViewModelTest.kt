@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.detail.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.domain.MovieDetailRepository
+import com.sample.android.tmdb.domain.repository.MovieDetailRepository
 import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Movie

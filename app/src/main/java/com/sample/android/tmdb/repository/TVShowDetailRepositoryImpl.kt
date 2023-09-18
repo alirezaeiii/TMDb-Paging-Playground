@@ -3,7 +3,7 @@ package com.sample.android.tmdb.repository
 import com.sample.android.tmdb.data.network.TVShowApi
 import com.sample.android.tmdb.data.response.asCreditWrapper
 import com.sample.android.tmdb.data.response.asDomainModel
-import com.sample.android.tmdb.domain.TVShowDetailRepository
+import com.sample.android.tmdb.domain.repository.TVShowDetailRepository
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Video
 import io.reactivex.Single

@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.person
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
-import com.sample.android.tmdb.domain.PersonRepository
+import com.sample.android.tmdb.domain.repository.PersonRepository
 import com.sample.android.tmdb.domain.model.Person
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`

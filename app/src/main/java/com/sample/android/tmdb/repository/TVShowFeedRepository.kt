@@ -4,7 +4,7 @@ import android.content.Context
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.data.response.asTVShowDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
-import com.sample.android.tmdb.domain.BaseFeedRepository
+import com.sample.android.tmdb.domain.repository.BaseFeedRepository
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.data.network.TVShowApi
 import kotlinx.coroutines.CoroutineDispatcher

@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.domain
+package com.sample.android.tmdb.domain.repository
 
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Video

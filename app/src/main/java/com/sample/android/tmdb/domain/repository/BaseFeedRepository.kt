@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.domain
+package com.sample.android.tmdb.domain.repository
 
 import android.content.Context
 import com.sample.android.tmdb.R
