@@ -98,7 +98,7 @@ fun List<NetworkTVShow>.asTVShowDomainModel(): List<TVShow> =
         )
     }
 
-const val OVERVIEW = "overview"
+private const val OVERVIEW = "overview"
 private const val POSTER_PATH = "poster_path"
 private const val BACKDROP_PATH = "backdrop_path"
-const val VOTE_AVERAGE = "vote_average"
+private const val VOTE_AVERAGE = "vote_average"
