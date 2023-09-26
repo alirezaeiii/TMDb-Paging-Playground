@@ -2,20 +2,19 @@ package com.sample.android.tmdb.ui.feed
 
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -158,42 +157,41 @@ private fun <T : TmdbItem> TmdbItem(
     onFeedClick: (TmdbItem) -> Unit,
     index: Int
 ) {
-    val tmdbItemWidth: Dp
+    val itemWidth: Dp
     val imageUrl: String?
     if (index == 0) {
-        tmdbItemWidth = 220.dp
+        itemWidth = 220.dp
         imageUrl = tmdbItem.backdropUrl
     } else {
-        tmdbItemWidth = 120.dp
+        itemWidth = 120.dp
         imageUrl = tmdbItem.posterUrl
     }
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Card(
         modifier = Modifier
-            .clickable(onClick = { onFeedClick(tmdbItem) })
             .padding(Dimens.PaddingSmall)
+            .clickable(onClick = { onFeedClick(tmdbItem) }),
+        shape = RoundedCornerShape(10.dp)
     ) {
-        Image(
-            painter = rememberImagePainter(imageUrl),
-            contentDescription = null,
-            modifier = Modifier
-                .size(width = tmdbItemWidth, height = 180.dp)
-                .border(.3.dp, Color.White, RectangleShape),
-            contentScale = ContentScale.Crop,
-        )
-        Text(
-            text = tmdbItem.name,
-            fontSize = TmdbTheme.fontSizes.sp_11,
-            color = MaterialTheme.colors.onSurface,
-            textAlign = TextAlign.Center,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .size(width = tmdbItemWidth, height = 36.dp)
-                .padding(top = Dimens.PaddingSmall)
-                .wrapContentHeight()
-
-        )
+        Column {
+            Image(
+                painter = rememberImagePainter(imageUrl),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(width = itemWidth, height = 180.dp),
+                contentScale = ContentScale.Crop,
+            )
+            Text(
+                text = tmdbItem.name,
+                fontSize = TmdbTheme.fontSizes.sp_11,
+                color = MaterialTheme.colors.onSurface,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .size(width = itemWidth, height = 36.dp)
+                    .wrapContentHeight()
+            )
+        }
     }
 }
 
