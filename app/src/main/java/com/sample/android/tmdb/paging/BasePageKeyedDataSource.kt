@@ -82,8 +82,8 @@ abstract class BasePageKeyedDataSource<T : TmdbItem>(
     }
 
     private fun loadItems(page: Int): Observable<List<T>> =
-        Observable.fromCallable { context.isNetworkAvailable() }.flatMap {
-            return@flatMap if (it) this.fetchItems(page)
+        Observable.fromCallable { context.isNetworkAvailable() }.switchMap {
+            return@switchMap if (it) this.fetchItems(page)
             else Observable.error(NetworkException())
         }
 

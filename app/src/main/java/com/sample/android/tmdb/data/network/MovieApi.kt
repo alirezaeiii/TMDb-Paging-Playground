@@ -27,6 +27,9 @@ interface MovieApi {
     @GET("3/movie/top_rated")
     suspend fun topRatedMovies(): ItemWrapper<NetworkMovie>
 
+    @GET("3/discover/movie")
+    suspend fun discoverMovies(): ItemWrapper<NetworkMovie>
+
     @GET("3/trending/movie/day")
     fun trendingMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
@@ -41,6 +44,9 @@ interface MovieApi {
 
     @GET("3/movie/upcoming")
     fun upcomingMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
+
+    @GET("3/discover/movie")
+    fun discoverMovies(@Query("page") page: Int): Observable<ItemWrapper<NetworkMovie>>
 
     @GET("3/search/movie")
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<NetworkMovie>>

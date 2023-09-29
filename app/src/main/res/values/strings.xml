@@ -11,6 +11,7 @@
     <string name="text_now_playing">Now Playing</string>
     <string name="text_airing_today">Airing today</string>
     <string name="text_on_the_air">On the air</string>
+    <string name="text_discover">Discover</string>
     <string name="more_item">More</string>
     <string name="popular">Popular %s</string>
     <string name="highest_rate">Top Rated %s</string>
@@ -19,6 +20,7 @@
     <string name="now_playing">Now Playing %s</string>
     <string name="on_the_air">On the air %s</string>
     <string name="airing_today">Airing today %s</string>
+    <string name="discover">Discover %s</string>
     <string name="summary">Summary</string>
     <string name="trailers">Trailers</string>
     <string name="cast">Cast</string>

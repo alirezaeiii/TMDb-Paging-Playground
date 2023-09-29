@@ -28,6 +28,8 @@ class MovieFeedRepository @Inject constructor(
 
     override suspend fun nowPlayingItems(): List<Movie> = movieApi.nowPlayingMovies().items.asMovieDomainModel()
 
+    override suspend fun discoverItems(): List<Movie> = movieApi.discoverMovies().items.asMovieDomainModel()
+
     override fun getNowPlayingResId(): Int = R.string.text_now_playing
 
     override fun getLatestResId(): Int = R.string.text_upcoming

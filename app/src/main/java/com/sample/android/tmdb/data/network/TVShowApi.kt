@@ -27,6 +27,9 @@ interface TVShowApi {
     @GET("3/tv/top_rated")
     suspend fun topRatedTVSeries(): ItemWrapper<NetworkTVShow>
 
+    @GET("3/discover/tv")
+    suspend fun discoverTVSeries(): ItemWrapper<NetworkTVShow>
+
     @GET("3/trending/tv/day")
     fun trendingTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
@@ -41,6 +44,9 @@ interface TVShowApi {
 
     @GET("3/tv/on_the_air")
     fun onTheAirTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
+
+    @GET("3/discover/tv")
+    fun discoverTVSeries(@Query("page") page: Int): Observable<ItemWrapper<NetworkTVShow>>
 
     @GET("3/search/tv")
     fun searchItems(@Query("page") page: Int, @Query("query") query: String): Observable<ItemWrapper<NetworkTVShow>>

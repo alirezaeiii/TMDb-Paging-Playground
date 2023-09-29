@@ -49,6 +49,10 @@
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
+            android:name=".ui.paging.main.movie.DiscoverMoviesActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
             android:name=".ui.paging.main.tvshow.TrendingTVShowActivity"
             android:parentActivityName=".ui.feed.FeedActivity" />
 
@@ -69,6 +73,10 @@
             android:parentActivityName=".ui.feed.FeedActivity" />
 
         <activity
+            android:name=".ui.paging.main.tvshow.DiscoverTVShowsActivity"
+            android:parentActivityName=".ui.feed.FeedActivity" />
+
+        <activity
             android:name=".ui.paging.search.movie.SearchMovieActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
@@ -76,11 +84,9 @@
             android:name=".ui.paging.search.tvshow.SearchTVShowActivity"
             android:theme="@style/Theme.Tmdb.Search" />
 
-        <activity
-            android:name=".ui.detail.movie.DetailMovieActivity" />
+        <activity android:name=".ui.detail.movie.DetailMovieActivity" />
 
-        <activity
-            android:name=".ui.detail.tvshow.DetailTVShowActivity" />
+        <activity android:name=".ui.detail.tvshow.DetailTVShowActivity" />
 
         <activity android:name=".ui.person.PersonActivity" />
 

@@ -2,11 +2,11 @@ package com.sample.android.tmdb.repository
 
 import android.content.Context
 import com.sample.android.tmdb.R
+import com.sample.android.tmdb.data.network.TVShowApi
 import com.sample.android.tmdb.data.response.asTVShowDomainModel
 import com.sample.android.tmdb.di.IoDispatcher
-import com.sample.android.tmdb.domain.repository.BaseFeedRepository
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.domain.repository.BaseFeedRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,6 +27,8 @@ class TVShowFeedRepository @Inject constructor(
     override suspend fun trendingItems(): List<TVShow> = tvShowApi.trendingTVSeries().items.asTVShowDomainModel()
 
     override suspend fun nowPlayingItems(): List<TVShow> = tvShowApi.airingTodayTVSeries().items.asTVShowDomainModel()
+
+    override suspend fun discoverItems(): List<TVShow> = tvShowApi.discoverTVSeries().items.asTVShowDomainModel()
 
     override fun getNowPlayingResId(): Int = R.string.text_airing_today
 

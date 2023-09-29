@@ -89,39 +89,57 @@ private fun <T : TmdbItem> FeedCollection(
                                     SortType.TRENDING -> {
                                         TrendingMoviesActivity::class.java
                                     }
+
                                     SortType.MOST_POPULAR -> {
                                         PopularMoviesActivity::class.java
                                     }
+
                                     SortType.UPCOMING -> {
                                         UpcomingMoviesActivity::class.java
                                     }
+
                                     SortType.HIGHEST_RATED -> {
                                         HighRateMoviesActivity::class.java
                                     }
+
                                     SortType.NOW_PLAYING -> {
                                         NowPlayingMoviesActivity::class.java
                                     }
+
+                                    SortType.DISCOVER -> {
+                                        DiscoverMoviesActivity::class.java
+                                    }
                                 }
                             }
+
                             NavType.TV_SERIES -> {
                                 when (feedCollection.sortType) {
                                     SortType.TRENDING -> {
                                         TrendingTVShowActivity::class.java
                                     }
+
                                     SortType.MOST_POPULAR -> {
                                         PopularTVShowActivity::class.java
                                     }
+
                                     SortType.UPCOMING -> {
                                         OnTheAirTVShowActivity::class.java
                                     }
+
                                     SortType.HIGHEST_RATED -> {
                                         HighRateTVShowActivity::class.java
                                     }
+
                                     SortType.NOW_PLAYING -> {
                                         AiringTodayTVShowActivity::class.java
                                     }
+
+                                    SortType.DISCOVER -> {
+                                        DiscoverTVShowsActivity::class.java
+                                    }
                                 }
                             }
+
                             else -> throw RuntimeException("Unknown item to start paging Activity")
                         }
                         val intent = Intent(context, activity)
@@ -159,7 +177,7 @@ private fun <T : TmdbItem> TmdbItem(
 ) {
     val itemWidth: Dp
     val imageUrl: String?
-    if (index == 0) {
+    if (index % 3 == 0) {
         itemWidth = 220.dp
         imageUrl = tmdbItem.backdropUrl
     } else {

@@ -9,5 +9,6 @@ enum class SortType : Parcelable {
     MOST_POPULAR,
     HIGHEST_RATED,
     UPCOMING,
-    NOW_PLAYING
+    NOW_PLAYING,
+    DISCOVER
 }

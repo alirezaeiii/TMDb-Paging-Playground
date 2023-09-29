@@ -29,6 +29,8 @@ abstract class BaseFeedRepository<T : TmdbItem>(
 
     protected abstract suspend fun trendingItems(): List<T>
 
+    protected abstract suspend fun discoverItems(): List<T>
+
     protected abstract fun getNowPlayingResId(): Int
 
     protected abstract fun getLatestResId(): Int
@@ -43,6 +45,7 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                     val nowPlayingDeferred: Deferred<List<T>> = async { nowPlayingItems() }
                     val latestDeferred: Deferred<List<T>> = async { latestItems() }
                     val topRatedDeferred: Deferred<List<T>> = async { topRatedItems() }
+                    val discoverDeferred: Deferred<List<T>> = async { discoverItems() }
 
                     emit(
                         Resource.Success(
@@ -61,6 +64,11 @@ abstract class BaseFeedRepository<T : TmdbItem>(
                                     nowPlayingDeferred.await(),
                                     getNowPlayingResId(),
                                     SortType.NOW_PLAYING
+                                ),
+                                FeedWrapper(
+                                    discoverDeferred.await(),
+                                    R.string.text_discover,
+                                    SortType.DISCOVER
                                 ),
                                 FeedWrapper(
                                     latestDeferred.await(),

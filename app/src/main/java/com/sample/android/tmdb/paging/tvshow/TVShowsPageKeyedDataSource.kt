@@ -22,5 +22,6 @@ class TVShowsPageKeyedDataSource(
         SortType.UPCOMING -> api.onTheAirTVSeries(page).map { it.items.asTVShowDomainModel() }
         SortType.TRENDING -> api.trendingTVSeries(page).map { it.items.asTVShowDomainModel() }
         SortType.NOW_PLAYING -> api.airingTodayTVSeries(page).map { it.items.asTVShowDomainModel() }
+        SortType.DISCOVER -> api.discoverTVSeries(page).map { it.items.asTVShowDomainModel() }
     }
 }

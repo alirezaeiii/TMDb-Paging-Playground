@@ -22,5 +22,6 @@ class MoviePageKeyedDataSource(
         SortType.UPCOMING -> api.upcomingMovies(page).map { it.items.asMovieDomainModel() }
         SortType.TRENDING -> api.trendingMovies(page).map { it.items.asMovieDomainModel() }
         SortType.NOW_PLAYING -> api.nowPlayingMovies(page).map { it.items.asMovieDomainModel() }
+        SortType.DISCOVER -> api.discoverMovies(page).map { it.items.asMovieDomainModel() }
     }
 }
