@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.paging.main.tvshow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.main.BaseItemFragment
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 abstract class TVShowFragment : BaseItemFragment<TVShow>() {
 
     @Inject
-    lateinit var api: TVShowApi
+    lateinit var api: TVShowService
 
     override val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory {

@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.paging.tvshow
 
 import android.content.Context
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.data.response.asTVShowDomainModel
 import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.domain.model.TVShow
@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import java.util.concurrent.Executor
 
 class TVShowsPageKeyedDataSource(
-    private val api: TVShowApi,
+    private val api: TVShowService,
     private val sortType: SortType,
     retryExecutor: Executor,
     context: Context

@@ -6,7 +6,7 @@ import com.sample.android.tmdb.data.response.NetworkCast
 import com.sample.android.tmdb.data.response.NetworkCreditWrapper
 import com.sample.android.tmdb.data.response.VideoResponse
 import com.sample.android.tmdb.data.response.VideoWrapper
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert
@@ -29,7 +29,7 @@ class TVShowDetailRepositoryTest {
     var rxJavaRule: TestRule = TestRxJavaRule()
 
     @Mock
-    private lateinit var tvShowApi: TVShowApi
+    private lateinit var tvShowApi: TVShowService
 
     @Test
     fun loadTrailersAndCredits() {

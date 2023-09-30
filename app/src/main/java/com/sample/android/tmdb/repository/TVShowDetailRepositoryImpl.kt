@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.repository
 
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.data.response.asCreditWrapper
 import com.sample.android.tmdb.data.response.asDomainModel
 import com.sample.android.tmdb.domain.repository.TVShowDetailRepository
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class TVShowDetailRepositoryImpl @Inject constructor(
-    private val tvShowApi: TVShowApi
+    private val tvShowApi: TVShowService
 ) : TVShowDetailRepository {
 
     override fun getTVShowTrailers(tvId: Int): Single<List<Video>> =

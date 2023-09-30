@@ -8,7 +8,7 @@ import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkTVShow
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -35,7 +35,7 @@ class SearchTVShowPageKeyRepositoryTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var api: TVShowApi
+    private lateinit var api: TVShowService
 
     @Mock
     private lateinit var context: Context

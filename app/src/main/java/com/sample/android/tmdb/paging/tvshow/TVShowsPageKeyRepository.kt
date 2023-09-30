@@ -2,14 +2,14 @@ package com.sample.android.tmdb.paging.tvshow
 
 import android.content.Context
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.paging.BaseDataSourceFactory
 import com.sample.android.tmdb.paging.BasePageKeyRepository
 import com.sample.android.tmdb.domain.model.SortType
 import java.util.concurrent.Executor
 
 class TVShowsPageKeyRepository(
-    api: TVShowApi,
+    api: TVShowService,
     sortType: SortType,
     retryExecutor: Executor,
     context: Context

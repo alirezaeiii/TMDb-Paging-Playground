@@ -1,10 +1,10 @@
 package com.sample.android.tmdb.di
 
 import com.sample.android.tmdb.BuildConfig
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.data.network.OkHttpProvider
-import com.sample.android.tmdb.data.network.PersonApi
-import com.sample.android.tmdb.data.network.TVShowApi
+import com.sample.android.tmdb.data.network.PersonService
+import com.sample.android.tmdb.data.network.TVShowService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -26,13 +26,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun movieApi(retrofit: Retrofit): MovieApi = retrofit.create(MovieApi::class.java)
+    fun movieApi(retrofit: Retrofit): MovieService = retrofit.create(MovieService::class.java)
 
     @Singleton
     @Provides
-    fun tvShowApi(retrofit: Retrofit): TVShowApi = retrofit.create(TVShowApi::class.java)
+    fun tvShowApi(retrofit: Retrofit): TVShowService = retrofit.create(TVShowService::class.java)
 
     @Singleton
     @Provides
-    fun personApi(retrofit: Retrofit): PersonApi = retrofit.create(PersonApi::class.java)
+    fun personApi(retrofit: Retrofit): PersonService = retrofit.create(PersonService::class.java)
 }

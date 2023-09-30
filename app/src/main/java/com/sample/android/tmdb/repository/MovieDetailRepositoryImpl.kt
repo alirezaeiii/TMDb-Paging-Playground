@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.repository
 
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.data.response.asCreditWrapper
 import com.sample.android.tmdb.data.response.asDomainModel
 import com.sample.android.tmdb.domain.repository.MovieDetailRepository
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class MovieDetailRepositoryImpl @Inject constructor(
-    private val movieApi: MovieApi
+    private val movieApi: MovieService
 ) : MovieDetailRepository {
 
     override fun getMovieTrailers(movieId: Int): Single<List<Video>> =

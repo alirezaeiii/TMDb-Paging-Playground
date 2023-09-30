@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface PersonApi {
+interface PersonService {
 
     @GET("3/person/{personId}")
     fun getPerson(@Path("personId") personId: Any): Single<PersonResponse>

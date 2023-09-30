@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieApi {
+interface MovieService {
 
     @GET("3/trending/movie/day")
     suspend fun trendingMovies(): TMDbWrapper<NetworkMovie>

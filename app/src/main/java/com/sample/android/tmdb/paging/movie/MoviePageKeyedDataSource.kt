@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.paging.movie
 
 import android.content.Context
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.data.response.asMovieDomainModel
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.model.SortType
@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import java.util.concurrent.Executor
 
 class MoviePageKeyedDataSource(
-    private val api: MovieApi,
+    private val api: MovieService,
     private val sortType: SortType,
     retryExecutor: Executor,
     context: Context

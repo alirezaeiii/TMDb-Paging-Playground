@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
 import com.sample.android.tmdb.data.response.TMDbWrapper
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
@@ -39,7 +39,7 @@ class MovieFeedRepositoryTest {
     private lateinit var context: Context
 
     @Mock
-    private lateinit var movieApi: MovieApi
+    private lateinit var movieApi: MovieService
 
     @Before
     fun setup() {

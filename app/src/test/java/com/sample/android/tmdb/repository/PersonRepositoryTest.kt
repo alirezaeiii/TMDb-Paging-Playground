@@ -3,7 +3,7 @@ package com.sample.android.tmdb.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestRxJavaRule
 import com.sample.android.tmdb.data.response.PersonResponse
-import com.sample.android.tmdb.data.network.PersonApi
+import com.sample.android.tmdb.data.network.PersonService
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
@@ -26,7 +26,7 @@ class PersonRepositoryTest {
     var rxJavaRule: TestRule = TestRxJavaRule()
 
     @Mock
-    private lateinit var personApi: PersonApi
+    private lateinit var personApi: PersonService
 
     @Test
     fun loadPerson() {

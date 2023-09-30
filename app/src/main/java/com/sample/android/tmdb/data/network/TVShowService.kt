@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TVShowApi {
+interface TVShowService {
 
     @GET("3/trending/tv/day")
     suspend fun trendingTVSeries(): TMDbWrapper<NetworkTVShow>

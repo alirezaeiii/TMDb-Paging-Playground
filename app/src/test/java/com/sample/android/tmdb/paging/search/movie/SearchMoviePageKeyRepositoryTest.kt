@@ -8,7 +8,7 @@ import com.sample.android.tmdb.LoggingObserver
 import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkMovie
 import com.sample.android.tmdb.domain.model.Movie
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.util.isNetworkAvailable
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -33,7 +33,7 @@ class SearchMoviePageKeyRepositoryTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var api: MovieApi
+    private lateinit var api: MovieService
 
     @Mock
     private lateinit var context: Context

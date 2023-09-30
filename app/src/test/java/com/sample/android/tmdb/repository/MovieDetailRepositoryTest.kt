@@ -6,7 +6,7 @@ import com.sample.android.tmdb.data.response.NetworkCast
 import com.sample.android.tmdb.data.response.NetworkCreditWrapper
 import com.sample.android.tmdb.data.response.VideoResponse
 import com.sample.android.tmdb.data.response.VideoWrapper
-import com.sample.android.tmdb.data.network.MovieApi
+import com.sample.android.tmdb.data.network.MovieService
 import io.reactivex.Single
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
@@ -29,7 +29,7 @@ class MovieDetailRepositoryTest {
     var rxJavaRule: TestRule = TestRxJavaRule()
 
     @Mock
-    private lateinit var movieApi: MovieApi
+    private lateinit var movieApi: MovieService
 
     @Test
     fun loadTrailersAndCredits() {
