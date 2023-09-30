@@ -21,7 +21,7 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease
         env:
-          MDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       - name: Build Bundle
         run: ./gradlew bundleRelease
         env:
