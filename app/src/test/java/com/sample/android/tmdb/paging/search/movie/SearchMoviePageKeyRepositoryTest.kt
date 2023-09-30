@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkMovie
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieApi
@@ -55,7 +55,7 @@ class SearchMoviePageKeyRepositoryTest {
     @Test
     fun searchMovies() {
         val repository = SearchMoviePageKeyRepository(api, "", networkExecutor, context)
-        `when`(api.searchItems(anyInt(), anyString())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.searchItems(anyInt(), anyString())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         val listing = repository.getItems()
         val observer = LoggingObserver<PagedList<Movie>>()

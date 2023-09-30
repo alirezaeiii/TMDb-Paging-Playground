@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkTVShow
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.data.network.TVShowApi
@@ -58,7 +58,7 @@ class SearchTVShowPageKeyRepositoryTest {
     fun searchTVShows() {
         val repository = SearchTVShowPageKeyRepository(api, "", networkExecutor, context)
         `when`(api.searchItems(anyInt(), Mockito.anyString())).thenReturn(Observable.just(
-            ItemWrapper(Lists.newArrayList(tvShow))
+            TMDbWrapper(Lists.newArrayList(tvShow))
         ))
 
         val listing = repository.getItems()

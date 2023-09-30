@@ -3,7 +3,7 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.network.TVShowApi
 import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -52,12 +52,12 @@ class TVShowFeedRepositoryTest {
     @Test
     fun `test Api Succeeds`() {
         testCoroutineRule.runBlockingTest {
-            `when`(tvShowApi.trendingTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.popularTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.onTheAirTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.topRatedTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.airingTodayTVSeries()).thenReturn(ItemWrapper(emptyList()))
-            `when`(tvShowApi.discoverTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.trendingTVSeries()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(tvShowApi.popularTVSeries()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(tvShowApi.onTheAirTVSeries()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(tvShowApi.topRatedTVSeries()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(tvShowApi.airingTodayTVSeries()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(tvShowApi.discoverTVSeries()).thenReturn(TMDbWrapper(emptyList()))
 
             val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 

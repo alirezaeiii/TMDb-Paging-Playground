@@ -3,7 +3,7 @@ package com.sample.android.tmdb.repository
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.sample.android.tmdb.TestCoroutineRule
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.network.MovieApi
 import com.sample.android.tmdb.util.Resource
 import com.sample.android.tmdb.util.isNetworkAvailable
@@ -52,12 +52,12 @@ class MovieFeedRepositoryTest {
     @Test
     fun `test Api Succeeds`() {
         testCoroutineRule.runBlockingTest {
-            `when`(movieApi.trendingMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.popularMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.upcomingMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.topRatedMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.nowPlayingMovies()).thenReturn(ItemWrapper(emptyList()))
-            `when`(movieApi.discoverMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.trendingMovies()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(movieApi.popularMovies()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(movieApi.upcomingMovies()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(movieApi.topRatedMovies()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(movieApi.nowPlayingMovies()).thenReturn(TMDbWrapper(emptyList()))
+            `when`(movieApi.discoverMovies()).thenReturn(TMDbWrapper(emptyList()))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 

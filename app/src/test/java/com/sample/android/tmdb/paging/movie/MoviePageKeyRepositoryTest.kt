@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkMovie
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieApi
@@ -57,7 +57,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadTrendingMovies() {
         val repository = MoviePageKeyRepository(api, TRENDING, networkExecutor, context)
-        `when`(api.trendingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.trendingMovies(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -68,7 +68,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadNowPlayingMovies() {
         val repository = MoviePageKeyRepository(api, NOW_PLAYING, networkExecutor, context)
-        `when`(api.nowPlayingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.nowPlayingMovies(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -79,7 +79,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadMostPopularMovies() {
         val repository = MoviePageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
-        `when`(api.popularMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.popularMovies(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -90,7 +90,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadHighRatedMovies() {
         val repository = MoviePageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
-        `when`(api.topRatedMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.topRatedMovies(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -101,7 +101,7 @@ class MoviePageKeyRepositoryTest {
     @Test
     fun loadUpcomingMovies() {
         val repository = MoviePageKeyRepository(api, UPCOMING, networkExecutor, context)
-        `when`(api.upcomingMovies(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(movie))))
+        `when`(api.upcomingMovies(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(movie))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import io.reactivex.Single
 
-class ItemWrapper<T : NetworkTmdbItem>(
+class TMDbWrapper<T : NetworkTmdbItem>(
     @SerializedName("results")
     val items: List<T>
 )

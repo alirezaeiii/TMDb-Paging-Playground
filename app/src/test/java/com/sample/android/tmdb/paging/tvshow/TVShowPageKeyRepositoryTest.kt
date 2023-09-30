@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagedList
 import com.google.common.collect.Lists
 import com.sample.android.tmdb.LoggingObserver
-import com.sample.android.tmdb.data.response.ItemWrapper
+import com.sample.android.tmdb.data.response.TMDbWrapper
 import com.sample.android.tmdb.data.response.NetworkTVShow
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.data.network.TVShowApi
@@ -57,7 +57,7 @@ class TVShowPageKeyRepositoryTest {
     @Test
     fun loadTrendingTVShows() {
         val repository = TVShowsPageKeyRepository(api, TRENDING, networkExecutor, context)
-        `when`(api.trendingTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.trendingTVSeries(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -68,7 +68,7 @@ class TVShowPageKeyRepositoryTest {
     @Test
     fun loadAiringTodayTVShows() {
         val repository = TVShowsPageKeyRepository(api, NOW_PLAYING, networkExecutor, context)
-        `when`(api.airingTodayTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.airingTodayTVSeries(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -79,7 +79,7 @@ class TVShowPageKeyRepositoryTest {
     @Test
     fun loadMostPopularTVShows() {
         val repository = TVShowsPageKeyRepository(api, MOST_POPULAR, networkExecutor, context)
-        `when`(api.popularTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.popularTVSeries(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -90,7 +90,7 @@ class TVShowPageKeyRepositoryTest {
     @Test
     fun loadHighRatedTVShows() {
         val repository = TVShowsPageKeyRepository(api, HIGHEST_RATED, networkExecutor, context)
-        `when`(api.topRatedTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.topRatedTVSeries(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
@@ -101,7 +101,7 @@ class TVShowPageKeyRepositoryTest {
     @Test
     fun loadOnTheAirTVShows() {
         val repository = TVShowsPageKeyRepository(api, UPCOMING, networkExecutor, context)
-        `when`(api.onTheAirTVSeries(anyInt())).thenReturn(Observable.just(ItemWrapper(Lists.newArrayList(tvShow))))
+        `when`(api.onTheAirTVSeries(anyInt())).thenReturn(Observable.just(TMDbWrapper(Lists.newArrayList(tvShow))))
 
         with(getObserver(repository).value) {
             assertThat(this, `is`(notNullValue()))
