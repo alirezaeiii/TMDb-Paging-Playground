@@ -57,6 +57,7 @@ class MovieFeedRepositoryTest {
             `when`(movieApi.upcomingMovies()).thenReturn(ItemWrapper(emptyList()))
             `when`(movieApi.topRatedMovies()).thenReturn(ItemWrapper(emptyList()))
             `when`(movieApi.nowPlayingMovies()).thenReturn(ItemWrapper(emptyList()))
+            `when`(movieApi.discoverMovies()).thenReturn(ItemWrapper(emptyList()))
 
             val repository = MovieFeedRepository(context, Dispatchers.Main, movieApi)
 
@@ -69,6 +70,7 @@ class MovieFeedRepositoryTest {
             assertThat(result[2].feeds, `is`(emptyList()))
             assertThat(result[3].feeds, `is`(emptyList()))
             assertThat(result[4].feeds, `is`(emptyList()))
+            assertThat(result[5].feeds, `is`(emptyList()))
         }
     }
 

@@ -57,6 +57,7 @@ class TVShowFeedRepositoryTest {
             `when`(tvShowApi.onTheAirTVSeries()).thenReturn(ItemWrapper(emptyList()))
             `when`(tvShowApi.topRatedTVSeries()).thenReturn(ItemWrapper(emptyList()))
             `when`(tvShowApi.airingTodayTVSeries()).thenReturn(ItemWrapper(emptyList()))
+            `when`(tvShowApi.discoverTVSeries()).thenReturn(ItemWrapper(emptyList()))
 
             val repository = TVShowFeedRepository(context, Dispatchers.Main, tvShowApi)
 
@@ -69,6 +70,7 @@ class TVShowFeedRepositoryTest {
             assertThat(result[2].feeds, `is`(emptyList()))
             assertThat(result[3].feeds, `is`(emptyList()))
             assertThat(result[4].feeds, `is`(emptyList()))
+            assertThat(result[5].feeds, `is`(emptyList()))
         }
     }
 
