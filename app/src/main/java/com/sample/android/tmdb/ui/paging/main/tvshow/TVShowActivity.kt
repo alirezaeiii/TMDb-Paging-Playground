@@ -12,6 +12,6 @@ abstract class TVShowActivity: MainActivity<TVShow>() {
     override val screenTitle: String
         get() = getString(titleId, getString(R.string.menu_tv_series))
 
-    override val navType: NavType?
+    override val navType: NavType
         get() = NavType.TV_SERIES
 }

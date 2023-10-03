@@ -32,8 +32,8 @@ class FeedActivity : BaseNavTypeActivity() {
 
     private lateinit var binding: ActivityFeedBinding
 
-    override val navType: NavType?
-        get() = viewModel.currentType.value
+    override val navType: NavType
+        get() = viewModel.currentType.value ?: NavType.MOVIES
 
     override val toolbar: Toolbar
         get() = binding.toolbar

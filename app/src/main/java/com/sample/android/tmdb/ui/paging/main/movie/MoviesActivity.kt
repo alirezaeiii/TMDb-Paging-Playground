@@ -12,6 +12,6 @@ abstract class MoviesActivity: MainActivity<Movie>() {
     override val screenTitle: String
         get() = getString(titleId, getString(R.string.menu_movies))
 
-    override val navType: NavType?
+    override val navType: NavType
         get() = NavType.MOVIES
 }

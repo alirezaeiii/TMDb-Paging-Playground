@@ -15,7 +15,7 @@ abstract class BaseNavTypeActivity : BaseActivity() {
 
     protected abstract val toolbar: Toolbar
 
-    protected abstract val navType: NavType?
+    protected abstract val navType: NavType
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
