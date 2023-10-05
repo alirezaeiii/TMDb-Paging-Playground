@@ -8,9 +8,9 @@ import android.widget.*
 import android.widget.LinearLayout.LayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.android.tmdb.R
-import com.sample.android.tmdb.paging.NetworkState
-import com.sample.android.tmdb.paging.Status.FAILED
-import com.sample.android.tmdb.paging.Status.RUNNING
+import com.sample.android.tmdb.data.paging.NetworkState
+import com.sample.android.tmdb.data.paging.Status.FAILED
+import com.sample.android.tmdb.data.paging.Status.RUNNING
 import com.sample.android.tmdb.util.toVisibility
 
 /**

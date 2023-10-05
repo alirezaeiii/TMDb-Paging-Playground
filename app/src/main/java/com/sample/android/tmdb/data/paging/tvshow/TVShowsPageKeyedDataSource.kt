@@ -1,11 +1,11 @@
-package com.sample.android.tmdb.paging.tvshow
+package com.sample.android.tmdb.data.paging.tvshow
 
 import android.content.Context
 import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.data.response.asTVShowDomainModel
 import com.sample.android.tmdb.domain.model.SortType
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.paging.BasePageKeyedDataSource
+import com.sample.android.tmdb.data.paging.BasePageKeyedDataSource
 import io.reactivex.Observable
 import java.util.concurrent.Executor
 

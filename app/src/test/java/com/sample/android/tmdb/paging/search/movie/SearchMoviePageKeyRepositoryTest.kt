@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.paging.search.movie
+package com.sample.android.tmdb.data.paging.search.movie
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule

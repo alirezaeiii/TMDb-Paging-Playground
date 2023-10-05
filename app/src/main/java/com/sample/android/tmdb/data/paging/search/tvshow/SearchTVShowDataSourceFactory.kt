@@ -1,10 +1,10 @@
-package com.sample.android.tmdb.paging.search.tvshow
+package com.sample.android.tmdb.data.paging.search.tvshow
 
 import android.content.Context
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.data.network.TVShowService
-import com.sample.android.tmdb.paging.BaseDataSourceFactory
-import com.sample.android.tmdb.paging.BasePageKeyedDataSource
+import com.sample.android.tmdb.data.paging.BaseDataSourceFactory
+import com.sample.android.tmdb.data.paging.BasePageKeyedDataSource
 import java.util.concurrent.Executor
 
 class SearchTVShowDataSourceFactory(

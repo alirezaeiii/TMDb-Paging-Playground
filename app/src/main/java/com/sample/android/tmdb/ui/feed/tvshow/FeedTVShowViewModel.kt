@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.feed.tvshow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.model.TVShow
-import com.sample.android.tmdb.repository.TVShowFeedRepository
+import com.sample.android.tmdb.data.repository.TVShowFeedRepository
 import com.sample.android.tmdb.ui.feed.FeedViewModel
 import javax.inject.Inject
 

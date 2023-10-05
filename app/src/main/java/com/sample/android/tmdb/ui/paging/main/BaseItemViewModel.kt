@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.sample.android.tmdb.ui.paging.BaseViewModel
 import com.sample.android.tmdb.domain.model.TmdbItem
-import com.sample.android.tmdb.paging.Listing
-import com.sample.android.tmdb.paging.BasePageKeyRepository
+import com.sample.android.tmdb.data.paging.Listing
+import com.sample.android.tmdb.data.paging.BasePageKeyRepository
 
 abstract class BaseItemViewModel<T : TmdbItem>(app: Application) : BaseViewModel<T>(app) {
 

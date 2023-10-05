@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.paging
+package com.sample.android.tmdb.data.paging
 
 import androidx.lifecycle.Transformations
 import androidx.annotation.MainThread

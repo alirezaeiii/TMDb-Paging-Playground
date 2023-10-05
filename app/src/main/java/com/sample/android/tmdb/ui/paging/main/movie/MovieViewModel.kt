@@ -3,8 +3,8 @@ package com.sample.android.tmdb.ui.paging.main.movie
 import android.app.Application
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieService
-import com.sample.android.tmdb.paging.BasePageKeyRepository
-import com.sample.android.tmdb.paging.movie.MoviePageKeyRepository
+import com.sample.android.tmdb.data.paging.BasePageKeyRepository
+import com.sample.android.tmdb.data.paging.movie.MoviePageKeyRepository
 import com.sample.android.tmdb.ui.paging.main.BaseItemViewModel
 import com.sample.android.tmdb.domain.model.SortType
 

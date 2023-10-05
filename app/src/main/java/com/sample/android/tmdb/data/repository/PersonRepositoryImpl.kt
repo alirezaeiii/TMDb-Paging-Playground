@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.data.repository
 
 import com.sample.android.tmdb.data.network.PersonService
 import com.sample.android.tmdb.data.response.asDomainModel
