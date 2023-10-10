@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.repository
+package com.sample.android.tmdb.data.repository
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
