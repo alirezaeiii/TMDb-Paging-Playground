@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  local_test_job:
+  local test job:
     name: Running Local Tests
     runs-on: ubuntu-latest
     continue-on-error: true
