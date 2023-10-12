@@ -14,12 +14,12 @@ abstract class BaseNavTypeFragment : DaggerFragment()  {
     protected abstract val navType: NavType
 
     protected fun startDetailActivity(tmdbItem: TmdbItem) {
-        val activity = when (navType) {
+        val activityClass = when (navType) {
             NavType.MOVIES -> DetailMovieActivity::class.java
             NavType.TV_SERIES -> DetailTVShowActivity::class.java
             else -> throw RuntimeException("Unknown item to start detail Activity")
         }
-        val intent = Intent(requireActivity(), activity).apply {
+        val intent = Intent(requireActivity(), activityClass).apply {
             putExtras(Bundle().apply {
                 putParcelable(Constants.EXTRA_TMDB_ITEM, tmdbItem)
             })

@@ -83,7 +83,7 @@ private fun <T : TmdbItem> FeedCollection(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .clickable {
-                        val activity = when (navType) {
+                        val activityClass = when (navType) {
                             NavType.MOVIES -> {
                                 when (feedCollection.sortType) {
                                     SortType.TRENDING -> {
@@ -142,7 +142,7 @@ private fun <T : TmdbItem> FeedCollection(
 
                             else -> throw RuntimeException("Unknown item to start paging Activity")
                         }
-                        val intent = Intent(context, activity)
+                        val intent = Intent(context, activityClass)
                         context.startActivity(intent)
                     }
                     .padding(Dimens.PaddingNormal)
