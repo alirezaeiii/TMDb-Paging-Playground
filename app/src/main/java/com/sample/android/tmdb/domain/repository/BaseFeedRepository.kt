@@ -3,21 +3,17 @@ package com.sample.android.tmdb.domain.repository
 import android.content.Context
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.model.FeedWrapper
-import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.domain.model.SortType
-import com.sample.android.tmdb.util.Resource
-import com.sample.android.tmdb.util.isNetworkAvailable
+import com.sample.android.tmdb.domain.model.TmdbItem
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 abstract class BaseFeedRepository<T : TmdbItem>(
-    private val context: Context,
+    context: Context,
     ioDispatcher: CoroutineDispatcher
-) {
+) : BaseRepository<List<FeedWrapper<T>>>(context, ioDispatcher) {
 
     protected abstract suspend fun popularItems(): List<T>
 
@@ -35,60 +31,52 @@ abstract class BaseFeedRepository<T : TmdbItem>(
 
     protected abstract fun getLatestResId(): Int
 
-    val result = flow {
-        emit(Resource.Loading)
-        if (context.isNetworkAvailable()) {
-            try {
-                coroutineScope {
-                    val trendingDeferred: Deferred<List<T>> = async { trendingItems() }
-                    val popularDeferred: Deferred<List<T>> = async { popularItems() }
-                    val nowPlayingDeferred: Deferred<List<T>> = async { nowPlayingItems() }
-                    val latestDeferred: Deferred<List<T>> = async { latestItems() }
-                    val topRatedDeferred: Deferred<List<T>> = async { topRatedItems() }
-                    val discoverDeferred: Deferred<List<T>> = async { discoverItems() }
-
-                    emit(
-                        Resource.Success(
-                            listOf(
-                                FeedWrapper(
-                                    trendingDeferred.await(),
-                                    R.string.text_trending,
-                                    SortType.TRENDING
-                                ),
-                                FeedWrapper(
-                                    popularDeferred.await(),
-                                    R.string.text_popular,
-                                    SortType.MOST_POPULAR
-                                ),
-                                FeedWrapper(
-                                    nowPlayingDeferred.await(),
-                                    getNowPlayingResId(),
-                                    SortType.NOW_PLAYING
-                                ),
-                                FeedWrapper(
-                                    discoverDeferred.await(),
-                                    R.string.text_discover,
-                                    SortType.DISCOVER
-                                ),
-                                FeedWrapper(
-                                    latestDeferred.await(),
-                                    getLatestResId(),
-                                    SortType.UPCOMING
-                                ),
-                                FeedWrapper(
-                                    topRatedDeferred.await(),
-                                    R.string.text_highest_rate,
-                                    SortType.HIGHEST_RATED
-                                )
-                            )
-                        )
-                    )
-                }
-            } catch (t: Throwable) {
-                emit(Resource.Error(context.getString(R.string.failed_loading_msg)))
-            }
-        } else {
-            emit(Resource.Error(context.getString(R.string.failed_network_msg)))
+    override suspend fun getSuccessResult(): List<FeedWrapper<T>> {
+        val trendingDeferred: Deferred<List<T>>
+        val nowPlayingDeferred: Deferred<List<T>>
+        val popularDeferred: Deferred<List<T>>
+        val latestDeferred: Deferred<List<T>>
+        val topRatedDeferred: Deferred<List<T>>
+        val discoverDeferred: Deferred<List<T>>
+        coroutineScope {
+            trendingDeferred = async { trendingItems() }
+            nowPlayingDeferred = async { nowPlayingItems() }
+            popularDeferred = async { popularItems() }
+            latestDeferred = async { latestItems() }
+            topRatedDeferred = async { topRatedItems() }
+            discoverDeferred = async { discoverItems() }
         }
-    }.flowOn(ioDispatcher)
+        return listOf(
+            FeedWrapper(
+                trendingDeferred.await(),
+                R.string.text_trending,
+                SortType.TRENDING
+            ),
+            FeedWrapper(
+                popularDeferred.await(),
+                R.string.text_popular,
+                SortType.MOST_POPULAR
+            ),
+            FeedWrapper(
+                nowPlayingDeferred.await(),
+                getNowPlayingResId(),
+                SortType.NOW_PLAYING
+            ),
+            FeedWrapper(
+                discoverDeferred.await(),
+                R.string.text_discover,
+                SortType.DISCOVER
+            ),
+            FeedWrapper(
+                latestDeferred.await(),
+                getLatestResId(),
+                SortType.UPCOMING
+            ),
+            FeedWrapper(
+                topRatedDeferred.await(),
+                R.string.text_highest_rate,
+                SortType.HIGHEST_RATED
+            )
+        )
+    }
 }

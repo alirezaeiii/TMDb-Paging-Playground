@@ -7,9 +7,9 @@ import androidx.lifecycle.Transformations
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.data.paging.Listing
 import com.sample.android.tmdb.data.paging.BasePageKeyRepository
-import com.sample.android.tmdb.ui.paging.BaseViewModel
+import com.sample.android.tmdb.ui.paging.BasePagingViewModel
 
-abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : BaseViewModel<T>(app) {
+abstract class BaseSearchViewModel<T : TmdbItem>(app: Application) : BasePagingViewModel<T>(app) {
 
     private val query = MutableLiveData<String>()
 

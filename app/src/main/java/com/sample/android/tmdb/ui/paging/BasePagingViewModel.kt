@@ -12,8 +12,7 @@ import com.sample.android.tmdb.util.DisposableManager
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-abstract class BaseViewModel<T : TmdbItem>(app: Application)
-    : AndroidViewModel(app) {
+abstract class BasePagingViewModel<T : TmdbItem>(app: Application) : AndroidViewModel(app) {
 
     // thread pool used for network requests
     protected val networkIO: ExecutorService = Executors.newFixedThreadPool(5)

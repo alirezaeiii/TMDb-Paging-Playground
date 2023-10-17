@@ -15,7 +15,7 @@ import com.sample.android.tmdb.widget.MarginDecoration
 
 abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
 
-    protected abstract val viewModel: BaseViewModel<T>
+    protected abstract val viewModel: BasePagingViewModel<T>
 
     private var _binding: FragmentMainBinding? = null
 
