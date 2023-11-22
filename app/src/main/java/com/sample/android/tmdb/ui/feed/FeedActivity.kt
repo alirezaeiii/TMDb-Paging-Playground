@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityFeedBinding
-import com.sample.android.tmdb.ui.BaseNavTypeActivity
+import com.sample.android.tmdb.ui.base.BaseNavTypeActivity
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import com.sample.android.tmdb.ui.setting.SettingFragment

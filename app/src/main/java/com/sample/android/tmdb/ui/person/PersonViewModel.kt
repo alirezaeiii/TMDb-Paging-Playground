@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.repository.PersonRepository
 import com.sample.android.tmdb.domain.model.Credit
 import com.sample.android.tmdb.domain.model.Person
-import com.sample.android.tmdb.ui.BaseDetailViewModel
+import com.sample.android.tmdb.ui.base.BaseDetailViewModel
 import javax.inject.Inject
 
 class PersonViewModel(

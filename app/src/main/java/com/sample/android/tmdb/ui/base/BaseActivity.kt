@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.ui
+package com.sample.android.tmdb.ui.base
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

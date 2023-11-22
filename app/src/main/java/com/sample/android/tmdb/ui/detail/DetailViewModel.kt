@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.model.Cast
 import com.sample.android.tmdb.domain.model.CreditWrapper
 import com.sample.android.tmdb.domain.model.Crew
 import com.sample.android.tmdb.domain.model.Video
-import com.sample.android.tmdb.ui.BaseDetailViewModel
+import com.sample.android.tmdb.ui.base.BaseDetailViewModel
 import com.sample.android.tmdb.ui.detail.DetailViewModel.DetailWrapper
 import io.reactivex.Single
 

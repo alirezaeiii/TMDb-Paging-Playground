@@ -2,7 +2,7 @@ package com.sample.android.tmdb.ui.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import com.sample.android.tmdb.ui.BaseViewModel
+import com.sample.android.tmdb.ui.base.BaseViewModel
 import com.sample.android.tmdb.util.Resource
 
 @Composable

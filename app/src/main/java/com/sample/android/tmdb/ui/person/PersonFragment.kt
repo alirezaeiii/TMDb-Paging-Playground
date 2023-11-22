@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentPersonBinding
 import com.sample.android.tmdb.domain.model.Credit
-import com.sample.android.tmdb.ui.BaseDetailFragment
+import com.sample.android.tmdb.ui.base.BaseDetailFragment
 import com.sample.android.tmdb.util.toVisibility
 import javax.inject.Inject
 

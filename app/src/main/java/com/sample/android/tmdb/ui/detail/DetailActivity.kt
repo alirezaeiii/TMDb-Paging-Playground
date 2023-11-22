@@ -1,7 +1,7 @@
 package com.sample.android.tmdb.ui.detail
 
 import android.view.MenuItem
-import com.sample.android.tmdb.ui.BaseDetailActivity
+import com.sample.android.tmdb.ui.base.BaseDetailActivity
 
 abstract class DetailActivity : BaseDetailActivity() {
 

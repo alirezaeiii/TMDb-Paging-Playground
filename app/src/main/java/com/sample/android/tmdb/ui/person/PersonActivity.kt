@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.ui.person
 
-import com.sample.android.tmdb.ui.BaseDetailActivity
+import com.sample.android.tmdb.ui.base.BaseDetailActivity
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

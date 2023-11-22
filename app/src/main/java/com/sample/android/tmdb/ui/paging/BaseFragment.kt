@@ -10,7 +10,7 @@ import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.FragmentMainBinding
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.data.paging.Status.RUNNING
-import com.sample.android.tmdb.ui.BaseNavTypeFragment
+import com.sample.android.tmdb.ui.base.BaseNavTypeFragment
 import com.sample.android.tmdb.widget.MarginDecoration
 
 abstract class BaseFragment<T : TmdbItem> : BaseNavTypeFragment() {
