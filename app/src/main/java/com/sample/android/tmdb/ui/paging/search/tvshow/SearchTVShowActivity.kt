@@ -14,5 +14,5 @@ class SearchTVShowActivity: SearchActivity<TVShow>() {
         get() = searchTVShowFragment
 
     override val hintId: Int
-        get() = R.string.search_hint_tv_shows
+        get() = R.string.menu_tv_series
 }

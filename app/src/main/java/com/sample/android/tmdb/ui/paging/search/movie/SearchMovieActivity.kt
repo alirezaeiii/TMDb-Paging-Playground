@@ -14,5 +14,5 @@ class SearchMovieActivity: SearchActivity<Movie>() {
         get() = searchMovieFragment
 
     override val hintId: Int
-        get() = R.string.search_hint_movies
+        get() = R.string.menu_movies
 }
