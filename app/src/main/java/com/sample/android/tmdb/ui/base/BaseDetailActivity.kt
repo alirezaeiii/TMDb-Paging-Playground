@@ -8,15 +8,13 @@ import com.sample.android.tmdb.databinding.ActivityDetailBinding
 import com.sample.android.tmdb.util.addFragmentToActivity
 import dagger.android.support.DaggerFragment
 
-abstract class BaseDetailActivity: BaseActivity() {
+abstract class BaseDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
-    override val networkStatusLayout: View
-        get() = binding.networkStatusLayout
+    override val networkStatusLayout: View by lazy { binding.itemContainer.networkStatusLayout }
 
-    override val textViewNetworkStatus: TextView
-        get() = binding.textViewNetworkStatus
+    override val textViewNetworkStatus: TextView by lazy { binding.itemContainer.textViewNetworkStatus }
 
     protected abstract val fragment: DaggerFragment
 

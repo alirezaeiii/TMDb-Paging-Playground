@@ -38,11 +38,9 @@ class FeedActivity : BaseNavTypeActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
-    override val networkStatusLayout: View
-        get() = binding.networkStatusLayout
+    override val networkStatusLayout: View by lazy { binding.itemContainer.networkStatusLayout }
 
-    override val textViewNetworkStatus: TextView
-        get() = binding.textViewNetworkStatus
+    override val textViewNetworkStatus: TextView by lazy { binding.itemContainer.textViewNetworkStatus }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

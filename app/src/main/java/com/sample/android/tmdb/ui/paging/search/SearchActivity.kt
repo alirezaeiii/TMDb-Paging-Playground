@@ -14,7 +14,7 @@ import com.sample.android.tmdb.databinding.ActivitySearchBinding
 import com.sample.android.tmdb.ui.base.BaseActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 
-abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
+abstract class SearchActivity<T : TmdbItem> : BaseActivity() {
 
     protected abstract val fragment: BaseSearchFragment<T>
 
@@ -22,11 +22,9 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
 
     private lateinit var binding: ActivitySearchBinding
 
-    override val networkStatusLayout: View
-        get() = binding.networkStatusLayout
+    override val networkStatusLayout: View by lazy { binding.itemContainer.networkStatusLayout }
 
-    override val textViewNetworkStatus: TextView
-        get() = binding.textViewNetworkStatus
+    override val textViewNetworkStatus: TextView by lazy { binding.itemContainer.textViewNetworkStatus }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +55,10 @@ abstract class SearchActivity<T: TmdbItem> : BaseActivity() {
 
                 override fun onQueryTextChange(query: String): Boolean {
                     if (query.isNotEmpty()) {
-                        fragmentContainer.visibility = View.VISIBLE
+                        itemContainer.fragmentContainer.visibility = View.VISIBLE
                         fragment.search(query)
                     } else {
-                        fragmentContainer.visibility = View.GONE
+                        itemContainer.fragmentContainer.visibility = View.GONE
                         fragment.observeRefreshState()
                     }
                     return true

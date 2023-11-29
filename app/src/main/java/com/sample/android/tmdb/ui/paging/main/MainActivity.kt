@@ -12,7 +12,7 @@ import com.sample.android.tmdb.ui.base.BaseNavTypeActivity
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.setupActionBar
 
-abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
+abstract class MainActivity<T : TmdbItem> : BaseNavTypeActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -23,11 +23,9 @@ abstract class MainActivity<T: TmdbItem> : BaseNavTypeActivity() {
     override val toolbar: Toolbar
         get() = binding.toolbar
 
-    override val networkStatusLayout: View
-        get() = binding.networkStatusLayout
+    override val networkStatusLayout: View by lazy { binding.itemContainer.networkStatusLayout }
 
-    override val textViewNetworkStatus: TextView
-        get() = binding.textViewNetworkStatus
+    override val textViewNetworkStatus: TextView by lazy { binding.itemContainer.textViewNetworkStatus }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
