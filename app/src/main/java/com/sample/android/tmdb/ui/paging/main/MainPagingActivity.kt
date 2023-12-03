@@ -8,15 +8,15 @@ import androidx.appcompat.widget.Toolbar
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityMainBinding
 import com.sample.android.tmdb.domain.model.TmdbItem
-import com.sample.android.tmdb.ui.base.BaseNavTypeActivity
+import com.sample.android.tmdb.ui.base.BaseNavigationActivity
 import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.setupActionBar
 
-abstract class MainActivity<T : TmdbItem> : BaseNavTypeActivity() {
+abstract class MainPagingActivity<T : TmdbItem> : BaseNavigationActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    protected abstract val fragment: BaseItemFragment<T>
+    protected abstract val fragment: BaseMainPagingFragment<T>
 
     protected abstract val screenTitle: String
 

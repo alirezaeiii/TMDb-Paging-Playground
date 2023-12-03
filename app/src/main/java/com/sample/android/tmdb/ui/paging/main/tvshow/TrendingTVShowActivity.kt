@@ -3,7 +3,7 @@ package com.sample.android.tmdb.ui.paging.main.tvshow
 import com.sample.android.tmdb.R
 import javax.inject.Inject
 
-class TrendingTVShowActivity: TVShowActivity() {
+class TrendingTVShowActivity: TVShowPagingActivity() {
 
     @Inject
     lateinit var trendingTVShowFragment: TrendingTVShowFragment
@@ -11,6 +11,6 @@ class TrendingTVShowActivity: TVShowActivity() {
     override val titleId: Int
         get() = R.string.trending
 
-    override val fragment: TVShowFragment
+    override val fragment: TVShowPagingFragment
         get() = trendingTVShowFragment
 }

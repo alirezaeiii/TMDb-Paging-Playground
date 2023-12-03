@@ -6,7 +6,7 @@
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.paging.BaseFragment">
+        tools:context=".ui.paging.BasePagingFragment">
 
         <com.sample.android.tmdb.widget.AutofitRecyclerView
             android:id="@+id/recyclerView"

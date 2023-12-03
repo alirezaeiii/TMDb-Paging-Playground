@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.model.SortType
 import javax.inject.Inject
 
 class TrendingMoviesFragment @Inject
-constructor() : MovieFragment() {
+constructor() : MoviePagingFragment() {
 
     override val sortType = SortType.TRENDING
 }

@@ -11,7 +11,7 @@ import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.ui.paging.search.movie.SearchMovieActivity
 import com.sample.android.tmdb.ui.paging.search.tvshow.SearchTVShowActivity
 
-abstract class BaseNavTypeActivity : BaseActivity() {
+abstract class BaseNavigationActivity : BaseActivity() {
 
     protected abstract val toolbar: Toolbar
 

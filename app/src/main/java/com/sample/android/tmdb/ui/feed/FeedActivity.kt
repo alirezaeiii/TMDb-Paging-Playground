@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.databinding.ActivityFeedBinding
-import com.sample.android.tmdb.ui.base.BaseNavTypeActivity
+import com.sample.android.tmdb.ui.base.BaseNavigationActivity
 import com.sample.android.tmdb.ui.feed.movie.FeedMovieFragment
 import com.sample.android.tmdb.ui.feed.tvshow.FeedTVShowFragment
 import com.sample.android.tmdb.ui.setting.SettingFragment
@@ -17,7 +17,7 @@ import com.sample.android.tmdb.util.addFragmentToActivity
 import com.sample.android.tmdb.util.replaceFragmentInActivity
 import javax.inject.Inject
 
-class FeedActivity : BaseNavTypeActivity() {
+class FeedActivity : BaseNavigationActivity() {
 
     @Inject
     lateinit var feedMovieFragment: FeedMovieFragment

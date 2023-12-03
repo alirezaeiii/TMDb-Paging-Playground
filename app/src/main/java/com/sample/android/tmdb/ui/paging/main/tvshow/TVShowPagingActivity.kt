@@ -3,9 +3,9 @@ package com.sample.android.tmdb.ui.paging.main.tvshow
 import com.sample.android.tmdb.R
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.ui.paging.main.MainActivity
+import com.sample.android.tmdb.ui.paging.main.MainPagingActivity
 
-abstract class TVShowActivity: MainActivity<TVShow>() {
+abstract class TVShowPagingActivity: MainPagingActivity<TVShow>() {
 
     protected abstract val titleId: Int
 

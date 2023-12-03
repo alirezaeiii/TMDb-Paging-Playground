@@ -9,7 +9,7 @@ import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.util.Constants
 import dagger.android.support.DaggerFragment
 
-abstract class BaseNavTypeFragment : DaggerFragment()  {
+abstract class BaseNavigationFragment : DaggerFragment()  {
 
     protected abstract val navType: NavType
 

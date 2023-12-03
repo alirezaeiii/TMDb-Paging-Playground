@@ -2,10 +2,10 @@ package com.sample.android.tmdb.ui.paging.search
 
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.data.paging.Status.RUNNING
-import com.sample.android.tmdb.ui.paging.BaseFragment
+import com.sample.android.tmdb.ui.paging.BasePagingFragment
 import com.sample.android.tmdb.util.toVisibility
 
-abstract class BaseSearchFragment<T : TmdbItem> : BaseFragment<T>() {
+abstract class BaseSearchFragment<T : TmdbItem> : BasePagingFragment<T>() {
 
     private val searchViewModel
         get() = viewModel as BaseSearchViewModel

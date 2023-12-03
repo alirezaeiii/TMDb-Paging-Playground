@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.model.SortType.MOST_POPULAR
 import javax.inject.Inject
 
 class PopularMoviesFragment @Inject
-constructor() : MovieFragment() {
+constructor() : MoviePagingFragment() {
 
     override val sortType = MOST_POPULAR
 }

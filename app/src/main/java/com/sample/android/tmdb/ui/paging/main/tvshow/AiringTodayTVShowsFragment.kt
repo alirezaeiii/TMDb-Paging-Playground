@@ -4,7 +4,7 @@ import com.sample.android.tmdb.domain.model.SortType
 import javax.inject.Inject
 
 class AiringTodayTVShowsFragment @Inject
-constructor() : TVShowFragment() {
+constructor() : TVShowPagingFragment() {
 
     override val sortType = SortType.NOW_PLAYING
 }

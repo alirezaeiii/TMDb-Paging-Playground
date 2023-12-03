@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.model.TVShow
 import com.sample.android.tmdb.data.network.TVShowService
 import com.sample.android.tmdb.ui.feed.NavType
-import com.sample.android.tmdb.ui.paging.main.BaseItemFragment
+import com.sample.android.tmdb.ui.paging.main.BaseMainPagingFragment
 import javax.inject.Inject
 
-abstract class TVShowFragment : BaseItemFragment<TVShow>() {
+abstract class TVShowPagingFragment : BaseMainPagingFragment<TVShow>() {
 
     @Inject
     lateinit var api: TVShowService
@@ -17,9 +17,9 @@ abstract class TVShowFragment : BaseItemFragment<TVShow>() {
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return TVShowsViewModel(api, sortType, requireNotNull(activity).application) as T
+                return TVShowPagingViewModel(api, sortType, requireNotNull(activity).application) as T
             }
-        })[TVShowsViewModel::class.java]
+        })[TVShowPagingViewModel::class.java]
     }
 
     override val navType: NavType

@@ -5,14 +5,14 @@ import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.data.paging.BasePageKeyRepository
 import com.sample.android.tmdb.data.paging.movie.MoviePageKeyRepository
-import com.sample.android.tmdb.ui.paging.main.BaseItemViewModel
+import com.sample.android.tmdb.ui.paging.main.BaseMainPagingViewModel
 import com.sample.android.tmdb.domain.model.SortType
 
-class MovieViewModel(
+class MoviePagingViewModel(
     api: MovieService,
     sortType: SortType,
     app: Application
-) : BaseItemViewModel<Movie>(app = app) {
+) : BaseMainPagingViewModel<Movie>(app = app) {
 
     override val mainRepoResult: BasePageKeyRepository<Movie> = MoviePageKeyRepository(api = api,
             sortType = sortType,

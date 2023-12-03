@@ -8,7 +8,7 @@ import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.data.paging.Listing
 import com.sample.android.tmdb.data.paging.BasePageKeyRepository
 
-abstract class BaseItemViewModel<T : TmdbItem>(app: Application) : BasePagingViewModel<T>(app) {
+abstract class BaseMainPagingViewModel<T : TmdbItem>(app: Application) : BasePagingViewModel<T>(app) {
 
     protected abstract val mainRepoResult : BasePageKeyRepository<T>
 
