@@ -20,15 +20,16 @@ import com.sample.android.tmdb.util.setupActionBar
 import com.sample.android.tmdb.util.toVisibility
 import javax.inject.Inject
 
-abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDetailBinding>
-    (R.layout.fragment_detail) {
+abstract class DetailFragment : BaseDetailFragment<DetailViewModel, FragmentDetailBinding>() {
 
     @Inject
     lateinit var tmdbItem: TmdbItem
 
+    override fun setBinding() = FragmentDetailBinding.inflate(layoutInflater)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         with(binding) {
             tmdbItem = this@DetailFragment.tmdbItem

@@ -2,14 +2,14 @@ package com.sample.android.tmdb.ui.base
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.databinding.ViewDataBinding
 import com.sample.android.tmdb.domain.model.TmdbItem
 import com.sample.android.tmdb.ui.detail.movie.DetailMovieActivity
 import com.sample.android.tmdb.ui.detail.tvshow.DetailTVShowActivity
 import com.sample.android.tmdb.ui.feed.NavType
 import com.sample.android.tmdb.util.Constants
-import dagger.android.support.DaggerFragment
 
-abstract class BaseNavigationFragment : DaggerFragment()  {
+abstract class BaseNavigationFragment<VB: ViewDataBinding> : BaseFragment<VB>()  {
 
     protected abstract val navType: NavType
 

@@ -23,6 +23,7 @@
         android:onClick="@{() -> callback.onClick(tmdbItem)}"
         app:cardElevation="@dimen/z_app_bar"
         app:ImageUrl="@{tmdbItem.posterUrl}"
+        app:cardCornerRadius="10dp"
         tools:ignore="KeyboardInaccessibleWidget">
 
         <ImageView

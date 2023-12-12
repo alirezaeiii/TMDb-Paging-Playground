@@ -10,7 +10,7 @@ import com.sample.android.tmdb.ui.common.Content
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.common.composeView
 
-abstract class FeedFragment<T : TmdbItem> : BaseNavigationFragment() {
+abstract class FeedFragment<T : TmdbItem> : BaseNavigationFragment<Nothing>() {
 
     protected abstract val viewModel: FeedViewModel<T>
 

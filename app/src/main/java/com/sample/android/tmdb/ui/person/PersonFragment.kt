@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class PersonFragment @Inject
 constructor() // Required empty public constructor
-    : BaseDetailFragment<PersonViewModel, FragmentPersonBinding>(R.layout.fragment_person) {
+    : BaseDetailFragment<PersonViewModel, FragmentPersonBinding>() {
 
     @Inject
     lateinit var factory: PersonViewModel.Factory
@@ -25,6 +25,8 @@ constructor() // Required empty public constructor
     override val viewModel: PersonViewModel by lazy {
         ViewModelProvider(this, factory)[PersonViewModel::class.java]
     }
+
+    override fun setBinding() = FragmentPersonBinding.inflate(layoutInflater)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
