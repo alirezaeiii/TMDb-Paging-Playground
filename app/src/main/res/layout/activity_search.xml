@@ -58,7 +58,7 @@
 
         <include
             android:id="@+id/item_container"
-            layout="@layout/item_container"
+            layout="@layout/container_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
