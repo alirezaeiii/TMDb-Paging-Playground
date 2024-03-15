@@ -48,6 +48,7 @@ Local unit testing is done for Repository and ViewModel layers. UI testing is do
 * [Mockito](https://github.com/mockito/mockito) which is the most popular Mocking framework for unit tests written in Java as well as Kotlin.
 * [MockK](https://mockk.io/ANDROID.html) mocking library for Kotlin
 * [Espresso](https://developer.android.com/training/testing/espresso) Automated testing UI test
+* [In-app updates](https://developer.android.com/guide/playcore/in-app-updates) is a Google Play Core libraries feature that prompts active users to update your app.
 
 ## Licence
     MIT License
