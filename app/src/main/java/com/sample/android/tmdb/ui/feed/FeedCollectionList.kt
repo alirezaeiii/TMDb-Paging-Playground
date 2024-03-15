@@ -33,6 +33,7 @@ import com.sample.android.tmdb.ui.common.Dimens
 import com.sample.android.tmdb.ui.common.TmdbTheme
 import com.sample.android.tmdb.ui.paging.main.movie.*
 import com.sample.android.tmdb.ui.paging.main.tvshow.*
+import com.sample.android.tmdb.util.conditional
 
 @Composable
 fun <T : TmdbItem> FeedCollectionList(
@@ -62,7 +63,9 @@ private fun <T : TmdbItem> FeedCollection(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    Column(modifier = modifier) {
+    Column(modifier = modifier.conditional(index != SortType.values().lastIndex) {
+        padding(bottom = 32.dp)
+    }) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
