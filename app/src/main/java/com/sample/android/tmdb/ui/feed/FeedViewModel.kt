@@ -7,4 +7,4 @@ import com.sample.android.tmdb.ui.base.BaseViewModel
 
 open class FeedViewModel<T : TmdbItem>(
     repository: BaseFeedRepository<T>,
-) : BaseViewModel<List<FeedWrapper<T>>>(repository)
+) : BaseViewModel<List<FeedWrapper>>(repository)

@@ -36,13 +36,12 @@ import com.sample.android.tmdb.ui.paging.main.tvshow.*
 import com.sample.android.tmdb.util.conditional
 
 @Composable
-fun <T : TmdbItem> FeedCollectionList(
+fun FeedCollectionList(
     navType: NavType,
-    collection: List<FeedWrapper<T>>,
+    collection: List<FeedWrapper>,
     onFeedClick: (TmdbItem) -> Unit
 ) {
     LazyColumn {
-
         itemsIndexed(collection) { index, feedCollection ->
             FeedCollection(
                 feedCollection = feedCollection,
@@ -55,8 +54,8 @@ fun <T : TmdbItem> FeedCollectionList(
 }
 
 @Composable
-private fun <T : TmdbItem> FeedCollection(
-    feedCollection: FeedWrapper<T>,
+private fun FeedCollection(
+    feedCollection: FeedWrapper,
     navType: NavType,
     onFeedClick: (TmdbItem) -> Unit,
     index: Int,
@@ -156,8 +155,8 @@ private fun <T : TmdbItem> FeedCollection(
 }
 
 @Composable
-private fun <T : TmdbItem> Feeds(
-    feeds: List<T>,
+private fun Feeds(
+    feeds: List<TmdbItem>,
     onFeedClick: (TmdbItem) -> Unit,
     index: Int,
     modifier: Modifier = Modifier
@@ -173,8 +172,8 @@ private fun <T : TmdbItem> Feeds(
 }
 
 @Composable
-private fun <T : TmdbItem> TmdbItem(
-    tmdbItem: T,
+private fun TmdbItem(
+    tmdbItem: TmdbItem,
     onFeedClick: (TmdbItem) -> Unit,
     index: Int
 ) {
