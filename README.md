@@ -1,8 +1,6 @@
 # TMDb-Paging-Playground
 A sample to showcase Kotlin, MVVM, Paging, Dagger, RxJava, Coroutines, Jetpack Compose, Retrofit, DataBinding, MotionLayout, Espresso and Unit test. [Known issue](https://issuetracker.google.com/issues/251812970)
 
-<a href="https://play.google.com/store/apps/details?id=com.sample.android.tmdb"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=70px /></a>
-
 ## Screenshots
 <p float="left">
   <img src="https://github.com/alirezaeiii/TMDb-Paging/blob/master/screenshots/screenshot1.gif" width="250" />
