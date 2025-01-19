@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieService
-import com.sample.android.tmdb.data.paging.BasePageKeyRepository
+import com.sample.android.tmdb.domain.paging.BasePageKeyRepository
 import com.sample.android.tmdb.data.paging.search.movie.SearchMoviePageKeyRepository
 import com.sample.android.tmdb.ui.paging.search.BaseSearchViewModel
 import javax.inject.Inject

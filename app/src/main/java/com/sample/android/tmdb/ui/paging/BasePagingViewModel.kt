@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.PagedList
 import com.sample.android.tmdb.domain.model.TmdbItem
-import com.sample.android.tmdb.data.paging.Listing
-import com.sample.android.tmdb.data.paging.NetworkState
+import com.sample.android.tmdb.domain.paging.Listing
+import com.sample.android.tmdb.domain.paging.NetworkState
 import com.sample.android.tmdb.util.DisposableManager
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

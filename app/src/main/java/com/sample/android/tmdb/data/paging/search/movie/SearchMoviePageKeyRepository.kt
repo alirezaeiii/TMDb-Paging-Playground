@@ -3,8 +3,8 @@ package com.sample.android.tmdb.data.paging.search.movie
 import android.content.Context
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.data.network.MovieService
-import com.sample.android.tmdb.data.paging.BaseDataSourceFactory
-import com.sample.android.tmdb.data.paging.BasePageKeyRepository
+import com.sample.android.tmdb.domain.paging.BaseDataSourceFactory
+import com.sample.android.tmdb.domain.paging.BasePageKeyRepository
 import java.util.concurrent.Executor
 
 class SearchMoviePageKeyRepository(

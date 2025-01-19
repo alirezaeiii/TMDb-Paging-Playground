@@ -5,7 +5,7 @@ import com.sample.android.tmdb.data.network.MovieService
 import com.sample.android.tmdb.data.response.asMovieDomainModel
 import com.sample.android.tmdb.domain.model.Movie
 import com.sample.android.tmdb.domain.model.SortType
-import com.sample.android.tmdb.data.paging.BasePageKeyedDataSource
+import com.sample.android.tmdb.domain.paging.BasePageKeyedDataSource
 import io.reactivex.Observable
 import java.util.concurrent.Executor
 

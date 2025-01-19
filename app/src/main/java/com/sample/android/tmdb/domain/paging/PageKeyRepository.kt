@@ -1,4 +1,4 @@
-package com.sample.android.tmdb.data.paging
+package com.sample.android.tmdb.domain.paging
 
 import com.sample.android.tmdb.domain.model.TmdbItem
 
