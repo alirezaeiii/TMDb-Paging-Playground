@@ -1,6 +1,6 @@
 package com.sample.android.tmdb.di
 
-import android.content.Context
+import android.app.Application
 import com.sample.android.tmdb.util.NetworkUtils
 import dagger.Module
 import dagger.Provides
@@ -9,7 +9,7 @@ import dagger.Provides
 class AppUtilsModule {
 
     @Provides
-    fun provideNetworkUtils(context: Context): NetworkUtils {
-        return NetworkUtils(context)
+    fun provideNetworkUtils(application: Application): NetworkUtils {
+        return NetworkUtils(application)
     }
 }

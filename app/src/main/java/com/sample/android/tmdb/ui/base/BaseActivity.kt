@@ -25,6 +25,11 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         handleNetwork()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.unregister()
+    }
+
     private fun handleNetwork() {
         networkUtils.getNetworkLiveData().observe(this) { isConnected: Boolean ->
             if (!isConnected) {
